@@ -13,8 +13,8 @@ module.exports.up = (migration) => {
     items: {
       type: "Link",
       linkType: "Entry",
-      validation: [{
-        in: COMPONENT_MAIN_REF_LIST
+      validations: [{
+        linkContentType: COMPONENT_MAIN_REF_LIST
       }]
     }
   })
