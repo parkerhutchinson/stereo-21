@@ -7,7 +7,7 @@ const pageTransformer = (data:TypePageFields):any => {
     props: component.fields
   }))
   
-  return {components: scopedComponents, meta: data.meta}
+  return {components: scopedComponents, meta: data.meta.fields}
 } 
 
 export default pageTransformer;

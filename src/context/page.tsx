@@ -8,7 +8,10 @@ const defaultPageContext = {
     componentId: '',
     props: {}
   },
-  meta: {}
+  meta: {
+    title: '',
+    description: ''
+  }
 }
 
 export const PageContext = createContext(defaultPageContext);
