@@ -1,11 +1,16 @@
 import { Globals } from "../styles/globals";
 import type { AppProps } from "next/app";
+import PageContextProvider from "../context/page";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const {pageData} = pageProps;
+
   return (
     <>
       <Globals />
-      <Component {...pageProps} />
+      <PageContextProvider contentfulData={pageData[0].fields}>
+        <Component {...pageProps} />
+      </PageContextProvider>
     </>
   );
 }
