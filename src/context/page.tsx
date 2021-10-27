@@ -5,7 +5,8 @@ import type { ReactNode } from "react";
 
 const defaultPageContext = {
   components: {
-    componentId: ''
+    componentId: '',
+    props: {}
   },
   meta: {}
 }

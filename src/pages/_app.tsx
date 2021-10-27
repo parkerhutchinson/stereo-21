@@ -3,12 +3,16 @@ import type { AppProps } from "next/app";
 import PageContextProvider from "../context/page";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const {pageData} = pageProps;
+  const { pageData } = pageProps;
 
   return (
     <>
       <Globals />
-      <PageContextProvider contentfulData={pageData[0].fields}>
+      <PageContextProvider
+        contentfulData={
+          typeof pageData !== "undefined" ? pageData[0].fields : {}
+        }
+      >
         <Component {...pageProps} />
       </PageContextProvider>
     </>
