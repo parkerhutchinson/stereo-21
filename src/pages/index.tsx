@@ -4,7 +4,7 @@ import Head from 'next/head'
 import getContentfulData from "../lib/getContentfuldata";
 import { PageContext } from "../context/page";
 import dynamic from 'next/dynamic'
-
+import ErrorComponentMissing from "../components/molecules/errorComponentMissing";
 
 const ComponentImportMap: { [index: string]: any } = {
   bio: dynamic(() => import('../components/molecules/richTextBody'))
@@ -25,7 +25,7 @@ const Page: NextPage = () => {
   const componentsMap = components.map((d: any) => {
     return typeof ComponentImportMap[d.componentId] !== 'undefined' ? 
       { Component: ComponentImportMap[d.componentId], props: d.props } : 
-      { Component: () => <h1>testing</h1>, props: {} }
+      { Component: () => <ErrorComponentMissing id={d.componentId} />, props: {} }
   });
 
   return (
