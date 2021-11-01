@@ -2,7 +2,13 @@ import type { NextPage } from 'next'
 import { useContext } from 'react';
 import Head from 'next/head'
 import getContentfulData from "../lib/getContentfuldata";
-import {PageContext} from "../context/page";
+import { PageContext } from "../context/page";
+import dynamic from 'next/dynamic'
+
+
+const ComponentImportMap: { [index: string]: any } = {
+  bio: dynamic(() => import('../components/molecules/richTextBody'))
+}
 
 export async function getStaticProps() {
   const pageData = await getContentfulData()
@@ -13,8 +19,14 @@ export async function getStaticProps() {
   }
 }
 
-const Page:NextPage = () => {
-  const {components, meta} = useContext(PageContext);
+const Page: NextPage = () => {
+  const { components, meta } = useContext(PageContext);
+  // pre-render the component to make static exports work correctly
+  const componentsMap = components.map((d: any) => {
+    return typeof ComponentImportMap[d.componentId] !== 'undefined' ? 
+      { Component: ComponentImportMap[d.componentId], props: d.props } : 
+      { Component: () => <h1>testing</h1>, props: {} }
+  });
 
   return (
     <div>
@@ -23,7 +35,13 @@ const Page:NextPage = () => {
         <meta name="description" content={meta.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {meta.title && <h1>{meta.title}</h1>}
+
+      {/* dynamic component render with props scoping */}
+      {componentsMap.map(
+        (DynamicComponent, index: number) => 
+          <DynamicComponent.Component key={index} {...DynamicComponent.props} />
+        )
+      }
     </div>
   )
 }
