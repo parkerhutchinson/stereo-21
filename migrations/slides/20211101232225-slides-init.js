@@ -1,3 +1,4 @@
+const {updatePageComponentRef} = require('../../src/lib/schema');
 module.exports.description = 'Initializes the slides component';
 
 module.exports.up = (migration) => {
@@ -74,8 +75,10 @@ module.exports.up = (migration) => {
     }
   });
   
+  updatePageComponentRef(ctx);
 };
 
 module.exports.down = (migration) => {
   migration.deleteContentType('slides');
+  migration.deleteContentType('slide');
 };

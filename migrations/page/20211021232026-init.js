@@ -17,7 +17,7 @@ module.exports.up = (migration) => {
         linkContentType: COMPONENT_MAIN_REF_LIST
       }]
     }
-  })
+  });
 };
 
 module.exports.down = (migration) => {
