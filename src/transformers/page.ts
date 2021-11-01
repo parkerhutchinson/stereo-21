@@ -25,7 +25,7 @@ const metaTransformer = (meta:TypeMetaFields):Meta => {
 }
 
 const pageTransformer = (data:TypePageFields):DefaultPageContext => {
-  // create components that can be parsed by descreate templates.
+  // create components that can be parsed by discrete templates.
   const scopedComponents = data.components.map((component: any) => ({
     componentId: component.sys.contentType.sys.id,
     props: component.fields
