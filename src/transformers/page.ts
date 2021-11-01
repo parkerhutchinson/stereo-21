@@ -1,14 +1,8 @@
 import {TypePageFields} from "../types/generated/TypePage";
 import {TypeMetaFields} from "../types/generated/TypeMeta";
 import transformImage from "./helpers/image";
+import {DefaultPageContext} from "../context/page";
 
-interface Page {
-  components: {
-    componentId: string
-    props: {[index:string]:any}
-  }[]
-  meta: {[index:string]:any}
-}
 
 interface Meta {
   image?: string,
@@ -30,14 +24,17 @@ const metaTransformer = (meta:TypeMetaFields):Meta => {
   };
 }
 
-const pageTransformer = (data:TypePageFields):Page => {
-
+const pageTransformer = (data:TypePageFields):DefaultPageContext => {
+  // create components that can be parsed by descreate templates.
   const scopedComponents = data.components.map((component: any) => ({
     componentId: component.sys.contentType.sys.id,
     props: component.fields
   }))
   
-  return {components: scopedComponents, meta: metaTransformer(data.meta.fields)}
+  return {
+    components: scopedComponents, 
+    meta: metaTransformer(data.meta.fields)
+  }
 } 
 
 export default pageTransformer;

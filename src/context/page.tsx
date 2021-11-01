@@ -1,13 +1,25 @@
-import React, { useContext, createContext, useEffect, useState } from "react";
+import React, { useContext, createContext, useEffect, useState, SetStateAction } from "react";
 import pageTransformer from "../transformers/page";
 import type { ReactNode } from "react";
 
 
-const defaultPageContext = {
+export interface DefaultPageContext {
   components: {
+    componentId: string,
+    props: {[props: string]: any}
+  }[]
+  meta: {
+    title: string,
+    description: string,
+    image?: string 
+  }
+}
+
+const defaultPageContext = {
+  components: [{
     componentId: '',
     props: {}
-  },
+  }],
   meta: {
     title: '',
     description: ''
@@ -18,10 +30,12 @@ export const PageContext = createContext(defaultPageContext);
 
 const PageContextProvider = (props: { children: ReactNode, contentfulData: any }) => {
   const {contentfulData, children} = props;
-  const [transformedState, setTransformedState] = useState(defaultPageContext);
+  const [transformedState, setTransformedState] = useState<DefaultPageContext>(defaultPageContext);
 
   useEffect(() => {
-    const contentfulDataToPage = pageTransformer(contentfulData);
+    const contentfulDataToPage:DefaultPageContext = pageTransformer(contentfulData);
+
+    console.log(contentfulDataToPage)
     setTransformedState(contentfulDataToPage)
   }, [props.contentfulData]);
   
