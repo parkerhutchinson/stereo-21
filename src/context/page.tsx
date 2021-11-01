@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useEffect, useState, SetStateAction } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import pageTransformer from "../transformers/page";
 import type { ReactNode } from "react";
 
@@ -34,8 +34,6 @@ const PageContextProvider = (props: { children: ReactNode, contentfulData: any }
 
   useEffect(() => {
     const contentfulDataToPage:DefaultPageContext = pageTransformer(contentfulData);
-
-    console.log(contentfulDataToPage)
     setTransformedState(contentfulDataToPage)
   }, [props.contentfulData]);
   
