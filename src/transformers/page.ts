@@ -17,13 +17,17 @@ interface Meta {
 }
 
 const metaTransformer = (meta:TypeMetaFields):Meta => {
-  const metaData:any = {};
+  let image;
   
   if(typeof meta.image !== 'undefined') {
-    metaData.image = transformImage(meta.image);
+    image = transformImage(meta.image);
   }
 
-  return metaData;
+  return {
+    title: meta.title,
+    description: meta.description,
+    image: image && image
+  };
 }
 
 const pageTransformer = (data:TypePageFields):Page => {
