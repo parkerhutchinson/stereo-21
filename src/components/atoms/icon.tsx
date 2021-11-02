@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 
-const Icon = () => {
+interface Props {
+  type: string,
+  color: string
+}
 
+const Icon = (props:Props) => {
+  return (
+    <></>
+  )
 }
 
 export default Icon;

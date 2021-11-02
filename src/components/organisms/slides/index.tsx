@@ -1,5 +1,6 @@
 import { TypeSlideFields } from "../../../types/generated/TypeSlide";
 import RichTextBody from "../../molecules/richTextBody";
+
 export interface Slides {
   componentId: string,
   slides: TypeSlideFields[]
