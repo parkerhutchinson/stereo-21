@@ -9,8 +9,10 @@ const client = contentful.createClient({
 
 const getContentfulData = async () => {
   const data = await client.getEntries({
+    limit: 300,
     content_type: 'page'
   });
+
   return data.items;
 }
 
