@@ -26,24 +26,13 @@ const metaTransformer = (meta: TypeMetaFields): Meta => {
 
 const pageTransformer = (data: TypePageFields): DefaultPageContext => {
   // create components that can be parsed by discrete templates.
-  let scopedComponents = data.components.map((component: any) => ({
+  const scopedComponents = data.components.map((component: any) => ({
     componentId: component.sys.contentType.sys.id,
-    props: component.fields
-  }))
-  
-  scopedComponents = scopedComponents.map((
-    component: { 
-      componentId: string, 
-      props: { [props: string]: any } 
-    }) => {
-    const { componentId, props } = component;
-    return {
-      componentId,
-      props: typeof componentTransformerMap[componentId] !== 'undefined' ?
-        componentTransformerMap[componentId](props) :
-        props
-    }
-  })
+    props: typeof componentTransformerMap[component.sys.contentType.sys.id] !== 'undefined' ?
+    componentTransformerMap[component.sys.contentType.sys.id](component.fields) :
+    component.fields
+  }));
+
   return {
     components: scopedComponents,
     meta: metaTransformer(data.meta.fields)

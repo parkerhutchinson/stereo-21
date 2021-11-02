@@ -2,7 +2,6 @@ import Grid from "../../../styles/grid";
 import {BioTab} from "./styles";
 
 const Bio = (props:any) => {
-  console.log(props);
   return (
     <Grid subGrid={12}>
       <BioTab>

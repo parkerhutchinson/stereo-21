@@ -11,15 +11,6 @@ const ComponentImportMap: { [index: string]: any } = {
   slides: dynamic(() => import('../components/organisms/slides'))
 }
 
-export async function getStaticProps() {
-  const pageData = await getContentfulData()
-  return {
-    props: {
-      pageData
-    }
-  }
-}
-
 const Page: NextPage = () => {
   const { components, meta } = useContext(PageContext);
   // pre-render the component to make static exports work correctly
@@ -45,6 +36,15 @@ const Page: NextPage = () => {
       }
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const pageData = await getContentfulData()
+  return {
+    props: {
+      pageData
+    }
+  }
 }
 
 export default Page

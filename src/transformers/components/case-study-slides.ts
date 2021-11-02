@@ -11,7 +11,6 @@ const caseStudiesTransformer = (data:TypeSlidesFields):Slides => {
   }))
 
   return {
-    componentId: 'slides',
     slides: slides
   }
 }
