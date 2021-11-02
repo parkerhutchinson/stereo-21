@@ -4,11 +4,7 @@ const COMPONENT_MAIN_REF_LIST = [
   'slides'
 ]
 
-module.exports = {
-  COMPONENT_MAIN_REF_LIST
-}
-
-export const updatePageComponentRef = (migration) => {
+const updatePageComponentRef = (migration) => {
   migration.editField('components', {
     type: "Array",
     name: "Components",
@@ -21,4 +17,10 @@ export const updatePageComponentRef = (migration) => {
       }]
     }
   });
+}
+
+
+module.exports = {
+  COMPONENT_MAIN_REF_LIST,
+  updatePageComponentRef
 }

@@ -25,7 +25,13 @@ module.exports.up = (migration) => {
     name: '3D Scene',
     required: true,
     linkType: 'Asset'
-  })
+  });
+  
+  slideCtx.createField('caseStudyCopy', {
+    name: "Case Study Copy",
+    type: "RichText",
+    required: true
+  });
 
   slideCtx.createField('colorSchemeSeed', {
     type: 'Symbol',
@@ -75,7 +81,8 @@ module.exports.up = (migration) => {
     }
   });
   
-  updatePageComponentRef(ctx);
+  const pageCtx = migration.editContentType('page');
+  updatePageComponentRef(pageCtx);
 };
 
 module.exports.down = (migration) => {
