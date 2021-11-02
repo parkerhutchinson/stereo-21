@@ -3,7 +3,7 @@ module.exports.description = 'Initializes the slides component';
 
 module.exports.up = (migration) => {
   const slideCtx = migration.createContentType('slide', {
-    name: 'slide',
+    name: 'Slide',
     displayField: 'brand'
   });
 
@@ -76,7 +76,7 @@ module.exports.up = (migration) => {
       type: "Link",
       linkType: "Entry",
       validations: [{
-        linkContentType: 'slide'
+        linkContentType: ['slide']
       }]
     }
   });
