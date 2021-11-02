@@ -37,7 +37,6 @@ const pageTransformer = (data: TypePageFields): DefaultPageContext => {
       props: { [props: string]: any } 
     }) => {
     const { componentId, props } = component;
-    console.log(componentId)
     return {
       componentId,
       props: typeof componentTransformerMap[componentId] !== 'undefined' ?

@@ -3,14 +3,15 @@ const contentful = require('contentful');
 
 const client = contentful.createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  space: process.env.CONTENTFUL_SPACE_ID
+  space: process.env.CONTENTFUL_SPACE_ID,
 });
 
 
 const getContentfulData = async () => {
   const data = await client.getEntries({
-    limit: 300,
-    content_type: 'page'
+    limit: 1000,
+    content_type: 'page',
+    include: 10
   });
 
   return data.items;
