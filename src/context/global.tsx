@@ -2,11 +2,15 @@ import React, { useContext, createContext } from "react";
 import type { ReactNode } from "react";
 
 type TDefaultData = {
-  numberOfSlides: number;
+  siteBackgroundColor: string
+  bioBackgroundColor: string
+  bioTextColor: string
 };
 
 const GlobalContext = createContext({
-  numberOfSlides: 10,
+  siteBackgroundColor: 'red',
+  bioBackgroundColor: 'blue',
+  bioTextColor: 'yellow'
 });
 
 export default function (props: { children: ReactNode }) {
