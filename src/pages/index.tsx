@@ -7,7 +7,8 @@ import dynamic from 'next/dynamic'
 import ErrorComponentMissing from "../components/molecules/errorComponentMissing";
 
 const ComponentImportMap: { [index: string]: any } = {
-  bio: dynamic(() => import('../components/molecules/richTextBody'))
+  bio: dynamic(() => import('../components/organisms/bio')),
+  slides: dynamic(() => import('../components/organisms/slides'))
 }
 
 export async function getStaticProps() {

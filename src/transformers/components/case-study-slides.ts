@@ -1,8 +1,10 @@
+import {TypeSlidesFields} from "../../types/generated/TypeSlides";
 
+const caseStudiesTransformer = (data:TypeSlidesFields) => {
+  return {
+    componentId: 'slides',
 
-const caseStudiesTransformer = (data:any) => {
-  console.log(data);
-  return {}
+  }
 }
 
 export default caseStudiesTransformer;
