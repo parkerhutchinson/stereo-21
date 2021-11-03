@@ -23,7 +23,9 @@ interface IGrid {
 }
 
 const Grid = styled.div<IGrid>`
-  ${(p) => calculateGridColumns(p.subGrid)}
+  display: grid;
+  ${(p) => calculateGridColumns(p.subGrid)};
+  grid-column: 1 / -1;
 `;
 
 export default Grid;

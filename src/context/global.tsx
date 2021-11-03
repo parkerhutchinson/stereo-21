@@ -9,8 +9,8 @@ type TDefaultData = {
 
 export const GlobalContext = createContext({
   siteBackgroundColor: 'red',
-  bioBackgroundColor: 'blue',
-  bioTextColor: 'yellow'
+  bioBackgroundColor: '#0E0718',
+  bioTextColor: '#726985'
 });
 
 const GlobalContextProvider = (props: { children: ReactNode }) => {

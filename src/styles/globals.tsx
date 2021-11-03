@@ -8,8 +8,12 @@ export const Globals = createGlobalStyle`
     outline: none;
     box-sizing: border-box;
   }
-  
+  html{
+    height: 100vh;
+    min-height: 100vh;
+  }
   body{
+    height: 100vh;
     font-family: sans-serif;
   }
 

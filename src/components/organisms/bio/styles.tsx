@@ -6,9 +6,10 @@ interface IStyledBioTab {
 }
 
 export const StyledBioTab = styled.article<IStyledBioTab>`
-  width: 100%;
+  width: 50%;
+  height: 100vh;
   background: ${(p) => p.backgroundColor};
-  position: relative;
+  position: fixed;
   svg{
     display: block;
     width: 50%;

@@ -11,15 +11,15 @@ const Bio = () => {
   } = useContext(GlobalContext);
 
   return (
-    <Grid subGrid={12}>
-      <StyledBioTab 
-        textColor={bioTextColor}
-        backgroundColor={bioBackgroundColor}
-      >
+    <StyledBioTab 
+      textColor={bioTextColor}
+      backgroundColor={bioBackgroundColor}
+    >
+      <Grid subGrid={12}>
         <StereoLogo />
         <h1>testing</h1>
-      </StyledBioTab>
-    </Grid>
+      </Grid>
+    </StyledBioTab>
   )
 }
 

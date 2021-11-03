@@ -21,7 +21,7 @@ const Page: NextPage = () => {
   });
 
   return (
-    <div>
+    <>
       <Head>
         <title>Parker Hutchinson | {meta.title}</title>
         <meta name="description" content={meta.description} />
@@ -34,7 +34,7 @@ const Page: NextPage = () => {
           <DynamicComponent.Component key={index} {...DynamicComponent.props} />
         )
       }
-    </div>
+    </>
   )
 }
 
