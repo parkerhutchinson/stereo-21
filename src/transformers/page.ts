@@ -5,8 +5,8 @@ import { DefaultPageContext } from "../context/page";
 import componentTransformerMap from "./componentTransformerMap";
 
 interface Meta {
-  image?: string,
-  description: string,
+  image?: string
+  description: string
   title: string
 }
 

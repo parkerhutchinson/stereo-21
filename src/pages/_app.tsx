@@ -1,6 +1,7 @@
 import { Globals } from "../styles/globals";
 import type { AppProps } from "next/app";
 import PageContextProvider from "../context/page";
+import GlobalContextProvider from "../context/global";
 
 function Stereo({ Component, pageProps }: AppProps) {
   const { pageData } = pageProps;
@@ -8,9 +9,11 @@ function Stereo({ Component, pageProps }: AppProps) {
   return (
     <>
       <Globals />
-      <PageContextProvider contentfulData={cfData}>
-        <Component {...pageProps} />
-      </PageContextProvider>
+      <GlobalContextProvider>
+        <PageContextProvider contentfulData={cfData}>
+          <Component {...pageProps} />
+        </PageContextProvider>
+      </GlobalContextProvider>
     </>
   );
 }

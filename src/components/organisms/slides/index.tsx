@@ -1,5 +1,5 @@
-import { TypeSlideFields } from "../../../types/generated/TypeSlide";
-import RichTextBody from "../../molecules/richTextBody";
+import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
+import RichTextBody from "@/src/components/molecules/richTextBody";
 
 export interface Slides {
   slides: TypeSlideFields[]

@@ -1,14 +1,24 @@
-import Grid from "../../../styles/grid";
-import {BioTab} from "./styles";
-import StereoLogo from "../../molecules/stereoLogo";
+import react, {useContext} from "react";
+import Grid from "@/src/styles/grid";
+import {StyledBioTab} from "./styles";
+import StereoLogo from "@/src/components/molecules/stereoLogo";
+import {GlobalContext} from "@/src/context/global"
 
-const Bio = (props:any) => {
+const Bio = () => {
+  const {
+    bioBackgroundColor,
+    bioTextColor
+  } = useContext(GlobalContext);
+
   return (
     <Grid subGrid={12}>
-      <BioTab>
+      <StyledBioTab 
+        textColor={bioTextColor}
+        backgroundColor={bioBackgroundColor}
+      >
         <StereoLogo />
         <h1>testing</h1>
-      </BioTab>
+      </StyledBioTab>
     </Grid>
   )
 }

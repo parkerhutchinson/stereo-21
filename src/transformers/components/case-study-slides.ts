@@ -1,6 +1,6 @@
-import {TypeSlidesFields} from "../../types/generated/TypeSlides";
-import {TypeSlideFields} from "../../types/generated/TypeSlide";
-import {Slides} from "../../components/organisms/slides";
+import {TypeSlidesFields} from "@/src/types/generated/TypeSlides";
+import {TypeSlideFields} from "@/src/types/generated/TypeSlide";
+import {Slides} from "@/src/components/organisms/slides";
 import * as Contentful from "contentful";
 
 

@@ -7,13 +7,13 @@ type TDefaultData = {
   bioTextColor: string
 };
 
-const GlobalContext = createContext({
+export const GlobalContext = createContext({
   siteBackgroundColor: 'red',
   bioBackgroundColor: 'blue',
   bioTextColor: 'yellow'
 });
 
-export default function (props: { children: ReactNode }) {
+const GlobalContextProvider = (props: { children: ReactNode }) => {
   const GlobalContextState:TDefaultData = useContext(GlobalContext);
   return (
     <GlobalContext.Provider value={GlobalContextState}>
@@ -21,3 +21,8 @@ export default function (props: { children: ReactNode }) {
     </GlobalContext.Provider>
   );
 }
+
+
+export default GlobalContextProvider;
+
+
