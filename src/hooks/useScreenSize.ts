@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
+
 const useScreenSize = () => {
   const [winWidth, setWindowWidth] = useState(0);
 
@@ -11,7 +12,6 @@ const useScreenSize = () => {
       })
     }
   }, [])
-
 
   return [winWidth];
 }

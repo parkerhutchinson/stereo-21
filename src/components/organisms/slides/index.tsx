@@ -1,4 +1,4 @@
-import { MutableRefObject, useContext, useEffect, useRef, useState } from "react";
+import React, { MutableRefObject, useContext, useEffect, useRef, useState } from "react";
 
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
@@ -28,16 +28,14 @@ const Slides = (props: Slides) => {
 
   useIsomorphicLayoutEffect(() => {
     const canvasDom = canvasRef.current;
+    const strokeWidth = 2;
 
     if (typeof canvasDom !== 'undefined') {
-
       //@ts-ignore
       const ctx = canvasDom.getContext('2d');
       const draw = (objectW: number, objectH: number) => {
-        const strokeWidth = 2;
-
         //@ts-ignore: not possible since this will be using useLayoutEffect
-        let gradient = ctx.createLinearGradient(0, 0, 200, 600);
+        const gradient = ctx.createLinearGradient(0, 0, 200, 600);
 
         gradient.addColorStop(0, '#6CF194');
         gradient.addColorStop(1, '#94C0A0');
@@ -56,21 +54,14 @@ const Slides = (props: Slides) => {
         drawRectBorder(config);
       }
 
-      let canvasBounds = canvasDom.getBoundingClientRect();
-      let oldCanvasObjectW = 0;
-      let newCanvasObjectW = canvasBounds.width;
-      let canvasObjectH = canvasBounds.height;
+      const canvasBounds = canvasDom.getBoundingClientRect();
+      const newCanvasObjectW = canvasBounds.width;
+      const canvasObjectH = canvasBounds.height;
 
       canvasDom.width = newCanvasObjectW;
       canvasDom.height = canvasObjectH;
-      draw(newCanvasObjectW, canvasObjectH);
 
-      if (oldCanvasObjectW !== newCanvasObjectW) {
-        oldCanvasObjectW = newCanvasObjectW;
-        canvasDom.width = newCanvasObjectW;
-        canvasDom.height = canvasObjectH;
-        draw(newCanvasObjectW, canvasObjectH);
-      }
+      draw(newCanvasObjectW, canvasObjectH);
 
     }
   }, [canvasRef, winWidth]);
@@ -84,15 +75,15 @@ const Slides = (props: Slides) => {
   }, [activeSlide])
 
   return (
-    <>
+    <StyledSlide cardColor={slides[activeSlide].colorSchemeSeed}>
+      <canvas ref={canvasRef}></canvas>
       {slides.map((slide: TypeSlideFields, index: number) => (
-        <StyledSlide key={index} cardColor={slide.colorSchemeSeed}>
-          <canvas ref={canvasRef}></canvas>
+        <React.Fragment key={index}>
           <h2>{slide.brand}</h2>
           <RichTextBody body={slide.caseStudyCopy} />
-        </StyledSlide>
+        </React.Fragment>
       ))[activeSlide]}
-    </>
+    </StyledSlide>
   )
 }
 
