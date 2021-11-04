@@ -1,19 +1,22 @@
-import react, {useContext} from "react";
+import react, {useContext, useEffect} from "react";
 import Grid from "@/src/styles/grid";
 import {StyledBioTab} from "./styles";
 import StereoLogo from "@/src/components/molecules/stereoLogo";
 import {GlobalContext} from "@/src/context/global"
 
 const Bio = () => {
-  const {
-    bioBackgroundColor,
-    bioTextColor
-  } = useContext(GlobalContext);
+  const {state, dispatch} = useContext(GlobalContext);
 
+  useEffect(() => {
+    if (typeof dispatch !== 'undefined') {
+      dispatch({type: 'UPDATE_BIO_BACKGROUND_COLOR', payload: 'red'})
+    }
+  }, [])
+  
   return (
     <StyledBioTab 
-      textColor={bioTextColor}
-      backgroundColor={bioBackgroundColor}
+      textColor={state.bioTextColor}
+      backgroundColor={state.bioBackgroundColor}
     >
       <Grid subGrid={12}>
         <StereoLogo />

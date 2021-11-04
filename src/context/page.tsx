@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from "react";
 import pageTransformer from "../transformers/page";
 import type { ReactNode } from "react";
 
-
 export interface DefaultPageContext {
   components: {
     componentId: string,

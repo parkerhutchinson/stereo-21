@@ -1,36 +1,46 @@
-import React, { useContext, createContext, useReducer } from "react";
+import React, { createContext, useReducer, Dispatch} from "react";
 import type { ReactNode } from "react";
 
+const initialState = {
+  siteBackgroundColor: 'red',
+  bioBackgroundColor: '#0E0718',
+  bioTextColor: '#726985',
+}
+
 type TDefaultData = {
-  state: {
-    siteBackgroundColor: string
-    bioBackgroundColor: string
-    bioTextColor: string
-  }
-  dispatch?: (action: string) => any
+  siteBackgroundColor: string
+  bioBackgroundColor: string
+  bioTextColor: string
 };
 
-export const GlobalContext = createContext({
-  state: {
-    siteBackgroundColor: 'red',
-    bioBackgroundColor: '#0E0718',
-    bioTextColor: '#726985'
-  }
+enum UpdateColorActions {
+  UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR',
+  UPDATE_BIO_BACKGROUND_COLOR = 'UPDATE_BIO_BACKGROUND_COLOR',
+  UPDATE_SITE_BACKGROUND_COLOR = 'UPDATE_SITE_BACKGROUND_COLOR'
+}
+
+type ColorDispatch = {
+  type: UpdateColorActions
+  payload: string
+}
+
+export const GlobalContext = createContext<{
+  state: TDefaultData;
+  dispatch: Dispatch<any>;
+}>({
+  state: initialState,
+  dispatch: () => null
 });
 
-const UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR';
-const UPDATE_BIO_BACKGROUND_COLOR = 'UPDATE_BIO_BACKGROUND_COLOR';
-const UPDATE_SITE_BACKGROUND_COLOR = 'UPDATE_SITE_BACKGROUND_COLOR';
-
-const colorSchemeReducer = (state: any, action: { type: string, payload: string }) => {
+const colorSchemeReducer = (state:TDefaultData, action: ColorDispatch) => {
   switch (action.type) {
-    case UPDATE_TEXT_COLOR:
+    case UpdateColorActions.UPDATE_TEXT_COLOR:
       return Object.assign({}, state, {bioTextColor: action.payload});
       break;
-    case UPDATE_BIO_BACKGROUND_COLOR:
+    case UpdateColorActions.UPDATE_BIO_BACKGROUND_COLOR:
       return Object.assign({}, state, {bioBackgroundColor: action.payload});
       break;
-    case UPDATE_SITE_BACKGROUND_COLOR:
+    case UpdateColorActions.UPDATE_SITE_BACKGROUND_COLOR:
       return Object.assign({}, state, {siteBackgroundColor: action.payload});
       break;
     default:
@@ -39,11 +49,9 @@ const colorSchemeReducer = (state: any, action: { type: string, payload: string 
 }
 
 const GlobalContextProvider = (props: { children: ReactNode }) => {
-  const GlobalContextState: TDefaultData = useContext(GlobalContext);
-  const [state, dispatch] = useReducer(colorSchemeReducer, GlobalContextState);
-  const value = { state, dispatch }
+  const [state, dispatch] = useReducer(colorSchemeReducer, initialState);
   return (
-    <GlobalContext.Provider value={value}>
+    <GlobalContext.Provider value={{state, dispatch}}>
       {props.children}
     </GlobalContext.Provider>
   );
