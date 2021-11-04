@@ -1,4 +1,4 @@
-import { MutableRefObject, useContext, useEffect, useRef } from "react";
+import { MutableRefObject, useContext, useEffect, useRef, useState } from "react";
 
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
@@ -7,13 +7,21 @@ import { StyledSlide } from "./styles";
 import { drawRectBorder } from "@/src/lib/drawing";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 
+const { 
+  UPDATE_BIO_BACKGROUND_COLOR, 
+  UPDATE_TEXT_COLOR, 
+  UPDATE_SITE_BACKGROUND_COLOR 
+} = ColorActions;
+
 export interface Slides {
   slides: TypeSlideFields[]
 }
 
 const Slides = (props: Slides) => {
   const { state, dispatch } = useContext(GlobalContext);
-  const { UPDATE_BIO_BACKGROUND_COLOR } = ColorActions;
+  const [activeSlide, setActiveSlide] = useState(0);
+  const { slides } = props;
+  
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
 
   useIsomorphicLayoutEffect(() => {
@@ -29,8 +37,8 @@ const Slides = (props: Slides) => {
         //@ts-ignore: not possible since this will be using useLayoutEffect
         let gradient = ctx.createLinearGradient(0, 0, 200, 600);
 
-        gradient.addColorStop(0, '#F73737');
-        gradient.addColorStop(1, '#FBC1C1');
+        gradient.addColorStop(0, '#6CF194');
+        gradient.addColorStop(1, '#94C0A0');
 
         const config = {
           x: strokeWidth / 2,
@@ -73,11 +81,12 @@ const Slides = (props: Slides) => {
 
   useEffect(() => {
     if (typeof dispatch !== 'undefined') {
-      dispatch({ type: UPDATE_BIO_BACKGROUND_COLOR, payload: '#071618' })
+      dispatch({ type: UPDATE_BIO_BACKGROUND_COLOR, payload: slides[activeSlide].colorSchemeBioBG })
+      dispatch({ type: UPDATE_TEXT_COLOR, payload: slides[activeSlide].colorSchemeBioText })
+      dispatch({ type: UPDATE_SITE_BACKGROUND_COLOR, payload: slides[activeSlide].colorSchemeSeed })
     }
-  }, [])
+  }, [activeSlide])
 
-  const { slides } = props;
   return (
     <>
       {slides.map((slide: TypeSlideFields, index: number) => (

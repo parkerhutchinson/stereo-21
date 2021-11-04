@@ -11,7 +11,8 @@ interface IStyledSlide {
 export const StyledSlide = styled.div<IStyledSlide>`
   position: absolute;
   top: 0px;
-  left: 0;
+  right: 0;
+  width: 500px;
   max-width: 500px;
   height: 750px;
   background: ${(p) => p.cardColor};
