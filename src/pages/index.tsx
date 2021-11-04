@@ -13,6 +13,7 @@ const ComponentImportMap: { [index: string]: any } = {
 
 const Page: NextPage = () => {
   const { components, meta } = useContext(PageContext);
+  
   // pre-render the component to make static exports work correctly
   const componentsMap = components.map((d: any) => {
     return typeof ComponentImportMap[d.componentId] !== 'undefined' ? 

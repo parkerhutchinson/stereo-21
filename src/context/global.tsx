@@ -13,14 +13,14 @@ type TDefaultData = {
   bioTextColor: string
 };
 
-enum UpdateColorActions {
+export enum ColorActions {
   UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR',
   UPDATE_BIO_BACKGROUND_COLOR = 'UPDATE_BIO_BACKGROUND_COLOR',
   UPDATE_SITE_BACKGROUND_COLOR = 'UPDATE_SITE_BACKGROUND_COLOR'
 }
 
 type ColorDispatch = {
-  type: UpdateColorActions
+  type: ColorActions
   payload: string
 }
 
@@ -34,13 +34,13 @@ export const GlobalContext = createContext<{
 
 const colorSchemeReducer = (state:TDefaultData, action: ColorDispatch) => {
   switch (action.type) {
-    case UpdateColorActions.UPDATE_TEXT_COLOR:
+    case ColorActions.UPDATE_TEXT_COLOR:
       return Object.assign({}, state, {bioTextColor: action.payload});
       break;
-    case UpdateColorActions.UPDATE_BIO_BACKGROUND_COLOR:
+    case ColorActions.UPDATE_BIO_BACKGROUND_COLOR:
       return Object.assign({}, state, {bioBackgroundColor: action.payload});
       break;
-    case UpdateColorActions.UPDATE_SITE_BACKGROUND_COLOR:
+    case ColorActions.UPDATE_SITE_BACKGROUND_COLOR:
       return Object.assign({}, state, {siteBackgroundColor: action.payload});
       break;
     default:

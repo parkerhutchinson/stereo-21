@@ -15,6 +15,7 @@ export const Globals = createGlobalStyle`
   body{
     height: 100vh;
     font-family: sans-serif;
+    background: black;
   }
 
   p{
