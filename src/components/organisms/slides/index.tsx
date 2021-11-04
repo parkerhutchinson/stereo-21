@@ -6,6 +6,7 @@ import { ColorActions, GlobalContext } from "@/src/context/global";
 import { StyledSlide } from "./styles";
 import { drawRectBorder } from "@/src/lib/drawing";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
+import useScreenSize from "@/src/hooks/useScreenSize";
 
 const { 
   UPDATE_BIO_BACKGROUND_COLOR, 
@@ -19,6 +20,7 @@ export interface Slides {
 
 const Slides = (props: Slides) => {
   const { state, dispatch } = useContext(GlobalContext);
+  const [winWidth] = useScreenSize();
   const [activeSlide, setActiveSlide] = useState(0);
   const { slides } = props;
   
@@ -63,21 +65,15 @@ const Slides = (props: Slides) => {
       canvasDom.height = canvasObjectH;
       draw(newCanvasObjectW, canvasObjectH);
 
-      window.addEventListener('resize', () => {
-        canvasBounds = canvasDom.getBoundingClientRect();
-        newCanvasObjectW = canvasBounds.width;
-        canvasObjectH = canvasBounds.height;
+      if (oldCanvasObjectW !== newCanvasObjectW) {
+        oldCanvasObjectW = newCanvasObjectW;
+        canvasDom.width = newCanvasObjectW;
+        canvasDom.height = canvasObjectH;
+        draw(newCanvasObjectW, canvasObjectH);
+      }
 
-        // perf: only run this if value has changed 
-        if (oldCanvasObjectW !== newCanvasObjectW) {
-          oldCanvasObjectW = newCanvasObjectW;
-          canvasDom.width = newCanvasObjectW;
-          canvasDom.height = canvasObjectH;
-          draw(newCanvasObjectW, canvasObjectH);
-        }
-      });
     }
-  }, [canvasRef]);
+  }, [canvasRef, winWidth]);
 
   useEffect(() => {
     if (typeof dispatch !== 'undefined') {
@@ -95,7 +91,7 @@ const Slides = (props: Slides) => {
           <h2>{slide.brand}</h2>
           <RichTextBody body={slide.caseStudyCopy} />
         </StyledSlide>
-      )).filter((_: any, index: number) => index === 0)[0]}
+      ))[activeSlide]}
     </>
   )
 }

@@ -12,7 +12,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   position: absolute;
   top: 0px;
   right: 0;
-  width: 500px;
+  width: 100%;
   max-width: 500px;
   height: 750px;
   background: ${(p) => p.cardColor};
