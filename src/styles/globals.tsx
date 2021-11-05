@@ -15,7 +15,6 @@ export const Globals = createGlobalStyle`
   body{
     height: 100vh;
     font-family: sans-serif;
-    background: url('/test-bg.png') no-repeat right center;
     overflow: hidden;
   }
 

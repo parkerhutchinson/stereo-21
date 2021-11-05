@@ -36,12 +36,13 @@ export const StyledLogoGroup = styled.div`
     &:first-child{
       top: 0;
       right: 0;
-      animation: ${verticalTicker} 30s linear infinite;
+      transform: rotate(180deg);
+      animation: ${verticalTicker} 60s linear infinite;
     }
     &:last-child{
       bottom: 0%;
       left: 0;
-      animation: ${verticalTickerInverse} 30s linear infinite;
+      animation: ${verticalTickerInverse} 60s linear infinite;
     }
   }
 `;

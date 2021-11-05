@@ -3,7 +3,7 @@ import React, { MutableRefObject, useContext, useEffect, useRef, useState } from
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
 import { ColorActions, GlobalContext } from "@/src/context/global";
-import { StyledSlide, StyledCaseStudyCopy, StyledLogo, StyledSlideCardContent } from "./styles";
+import { StyledSlide, StyledCaseStudyCopy, StyledLogo, StyledSlideCardContent, StyledSlides } from "./styles";
 import { drawRectBorder } from "@/src/lib/drawing";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import useScreenSize from "@/src/hooks/useScreenSize";
@@ -21,14 +21,13 @@ export interface Slides {
 }
 
 const Slides = (props: Slides) => {
-  const { dispatch } = useContext(GlobalContext);
+  const { slides } = props;
   const userInteracted = useRef(false);
   const timerRef = useRef<NodeJS.Timer>();
+  const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
+  const { dispatch } = useContext(GlobalContext);
   const [winWidth] = useScreenSize();
   const [activeSlide, setActiveSlide] = useState(0);
-  const { slides } = props;
-  
-  const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
 
   useIsomorphicLayoutEffect(() => {
     const canvasDom = canvasRef.current;
@@ -82,7 +81,7 @@ const Slides = (props: Slides) => {
       timerRef.current = setInterval(() => {
         slideIndex = slideIndex < slides.length - 1 ? slideIndex+=1 : 0;
         setActiveSlide(slideIndex);
-      }, 3000);
+      }, 6000);
     }
     
     // unmount
@@ -95,14 +94,24 @@ const Slides = (props: Slides) => {
   // change global colorways when slide updates
   useEffect(() => {
     if (typeof dispatch !== 'undefined') {
-      dispatch({ type: UPDATE_BIO_BACKGROUND_COLOR, payload: slides[activeSlide].colorSchemeBioBG })
-      dispatch({ type: UPDATE_TEXT_COLOR, payload: slides[activeSlide].colorSchemeBioText })
-      dispatch({ type: UPDATE_SITE_BACKGROUND_COLOR, payload: slides[activeSlide].colorSchemeSeed })
+      dispatch({ 
+        type: UPDATE_BIO_BACKGROUND_COLOR, 
+        payload: slides[activeSlide].colorSchemeBioBG 
+      })
+      dispatch({ 
+        type: UPDATE_TEXT_COLOR, 
+        payload: slides[activeSlide].colorSchemeBioText 
+      })
+      dispatch({ 
+        type: UPDATE_SITE_BACKGROUND_COLOR, 
+        payload: slides[activeSlide].colorSchemeSeed 
+      })
     }
   }, [activeSlide]);
 
   return (
-    <StyledSlide cardColor={slides[activeSlide].colorSchemeSeed}>
+    <StyledSlides backgroundColor={slides[activeSlide].colorSchemeSeed}>
+      <StyledSlide cardColor={slides[activeSlide].colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
       {slides.map((slide: SlideFields, index: number) => (
 
@@ -118,11 +127,13 @@ const Slides = (props: Slides) => {
           <StyledCaseStudyCopy>
             <RichTextBody body={slide.caseStudyCopy}/>
           </StyledCaseStudyCopy>
-          
+
         </React.Fragment>
 
       ))[activeSlide]}
     </StyledSlide>
+  </StyledSlides>
+    
   )
 }
 

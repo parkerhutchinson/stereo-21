@@ -17,8 +17,8 @@ const Bio = (props:TypeBioFields) => {
       backgroundColor={state.bioBackgroundColor}
     >
       <Grid subGrid={12}>
+        <StereoLogo />
         <StyledCopyWrapper>
-          <StereoLogo />
           <RichTextBody body={body} />
         </StyledCopyWrapper>
       </Grid>

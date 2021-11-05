@@ -1,8 +1,18 @@
 import styled from 'styled-components';
-import noiseTexture from "@/public/noise-texture.png";
 
-export const StyledSlides = styled.div`
-  width: 100%;
+
+interface IStyledSlides {
+  backgroundColor: string
+}
+
+export const StyledSlides = styled.div<IStyledSlides>`
+  width: 55%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  background: ${(p) => p.backgroundColor} url('/test-bg.png') no-repeat right center;
+  background-size: cover;
 `;
 
 interface IStyledSlide {
