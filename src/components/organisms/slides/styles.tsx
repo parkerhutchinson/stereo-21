@@ -11,7 +11,7 @@ interface IStyledSlide {
 export const StyledSlide = styled.div<IStyledSlide>`
   position: absolute;
   top: 0px;
-  right: 0;
+  right: 10%;
   width: 100%;
   max-width: 500px;
   height: 750px;
@@ -53,13 +53,24 @@ export const StyledSlide = styled.div<IStyledSlide>`
   *{
     font-weight: 200;
   }
-  img{
-    position: absolute;
-    width: 100%;
-    height: auto;
-    
-  }
 `;
+
+export const StyledSlideCardContent = styled.div`
+  display: flex-column;
+  align-items: stretch;
+  justify-content: space-between;
+`
+
+export const StyledLogo = styled.div`
+  width: 100%;
+  text-align: center;
+  img{
+    position: relative;
+    width: 80%;
+    height: auto;
+    display: inline-block;
+  }
+`
 
 
 export const StyledCaseStudyCopy = styled.div`

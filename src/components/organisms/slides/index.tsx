@@ -3,7 +3,7 @@ import React, { MutableRefObject, useContext, useEffect, useRef, useState } from
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
 import { ColorActions, GlobalContext } from "@/src/context/global";
-import { StyledSlide, StyledCaseStudyCopy } from "./styles";
+import { StyledSlide, StyledCaseStudyCopy, StyledLogo, StyledSlideCardContent } from "./styles";
 import { drawRectBorder } from "@/src/lib/drawing";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import useScreenSize from "@/src/hooks/useScreenSize";
@@ -41,8 +41,8 @@ const Slides = (props: Slides) => {
         //@ts-ignore: not possible since this will be using useLayoutEffect
         const gradient = ctx.createLinearGradient(0, 0, 200, 600);
 
-        gradient.addColorStop(0, '#6CF194');
-        gradient.addColorStop(1, '#94C0A0');
+        gradient.addColorStop(0, slides[activeSlide].colorSchemeSeed);
+        gradient.addColorStop(1, 'rgba(255 255 255 / 35%)');
 
         const config = {
           x: strokeWidth / 2,
@@ -68,7 +68,7 @@ const Slides = (props: Slides) => {
       draw(newCanvasObjectW, canvasObjectH);
 
     }
-  }, [canvasRef, winWidth]);
+  }, [canvasRef, winWidth, activeSlide]);
 
   // slideshow interval
   useIsomorphicLayoutEffect(() => {
@@ -76,7 +76,7 @@ const Slides = (props: Slides) => {
 
     if (timerRef.current)
         window.clearTimeout(timerRef.current)
-        
+
     // cancel timer if user has interacted
     if (!userInteracted.current) {
       timerRef.current = setInterval(() => {
@@ -99,19 +99,28 @@ const Slides = (props: Slides) => {
       dispatch({ type: UPDATE_TEXT_COLOR, payload: slides[activeSlide].colorSchemeBioText })
       dispatch({ type: UPDATE_SITE_BACKGROUND_COLOR, payload: slides[activeSlide].colorSchemeSeed })
     }
-  }, [activeSlide])
+  }, [activeSlide]);
 
   return (
     <StyledSlide cardColor={slides[activeSlide].colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
       {slides.map((slide: SlideFields, index: number) => (
+
         <React.Fragment key={index}>
-          <h2>{slide.brand}</h2>
-          <img src={slide.logo} />
+
+          <StyledSlideCardContent>
+            <h2>{slide.brand}</h2>
+            <StyledLogo>
+              <img src={slide.logo} />
+            </StyledLogo>
+          </StyledSlideCardContent>
+
           <StyledCaseStudyCopy>
             <RichTextBody body={slide.caseStudyCopy}/>
           </StyledCaseStudyCopy>
+          
         </React.Fragment>
+
       ))[activeSlide]}
     </StyledSlide>
   )
