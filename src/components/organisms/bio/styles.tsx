@@ -10,20 +10,23 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   height: 100vh;
   background: ${(p) => p.backgroundColor};
   position: fixed;
-  transition: all .4s;
+  transition: all 1s;
   color: white;
   svg{
     display: block;
     width: 50%;
     height: auto;
     * {
-      transition: all .4s;
+      transition: all 1s;
       stroke: ${(p) => p.textColor};
     }
   }
 `;
 
 export const StyledCopyWrapper = styled.div`
+  max-width: 80%;
+  margin: 0 auto;
+  padding-top: 100px;
   h2{
     font-weight: 200;
     margin-bottom: 40px;
