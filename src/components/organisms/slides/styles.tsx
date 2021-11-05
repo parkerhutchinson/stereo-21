@@ -39,9 +39,6 @@ export const StyledSlide = styled.div<IStyledSlide>`
     opacity: .1;
     z-index: 0;
   }
-  h2{
-    font-weight: 200;
-  }
   canvas{
     background: none;
     position: absolute;
@@ -53,4 +50,22 @@ export const StyledSlide = styled.div<IStyledSlide>`
     opacity: 1;
     pointer-events: none;
   }
+  *{
+    font-weight: 200;
+  }
+  img{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    
+  }
 `;
+
+
+export const StyledCaseStudyCopy = styled.div`
+  opacity: 0;
+  overflow: hidden;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+`

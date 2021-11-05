@@ -6,12 +6,11 @@ const useScreenSize = () => {
 
   useIsomorphicLayoutEffect(()=>{
     if (typeof window !== 'undefined') {
-      window.addEventListener('resize', (e) => {
-        console.log(window.innerWidth)
+      window.addEventListener('resize', () => {
         setWindowWidth(window.innerWidth)
       })
     }
-  }, [])
+  }, []);
 
   return [winWidth];
 }
