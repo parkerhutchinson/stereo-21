@@ -8,6 +8,7 @@ import { drawRectBorder } from "@/src/lib/drawing";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import useScreenSize from "@/src/hooks/useScreenSize";
 import Button from "@/src/components/atoms/button";
+import SlidesNavigation from "../../molecules/slidesNav";
 
 const { 
   UPDATE_BIO_BACKGROUND_COLOR, 
@@ -133,8 +134,7 @@ const Slides = (props: Slides) => {
           </React.Fragment>
 
         ))[activeSlide]}
-        <Button name="testing" borderStyle="begin" color={slides[activeSlide].colorSchemeHighlight}/>
-        <Button name="testing2" borderStyle="end" color={slides[activeSlide].colorSchemeHighlight}/>
+        <SlidesNavigation color={slides[activeSlide].colorSchemeHighlight}/>
       </StyledCardWrap>
     </StyledSlide>
   </StyledSlides>

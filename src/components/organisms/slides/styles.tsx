@@ -47,12 +47,12 @@ export const StyledSlide = styled.div<IStyledSlide>`
   }
   &:after{
     z-index: 10;
-    background: url('/noise-texture.png') repeat center center;
+    background: url('/noise-texture.png') center center;
     width: calc(100% - 2px);
     height: calc(100% - 2px);
     top: 1px;
     left: 1px;
-    mix-blend-mode: darken;
+    mix-blend-mode: multiply;
     opacity: .18;
   }
   canvas{
