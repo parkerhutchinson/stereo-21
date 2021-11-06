@@ -76,11 +76,21 @@ export const StyledSlide = styled.div<IStyledSlide>`
 export const StyledLogo = styled.div`
   width: 100%;
   text-align: center;
+  padding-bottom: 50px;
+  cursor: pointer;
   img{
     position: relative;
     width: 80%;
     height: auto;
     display: inline-block;
+    transform: scale(1);
+    transition: transform .4s;
+    
+  }
+  &:hover{
+    img{
+      transform: scale(1.2);
+    }
   }
 `
 
