@@ -66,7 +66,6 @@ const Slide = (props: Slides) => {
   }, [canvasRef, winWidth]);
 
   // change global colorways when slide updates
-  
   return (
     <StyledSlide cardColor={slide.colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
@@ -95,4 +94,5 @@ const Slide = (props: Slides) => {
   )
 }
 
-export default Slide;
+// simple works to memo the component and prevent re-renders
+export default React.memo(Slide);

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import { ColorActions, GlobalContext } from "@/src/context/global";
 import { StyledSlides } from "./styles";
