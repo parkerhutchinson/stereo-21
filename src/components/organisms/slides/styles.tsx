@@ -72,11 +72,9 @@ export const StyledSlide = styled.div<IStyledSlide>`
 `;
 
 export const StyledSlideCardContent = styled.div`
-  display: flex-column;
-  align-items: stretch;
+  
   justify-content: space-between;
   position: relative;
-  z-index: 20;
 `
 
 export const StyledLogo = styled.div`
@@ -98,3 +96,8 @@ export const StyledCaseStudyCopy = styled.div`
   pointer-events: none;
   position: absolute;
 `
+
+export const StyledCardWrap = styled.div`
+  position: relative;
+  z-index: 11;
+`;

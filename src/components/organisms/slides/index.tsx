@@ -3,10 +3,11 @@ import React, { MutableRefObject, useContext, useEffect, useRef, useState } from
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
 import { ColorActions, GlobalContext } from "@/src/context/global";
-import { StyledSlide, StyledCaseStudyCopy, StyledLogo, StyledSlideCardContent, StyledSlides } from "./styles";
+import { StyledSlide, StyledCaseStudyCopy, StyledLogo, StyledSlideCardContent, StyledSlides, StyledCardWrap } from "./styles";
 import { drawRectBorder } from "@/src/lib/drawing";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import useScreenSize from "@/src/hooks/useScreenSize";
+import Button from "@/src/components/atoms/button";
 
 const { 
   UPDATE_BIO_BACKGROUND_COLOR, 
@@ -110,27 +111,31 @@ const Slides = (props: Slides) => {
   }, [activeSlide]);
 
   return (
-    <StyledSlides backgroundColor={slides[activeSlide].colorSchemeSeed}>
-      <StyledSlide cardColor={slides[activeSlide].colorSchemeSeed}>
+  <StyledSlides backgroundColor={slides[activeSlide].colorSchemeSeed}>
+    <StyledSlide cardColor={slides[activeSlide].colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
-      {slides.map((slide: SlideFields, index: number) => (
+      <StyledCardWrap>
+        {slides.map((slide: SlideFields, index: number) => (
 
-        <React.Fragment key={index}>
+          <React.Fragment key={index}>
+            
+            <StyledSlideCardContent>
+              <h2>{slide.brand}</h2>
+              <StyledLogo>
+                <img src={slide.logo} />
+              </StyledLogo>
+            </StyledSlideCardContent>
 
-          <StyledSlideCardContent>
-            <h2>{slide.brand}</h2>
-            <StyledLogo>
-              <img src={slide.logo} />
-            </StyledLogo>
-          </StyledSlideCardContent>
+            <StyledCaseStudyCopy>
+              <RichTextBody body={slide.caseStudyCopy}/>
+            </StyledCaseStudyCopy>
 
-          <StyledCaseStudyCopy>
-            <RichTextBody body={slide.caseStudyCopy}/>
-          </StyledCaseStudyCopy>
+          </React.Fragment>
 
-        </React.Fragment>
-
-      ))[activeSlide]}
+        ))[activeSlide]}
+        <Button name="testing" borderStyle="begin" color={slides[activeSlide].colorSchemeHighlight}/>
+        <Button name="testing2" borderStyle="end" color={slides[activeSlide].colorSchemeHighlight}/>
+      </StyledCardWrap>
     </StyledSlide>
   </StyledSlides>
     
