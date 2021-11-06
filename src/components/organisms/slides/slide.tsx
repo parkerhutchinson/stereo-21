@@ -6,7 +6,6 @@ import {
   StyledSlide, 
   StyledCaseStudyCopy, 
   StyledLogo, 
-  StyledSlideCardContent, 
   StyledCardWrap 
 } from "./styles";
 import { drawRectBorder } from "@/src/lib/drawing";
@@ -63,7 +62,7 @@ const Slide = (props: Slides) => {
       draw(newCanvasObjectW, canvasObjectH);
 
     }
-  }, [canvasRef, winWidth]);
+  }, [canvasRef, winWidth, slide]);
 
   // change global colorways when slide updates
   return (
@@ -71,18 +70,15 @@ const Slide = (props: Slides) => {
       <canvas ref={canvasRef}></canvas>
       <StyledCardWrap>
             
-        <StyledSlideCardContent>
-          <h2>{slide.brand}</h2>
-          <StyledLogo>
-            <img src={slide.logo} />
-          </StyledLogo>
-        </StyledSlideCardContent>
+        <h2>{slide.brand}</h2>
+        <StyledLogo>
+          <img src={slide.logo} />
+        </StyledLogo>
 
         <StyledCaseStudyCopy>
           <RichTextBody body={slide.caseStudyCopy}/>
         </StyledCaseStudyCopy>
 
-          
         <SlidesNavigation 
           buttonColor={slide.colorSchemeHighlight} 
           iconColor={slide.colorSchemeBioBG}

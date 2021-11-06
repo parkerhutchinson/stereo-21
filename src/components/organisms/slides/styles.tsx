@@ -13,6 +13,9 @@ export const StyledSlides = styled.div<IStyledSlides>`
   height: 100vh;
   background: ${(p) => p.backgroundColor} url('/test-bg.png') no-repeat right center;
   background-size: cover;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 interface IStyledSlide {
@@ -20,11 +23,9 @@ interface IStyledSlide {
 }
 
 export const StyledSlide = styled.div<IStyledSlide>`
-  position: absolute;
-  top: 100px;
-  right: 10%;
-  width: 100%;
-  max-width: 500px;
+  position: relative;
+  display: block;
+  width: 500px;
   height: 750px;
   padding: 30px;
   color: white;
@@ -71,11 +72,6 @@ export const StyledSlide = styled.div<IStyledSlide>`
   }
 `;
 
-export const StyledSlideCardContent = styled.div`
-  
-  justify-content: space-between;
-  position: relative;
-`
 
 export const StyledLogo = styled.div`
   width: 100%;
@@ -95,9 +91,15 @@ export const StyledCaseStudyCopy = styled.div`
   height: 100%;
   pointer-events: none;
   position: absolute;
+  display: none;
 `
 
 export const StyledCardWrap = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  height: calc(100% - 60px);
+  width: calc(100% - 60px);
   z-index: 11;
 `;
