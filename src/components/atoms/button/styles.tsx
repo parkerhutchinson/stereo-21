@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+import hexRgb from 'hex-rgb';
 const RADIUS = 5;
 
 const buttonCorners = (type: "begin" | "end" | "symetrical") => {
@@ -37,8 +38,13 @@ interface StyledProps {
 
 export const StyledButton = styled.button<StyledProps>`
   ${(p) => buttonCorners(p.cornerType)};
-  padding: 10px;
+  padding: 15px 13px;
   border: 1px solid ${(p) => p.color};
-  background: ${(p) => p.color};
-  transition: all 1s;
+  background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, 1)`};
+  transition: all .4s;
+  cursor: pointer;
+  position: relative;
+  &:hover{
+    background: ${(p) => `rgba(255,${hexRgb(p.color).green},${hexRgb(p.color).blue}, .3)`};
+  }
 `;

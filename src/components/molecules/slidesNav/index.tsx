@@ -1,24 +1,29 @@
 import Button from "@/src/components/atoms/button";
 import ArrowIcon from "@/src/components/atoms/arrowIcon";
+import {StyledNav} from "./styles";
 
 interface Props {
-  color: string
+  buttonColor: string
+  iconColor: string
 }
 
 const SlidesNavigation = (props:Props) => {
-  const {color} = props;
+  const {buttonColor, iconColor} = props;
   return (
-    <nav>
-      <Button borderStyle="begin" color={color}>
-        <ArrowIcon />
+    <StyledNav>
+      <div>
+        <Button borderStyle="begin" color={buttonColor}>
+          <ArrowIcon direction="w" color={iconColor}/>
+        </Button>
+        <Button borderStyle="end" color={buttonColor}>
+          <ArrowIcon direction="e" color={iconColor} />
+        </Button>
+      </div>
+
+      <Button borderStyle="symetrical" color={buttonColor}>
+        <ArrowIcon direction="se" color={iconColor} />
       </Button>
-      <Button borderStyle="end" color={color}>
-        <ArrowIcon />
-      </Button>
-      <Button borderStyle="symetrical" color={color}>
-        <ArrowIcon />
-      </Button>
-    </nav>
+    </StyledNav>
   );
 }
 
