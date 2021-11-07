@@ -1,4 +1,5 @@
-import React, { MutableRefObject, useRef } from "react";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import {useTransition, animated} from 'react-spring';
 
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
@@ -6,7 +7,8 @@ import {
   StyledSlide, 
   StyledCaseStudyCopy, 
   StyledLogo, 
-  StyledCardWrap 
+  StyledCardWrap,
+  StyledBrandTransitionGroup,
 } from "./styles";
 import { drawRectBorder } from "@/src/lib/drawing";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
@@ -25,6 +27,24 @@ const Slide = (props: Slide) => {
   const { slide, navCallback, toggleSlide } = props;
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [winWidth] = useScreenSize();
+
+
+  const transitionBrand = useTransition(slide.brand, {
+    native: true,
+    from: { opacity: 0, transform: 'translateY(-50px)' },
+    enter: { opacity: 1, transform: 'translateY(0px)' },
+    leave: { opacity: 0, transform: 'translateY(20px)'  },
+    key: slide.brand
+  });
+
+  const transitionBrandLogo = useTransition(slide.logo, {
+    native: true,
+    from: { opacity: 0, transform: 'rotate(20deg)' },
+    enter: { opacity: 1, transform: 'rotate(0deg)' },
+    leave: { opacity: 0 },
+    duration: 400,
+    key: slide.logo
+  })
 
   useIsomorphicLayoutEffect(() => {
     const canvasDom = canvasRef.current;
@@ -66,18 +86,20 @@ const Slide = (props: Slide) => {
     }
   }, [canvasRef, winWidth, slide]);
 
+
   // change global colorways when slide updates
   return (
     <StyledSlide cardColor={slide.colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
       <StyledCardWrap>
-      {!toggleSlide && <>  
-          <h2>{slide.brand}</h2>
-          <StyledLogo>
-            <img src={slide.logo} />
-          </StyledLogo>
-        </>
-        }
+        
+        <StyledBrandTransitionGroup>
+          {transitionBrand((styles, item) => item && <animated.h2 style={styles}>{item}</animated.h2>)}
+        </StyledBrandTransitionGroup>
+
+        <StyledLogo>
+          {transitionBrandLogo((styles, item) => item && <animated.div style={styles}><img src={item} /></animated.div>)}
+        </StyledLogo>
 
         <SlidesNavigation 
           buttonColor={slide.colorSchemeHighlight} 
@@ -85,10 +107,13 @@ const Slide = (props: Slide) => {
           navCallback={(e) => navCallback(e)}
         />
 
-        {toggleSlide && <StyledCaseStudyCopy>
+    
+        {/* <StyledCaseStudyCopy>
           <RichTextBody body={slide.caseStudyCopy}/>
-        </StyledCaseStudyCopy>}
-        
+        </StyledCaseStudyCopy> */}
+            
+                
+              
       </StyledCardWrap>
     </StyledSlide>
     
