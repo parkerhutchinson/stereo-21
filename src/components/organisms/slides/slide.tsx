@@ -31,17 +31,17 @@ const Slide = (props: Slide) => {
 
   const transitionBrand = useTransition(slide.brand, {
     native: true,
-    from: { opacity: 0, transform: 'translateY(-50px)' },
-    enter: { opacity: 1, transform: 'translateY(0px)' },
-    leave: { opacity: 0, transform: 'translateY(20px)'  },
+    from: { opacity: 0, transform: 'translate3d(0, -20px, 0)'},
+    enter: { opacity: 1, transform: 'translate3d(0, 0px, 0)'},
+    leave: { opacity: 0, transform: 'translate3d(0, 20px, 0)'},
     key: slide.brand
   });
 
   const transitionBrandLogo = useTransition(slide.logo, {
     native: true,
-    from: { opacity: 0, transform: 'rotate(20deg)' },
-    enter: { opacity: 1, transform: 'rotate(0deg)' },
-    leave: { opacity: 0 },
+    from: { opacity: 0, transform: 'rotate(20deg)', filter: 'blur(20px)' },
+    enter: { opacity: 1, transform: 'rotate(0deg)', filter: 'blur(0px)' },
+    leave: { opacity: 0, filter: 'blur(20px)' },
     duration: 400,
     key: slide.logo
   })
