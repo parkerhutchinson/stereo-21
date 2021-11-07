@@ -17,11 +17,12 @@ export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
 
 export interface Slide {
   slide: SlideFields
+  toggleSlide: boolean
   navCallback: (action:string) => void
 }
 
 const Slide = (props: Slide) => {
-  const { slide,navCallback } = props;
+  const { slide, navCallback, toggleSlide } = props;
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [winWidth] = useScreenSize();
 
@@ -70,21 +71,23 @@ const Slide = (props: Slide) => {
     <StyledSlide cardColor={slide.colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
       <StyledCardWrap>
-            
-        <h2>{slide.brand}</h2>
-        <StyledLogo>
-          <img src={slide.logo} />
-        </StyledLogo>
-
-        <StyledCaseStudyCopy>
-          <RichTextBody body={slide.caseStudyCopy}/>
-        </StyledCaseStudyCopy>
+      {!toggleSlide && <>  
+          <h2>{slide.brand}</h2>
+          <StyledLogo>
+            <img src={slide.logo} />
+          </StyledLogo>
+        </>
+        }
 
         <SlidesNavigation 
           buttonColor={slide.colorSchemeHighlight} 
           iconColor={slide.colorSchemeBioBG}
           navCallback={(e) => navCallback(e)}
         />
+
+        {toggleSlide && <StyledCaseStudyCopy>
+          <RichTextBody body={slide.caseStudyCopy}/>
+        </StyledCaseStudyCopy>}
         
       </StyledCardWrap>
     </StyledSlide>

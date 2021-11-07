@@ -83,12 +83,12 @@ export const StyledCardWrap = styled.div`
 `;
 
 export const StyledCaseStudyCopy = styled.div`
-  opacity: 0;
+  opacity: 1;
   overflow: hidden;
   height: 100%;
   pointer-events: none;
   position: absolute;
-  display: none;
+  display: block;
 `;
 
 export const StyledLogo = styled.div`

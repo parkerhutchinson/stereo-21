@@ -20,6 +20,7 @@ export interface Slides {
 
 const Slides = (props: Slides) => {
   const { slides } = props;
+  const [slideOpen, toggleSlideOpen] = useState(false);
   const userInteracted = useRef(false);
   const timerRef = useRef<NodeJS.Timer>();
   const { dispatch } = useContext(GlobalContext);
@@ -81,6 +82,7 @@ const Slides = (props: Slides) => {
     }
   }, [activeSlide]);
 
+  // slides state controls
   const handleSlideNavigation = (action:string) => {
     if (timerRef.current) window.clearTimeout(timerRef.current);
     switch(action) {
@@ -90,13 +92,23 @@ const Slides = (props: Slides) => {
       case 'prev':
         prevSlide();
         break;
+      case 'open':
+        toggleSlideOpen(!slideOpen);
+        break;
     }
     
   }
   
+  console.log(slideOpen);
   return (
-    <StyledSlides backgroundColor={slides[activeSlide].colorSchemeSeed}>
-      <Slide slide={slides[activeSlide]} navCallback={(e) => handleSlideNavigation(e)}/>
+    <StyledSlides 
+      backgroundColor={slides[activeSlide].colorSchemeSeed}
+    >
+      <Slide 
+        slide={slides[activeSlide]} 
+        navCallback={(e) => handleSlideNavigation(e)} 
+        toggleSlide={slideOpen}
+      />
     </StyledSlides>
   )
 }
