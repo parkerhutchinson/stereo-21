@@ -26,7 +26,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
   display: block;
   width: 500px;
-  height: 750px;
+  height: 75vh;
   padding: 30px;
   color: white;
   &:before, &:after{
@@ -72,6 +72,24 @@ export const StyledSlide = styled.div<IStyledSlide>`
   }
 `;
 
+export const StyledCardWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  height: calc(100% - 60px);
+  width: calc(100% - 60px);
+  z-index: 11;
+`;
+
+export const StyledCaseStudyCopy = styled.div`
+  opacity: 0;
+  overflow: hidden;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  display: none;
+`;
 
 export const StyledLogo = styled.div`
   width: 100%;
@@ -85,31 +103,10 @@ export const StyledLogo = styled.div`
     display: inline-block;
     transform: scale(1);
     transition: transform .4s;
-    
   }
   &:hover{
     img{
       transform: scale(1.2);
     }
   }
-`
-
-
-export const StyledCaseStudyCopy = styled.div`
-  opacity: 0;
-  overflow: hidden;
-  height: 100%;
-  pointer-events: none;
-  position: absolute;
-  display: none;
-`
-
-export const StyledCardWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  height: calc(100% - 60px);
-  width: calc(100% - 60px);
-  z-index: 11;
 `;

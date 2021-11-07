@@ -5,11 +5,16 @@ interface Props {
   borderStyle: "begin"|"end"|"symetrical"
   color: string
   children?: ReactNode
+  onClick?: () => void
 }
 
 const Button = (props:Props) => {
   return (
-    <StyledButton cornerType={props.borderStyle} color={props.color}>
+    <StyledButton 
+      cornerType={props.borderStyle} 
+      color={props.color} 
+      onClick={() => typeof props.onClick !== 'undefined' && props.onClick()}
+    >
       {props.children}
     </StyledButton>
   );

@@ -11,6 +11,7 @@ const {
   UPDATE_SITE_BACKGROUND_COLOR 
 } = ColorActions;
 
+// recycle type slide fields. logo needs to be converted to string though.
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
 
 export interface Slides {
@@ -24,6 +25,21 @@ const Slides = (props: Slides) => {
   const { dispatch } = useContext(GlobalContext);
   const [activeSlide, setActiveSlide] = useState(0);
 
+  const nextSlide = () => {
+    if(activeSlide < slides.length - 1) {
+      setActiveSlide(activeSlide + 1)
+    } else {
+      setActiveSlide(0)
+    };
+  }
+
+  const prevSlide = () => {
+    if(activeSlide > 0) {
+      setActiveSlide(activeSlide - 1)
+    } else {
+      setActiveSlide(slides.length - 1)
+    };
+  }
   // slideshow interval
   useIsomorphicLayoutEffect(() => {
     let slideIndex = 0;
@@ -49,6 +65,7 @@ const Slides = (props: Slides) => {
   // change global colorways when slide updates
   useEffect(() => {
     if (typeof dispatch !== 'undefined') {
+      // TODO: this sucks
       dispatch({ 
         type: UPDATE_BIO_BACKGROUND_COLOR, 
         payload: slides[activeSlide].colorSchemeBioBG 
@@ -63,10 +80,23 @@ const Slides = (props: Slides) => {
       })
     }
   }, [activeSlide]);
+
+  const handleSlideNavigation = (action:string) => {
+    if (timerRef.current) window.clearTimeout(timerRef.current);
+    switch(action) {
+      case 'next':
+        nextSlide();
+        break;
+      case 'prev':
+        prevSlide();
+        break;
+    }
+    
+  }
   
   return (
     <StyledSlides backgroundColor={slides[activeSlide].colorSchemeSeed}>
-      <Slide slide={slides[activeSlide]} />
+      <Slide slide={slides[activeSlide]} navCallback={(e) => handleSlideNavigation(e)}/>
     </StyledSlides>
   )
 }

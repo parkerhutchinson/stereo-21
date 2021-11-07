@@ -15,12 +15,13 @@ import SlidesNavigation from "../../molecules/slidesNav";
 
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
 
-export interface Slides {
+export interface Slide {
   slide: SlideFields
+  navCallback: (action:string) => void
 }
 
-const Slide = (props: Slides) => {
-  const { slide } = props;
+const Slide = (props: Slide) => {
+  const { slide,navCallback } = props;
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [winWidth] = useScreenSize();
 
@@ -82,6 +83,7 @@ const Slide = (props: Slides) => {
         <SlidesNavigation 
           buttonColor={slide.colorSchemeHighlight} 
           iconColor={slide.colorSchemeBioBG}
+          navCallback={(e) => navCallback(e)}
         />
         
       </StyledCardWrap>
@@ -90,5 +92,6 @@ const Slide = (props: Slides) => {
   )
 }
 
-// simple works to memo the component and prevent re-renders
+// im getting re-renders from the dispatch call in the parent
+// this prevents unnecessary slide re-renders
 export default React.memo(Slide);
