@@ -99,10 +99,10 @@ const Slides = (props: Slides) => {
     
   }
   
-  console.log(slideOpen);
   return (
     <StyledSlides 
       backgroundColor={slides[activeSlide].colorSchemeSeed}
+      toggle={slideOpen}
     >
       <Slide 
         slide={slides[activeSlide]} 

@@ -38,7 +38,7 @@ const Slide = (props: Slide) => {
     key: slide.brand
   });
 
-  const transitionBrandLogo = useTransition(slide.logo, {
+  const transitionSlide = useTransition(slide.logo, {
     native: true,
     from: { opacity: 0, transform: 'rotate(20deg)', filter: 'blur(20px)' },
     enter: { opacity: 1, transform: 'rotate(0deg)', filter: 'blur(0px)' },
@@ -47,18 +47,26 @@ const Slide = (props: Slide) => {
     key: slide.logo
   });
 
+  const transitionRichText = useTransition(slide.logo, {
+    native: true,
+    from: { opacity: 0, transform: 'translate3d(-100px,0,0)'},
+    enter: { opacity: 1, transform: 'translate3d(0px,0,0)' },
+    leave: { opacity: 0 },
+    duration: 1000,
+    key: slide.logo
+  })
+
   const toggleTransition = useTransition(toggle, {
     native: true,
     from: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
     enter: {opacity: 1, transform: 'translate3d(0, 0px, 0)'},
-    leave: {opacity: 0, pointerEvents: 'none'}
+    leave: {opacity: 0, transform: 'translate3d(0, 20px, 0)'}
   });
 
   const handleButtonCLick = (action:string) => {
+    navCallback(action);
     if (action === 'open') {
       setToggle(!toggle);
-    } else {
-      navCallback(action);
     }
   }
 
@@ -102,16 +110,17 @@ const Slide = (props: Slide) => {
     }
   }, [canvasRef, winWidth, slide]);
 
+  const richTextEvents = toggle ? 'auto' : 'none';
 
   // change global colorways when slide updates
   return (
-    <StyledSlide cardColor={slide.colorSchemeSeed}>
+    <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggle}>
       <canvas ref={canvasRef}></canvas>
       <StyledCardWrap>
         
         {/* toggle nav richtext transition */}
         {toggleTransition((stylesCopy, toggle) => toggle && 
-        <animated.div style={{...stylesCopy, ...{zIndex: 1}}}>
+        <animated.div style={{...stylesCopy, ...{zIndex: 1, pointerEvents: richTextEvents}}}>
           <SlidesNavigation 
             buttonColor={slide.colorSchemeHighlight} 
             iconColor={slide.colorSchemeBioBG}
@@ -124,7 +133,7 @@ const Slide = (props: Slide) => {
         {/* toggle brand card transition into richtext */}
         {toggleTransition(
           (stylesCopy,toggle) => 
-            !toggle ? 
+            !toggle ?
             <animated.div style={stylesCopy}>
               <StyledBrandTransitionGroup>
                 {transitionBrand(
@@ -134,7 +143,7 @@ const Slide = (props: Slide) => {
               </StyledBrandTransitionGroup>
 
               <StyledLogo>
-                {transitionBrandLogo(
+                {transitionSlide(
                   (styles, item) => item && 
                   <animated.div style={styles}>
                     <img src={item} />
@@ -150,10 +159,24 @@ const Slide = (props: Slide) => {
               />
             </animated.div> : 
 
-            <animated.div style={{...stylesCopy, ...{paddingTop: '50px', zIndex: 0}}}>
-              <StyledCaseStudyCopy>
-                <RichTextBody body={slide.caseStudyCopy}/>
-              </StyledCaseStudyCopy>
+            <animated.div style={{...stylesCopy, ...{
+              zIndex: 20, top: '150px', 
+
+              pointerEvents: richTextEvents}
+            }}>
+              {transitionRichText((styles, item) => item && 
+                <animated.div style={
+                  {...styles, ...{
+                    height:'100%',
+                    width:'100%',
+                    position:'absolute'
+                  }
+                }}>
+                <StyledCaseStudyCopy>
+                  <RichTextBody body={slide.caseStudyCopy}/>
+                </StyledCaseStudyCopy>
+                </animated.div>
+              )}
             </animated.div>
         )}  
       </StyledCardWrap>

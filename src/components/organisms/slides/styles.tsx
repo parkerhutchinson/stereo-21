@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 interface IStyledSlides {
   backgroundColor: string
+  toggle: boolean
 }
 
 export const StyledSlides = styled.div<IStyledSlides>`
-  width: 55%;
+  width: ${({toggle}) => toggle ? '70%' : '55%'};
   position: fixed;
   top: 0;
   right: 0;
@@ -16,19 +17,23 @@ export const StyledSlides = styled.div<IStyledSlides>`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  transition: all 1s;
 `;
 
 interface IStyledSlide {
   cardColor: string
+  toggle: boolean
 }
 
 export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
   display: block;
-  width: 500px;
-  height: 75vh;
+  width: ${({toggle}) => toggle ? '800px' : '500px'};
+  top: ${({toggle}) => toggle ? '100px' : '0px'};
+  height: ${({toggle}) => toggle ? '100vh' : '75vh'};
   padding: 30px;
   color: white;
+  transition: all 1.2s;
   &:before, &:after{
     content: '';
     display: block;
@@ -102,13 +107,30 @@ export const StyledBrandTransitionGroup = styled.div`
   }
 `;
 
+
 export const StyledCaseStudyCopy = styled.div`
   opacity: 1;
   overflow: hidden;
   height: 100%;
-  pointer-events: none;
+  top: 0;
+  left: 10%;
   position: absolute;
   display: block;
+  max-width: 80%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  h2{
+    font-weight: 200;
+    margin-bottom: 40px;
+    font-size: 36px;
+  }
+  p{
+    line-height: 38px;
+    letter-spacing: -.16;
+    margin-bottom: 50px;
+    font-size: 19px;
+    color: #DADADA;
+  }
 `;
 
 export const StyledLogo = styled.div`
