@@ -28,12 +28,18 @@ interface IStyledSlide {
 export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
   display: block;
-  width: ${({toggle}) => toggle ? '800px' : '500px'};
+  width: ${({toggle}) => toggle ? '90%' : '80%'};
   top: ${({toggle}) => toggle ? '100px' : '0px'};
   height: ${({toggle}) => toggle ? '100vh' : '75vh'};
   padding: 30px;
   color: white;
   transition: all 1.2s;
+  @media (min-width: 1360px) {
+    width: ${({toggle}) => toggle ? '800px' : '500px'};
+  }
+  @media (min-width: 1800px) {
+    width: ${({toggle}) => toggle ? '1000px' : '750px'};
+  }
   &:before, &:after{
     content: '';
     display: block;
@@ -47,7 +53,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     z-index: 1;
     background: ${(p) => p.cardColor};
     filter: saturate(1.2);
-    backdrop-filter: blur(43px);
+    backdrop-filter: blur(35px);
     transition: all 1s;
     border-radius: 10px;
   }
@@ -118,7 +124,7 @@ export const StyledCaseStudyCopy = styled.div`
   display: block;
   max-width: 80%;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
   h2{
     font-weight: 200;
     margin-bottom: 40px;
@@ -138,7 +144,7 @@ export const StyledLogo = styled.div`
   text-align: center;
   cursor: pointer;
   position: relative;
-  height: 400px;
+  padding-bottom: calc(367 / 463 * 100%);
   div{
     position: absolute;
     top: 0;

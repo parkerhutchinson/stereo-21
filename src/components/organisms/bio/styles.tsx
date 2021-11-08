@@ -28,7 +28,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
 export const StyledCopyWrapper = styled.div`
   max-width: 70%;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 200px;
   position: relative;
   z-index: 2;
   h2{
