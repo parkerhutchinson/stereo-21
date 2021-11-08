@@ -51,7 +51,7 @@ const Slide = (props: Slide) => {
     native: true,
     from: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
     enter: {opacity: 1, transform: 'translate3d(0, 0px, 0)'},
-    leave: {opacity: 0}
+    leave: {opacity: 0, pointerEvents: 'none'}
   });
 
   const handleButtonCLick = (action:string) => {
@@ -109,7 +109,7 @@ const Slide = (props: Slide) => {
       <canvas ref={canvasRef}></canvas>
       <StyledCardWrap>
         {toggleTransition((stylesCopy, toggle) => toggle && 
-        <animated.div style={stylesCopy}>
+        <animated.div style={{...stylesCopy, ...{zIndex: 1}}}>
           <SlidesNavigation 
             buttonColor={slide.colorSchemeHighlight} 
             iconColor={slide.colorSchemeBioBG}
@@ -146,7 +146,7 @@ const Slide = (props: Slide) => {
               />
             </animated.div> : 
 
-            <animated.div style={{...stylesCopy, ...{paddingTop: '50px'}}}>
+            <animated.div style={{...stylesCopy, ...{paddingTop: '50px', zIndex: 0}}}>
               <StyledCaseStudyCopy>
                 <RichTextBody body={slide.caseStudyCopy}/>
               </StyledCaseStudyCopy>

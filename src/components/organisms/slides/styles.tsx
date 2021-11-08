@@ -47,7 +47,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     border-radius: 10px;
   }
   &:after{
-    z-index: 10;
+    z-index: 2;
     background: url('/noise-texture.png') center center;
     width: calc(100% - 2px);
     height: calc(100% - 2px);
@@ -63,7 +63,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 99;
+    z-index: 3;
     opacity: 1;
     pointer-events: none;
   }
