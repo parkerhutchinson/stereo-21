@@ -27,6 +27,7 @@ const Slide = (props: Slide) => {
   const { slide, navCallback, toggleSlide } = props;
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [winWidth] = useScreenSize();
+  const [toggle, setToggle] = useState(false);
 
 
   const transitionBrand = useTransition(slide.brand, {
@@ -44,7 +45,22 @@ const Slide = (props: Slide) => {
     leave: { opacity: 0, filter: 'blur(20px)' },
     duration: 400,
     key: slide.logo
-  })
+  });
+
+  const toggleTransition = useTransition(toggle, {
+    native: true,
+    from: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
+    enter: {opacity: 1, transform: 'translate3d(0, 0px, 0)'},
+    leave: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
+  });
+
+  const handleButtonCLick = (action:string) => {
+    if (action === 'open') {
+      setToggle(!toggle);
+    } else {
+      props.navCallback(action);
+    }
+  }
 
   useIsomorphicLayoutEffect(() => {
     const canvasDom = canvasRef.current;
@@ -92,31 +108,32 @@ const Slide = (props: Slide) => {
     <StyledSlide cardColor={slide.colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
       <StyledCardWrap>
-        
-        <StyledBrandTransitionGroup>
-          {transitionBrand((styles, item) => item && <animated.h2 style={styles}>{item}</animated.h2>)}
-        </StyledBrandTransitionGroup>
+        {toggleTransition(
+          (stylesCopy,toggle) => 
+            !toggle ? 
+            <animated.div style={stylesCopy}>
+              <StyledBrandTransitionGroup>
+                {transitionBrand((styles, item) => item && <animated.h2 style={styles}>{item}</animated.h2>)}
+              </StyledBrandTransitionGroup>
 
-        <StyledLogo>
-          {transitionBrandLogo((styles, item) => item && <animated.div style={styles}><img src={item} /></animated.div>)}
-        </StyledLogo>
+              <StyledLogo>
+                {transitionBrandLogo((styles, item) => item && <animated.div style={styles}><img src={item} /></animated.div>)}
+              </StyledLogo>
 
-        <SlidesNavigation 
-          buttonColor={slide.colorSchemeHighlight} 
-          iconColor={slide.colorSchemeBioBG}
-          navCallback={(e) => navCallback(e)}
-        />
-
-    
-        {/* <StyledCaseStudyCopy>
-          <RichTextBody body={slide.caseStudyCopy}/>
-        </StyledCaseStudyCopy> */}
-            
-                
-              
+              <SlidesNavigation 
+                buttonColor={slide.colorSchemeHighlight} 
+                iconColor={slide.colorSchemeBioBG}
+                navCallback={(e) => handleButtonCLick(e)}
+              />
+            </animated.div> : 
+            <animated.div style={stylesCopy}>
+              <StyledCaseStudyCopy>
+                <RichTextBody body={slide.caseStudyCopy}/>
+              </StyledCaseStudyCopy>
+            </animated.div>
+        )}  
       </StyledCardWrap>
     </StyledSlide>
-    
   )
 }
 

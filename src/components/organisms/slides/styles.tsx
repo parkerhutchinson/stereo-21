@@ -73,18 +73,21 @@ export const StyledSlide = styled.div<IStyledSlide>`
 `;
 
 export const StyledCardWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   position: absolute;
   height: calc(100% - 60px);
   width: calc(100% - 60px);
   z-index: 11;
+  & > div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
-
-interface IStyledCopy {
-  animatedInOut: boolean
-}
 
 export const StyledBrandTransitionGroup = styled.div`
   position: relative;
@@ -99,16 +102,6 @@ export const StyledBrandTransitionGroup = styled.div`
   }
 `;
 
-export const StyleBrandTransition = styled.h2<IStyledCopy>`
-  transition: .4s;
-  opacity: ${({ animatedInOut }) => (animatedInOut ? 1 : 0)};
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
-
 export const StyledCaseStudyCopy = styled.div`
   opacity: 1;
   overflow: hidden;
@@ -117,8 +110,6 @@ export const StyledCaseStudyCopy = styled.div`
   position: absolute;
   display: block;
 `;
-
-
 
 export const StyledLogo = styled.div`
   width: 100%;
