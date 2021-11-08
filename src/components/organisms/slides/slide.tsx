@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { MutableRefObject, useRef, useState } from "react";
 import {useTransition, animated} from 'react-spring';
 
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
@@ -24,7 +24,7 @@ export interface Slide {
 }
 
 const Slide = (props: Slide) => {
-  const { slide, navCallback, toggleSlide } = props;
+  const { slide, navCallback } = props;
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [winWidth] = useScreenSize();
   const [toggle, setToggle] = useState(false);
@@ -51,14 +51,14 @@ const Slide = (props: Slide) => {
     native: true,
     from: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
     enter: {opacity: 1, transform: 'translate3d(0, 0px, 0)'},
-    leave: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
+    leave: {opacity: 0}
   });
 
   const handleButtonCLick = (action:string) => {
     if (action === 'open') {
       setToggle(!toggle);
     } else {
-      props.navCallback(action);
+      navCallback(action);
     }
   }
 
@@ -108,25 +108,45 @@ const Slide = (props: Slide) => {
     <StyledSlide cardColor={slide.colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
       <StyledCardWrap>
+        {toggleTransition((stylesCopy, toggle) => toggle && 
+        <animated.div style={stylesCopy}>
+          <SlidesNavigation 
+            buttonColor={slide.colorSchemeHighlight} 
+            iconColor={slide.colorSchemeBioBG}
+            navCallback={(e) => handleButtonCLick(e)}
+            toggleNavAnimation={toggle}
+          />
+        </animated.div>
+        )}
         {toggleTransition(
           (stylesCopy,toggle) => 
             !toggle ? 
             <animated.div style={stylesCopy}>
               <StyledBrandTransitionGroup>
-                {transitionBrand((styles, item) => item && <animated.h2 style={styles}>{item}</animated.h2>)}
+                {transitionBrand(
+                  (styles, item) => item && 
+                    <animated.h2 style={styles}>{item}</animated.h2>
+                )}
               </StyledBrandTransitionGroup>
 
               <StyledLogo>
-                {transitionBrandLogo((styles, item) => item && <animated.div style={styles}><img src={item} /></animated.div>)}
+                {transitionBrandLogo(
+                  (styles, item) => item && 
+                  <animated.div style={styles}>
+                    <img src={item} />
+                  </animated.div>
+                )}
               </StyledLogo>
 
               <SlidesNavigation 
                 buttonColor={slide.colorSchemeHighlight} 
                 iconColor={slide.colorSchemeBioBG}
                 navCallback={(e) => handleButtonCLick(e)}
+                toggleNavAnimation={true}
               />
             </animated.div> : 
-            <animated.div style={stylesCopy}>
+
+            <animated.div style={{...stylesCopy, ...{paddingTop: '50px'}}}>
               <StyledCaseStudyCopy>
                 <RichTextBody body={slide.caseStudyCopy}/>
               </StyledCaseStudyCopy>
