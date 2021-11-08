@@ -108,6 +108,8 @@ const Slide = (props: Slide) => {
     <StyledSlide cardColor={slide.colorSchemeSeed}>
       <canvas ref={canvasRef}></canvas>
       <StyledCardWrap>
+        
+        {/* toggle nav richtext transition */}
         {toggleTransition((stylesCopy, toggle) => toggle && 
         <animated.div style={{...stylesCopy, ...{zIndex: 1}}}>
           <SlidesNavigation 
@@ -118,6 +120,8 @@ const Slide = (props: Slide) => {
           />
         </animated.div>
         )}
+
+        {/* toggle brand card transition into richtext */}
         {toggleTransition(
           (stylesCopy,toggle) => 
             !toggle ? 
