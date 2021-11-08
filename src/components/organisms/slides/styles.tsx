@@ -7,7 +7,7 @@ interface IStyledSlides {
 }
 
 export const StyledSlides = styled.div<IStyledSlides>`
-  width: ${({toggle}) => toggle ? '70%' : '55%'};
+  width: ${({toggle}) => toggle ? '75%' : '55%'};
   position: fixed;
   top: 0;
   right: 0;
