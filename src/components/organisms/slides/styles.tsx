@@ -17,7 +17,7 @@ export const StyledSlides = styled.div<IStyledSlides>`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  transition: all 1s;
+  transition: all .8s cubic-bezier(.13,.67,0,1);
 `;
 
 interface IStyledSlide {
@@ -33,7 +33,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   height: ${({toggle}) => toggle ? '100vh' : '75vh'};
   padding: 30px;
   color: white;
-  transition: all 1.2s;
+  transition: all .8s cubic-bezier(.13,.67,0,1);
   @media (min-width: 1360px) {
     width: ${({toggle}) => toggle ? '800px' : '500px'};
   }
@@ -119,10 +119,10 @@ export const StyledCaseStudyCopy = styled.div`
   overflow: hidden;
   height: 100%;
   top: 0;
-  left: 10%;
+  left: 15%;
   position: absolute;
   display: block;
-  max-width: 80%;
+  max-width: 70%;
   overflow-x: hidden;
   overflow-y: hidden;
   h2{

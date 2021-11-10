@@ -81,7 +81,7 @@ const Slide = (props: Slide) => {
         //@ts-ignore: not possible since this will be using useLayoutEffect
         const gradient = ctx.createLinearGradient(0, 0, 200, 600);
 
-        gradient.addColorStop(0, slide.colorSchemeSeed);
+        gradient.addColorStop(0, slide.colorSchemeHighlight);
         gradient.addColorStop(1, 'rgba(255 255 255 / 35%)');
 
         const config = {
