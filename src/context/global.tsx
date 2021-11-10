@@ -2,26 +2,28 @@ import React, { createContext, useReducer, Dispatch} from "react";
 import type { ReactNode } from "react";
 
 const initialState = {
-  siteBackgroundColor: 'red',
-  bioBackgroundColor: '#0E0718',
-  bioTextColor: '#726985',
+  colorScheme: {
+    siteBackgroundColor: 'red',
+    bioBackgroundColor: '#0E0718',
+    bioTextColor: '#726985',
+  }
 }
 
 type TDefaultData = {
-  siteBackgroundColor: string
-  bioBackgroundColor: string
-  bioTextColor: string
+  colorScheme: {
+    siteBackgroundColor: string
+    bioBackgroundColor: string
+    bioTextColor: string
+  }
 };
 
 export enum ColorActions {
-  UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR',
-  UPDATE_BIO_BACKGROUND_COLOR = 'UPDATE_BIO_BACKGROUND_COLOR',
-  UPDATE_SITE_BACKGROUND_COLOR = 'UPDATE_SITE_BACKGROUND_COLOR'
+  UPDATE_COLOR = 'UPDATE_COLOR',
 }
 
 type ColorDispatch = {
   type: ColorActions
-  payload: string
+  payload: {}
 }
 
 export const GlobalContext = createContext<{
@@ -34,15 +36,8 @@ export const GlobalContext = createContext<{
 
 const colorSchemeReducer = (state:TDefaultData, action: ColorDispatch) => {
   switch (action.type) {
-    case ColorActions.UPDATE_TEXT_COLOR:
-      return Object.assign({}, state, {bioTextColor: action.payload});
-      break;
-    case ColorActions.UPDATE_BIO_BACKGROUND_COLOR:
-      return Object.assign({}, state, {bioBackgroundColor: action.payload});
-      break;
-    case ColorActions.UPDATE_SITE_BACKGROUND_COLOR:
-      return Object.assign({}, state, {siteBackgroundColor: action.payload});
-      break;
+    case ColorActions.UPDATE_COLOR: 
+      return Object.assign({}, state, {colorScheme: {...action.payload}})
     default:
       return state;
   }

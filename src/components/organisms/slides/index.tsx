@@ -5,11 +5,7 @@ import { StyledSlides } from "./styles";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
 
-const { 
-  UPDATE_BIO_BACKGROUND_COLOR, 
-  UPDATE_TEXT_COLOR, 
-  UPDATE_SITE_BACKGROUND_COLOR 
-} = ColorActions;
+const { UPDATE_COLOR } = ColorActions;
 
 // recycle type slide fields. logo needs to be converted to string though.
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
@@ -68,16 +64,12 @@ const Slides = (props: Slides) => {
     if (typeof dispatch !== 'undefined') {
       // TODO: this sucks
       dispatch({ 
-        type: UPDATE_BIO_BACKGROUND_COLOR, 
-        payload: slides[activeSlide].colorSchemeBioBG 
-      })
-      dispatch({ 
-        type: UPDATE_TEXT_COLOR, 
-        payload: slides[activeSlide].colorSchemeBioText 
-      })
-      dispatch({ 
-        type: UPDATE_SITE_BACKGROUND_COLOR, 
-        payload: slides[activeSlide].colorSchemeSeed 
+        type: UPDATE_COLOR, 
+        payload: {
+          siteBackgroundColor: slides[activeSlide].colorSchemeSeed ,
+          bioTextColor: slides[activeSlide].colorSchemeBioText,
+          bioBackgroundColor: slides[activeSlide].colorSchemeBioBG
+        }
       })
     }
   }, [activeSlide]);

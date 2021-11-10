@@ -15,10 +15,10 @@ const Bio = (props:TypeBioFields) => {
   
   return (
     <StyledBioTab 
-      backgroundColor={state.bioBackgroundColor}
+      backgroundColor={state.colorScheme?.bioBackgroundColor}
     >
       <Grid subGrid={12}>
-        <StereoLogo textColor={state.bioTextColor} />
+        <StereoLogo textColor={state.colorScheme.bioTextColor} />
         <StyledCopyWrapper>
           <RichTextBody body={body} />
           <StyledCTAGroup>
