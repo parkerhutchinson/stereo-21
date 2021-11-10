@@ -1,6 +1,5 @@
 import React, { MutableRefObject, useRef, useState } from "react";
 import {useTransition, animated} from 'react-spring';
-
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
 import { 
@@ -14,6 +13,7 @@ import { drawRectBorder } from "@/src/lib/drawing";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import useScreenSize from "@/src/hooks/useScreenSize";
 import SlidesNavigation from "../../molecules/slidesNav";
+
 
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
 

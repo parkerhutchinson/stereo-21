@@ -5,6 +5,8 @@ import StereoLogo from "@/src/components/molecules/stereoLogo";
 import {GlobalContext} from "@/src/context/global"
 import {TypeBioFields} from "@/src/types/generated/TypeBio";
 import RichTextBody from "@/src/components/molecules/richTextBody";
+import ExternalCTA from "@/src/components/molecules/externalCta";
+
 
 
 const Bio = (props:TypeBioFields) => {
@@ -20,6 +22,7 @@ const Bio = (props:TypeBioFields) => {
         <StereoLogo />
         <StyledCopyWrapper>
           <RichTextBody body={body} />
+          <ExternalCTA />
         </StyledCopyWrapper>
       </Grid>
     </StyledBioTab>
