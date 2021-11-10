@@ -14,6 +14,7 @@ export const Globals = createGlobalStyle`
   }
   body{
     height: 100vh;
+    background: black;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
   }

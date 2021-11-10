@@ -1,6 +1,6 @@
-import {useContext} from "react";
+import React, {useContext} from "react";
 import Grid from "@/src/styles/grid";
-import {StyledBioTab, StyledCopyWrapper} from "./styles";
+import {StyledBioTab, StyledCopyWrapper, StyledCTAGroup} from "./styles";
 import StereoLogo from "@/src/components/molecules/stereoLogo";
 import {GlobalContext} from "@/src/context/global"
 import {TypeBioFields} from "@/src/types/generated/TypeBio";
@@ -15,14 +15,17 @@ const Bio = (props:TypeBioFields) => {
   
   return (
     <StyledBioTab 
-      textColor={state.bioTextColor}
       backgroundColor={state.bioBackgroundColor}
     >
       <Grid subGrid={12}>
-        <StereoLogo />
+        <StereoLogo textColor={state.bioTextColor} />
         <StyledCopyWrapper>
           <RichTextBody body={body} />
-          <ExternalCTA />
+          <StyledCTAGroup>
+            <ExternalCTA icon="art" link="https://dribbble.com/parkerhutchinson"/>
+            <ExternalCTA icon="code" link="https://dribbble.com/parkerhutchinson"/>
+            <ExternalCTA icon="resume" link="https://dribbble.com/parkerhutchinson"/>
+          </StyledCTAGroup>
         </StyledCopyWrapper>
       </Grid>
     </StyledBioTab>

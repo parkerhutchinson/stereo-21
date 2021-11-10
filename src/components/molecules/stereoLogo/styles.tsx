@@ -25,7 +25,11 @@ const verticalTickerInverse = keyframes`
   }
 `;
 
-export const StyledLogoGroup = styled.div`
+
+interface IStyledLogo {
+  textColor: string
+}
+export const StyledLogoGroup = styled.div<IStyledLogo>`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -33,7 +37,12 @@ export const StyledLogoGroup = styled.div`
   opacity: .7;
   padding-right: 30px;
   svg{
+    display: block;
+    width: 50%;
+    height: auto;
     position: absolute;
+    z-index: 1;
+    * {stroke: ${(p) => p.textColor};}
     &:first-child{
       top: 0;
       right: 0;
@@ -45,6 +54,9 @@ export const StyledLogoGroup = styled.div`
       left: 0;
       transform: rotate(-180deg);
       animation: ${verticalTickerInverse} 60s linear infinite;
+    }
+    * {
+      transition: all 1s;
     }
   }
 `;

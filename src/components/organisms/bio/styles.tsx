@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 interface IStyledBioTab {
-  textColor: string
   backgroundColor: string
 }
 
@@ -12,17 +11,6 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   position: fixed;
   transition: all 1s;
   color: white;
-  svg{
-    display: block;
-    width: 50%;
-    height: auto;
-    position: relative;
-    z-index: 1;
-    * {
-      transition: all 1s;
-      stroke: ${(p) => p.textColor};
-    }
-  }
 `;
 
 export const StyledCopyWrapper = styled.div`
@@ -43,4 +31,11 @@ export const StyledCopyWrapper = styled.div`
     font-size: 19px;
     color: #DADADA;
   }
-`
+`;
+
+export const StyledCTAGroup = styled.div`
+  padding-top: 100px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+`;

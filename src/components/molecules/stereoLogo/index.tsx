@@ -2,9 +2,12 @@ import StereoLogoSVG from "@/public/stereo-bg-element.svg";
 import {StyledLogoGroup} from './styles';
 
 
-const StereoLogo = () => {
+interface Props {
+  textColor: string;
+}
+const StereoLogo = (props:Props) => {
   return (
-    <StyledLogoGroup>
+    <StyledLogoGroup {...props} >
       <StereoLogoSVG />
       <StereoLogoSVG />
     </StyledLogoGroup>
