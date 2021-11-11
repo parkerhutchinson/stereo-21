@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
-import { ColorActions, GlobalContext } from "@/src/context/global";
+import { GlobalActions, GlobalContext } from "@/src/context/global";
 import { StyledSlides } from "./styles";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
 
-const { UPDATE_COLOR } = ColorActions;
+const { UPDATE_COLOR, OPEN_CASE_STUDY } = GlobalActions;
 
 // recycle type slide fields. logo needs to be converted to string though.
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
@@ -68,7 +68,8 @@ const Slides = (props: Slides) => {
         payload: {
           siteBackgroundColor: slides[activeSlide].colorSchemeSeed ,
           bioTextColor: slides[activeSlide].colorSchemeBioText,
-          bioBackgroundColor: slides[activeSlide].colorSchemeBioBG
+          bioBackgroundColor: slides[activeSlide].colorSchemeBioBG,
+          highlight: slides[activeSlide].colorSchemeHighlight
         }
       })
     }
@@ -86,9 +87,9 @@ const Slides = (props: Slides) => {
         break;
       case 'open':
         toggleSlideOpen(!slideOpen);
+        dispatch({type: OPEN_CASE_STUDY, payload: !slideOpen})
         break;
     }
-    
   }
   
   return (

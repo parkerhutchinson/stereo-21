@@ -8,23 +8,46 @@ import RichTextBody from "@/src/components/molecules/richTextBody";
 import ExternalCTA from "@/src/components/molecules/externalCta";
 
 
+const CTA_DATA = [
+  {
+    icon: 'art',
+    link: 'https://dribbble.com/parkerhutchinson'
+  },
+  {
+    icon: 'code',
+    link: 'https://dribbble.com/parkerhutchinson'
+  },
+  {
+    icon: 'resume',
+    link: 'https://dribbble.com/parkerhutchinson'
+  }
+]
 
 const Bio = (props:TypeBioFields) => {
   const {body} = props;
-  const {state} = useContext(GlobalContext);
+  const {state: {colorScheme, caseStudyOpen}} = useContext(GlobalContext);
   
   return (
     <StyledBioTab 
-      backgroundColor={state.colorScheme?.bioBackgroundColor}
+      backgroundColor={colorScheme?.bioBackgroundColor}
+      caseStudyOpen={caseStudyOpen}
     >
       <Grid subGrid={12}>
-        <StereoLogo textColor={state.colorScheme.bioTextColor} />
+        <StereoLogo textColor={colorScheme.bioTextColor} />
         <StyledCopyWrapper>
           <RichTextBody body={body} />
           <StyledCTAGroup>
-            <ExternalCTA icon="art" link="https://dribbble.com/parkerhutchinson"/>
-            <ExternalCTA icon="code" link="https://dribbble.com/parkerhutchinson"/>
-            <ExternalCTA icon="resume" link="https://dribbble.com/parkerhutchinson"/>
+            {
+              CTA_DATA.map((cta:any, index:number) => 
+                  <ExternalCTA 
+                    icon={cta.icon} 
+                    link={cta.link} 
+                    highlight={colorScheme.highlight}
+                    seed={colorScheme.siteBackgroundColor}
+                    key={index}
+                  />
+                )
+            }
           </StyledCTAGroup>
         </StyledCopyWrapper>
       </Grid>

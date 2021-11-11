@@ -10,6 +10,8 @@ type Icon =  "code"|"art"|"resume"
 interface Props {
   icon: Icon
   link: string
+  highlight: string
+  seed: string
 }
 
 const getIconFromProps = (icon:Icon) => {
@@ -30,10 +32,15 @@ const getIconFromProps = (icon:Icon) => {
 
 const ExternalCTA = (props:Props) => {
   return (
-    <StyledButton href={props.link} target="_blank">
+    <StyledButton 
+      href={props.link} 
+      target="_blank" 
+      highlight={props.highlight} 
+      seed={props.seed}
+    >
       {getIconFromProps(props.icon)}
       <Button borderStyle="symetrical" color="#ff0000">
-        <ArrowIcon color="#ffffff" direction="se" />
+        <ArrowIcon color={"black"} direction="se" />
       </Button>
     </StyledButton>
   )

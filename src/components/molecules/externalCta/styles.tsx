@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.a`
+
+interface IStyledButton {
+  highlight: string
+  seed: string
+}
+export const StyledButton = styled.a<IStyledButton>`
   display: flex;
   position:relative;
-  background: rgba(255, 0, 0, .18);
-  border: 1px solid red;
+  background: ${(p) => p.seed};
+  border: 1px solid ${(p) => p.highlight};
   border-radius: 5px;
   width: 120px;
   height: 120px;
@@ -12,6 +17,12 @@ export const StyledButton = styled.a`
   cursor: pointer;
   justify-content: space-around;
   align-items: center;
+  transition: all .4s;
+  &:hover{
+    button{
+      transform: scale(1.2);
+    }
+  }
   svg * {
     stroke: white;
   }
@@ -19,8 +30,15 @@ export const StyledButton = styled.a`
     position: absolute;
     bottom: -15px;
     right: -15px;
+    background: ${(p) => p.highlight};
+    border: none;
+    transform: scale(1);
+    svg * {
+      stroke: black;
+    }
     &:hover{
-      background: rgba(255, 0, 0, 1);
+      background: ${(p) => p.highlight};
+      transform: scale(1.2);
     }
   }
 `;
