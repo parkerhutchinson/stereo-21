@@ -1,20 +1,22 @@
-import { Suspense, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Suspense, useEffect, useRef } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as three from "three";
 import {StyledThreeBackground} from "./styles";
+import { useSpring } from 'react-spring'
+import { OrbitControls } from "@react-three/drei";
 
-const Cube = () => {
-  const cube = useRef<three.Mesh>();
+const Asana = (props:any) => {
+  const geometry = useRef<three.Mesh>();
 
   useFrame(() => {
-    cube.current!.rotation.x += 0.01;
-    cube.current!.rotation.y += 0.01;
+    geometry.current!.rotation.x += 0.01;
+    geometry.current!.rotation.y += 0.01;
   });
 
   return (
-    <mesh ref={cube}>
-      <boxBufferGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#0391BA" />
+    <mesh ref={geometry} {...props}>
+      <sphereGeometry args={[.4, 100, 100]} />
+      <meshStandardMaterial color="#971A2E" />
     </mesh>
   );
 };
@@ -22,9 +24,11 @@ const Cube = () => {
 const Scene = () => {
   return (
     <>
-      {/* <gridHelper /> */}
-      <pointLight intensity={0.5} position={[5, 3, 5]} />
-      <Cube />
+      <pointLight intensity={0.8} position={[2, 2, 10]} />
+      <pointLight intensity={0.3} position={[-8, -2, 0]} />
+      <Asana position={[-.45, -.3, 0]}/>
+      <Asana position={[0, .5, 0]}/>
+      <Asana position={[.45, -.3, 0]}/>
     </>
   );
 };
@@ -33,15 +37,13 @@ const ThreeBackground = () => {
   return (
     <StyledThreeBackground>
       <Canvas
-        camera={{
-          near: 0.1,
-          far: 1000,
-          zoom: 1
-        }}
+        camera={{zoom: 4.5}}
         onCreated={({ gl }:any) => {
           gl.setClearColor(0xffffff, 0);
         }}
       >
+        <ambientLight intensity={.3}/>
+        <OrbitControls autoRotate={true} />
         <Suspense fallback={false}>
           <Scene />
         </Suspense>
