@@ -11,8 +11,8 @@ export const StyledButton = styled.a<IStyledButton>`
   background: ${(p) => p.seed};
   border: 1px solid ${(p) => p.highlight};
   border-radius: 5px;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   backdrop-filter: blur(5px);
   cursor: pointer;
   justify-content: space-around;

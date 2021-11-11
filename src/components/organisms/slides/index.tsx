@@ -94,7 +94,7 @@ const Slides = (props: Slides) => {
   
   return (
     <StyledSlides 
-      backgroundColor={slides[activeSlide].colorSchemeSeed}
+      backgroundColor={slides[activeSlide].colorSchemeBioBG}
       toggle={slideOpen}
     >
       <Slide 

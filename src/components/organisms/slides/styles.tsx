@@ -12,7 +12,7 @@ export const StyledSlides = styled.div<IStyledSlides>`
   top: 0;
   right: 0;
   height: 100vh;
-  background: ${(p) => p.backgroundColor} url('/test-bg.png') no-repeat right center;
+  background: ${(p) => p.backgroundColor};
   background-size: cover;
   display: flex;
   justify-content: space-around;

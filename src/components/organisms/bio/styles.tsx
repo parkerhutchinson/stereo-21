@@ -35,19 +35,36 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   }
 `;
 
-export const StyledCopyWrapper = styled.div`
+
+
+
+export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>>`
   @media screen and (min-width: 1600px) {
     max-width: 55%;
   }
   max-width: 70%;
   margin: 0 auto;
-  padding-top: 200px;
+  padding-top: 250px;
   position: relative;
   z-index: 2;
-  h2{
+  h1{
     font-weight: 200;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
     font-size: 36px;
+    position: relative;
+    &:before{
+      content: '';
+      width: 50px;
+      height: 2px;
+      position: relative;
+      display: block;
+      margin-bottom: 60px;
+      background: ${(p) => p.backgroundColor};
+    }
+  }
+  h4{
+    margin-bottom: 80px;
+    font-size: 18px;
   }
   p{
     line-height: 38px;
