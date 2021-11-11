@@ -142,7 +142,7 @@ const Slide = (props: Slide) => {
                 )}
               </StyledBrandTransitionGroup>
 
-              <StyledLogo>
+              <StyledLogo onClick={() => handleButtonCLick('open')}>
                 {transitionSlide(
                   (styles, item) => item && 
                   <animated.div style={styles}>

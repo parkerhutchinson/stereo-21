@@ -15,10 +15,10 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   width: 45%;
   height: 100vh;
   background: ${(p) => p.backgroundColor};
-  position: fixed;
   transition: all 1s;
   color: white;
   z-index: 0;
+  position: relative;
   &:after{
     content: '';
     position: absolute;
@@ -39,14 +39,17 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
 
 
 export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>>`
-  @media screen and (min-width: 1600px) {
-    max-width: 55%;
-  }
   max-width: 70%;
   margin: 0 auto;
   padding-top: 250px;
   position: relative;
   z-index: 2;
+  @media screen and (min-width: 1800px) {
+    max-width: 60%;
+  }
+  @media screen and (min-width: 2200px) {
+    max-width: 50%;
+  }
   h1{
     font-weight: 200;
     margin-bottom: 15px;
@@ -60,6 +63,7 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
       display: block;
       margin-bottom: 60px;
       background: ${(p) => p.backgroundColor};
+      transition: all .4s;
     }
   }
   h4{
