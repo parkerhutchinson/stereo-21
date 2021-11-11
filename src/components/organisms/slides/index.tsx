@@ -4,6 +4,7 @@ import { GlobalActions, GlobalContext } from "@/src/context/global";
 import { StyledSlides } from "./styles";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
+import ThreeBackground from "./threeBackground";
 
 const { UPDATE_COLOR, OPEN_CASE_STUDY } = GlobalActions;
 
@@ -102,6 +103,7 @@ const Slides = (props: Slides) => {
         navCallback={(e) => handleSlideNavigation(e)} 
         toggleSlide={slideOpen}
       />
+      <ThreeBackground />
     </StyledSlides>
   )
 }

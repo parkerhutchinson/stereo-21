@@ -41,7 +41,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
 export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>>`
   max-width: 70%;
   margin: 0 auto;
-  padding-top: 250px;
+  padding-top: 150px;
   position: relative;
   z-index: 2;
   @media screen and (min-width: 1800px) {
@@ -80,7 +80,7 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
 `;
 
 export const StyledCTAGroup = styled.div`
-  padding-top: 100px;
+  padding-top: 70px;
   width: 90%;
   display: flex;
   justify-content: space-between;

@@ -9,14 +9,11 @@ export const Globals = createGlobalStyle`
     box-sizing: border-box;
   }
   html{
-    height: 100vh;
     min-height: 100vh;
   }
   body{
-    height: 100vh;
     background: black;
     font-family: 'Roboto', sans-serif;
-    overflow: hidden;
   }
 
   p{

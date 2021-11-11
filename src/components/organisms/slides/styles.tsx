@@ -168,3 +168,11 @@ export const StyledLogo = styled.div`
     }
   }
 `;
+
+export const StyledThreeBackground = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+`;

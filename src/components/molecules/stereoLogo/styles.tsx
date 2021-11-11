@@ -30,10 +30,12 @@ interface IStyledLogo {
   textColor: string
 }
 export const StyledLogoGroup = styled.div<IStyledLogo>`
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: 45%;
   height: 100%;
+  top: 0;
   left: 0;
+  overflow: hidden;
   opacity: .7;
   padding-right: 30px;
   svg{
