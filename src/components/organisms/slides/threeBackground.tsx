@@ -42,7 +42,7 @@ const ThreeBackground = () => {
           gl.setClearColor(0xffffff, 0);
         }}
       >
-        <ambientLight intensity={.3}/>
+        <ambientLight intensity={.1}/>
         <OrbitControls autoRotate={true} />
         <Suspense fallback={false}>
           <Scene />
