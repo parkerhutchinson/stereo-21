@@ -6,6 +6,7 @@ import { useSpring } from 'react-spring'
 import { OrbitControls } from "@react-three/drei";
 
 const Asana = (props:any) => {
+  const {meshColor} = props;
   const geometry = useRef<three.Mesh>();
 
   useFrame(() => {
@@ -16,22 +17,11 @@ const Asana = (props:any) => {
   return (
     <mesh ref={geometry} {...props}>
       <sphereGeometry args={[.4, 100, 100]} />
-      <meshStandardMaterial color="#971A2E" />
+      <meshStandardMaterial color={meshColor} />
     </mesh>
   );
 };
 
-const Scene = () => {
-  return (
-    <>
-      <pointLight intensity={0.8} position={[2, 2, 10]} />
-      <pointLight intensity={0.3} position={[-8, -2, 0]} />
-      <Asana position={[-.45, -.3, 0]}/>
-      <Asana position={[0, .5, 0]}/>
-      <Asana position={[.45, -.3, 0]}/>
-    </>
-  );
-};
 
 const ThreeBackground = () => {
   return (
@@ -45,7 +35,13 @@ const ThreeBackground = () => {
         <ambientLight intensity={.1}/>
         <OrbitControls autoRotate={true} />
         <Suspense fallback={false}>
-          <Scene />
+          <>
+            <pointLight intensity={0.06} position={[2, 2, 20]} />
+            <pointLight intensity={0.2} position={[-8, -2, -20]} />
+            <Asana position={[-.45, -.3, 0]} meshColor={"#971A2E"}/>
+            <Asana position={[0, .5, 0]} meshColor={"#971A2E"}/>
+            <Asana position={[.45, -.3, 0]} meshColor={"#971A2E"}/>
+          </>
         </Suspense>
       </Canvas>
     </StyledThreeBackground>

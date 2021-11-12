@@ -13,15 +13,13 @@ const getRGBABackground = (color:string) => {
 
 export const StyledBioTab = styled.article<IStyledBioTab>`
   width: 45%;
-  height: 100vh;
-  background: ${(p) => p.backgroundColor};
   transition: all 1s;
   color: white;
   z-index: 0;
   position: relative;
   &:after{
     content: '';
-    position: absolute;
+    position: fixed;
     pointer-events: none;
     top: 0;
     left: 0;
@@ -41,7 +39,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
 export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>>`
   max-width: 70%;
   margin: 0 auto;
-  padding-top: 150px;
+  padding: 150px 0;
   position: relative;
   z-index: 2;
   @media screen and (min-width: 1800px) {
@@ -81,7 +79,7 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
 
 export const StyledCTAGroup = styled.div`
   padding-top: 70px;
-  width: 90%;
+  max-width: 450px;
   display: flex;
   justify-content: space-between;
 `;

@@ -33,7 +33,7 @@ const Bio = (props:TypeBioFields) => {
       caseStudyOpen={caseStudyOpen}
     >
       <Grid subGrid={12}>
-        <StereoLogo textColor={colorScheme.bioTextColor} />
+        <StereoLogo textColor={colorScheme.bioTextColor} backgroundColor={colorScheme.bioBackgroundColor}/>
         <StyledCopyWrapper backgroundColor={colorScheme.highlight}>
           <RichTextBody body={body} />
           <StyledCTAGroup>

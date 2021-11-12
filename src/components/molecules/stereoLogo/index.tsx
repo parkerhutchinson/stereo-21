@@ -3,7 +3,8 @@ import {StyledLogoGroup} from './styles';
 
 
 interface Props {
-  textColor: string;
+  textColor: string
+  backgroundColor: string
 }
 const StereoLogo = (props:Props) => {
   return (

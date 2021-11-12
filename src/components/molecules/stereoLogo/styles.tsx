@@ -28,6 +28,7 @@ const verticalTickerInverse = keyframes`
 
 interface IStyledLogo {
   textColor: string
+  backgroundColor:string
 }
 export const StyledLogoGroup = styled.div<IStyledLogo>`
   position: fixed;
@@ -36,13 +37,15 @@ export const StyledLogoGroup = styled.div<IStyledLogo>`
   top: 0;
   left: 0;
   overflow: hidden;
-  opacity: .7;
+  opacity: 1;
   padding-right: 30px;
+  background: ${(p) => p.backgroundColor};
   svg{
     display: block;
     width: 50%;
     height: auto;
     position: absolute;
+    opacity: .7;
     z-index: 1;
     * {stroke: ${(p) => p.textColor};}
     &:first-child{
