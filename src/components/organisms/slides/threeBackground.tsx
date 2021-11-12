@@ -1,47 +1,55 @@
-import { Suspense, useEffect, useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as three from "three";
 import {StyledThreeBackground} from "./styles";
-import { useSpring } from 'react-spring'
+// import { useSpring } from 'react-spring'
 import { OrbitControls } from "@react-three/drei";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Asana = (props:any) => {
-  const {meshColor} = props;
-  const geometry = useRef<three.Mesh>();
+const Model = (props:{url:string}) => {
+  const gltf = useLoader(GLTFLoader, props.url)
+  let mixer:three.AnimationMixer;
+  if (gltf.animations.length) {
+    mixer = new three.AnimationMixer(gltf.scene);
+    gltf.animations.forEach(clip => {
+      const action = mixer.clipAction(clip)
+      action.play();
+    });
+  }
 
-  useFrame(() => {
-    geometry.current!.rotation.x += 0.01;
-    geometry.current!.rotation.y += 0.01;
+  useFrame((state, delta) => {
+      mixer?.update(delta)
   });
 
   return (
-    <mesh ref={geometry} {...props}>
-      <sphereGeometry args={[.4, 100, 100]} />
-      <meshStandardMaterial color={meshColor} />
-    </mesh>
+    <>
+      <pointLight intensity={0.5} position={[5, 3, 5]} />
+      <primitive  position={[0, 0, 0]} object={gltf.scene} scale={1} />
+    </>
   );
 };
 
+interface Props {
+  slideMeshFile: string
+}
 
-const ThreeBackground = () => {
+const ThreeBackground = (props:Props) => {
+  const {slideMeshFile} = props;
+  const uuid = Date.now();
+  const finalUrls = `${slideMeshFile}?${uuid}`;
   return (
     <StyledThreeBackground>
-      <Canvas
-        camera={{zoom: 4.5}}
-        onCreated={({ gl }:any) => {
-          gl.setClearColor(0xffffff, 0);
+      <Canvas 
+        camera={{
+          near: 0.1,
+          far: 1000,
+          zoom: 1.5
         }}
       >
-        <ambientLight intensity={.1}/>
-        <OrbitControls autoRotate={true} />
+        <OrbitControls autoRotate={true}/>
+        <ambientLight />
         <Suspense fallback={false}>
-          <>
-            <pointLight intensity={0.06} position={[2, 2, 20]} />
-            <pointLight intensity={0.2} position={[-8, -2, -20]} />
-            <Asana position={[-.45, -.3, 0]} meshColor={"#971A2E"}/>
-            <Asana position={[0, .5, 0]} meshColor={"#971A2E"}/>
-            <Asana position={[.45, -.3, 0]} meshColor={"#971A2E"}/>
-          </>
+          <Model url={finalUrls}/>
         </Suspense>
       </Canvas>
     </StyledThreeBackground>
