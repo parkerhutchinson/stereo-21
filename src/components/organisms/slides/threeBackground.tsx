@@ -30,7 +30,7 @@ const Model = (props:{url:string}) => {
   return (
     <>
       <ambientLight intensity={.8}/>
-      <pointLight intensity={0.5} position={[5, 3, 5]} />
+      <pointLight intensity={.7} position={[5, 0, 10]} />
       <primitive 
         position={[0, 0, 0]}
         object={gltf.scene} 
@@ -55,7 +55,7 @@ const ThreeBackground = (props:Props) => {
         camera={{
           near: 0.1,
           far: 1000,
-          zoom: 1.5
+          zoom: 1.9
         }}
       >
         <Suspense fallback={false}>
