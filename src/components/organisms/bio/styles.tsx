@@ -73,7 +73,7 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
     letter-spacing: -.16;
     margin-bottom: 50px;
     font-size: 19px;
-    color: #DADADA;
+    color: #bbbbbb;
   }
 `;
 

@@ -30,7 +30,7 @@ const Model = (props:{url:string, highlight:string}) => {
   return (
     <>
       <ambientLight intensity={.8}/>
-      <pointLight intensity={.7} position={[5, 0, 10]} color={props.highlight} />
+      <pointLight intensity={1} position={[5, 0, 10]} color={props.highlight} />
       <primitive 
         position={[0, 0, 0]}
         object={gltf.scene} 
