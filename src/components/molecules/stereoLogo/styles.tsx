@@ -30,6 +30,7 @@ interface IStyledLogo {
   textColor: string
   backgroundColor:string
 }
+
 export const StyledLogoGroup = styled.div<IStyledLogo>`
   position: fixed;
   width: 45%;

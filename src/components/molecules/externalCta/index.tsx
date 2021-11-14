@@ -11,7 +11,7 @@ interface Props {
   icon: Icon
   link: string
   highlight: string
-  seed: string
+  bioBg: string
 }
 
 const getIconFromProps = (icon:Icon) => {
@@ -36,11 +36,11 @@ const ExternalCTA = (props:Props) => {
       href={props.link} 
       target="_blank" 
       highlight={props.highlight} 
-      seed={props.seed}
+      bioBg={props.bioBg}
     >
       {getIconFromProps(props.icon)}
       <Button borderStyle="symetrical" color="#ff0000">
-        <ArrowIcon color={"black"} direction="se" />
+        <ArrowIcon color={"black"} direction="e" />
       </Button>
     </StyledButton>
   )

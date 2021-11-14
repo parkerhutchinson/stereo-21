@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 interface IStyledButton {
   highlight: string
-  seed: string
+  bioBg: string
 }
 export const StyledButton = styled.a<IStyledButton>`
   display: flex;
   position:relative;
-  background: ${(p) => p.seed};
+  background: ${(p) => p.bioBg};
   border: 1px solid ${(p) => p.highlight};
   border-radius: 5px;
   width: 100px;
@@ -21,6 +21,7 @@ export const StyledButton = styled.a<IStyledButton>`
   &:hover{
     button{
       transform: scale(1.2);
+      opacity: 1;
     }
   }
   svg * {
@@ -33,6 +34,7 @@ export const StyledButton = styled.a<IStyledButton>`
     background: ${(p) => p.highlight};
     border: none;
     transform: scale(1);
+    opacity: 0;
     svg * {
       stroke: black;
     }

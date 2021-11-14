@@ -10,11 +10,11 @@ import ExternalCTA from "@/src/components/molecules/externalCta";
 
 const CTA_DATA = [
   {
-    icon: 'art',
+    icon: 'code',
     link: 'https://dribbble.com/parkerhutchinson'
   },
   {
-    icon: 'code',
+    icon: 'art',
     link: 'https://dribbble.com/parkerhutchinson'
   },
   {
@@ -43,7 +43,7 @@ const Bio = (props:TypeBioFields) => {
                     icon={cta.icon} 
                     link={cta.link} 
                     highlight={colorScheme.highlight}
-                    seed={colorScheme.siteBackgroundColor}
+                    bioBg={colorScheme.bioBackgroundColor}
                     key={index}
                   />
                 )

@@ -5,7 +5,7 @@ import {StyledThreeBackground} from "./styles";
 // import { useSpring } from 'react-spring'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Model = (props:{url:string}) => {
+const Model = (props:{url:string, highlight:string}) => {
   const meshRef = useRef<three.Mesh>();
   // load the mesh using the GLTF Loader
   const gltf = useLoader(GLTFLoader, props.url)
@@ -30,7 +30,7 @@ const Model = (props:{url:string}) => {
   return (
     <>
       <ambientLight intensity={.8}/>
-      <pointLight intensity={.7} position={[5, 0, 10]} />
+      <pointLight intensity={.7} position={[5, 0, 10]} color={props.highlight} />
       <primitive 
         position={[0, 0, 0]}
         object={gltf.scene} 
@@ -43,10 +43,11 @@ const Model = (props:{url:string}) => {
 
 interface Props {
   slideMeshFile: string
+  highlight: string
 }
 
 const ThreeBackground = (props:Props) => {
-  const {slideMeshFile} = props;
+  const {slideMeshFile, highlight} = props;
   const uuid = Date.now();
   const finalUrls = `${slideMeshFile}?${uuid}`;
   return (
@@ -59,7 +60,7 @@ const ThreeBackground = (props:Props) => {
         }}
       >
         <Suspense fallback={false}>
-          <Model url={finalUrls}/>
+          <Model url={finalUrls} highlight={highlight}/>
         </Suspense>
       </Canvas>
     </StyledThreeBackground>

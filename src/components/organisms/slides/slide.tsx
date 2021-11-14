@@ -161,7 +161,6 @@ const Slide = (props: Slide) => {
 
             <animated.div style={{...stylesCopy, ...{
               zIndex: 20, top: '150px', 
-
               pointerEvents: richTextEvents}
             }}>
               {transitionRichText((styles, item) => item && 

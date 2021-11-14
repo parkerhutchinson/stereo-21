@@ -103,7 +103,10 @@ const Slides = (props: Slides) => {
         navCallback={(e) => handleSlideNavigation(e)} 
         toggleSlide={slideOpen}
       />
-      <ThreeBackground slideMeshFile={slides[activeSlide].meshScene.fields.file.url}/>
+      <ThreeBackground 
+        slideMeshFile={slides[activeSlide].meshScene.fields.file.url} 
+        highlight={slides[activeSlide].colorSchemeHighlight}
+      />
     </StyledSlides>
   )
 }
