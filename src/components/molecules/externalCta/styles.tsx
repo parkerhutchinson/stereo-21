@@ -17,7 +17,7 @@ export const StyledButton = styled.a<IStyledButton>`
   cursor: pointer;
   justify-content: space-around;
   align-items: center;
-  transition: all .4s;
+  transition: all .4s cubic-bezier(1,0,.25,1);
   &:hover{
     button{
       transform: scale(1.2);
