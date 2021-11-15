@@ -59,7 +59,7 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
       display: block;
       margin-bottom: 60px;
       background: ${(p) => p.backgroundColor};
-      transition: all 1s var(--animation-curve);
+      transition: all 1s;
     }
   }
   h4{
