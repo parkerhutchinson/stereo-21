@@ -35,6 +35,7 @@ const Slide = (props: Slide) => {
     from: { opacity: 0, transform: 'translate3d(0, -20px, 0)'},
     enter: { opacity: 1, transform: 'translate3d(0, 0px, 0)'},
     leave: { opacity: 0, transform: 'translate3d(0, 20px, 0)'},
+    duration: 800,
     key: slide.brand
   });
 
@@ -43,7 +44,7 @@ const Slide = (props: Slide) => {
     from: { opacity: 0, transform: 'rotate(20deg)', filter: 'blur(20px)' },
     enter: { opacity: 1, transform: 'rotate(0deg)', filter: 'blur(0px)' },
     leave: { opacity: 0, filter: 'blur(20px)' },
-    duration: 400,
+    duration: 1000,
     key: slide.logo
   });
 
@@ -52,7 +53,7 @@ const Slide = (props: Slide) => {
     from: { opacity: 0, transform: 'translate3d(0px,50px,0)'},
     enter: { opacity: 1, transform: 'translate3d(0px,0p,0)' },
     leave: { opacity: 0 },
-    duration: 400,
+    duration: 800,
     key: slide.logo
   })
 

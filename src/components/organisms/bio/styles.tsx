@@ -34,8 +34,6 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
 `;
 
 
-
-
 export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>>`
   max-width: 70%;
   margin: 0 auto;
