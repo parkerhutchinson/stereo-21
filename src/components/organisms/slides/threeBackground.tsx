@@ -1,4 +1,4 @@
-import { Suspense, useRef } from "react";
+import react, { Suspense, useRef } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as three from "three";
 import {StyledThreeBackground} from "./styles";
@@ -67,4 +67,4 @@ const ThreeBackground = (props:Props) => {
   );
 };
 
-export default ThreeBackground;
+export default react.memo(ThreeBackground);

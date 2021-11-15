@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import { GlobalActions, GlobalContext } from "@/src/context/global";
-import { StyledSlides } from "./styles";
+import { StyledSlides, StyledThreeBGCurtain } from "./styles";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
 import ThreeBackground from "./threeBackground";
@@ -103,10 +103,12 @@ const Slides = (props: Slides) => {
         navCallback={(e) => handleSlideNavigation(e)} 
         toggleSlide={slideOpen}
       />
-      <ThreeBackground 
-        slideMeshFile={slides[activeSlide].meshScene.fields.file.url} 
-        highlight={slides[activeSlide].colorSchemeHighlight}
-      />
+      <StyledThreeBGCurtain open={slideOpen}>
+        <ThreeBackground 
+          slideMeshFile={slides[activeSlide].meshScene.fields.file.url} 
+          highlight={slides[activeSlide].colorSchemeHighlight}
+        />
+      </StyledThreeBGCurtain>
     </StyledSlides>
   )
 }

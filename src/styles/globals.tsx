@@ -27,4 +27,7 @@ export const Globals = createGlobalStyle`
       margin-bottom: 5px;
     }
   }
+  :root{
+    --animation-curve: cubic-bezier(1,0,.25,1)
+  }
 `;

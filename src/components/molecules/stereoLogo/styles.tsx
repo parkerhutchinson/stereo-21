@@ -41,6 +41,7 @@ export const StyledLogoGroup = styled.div<IStyledLogo>`
   opacity: 1;
   padding-right: 30px;
   background: ${(p) => p.backgroundColor};
+  transition: all 1s;
   svg{
     display: block;
     width: 50%;

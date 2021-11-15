@@ -17,7 +17,7 @@ export const StyledSlides = styled.div<IStyledSlides>`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  transition: all .8s cubic-bezier(.13,.67,0,1);
+  transition: width 1s var(--animation-curve), background 1s;
 `;
 
 interface IStyledSlide {
@@ -33,7 +33,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   height: ${({toggle}) => toggle ? '100vh' : '75vh'};
   padding: 30px;
   color: white;
-  transition: all .8s cubic-bezier(.13,.67,0,1);
+  transition: all 1s var(--animation-curve);
   @media (min-width: 1360px) {
     width: ${({toggle}) => toggle ? '800px' : '500px'};
   }
@@ -160,7 +160,7 @@ export const StyledLogo = styled.div`
     height: auto;
     display: inline-block;
     transform: scale(1);
-    transition: transform .4s;
+    transition: transform .4s var(--animation-curve);
   }
   &:hover{
     img{
@@ -169,6 +169,21 @@ export const StyledLogo = styled.div`
   }
 `;
 
+
+interface IStyledThreeBg {
+  open: boolean
+}
+
+export const StyledThreeBGCurtain = styled.div<IStyledThreeBg>`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;
+  height: 100%;
+  clip-path: ${(p) => !p.open ? 'polygon(100% 0%, 100% 100%, 26.5% 100%, 26.5% 0%)' : 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)'};
+  transition: clip-path 1s var(--animation-curve);
+`
+
 export const StyledThreeBackground = styled.div`
   position: absolute;
   top: 0;
@@ -176,4 +191,5 @@ export const StyledThreeBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 0;
+  overflow: hidden; 
 `;
