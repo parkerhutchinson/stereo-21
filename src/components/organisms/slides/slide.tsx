@@ -1,5 +1,5 @@
 import React, { MutableRefObject, useRef, useState } from "react";
-import {useTransition, animated} from 'react-spring';
+import {useTransition, animated, useChain, useSpringRef} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
 import { 
@@ -28,7 +28,8 @@ const Slide = (props: Slide) => {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [winWidth] = useScreenSize();
   const [toggle, setToggle] = useState(false);
-
+  const richTextTransRef = useSpringRef();
+  const slideTransRef = useSpringRef();
 
   const transitionBrand = useTransition(slide.brand, {
     native: true,
@@ -37,6 +38,14 @@ const Slide = (props: Slide) => {
     leave: { opacity: 0, transform: 'translate3d(0, 20px, 0)'},
     duration: 800,
     key: slide.brand
+  });
+
+  const toggleTransition = useTransition(toggle, {
+    native: true,
+    from: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
+    enter: {opacity: 1, transform: 'translate3d(0, 0px, 0)'},
+    leave: {opacity: 0, transform: 'translate3d(0, 20px, 0)'},
+    ref: slideTransRef,
   });
 
   const transitionSlide = useTransition(slide.logo, {
@@ -54,15 +63,11 @@ const Slide = (props: Slide) => {
     enter: { opacity: 1, transform: 'translate3d(0px,0p,0)' },
     leave: { opacity: 0 },
     duration: 800,
+    ref:richTextTransRef,
     key: slide.logo
-  })
-
-  const toggleTransition = useTransition(toggle, {
-    native: true,
-    from: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
-    enter: {opacity: 1, transform: 'translate3d(0, 0px, 0)'},
-    leave: {opacity: 0, transform: 'translate3d(0, 20px, 0)'}
   });
+
+  useChain(toggle ? [richTextTransRef, slideTransRef] : [slideTransRef, richTextTransRef], [0, 1])
 
   const handleButtonCLick = (action:string) => {
     navCallback(action);
