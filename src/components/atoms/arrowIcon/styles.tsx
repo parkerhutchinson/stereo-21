@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 interface IStyledIconArrow {
   color?: string
-  direction: "w"|"e"|"se"
+  direction: "ne"|"e"|"se"|"w"
 }
 
 const directionMap = {
-  w: -180,
+  ne: -45,
   e: 0,
-  se: 45
+  se: 45,
+  w: -180  
 }
 
 export const StyledIconArrow = styled.div<IStyledIconArrow>`

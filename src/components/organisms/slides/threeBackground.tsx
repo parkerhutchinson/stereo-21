@@ -77,11 +77,12 @@ const ThreeBackground = (props:Props) => {
 
   useEffect(() => {
     const uuid = Date.now();
-    const finalUrls = `${slideMeshFile}?${uuid}`;
+    // const finalUrls = ;
 
     setFadeOut(true);
+
     setTimeout(() => {
-      setUrlState(finalUrls);
+      setUrlState(`${slideMeshFile}?${uuid}`);
     }, 500);
 
   }, [slideMeshFile]);
