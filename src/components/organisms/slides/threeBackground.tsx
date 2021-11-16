@@ -18,7 +18,7 @@ const Lighting = (props:{highlight:string}) => {
   )
 }
 
-const Model = (props:{url:string, cb: (e:string) => void}) => {
+const Model = (props:{url:string, cb: () => void}) => {
   const {url, cb} = props;
   const meshRef = useRef<three.Mesh>();
   // load the mesh using the GLTF Loader
