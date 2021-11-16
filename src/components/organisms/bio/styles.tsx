@@ -48,8 +48,10 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
   h1{
     font-weight: 200;
     margin-bottom: 15px;
-    font-size: 36px;
+    font-size: 48px;
     position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
     &:before{
       content: '';
       width: 50px;

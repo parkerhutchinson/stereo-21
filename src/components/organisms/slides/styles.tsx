@@ -122,7 +122,9 @@ export const StyledCaseStudyCopy = styled.div`
   h2{
     font-weight: 200;
     margin-bottom: 40px;
-    font-size: 36px;
+    font-size: 120px;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
   }
   p{
     line-height: 38px;
