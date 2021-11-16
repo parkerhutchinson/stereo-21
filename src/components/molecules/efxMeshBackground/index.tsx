@@ -59,13 +59,12 @@ const Model = (props:{url:string, cb: () => void}) => {
 };
 
 
-
 interface Props {
   slideMeshFile: string
   highlight: string
 }
 
-const ThreeBackground = (props:Props) => {
+const EFXMeshBackground = (props:Props) => {
   const {slideMeshFile, highlight} = props;
   const [urlState, setUrlState] = useState('');
   const [fadeOut,setFadeOut] = useState(false);
@@ -77,7 +76,6 @@ const ThreeBackground = (props:Props) => {
 
   useEffect(() => {
     const uuid = Date.now();
-    // const finalUrls = ;
 
     setFadeOut(true);
 
@@ -112,4 +110,4 @@ const ThreeBackground = (props:Props) => {
   );
 };
 
-export default react.memo(ThreeBackground);
+export default react.memo(EFXMeshBackground);

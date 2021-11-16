@@ -67,17 +67,6 @@ export const StyledSlide = styled.div<IStyledSlide>`
     mix-blend-mode: multiply;
     opacity: .18;
   }
-  canvas{
-    background: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    opacity: 1;
-    pointer-events: none;
-  }
   *{
     font-weight: 200;
   }
@@ -184,12 +173,3 @@ export const StyledThreeBGCurtain = styled.div<IStyledThreeBg>`
   transition: clip-path 1s var(--animation-curve);
 `
 
-export const StyledThreeBackground = styled.div<any>`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden; 
-`;

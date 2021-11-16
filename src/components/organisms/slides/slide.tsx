@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef, useState } from "react";
+import React, { useState } from "react";
 import {useTransition, animated, useChain, useSpringRef} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
@@ -9,11 +9,8 @@ import {
   StyledCardWrap,
   StyledBrandTransitionGroup,
 } from "./styles";
-import { drawRectBorder } from "@/src/lib/drawing";
-import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
-import useScreenSize from "@/src/hooks/useScreenSize";
-import SlidesNavigation from "../../molecules/slidesNav";
-
+import SlidesNavigation from "@/src/components/molecules/slidesNav";
+import EFXRoundedGradientBorder from "@/src/components/molecules/efxRoundedGradientBorder";
 
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
 
@@ -25,8 +22,6 @@ export interface Slide {
 
 const Slide = (props: Slide) => {
   const { slide, navCallback } = props;
-  const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
-  const [winWidth] = useScreenSize();
   const [toggle, setToggle] = useState(false);
   const richTextTransRef = useSpringRef();
   const slideTransRef = useSpringRef();
@@ -76,52 +71,15 @@ const Slide = (props: Slide) => {
     }
   }
 
-  useIsomorphicLayoutEffect(() => {
-    const canvasDom = canvasRef.current;
-    const strokeWidth = 2;
-
-    if (typeof canvasDom !== 'undefined') {
-      //@ts-ignore
-      const ctx = canvasDom.getContext('2d');
-      const draw = (objectW: number, objectH: number) => {
-        //@ts-ignore: not possible since this will be using useLayoutEffect
-        const gradient = ctx.createLinearGradient(0, 0, 200, 600);
-
-        gradient.addColorStop(0, slide.colorSchemeHighlight);
-        gradient.addColorStop(1, 'rgba(255 255 255 / 35%)');
-
-        const config = {
-          x: strokeWidth / 2,
-          y: strokeWidth / 2,
-          w: (objectW - (strokeWidth / 2) * 2),
-          h: (objectH - (strokeWidth / 2) * 2),
-          radius: 10,
-          width: strokeWidth,
-          style: gradient,
-          ctx: ctx
-        }
-
-        drawRectBorder(config);
-      }
-
-      const canvasBounds = canvasDom.getBoundingClientRect();
-      const newCanvasObjectW = canvasBounds.width;
-      const canvasObjectH = canvasBounds.height;
-
-      canvasDom.width = newCanvasObjectW;
-      canvasDom.height = canvasObjectH;
-
-      draw(newCanvasObjectW, canvasObjectH);
-
-    }
-  }, [canvasRef, winWidth, slide]);
-
   const richTextEvents = toggle ? 'auto' : 'none';
 
   // change global colorways when slide updates
   return (
     <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggle}>
-      <canvas ref={canvasRef}></canvas>
+      <EFXRoundedGradientBorder 
+        colorStopTop={slide.colorSchemeHighlight} 
+        colorStopBottom="rgba(255 255 255 / 35%)"
+      />
       <StyledCardWrap>
         
         {/* toggle nav richtext transition */}

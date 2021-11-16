@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import { GlobalActions, GlobalContext } from "@/src/context/global";
 import { StyledSlides, StyledThreeBGCurtain } from "./styles";
+import EFXMeshBackground from "@/src/components/molecules/efxMeshBackground";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
-import ThreeBackground from "./threeBackground";
+
 
 const { UPDATE_COLOR, OPEN_CASE_STUDY } = GlobalActions;
 
@@ -104,7 +105,7 @@ const Slides = (props: Slides) => {
         toggleSlide={slideOpen}
       />
       <StyledThreeBGCurtain open={slideOpen}>
-        <ThreeBackground 
+        <EFXMeshBackground 
           slideMeshFile={slides[activeSlide].meshScene.fields.file.url} 
           highlight={slides[activeSlide].colorSchemeHighlight}
         />
