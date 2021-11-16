@@ -68,7 +68,8 @@ const EFXMeshBackground = (props:Props) => {
   const {slideMeshFile, highlight} = props;
   const [urlState, setUrlState] = useState('');
   const [fadeOut,setFadeOut] = useState(false);
-  
+  const timerRef = useRef<NodeJS.Timer>();
+
   const styles = useSpring({
     opacity: fadeOut ? 0 : 1,
     duration: 500
@@ -79,10 +80,18 @@ const EFXMeshBackground = (props:Props) => {
 
     setFadeOut(true);
 
-    setTimeout(() => {
+    if (timerRef.current)
+        window.clearTimeout(timerRef.current)
+
+    timerRef.current = setTimeout(() => {
       setUrlState(`${slideMeshFile}?${uuid}`);
     }, 500);
 
+    // unmount
+    () => {
+      if (timerRef.current)
+        window.clearTimeout(timerRef.current)
+    }
   }, [slideMeshFile]);
 
   return (

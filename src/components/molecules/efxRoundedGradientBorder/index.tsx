@@ -12,6 +12,7 @@ interface Props {
 const EFXRoundedGradientBorder = (props:Props) => {
   const {colorStopTop, colorStopBottom} = props;
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
+  const {width} = canvasRef.current.getBoundingClientRect();
   const [winWidth] = useScreenSize();
 
   useIsomorphicLayoutEffect(() => {
@@ -52,7 +53,7 @@ const EFXRoundedGradientBorder = (props:Props) => {
       draw(newCanvasObjectW, canvasObjectH);
 
     }
-  }, [canvasRef, winWidth, colorStopTop, colorStopBottom]);
+  }, [canvasRef, winWidth, colorStopTop, colorStopBottom, width]);
 
   return (
     <StyledCanvas ref={canvasRef}></StyledCanvas>

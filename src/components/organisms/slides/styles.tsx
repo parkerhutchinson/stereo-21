@@ -67,6 +67,11 @@ export const StyledSlide = styled.div<IStyledSlide>`
     mix-blend-mode: multiply;
     opacity: .18;
   }
+  canvas{
+    opacity: ${({toggle}) => toggle ? '.2' : '1'};
+    z-index: 3;
+    transition: opacity 1s var(--animation-curve);
+  }
   *{
     font-weight: 200;
   }

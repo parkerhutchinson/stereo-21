@@ -29,7 +29,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
     z-index: 99;
     background: ${(p) => p.caseStudyOpen ? `rgba(${getRGBABackground(p.backgroundColor)}, .7)` : `rgba(${getRGBABackground(p.backgroundColor)}, 0)`};
     backdrop-filter: ${(p) => p.caseStudyOpen ? 'blur(25px)' : 'blur(0px)'};
-    transition: all 1s var(--animation-curve);
+    transition: all 1s;
   }
 `;
 
