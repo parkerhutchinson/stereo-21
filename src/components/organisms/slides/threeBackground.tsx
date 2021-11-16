@@ -4,15 +4,25 @@ import * as three from "three";
 import {StyledThreeBackground} from "./styles";
 // import { useSpring } from 'react-spring'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import {useSpring} from 'react-spring';
+import { useSpring, animated } from 'react-spring'
 
 
-const Model = (props:{url:string, highlight:string}) => {
-  const {url, highlight} = props;
+const Lighting = (props:{highlight:string}) => {
+  const {highlight} = props;
+
+  return (
+    <>
+      <ambientLight intensity={.8} />
+      <pointLight intensity={1.2} position={[5, 0, 10]} color={highlight} />
+    </>
+  )
+}
+
+const Model = (props:{url:string}) => {
+  const {url} = props;
   const meshRef = useRef<three.Mesh>();
   // load the mesh using the GLTF Loader
   const gltf = useLoader(GLTFLoader, url);
-  const [gltfState, setGltfState] = useState<any>(gltf);
   
   // setup animation mixer
   let mixer:three.AnimationMixer;
@@ -24,7 +34,7 @@ const Model = (props:{url:string, highlight:string}) => {
     mixer?.update(delta)
   });
 
-  if (gltfState.animations.length) {
+  if (gltf.animations.length) {
     mixer = new three.AnimationMixer(gltf.scene);
     // loop through all animations and play them.
     gltf.animations.forEach(clip => {
@@ -33,29 +43,19 @@ const Model = (props:{url:string, highlight:string}) => {
     });
   }
 
-  useEffect(() => {
-    const tempGltf = useLoader(GLTFLoader, url)
-    
-    
-    setGltfState(tempGltf);
-    
-
-
-  }, [url])
-
   return (
     <>
-      <ambientLight intensity={.8}/>
-      <pointLight intensity={1} position={[5, 0, 10]} color={highlight} />
       <primitive 
         position={[1, 0, 0]}
-        object={gltfState.scene} 
+        object={gltf.scene} 
         scale={1}
         ref={meshRef}
       />
     </>
   );
 };
+
+
 
 interface Props {
   slideMeshFile: string
@@ -64,22 +64,44 @@ interface Props {
 
 const ThreeBackground = (props:Props) => {
   const {slideMeshFile, highlight} = props;
-  const uuid = Date.now();
-  const finalUrls = `${slideMeshFile}?${uuid}`;
+  const [urlState, setUrlState] = useState('');
+  const [fadeOut,setFadeOut] = useState(false);
+  
+  const styles = useSpring({
+    opacity: fadeOut ? 0 : 1,
+    duration: 500
+  });
+
+  useEffect(() => {
+    const uuid = Date.now();
+    const finalUrls = `${slideMeshFile}?${uuid}`;
+
+    setFadeOut(true);
+    setTimeout(() => {
+      setUrlState(finalUrls);
+      setTimeout(() => {
+        setFadeOut(false)
+      }, 800)
+    }, 1000)
+  }, [slideMeshFile])
+
   return (
-    <StyledThreeBackground>
-      <Canvas 
-        camera={{
-          near: 0.1,
-          far: 1000,
-          zoom: 1.9
-        }}
-      >
-        <Suspense fallback={false}>
-          <Model url={finalUrls} highlight={highlight}/>
-        </Suspense>
-      </Canvas>
-    </StyledThreeBackground>
+    <animated.div style={styles}>
+      <StyledThreeBackground>
+        <Canvas 
+          camera={{
+            near: 0.1,
+            far: 1000,
+            zoom: 1.9
+          }}
+        >
+          <Suspense fallback={false}>
+            <Lighting highlight={highlight}/>
+            {(urlState.length > 1) && <Model url={urlState}/>}
+          </Suspense>
+        </Canvas>
+      </StyledThreeBackground>
+    </animated.div>
   );
 };
 

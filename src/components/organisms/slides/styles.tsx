@@ -184,7 +184,7 @@ export const StyledThreeBGCurtain = styled.div<IStyledThreeBg>`
   transition: clip-path 1s var(--animation-curve);
 `
 
-export const StyledThreeBackground = styled.div`
+export const StyledThreeBackground = styled.div<any>`
   position: absolute;
   top: 0;
   right: 0;
