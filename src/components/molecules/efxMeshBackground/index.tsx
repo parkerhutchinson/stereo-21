@@ -85,7 +85,8 @@ const EFXMeshBackground = (props:Props) => {
         window.clearTimeout(timerRef.current)
 
     timerRef.current = setTimeout(() => {
-      setUrlState(`${slideMeshFile}?${uuid}`);
+      const url = `${slideMeshFile}?${uuid}`;
+      setUrlState(url);
     }, 500);
 
     // unmount
