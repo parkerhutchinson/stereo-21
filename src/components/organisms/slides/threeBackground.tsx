@@ -18,8 +18,8 @@ const Lighting = (props:{highlight:string}) => {
   )
 }
 
-const Model = (props:{url:string}) => {
-  const {url} = props;
+const Model = (props:{url:string, cb: (e:string) => void}) => {
+  const {url, cb} = props;
   const meshRef = useRef<three.Mesh>();
   // load the mesh using the GLTF Loader
   const gltf = useLoader(GLTFLoader, url);
@@ -42,6 +42,10 @@ const Model = (props:{url:string}) => {
       action.play();
     });
   }
+
+  useEffect(() => {
+    cb()
+  }, [gltf])
 
   return (
     <>
@@ -79,10 +83,7 @@ const ThreeBackground = (props:Props) => {
     setFadeOut(true);
     setTimeout(() => {
       setUrlState(finalUrls);
-      setTimeout(() => {
-        setFadeOut(false)
-      }, 800)
-    }, 1000)
+    }, 500)
   }, [slideMeshFile])
 
   return (
@@ -97,7 +98,7 @@ const ThreeBackground = (props:Props) => {
         >
           <Suspense fallback={false}>
             <Lighting highlight={highlight}/>
-            {(urlState.length > 1) && <Model url={urlState}/>}
+            {(urlState.length > 1) && <Model url={urlState} cb={(e) => {setFadeOut(false)}}/>}
           </Suspense>
         </Canvas>
       </StyledThreeBackground>
