@@ -75,6 +75,7 @@ const EFXMeshBackground = (props:Props) => {
     duration: 500
   });
 
+  // transition out
   useEffect(() => {
     const uuid = Date.now();
 
