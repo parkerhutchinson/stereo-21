@@ -43,19 +43,18 @@ const Model = (props:{url:string, cb: () => void}) => {
     });
   }
 
+  // this is to trigger the fade in for the parent element
   useEffect(() => {
     cb()
   }, [gltf])
 
   return (
-    <>
-      <primitive 
-        position={[1, 0, 0]}
-        object={gltf.scene} 
-        scale={1}
-        ref={meshRef}
-      />
-    </>
+    <primitive 
+      position={[1, 0, 0]}
+      object={gltf.scene} 
+      scale={1}
+      ref={meshRef}
+    />
   );
 };
 
@@ -83,8 +82,9 @@ const ThreeBackground = (props:Props) => {
     setFadeOut(true);
     setTimeout(() => {
       setUrlState(finalUrls);
-    }, 500)
-  }, [slideMeshFile])
+    }, 500);
+
+  }, [slideMeshFile]);
 
   return (
     <animated.div style={styles}>
@@ -98,7 +98,12 @@ const ThreeBackground = (props:Props) => {
         >
           <Suspense fallback={false}>
             <Lighting highlight={highlight}/>
-            {(urlState.length > 1) && <Model url={urlState} cb={(e) => {setFadeOut(false)}}/>}
+            {(urlState.length > 1) && 
+              <Model 
+                url={urlState} 
+                cb={() => {setFadeOut(false)}}
+              />
+            }
           </Suspense>
         </Canvas>
       </StyledThreeBackground>
