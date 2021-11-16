@@ -13,6 +13,7 @@
     "@contentful/rich-text-html-renderer": "^15.5.1",
     "@contentful/rich-text-react-renderer": "^15.5.1",
     "@contentful/rich-text-types": "^15.5.1",
+    "@react-spring/three": "^9.3.0",
     "@react-three/drei": "^7.20.5",
     "@react-three/fiber": "^7.0.17",
     "@svgr/core": "^5.5.0",

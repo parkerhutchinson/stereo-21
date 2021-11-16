@@ -1,24 +1,21 @@
-import react, { Suspense, useRef } from "react";
+import react, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as three from "three";
 import {StyledThreeBackground} from "./styles";
 // import { useSpring } from 'react-spring'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import {useSpring} from 'react-spring';
+
 
 const Model = (props:{url:string, highlight:string}) => {
+  const {url, highlight} = props;
   const meshRef = useRef<three.Mesh>();
   // load the mesh using the GLTF Loader
-  const gltf = useLoader(GLTFLoader, props.url)
+  const gltf = useLoader(GLTFLoader, url);
+  const [gltfState, setGltfState] = useState<any>(gltf);
+  
   // setup animation mixer
   let mixer:three.AnimationMixer;
-  if (gltf.animations.length) {
-    mixer = new three.AnimationMixer(gltf.scene);
-    // loop through all animations and play them.
-    gltf.animations.forEach(clip => {
-      const action = mixer.clipAction(clip)
-      action.play();
-    });
-  }
 
   useFrame((state, delta) => {
     // run animations every frame
@@ -27,13 +24,32 @@ const Model = (props:{url:string, highlight:string}) => {
     mixer?.update(delta)
   });
 
+  if (gltfState.animations.length) {
+    mixer = new three.AnimationMixer(gltf.scene);
+    // loop through all animations and play them.
+    gltf.animations.forEach(clip => {
+      const action = mixer.clipAction(clip)
+      action.play();
+    });
+  }
+
+  useEffect(() => {
+    const tempGltf = useLoader(GLTFLoader, url)
+    
+    
+    setGltfState(tempGltf);
+    
+
+
+  }, [url])
+
   return (
     <>
       <ambientLight intensity={.8}/>
-      <pointLight intensity={1} position={[5, 0, 10]} color={props.highlight} />
+      <pointLight intensity={1} position={[5, 0, 10]} color={highlight} />
       <primitive 
-        position={[0, 0, 0]}
-        object={gltf.scene} 
+        position={[1, 0, 0]}
+        object={gltfState.scene} 
         scale={1}
         ref={meshRef}
       />
