@@ -17,13 +17,16 @@ export const StyledButton = styled.a<IStyledButton>`
   cursor: pointer;
   justify-content: space-around;
   align-items: center;
-  transition: all .4s cubic-bezier(1,0,.25,1);
-  &:hover{
-    button{
-      transform: scale(1.2);
-      opacity: 1;
+  @media screen and (min-width: 1024px) {
+    transition: all .4s cubic-bezier(1,0,.25,1);
+    &:hover{
+      button{
+        transform: scale(1.2);
+        opacity: 1;
+      }
     }
   }
+  
   svg {
     width: 70%;
     height: auto;

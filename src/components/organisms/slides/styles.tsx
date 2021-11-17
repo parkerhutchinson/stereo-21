@@ -7,12 +7,11 @@ interface IStyledSlides {
 }
 
 export const StyledSlides = styled.section<IStyledSlides>`
-  display: none;
-  /* display: flex; */
+  display: flex;
   width: 100%;
   position: fixed;
   top: 0;
-  right: 0;
+  right: -100%;
   height: 100vh;
   background: ${(p) => p.backgroundColor};
   background-size: cover;
@@ -21,6 +20,7 @@ export const StyledSlides = styled.section<IStyledSlides>`
   transition: width 1s var(--animation-curve), background 1s;
   @media screen and (min-width: 1024px) {
     width: ${({toggle}) => toggle ? '75%' : '55%'};
+    right: 0;
   }
 `;
 
@@ -182,9 +182,9 @@ export const StyledThreeBGCurtain = styled.div<IStyledThreeBg>`
   width: 100%;
   height: 100%;
   transition: clip-path 1s var(--animation-curve);  
+  pointer-events: none;
   @media screen and (min-width: 1024px) {
     width: 75%;
     clip-path: ${(p) => !p.open ? 'polygon(100% 0%, 100% 100%, 26.5% 100%, 26.5% 0%)' : 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)'};
   }
 `
-
