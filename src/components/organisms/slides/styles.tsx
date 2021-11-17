@@ -114,7 +114,7 @@ export const StyledCaseStudyCopy = styled.div`
   height: 100%;
   top: 0;
   left: 15%;
-  position: absolute;
+  position: relative;
   display: block;
   max-width: 70%;
   overflow-x: hidden;

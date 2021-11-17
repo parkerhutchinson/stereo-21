@@ -78,7 +78,7 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
 
 export const StyledCTAGroup = styled.div`
   padding-top: 70px;
-  max-width: 450px;
+  max-width: 400px;
   display: flex;
   justify-content: space-between;
 `;

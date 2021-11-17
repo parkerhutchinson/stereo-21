@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {useTransition, animated, useChain, useSpringRef} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import RichTextBody from "@/src/components/molecules/richTextBody";
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import { 
   StyledSlide, 
   StyledCaseStudyCopy, 
@@ -11,6 +12,7 @@ import {
 } from "./styles";
 import SlidesNavigation from "@/src/components/molecules/slidesNav";
 import EFXRoundedGradientBorder from "@/src/components/molecules/efxRoundedGradientBorder";
+import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
 
@@ -25,6 +27,8 @@ const Slide = (props: Slide) => {
   const [toggle, setToggle] = useState(false);
   const richTextTransRef = useSpringRef();
   const slideTransRef = useSpringRef();
+  const richTextRef = useRef<HTMLDivElement>();
+  const [scrollHeight, setScrollHeight] = useState(200);
 
   const transitionBrand = useTransition(slide.brand, {
     native: true,
@@ -72,6 +76,14 @@ const Slide = (props: Slide) => {
   }
 
   const richTextEvents = toggle ? 'auto' : 'none';
+
+
+  // useIsomorphicLayoutEffect(() => {
+  //   if (typeof richTextRef.current !== 'undefined' && richTextRef) {
+  //     const {height} = richTextRef.current.getBoundingClientRect();
+  //     setScrollHeight(height);
+  //   }
+  // }, [richTextRef.current])
 
   // change global colorways when slide updates
   return (
@@ -136,7 +148,14 @@ const Slide = (props: Slide) => {
                   }
                 }}>
                 <StyledCaseStudyCopy>
-                  <RichTextBody body={slide.caseStudyCopy}/>
+                <Scrollbars
+                  universal
+                  // This will activate auto-height
+                  autoHeight
+                  autoHeightMin={800}
+                >
+                  <RichTextBody body={slide.caseStudyCopy} propRef={richTextRef}/>
+                </Scrollbars>
                 </StyledCaseStudyCopy>
                 </animated.div>
               )}
