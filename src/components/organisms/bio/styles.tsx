@@ -12,7 +12,7 @@ const getRGBABackground = (color:string) => {
 } 
 
 export const StyledBioTab = styled.article<IStyledBioTab>`
-  width: 45%;
+  width: 100%;
   transition: all 1s var(--animation-curve);
   color: white;
   z-index: 0;
@@ -31,14 +31,24 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
     backdrop-filter: ${(p) => p.caseStudyOpen ? 'blur(25px)' : 'blur(0px)'};
     transition: all 1s;
   }
+  @media screen and (min-width: 1024px) {
+    width: 45%;
+  }
 `;
 
 export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>>`
-  max-width: 70%;
+  max-width: 90%;
   margin: 0 auto;
-  padding: 150px 0;
+  padding: 80px 0;
   position: relative;
   z-index: 2;
+  @media screen and (min-width: 800px) {
+    max-width: 70%;
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 70%;
+    padding: 150px 0;
+  }
   @media screen and (min-width: 1800px) {
     max-width: 60%;
   }

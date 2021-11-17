@@ -33,7 +33,7 @@ interface IStyledLogo {
 
 export const StyledLogoGroup = styled.div<IStyledLogo>`
   position: fixed;
-  width: 45%;
+  width: 100%;
   height: 100%;
   top: 0;
   left: 0;
@@ -42,6 +42,9 @@ export const StyledLogoGroup = styled.div<IStyledLogo>`
   padding-right: 30px;
   background: ${(p) => p.backgroundColor};
   transition: all 1s;
+  @media screen and (min-width: 1024px) {
+    width: 45%;
+  }
   svg{
     display: block;
     width: 50%;
