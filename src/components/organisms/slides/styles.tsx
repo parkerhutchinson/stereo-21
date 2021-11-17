@@ -34,11 +34,14 @@ export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
   display: block;
   width: ${({toggle}) => toggle ? '90%' : '80%'};
-  top: ${({toggle}) => toggle ? '100px' : '0px'};
+  top: ${({toggle}) => toggle ? '40px' : '0px'};
   height: ${({toggle}) => toggle ? '100vh' : '75vh'};
   padding: 30px;
   color: white;
   transition: all 1s var(--animation-curve);
+  @media (min-width: 1024px) {
+    top: ${({toggle}) => toggle ? '100px' : '0px'};
+  }
   @media (min-width: 1360px) {
     width: ${({toggle}) => toggle ? '800px' : '500px'};
   }
@@ -118,19 +121,25 @@ export const StyledCaseStudyCopy = styled.div`
   overflow: hidden;
   height: 100%;
   top: 0;
-  left: 15%;
   position: relative;
   display: block;
-  max-width: 70%;
+  max-width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
+  @media screen and (min-width: 1024px) {
+    max-width: 70%;
+    left: 15%;
+  }
   h2{
-    font-weight: 200;
+    font-weight: 100;
     margin-bottom: 40px;
-    font-size: 120px;
+    font-size: 80px;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
-    text-align: center;;
+    text-align: center;
+    @media screen and (min-width: 1024px) {
+      font-size: 200px;
+    }
   }
   p{
     line-height: 38px;
