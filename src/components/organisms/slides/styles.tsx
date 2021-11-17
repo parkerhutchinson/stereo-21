@@ -6,7 +6,7 @@ interface IStyledSlides {
   toggle: boolean
 }
 
-export const StyledSlides = styled.div<IStyledSlides>`
+export const StyledSlides = styled.section<IStyledSlides>`
   width: ${({toggle}) => toggle ? '75%' : '55%'};
   position: fixed;
   top: 0;
@@ -125,6 +125,7 @@ export const StyledCaseStudyCopy = styled.div`
     font-size: 120px;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
+    text-align: center;;
   }
   p{
     line-height: 38px;

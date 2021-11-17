@@ -11,8 +11,8 @@ export const StyledButton = styled.a<IStyledButton>`
   background: ${(p) => p.bioBg};
   border: 1px solid ${(p) => p.highlight};
   border-radius: 5px;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   backdrop-filter: blur(5px);
   cursor: pointer;
   justify-content: space-around;
@@ -23,6 +23,11 @@ export const StyledButton = styled.a<IStyledButton>`
       transform: scale(1.2);
       opacity: 1;
     }
+  }
+  svg {
+    width: 70%;
+    height: auto;
+    display: block;
   }
   svg * {
     stroke: white;

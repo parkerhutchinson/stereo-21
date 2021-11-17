@@ -12,8 +12,9 @@ const directionMap = {
   w: -180  
 }
 
-export const StyledIconArrow = styled.div<IStyledIconArrow>`
+export const StyledIconArrow = styled.span<IStyledIconArrow>`
   transform-origin: center;
+  display: block;
   transform: ${(p) => `rotate(${directionMap[p.direction]}deg)`};
   span{
     position: relative;
