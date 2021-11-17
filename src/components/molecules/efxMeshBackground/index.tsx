@@ -1,4 +1,5 @@
-import react, { Suspense, useEffect, useRef, useState } from "react";
+import react, { Suspense, useEffect, useRef, useState, useContext } from "react";
+import { GlobalActions, GlobalContext } from "@/src/context/global";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as three from "three";
 import {StyledThreeBackground} from "./styles";
@@ -69,6 +70,7 @@ const EFXMeshBackground = (props:Props) => {
   const [urlState, setUrlState] = useState('');
   const [fadeOut,setFadeOut] = useState(false);
   const timerRef = useRef<NodeJS.Timer>();
+  const {state: {mobilePanel}} = useContext(GlobalContext);
 
   const styles = useSpring({
     opacity: fadeOut ? 0 : 1,
@@ -98,7 +100,7 @@ const EFXMeshBackground = (props:Props) => {
 
   return (
     <animated.div style={styles}>
-      <StyledThreeBackground>
+      <StyledThreeBackground panelOpen={mobilePanel}>
         <Canvas 
           camera={{
             near: 0.1,
