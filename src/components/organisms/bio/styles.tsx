@@ -93,6 +93,7 @@ export const StyledCTAGroup = styled.div`
   justify-content: space-between;
 `;
 
+
 export const StyledMobileWorkButton = styled.button`
   position: absolute;
   top: 30px;

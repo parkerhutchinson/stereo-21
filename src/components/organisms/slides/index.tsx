@@ -22,7 +22,7 @@ const Slides = (props: Slides) => {
   const [slideOpen, toggleSlideOpen] = useState(false);
   const userInteracted = useRef(false);
   const timerRef = useRef<NodeJS.Timer>();
-  const { dispatch } = useContext(GlobalContext);
+  const {state: {mobilePanel}, dispatch } = useContext(GlobalContext);
   const [activeSlide, setActiveSlide] = useState(0);
   const [keyName] = useKeycode();
 
@@ -125,6 +125,7 @@ const Slides = (props: Slides) => {
     <StyledSlides 
       backgroundColor={slides[activeSlide].colorSchemeBioBG}
       toggle={slideOpen}
+      panelOpen={mobilePanel}
     >
       <Slide 
         slide={slides[activeSlide]} 

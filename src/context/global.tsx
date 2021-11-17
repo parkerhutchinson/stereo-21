@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 const initialState = {
   caseStudyOpen: false,
+  mobilePanel: false,
   colorScheme: {
     siteBackgroundColor: 'red',
     bioBackgroundColor: '#0E0718',
@@ -13,6 +14,7 @@ const initialState = {
 
 type TDefaultData = {
   caseStudyOpen: boolean
+  mobilePanel: boolean
   colorScheme: {
     siteBackgroundColor: string
     bioBackgroundColor: string
@@ -23,7 +25,8 @@ type TDefaultData = {
 
 export enum GlobalActions {
   UPDATE_COLOR = 'UPDATE_COLOR',
-  OPEN_CASE_STUDY = 'OPEN_CASE_STUDY'
+  OPEN_CASE_STUDY = 'OPEN_CASE_STUDY',
+  TOGGLE_MOBILE_PANEL = 'TOGGLE_MOBILE_PANEL'
 }
 
 type ColorDispatch = {
@@ -45,6 +48,8 @@ const colorSchemeReducer = (state:TDefaultData, action: ColorDispatch) => {
       return Object.assign({}, state, {colorScheme: {...action.payload}})
     case GlobalActions.OPEN_CASE_STUDY: 
       return Object.assign({}, state, {caseStudyOpen: action.payload})
+    case GlobalActions.TOGGLE_MOBILE_PANEL:
+      return Object.assign({}, state, {mobilePanel: action.payload})
     default:
       return state;
   }

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 interface IStyledSlides {
   backgroundColor: string
   toggle: boolean
+  panelOpen: boolean
 }
 
 export const StyledSlides = styled.section<IStyledSlides>`
@@ -11,13 +12,13 @@ export const StyledSlides = styled.section<IStyledSlides>`
   width: 100%;
   position: fixed;
   top: 0;
-  right: -100%;
+  right: ${(p) => p.panelOpen ? '0%' : '-100%'};
   height: 100vh;
   background: ${(p) => p.backgroundColor};
   background-size: cover;
   justify-content: space-around;
   align-items: center;
-  transition: width 1s var(--animation-curve), background 1s;
+  transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
   @media screen and (min-width: 1024px) {
     width: ${({toggle}) => toggle ? '75%' : '55%'};
     right: 0;

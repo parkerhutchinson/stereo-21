@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import Grid from "@/src/styles/grid";
+import {GlobalActions} from "@/src/context/global";
 import {StyledBioTab, StyledCopyWrapper, StyledCTAGroup, StyledMobileWorkButton} from "./styles";
 import StereoLogo from "@/src/components/molecules/stereoLogo";
 import {GlobalContext} from "@/src/context/global"
@@ -26,14 +26,22 @@ const CTA_DATA = [
 
 const Bio = (props:TypeBioFields) => {
   const {body} = props;
-  const {state: {colorScheme, caseStudyOpen}} = useContext(GlobalContext);
+  const {state: {colorScheme, caseStudyOpen, mobilePanel}, dispatch} = useContext(GlobalContext);
   
   return (
     <StyledBioTab 
       backgroundColor={colorScheme?.bioBackgroundColor}
       caseStudyOpen={caseStudyOpen}
     >
-      <StyledMobileWorkButton>
+      <StyledMobileWorkButton 
+        onClick={
+          () => dispatch(
+            {
+              type: GlobalActions.TOGGLE_MOBILE_PANEL, 
+              payload: !mobilePanel
+            }
+          )}
+      >
         <IconWork />
       </StyledMobileWorkButton>
       
