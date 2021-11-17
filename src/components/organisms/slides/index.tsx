@@ -5,6 +5,7 @@ import { StyledSlides, StyledThreeBGCurtain } from "./styles";
 import EFXMeshBackground from "@/src/components/molecules/efxMeshBackground";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
+import useKeycode from "@/src/hooks/useKeycode";
 
 
 const { UPDATE_COLOR, OPEN_CASE_STUDY } = GlobalActions;
@@ -23,6 +24,8 @@ const Slides = (props: Slides) => {
   const timerRef = useRef<NodeJS.Timer>();
   const { dispatch } = useContext(GlobalContext);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [keyName] = useKeycode();
+
 
   const nextSlide = () => {
     if(activeSlide < slides.length - 1) {
@@ -93,6 +96,30 @@ const Slides = (props: Slides) => {
         break;
     }
   }
+
+  useEffect(() => {
+    switch(keyName) {
+      case 'ArrowLeft':
+        prevSlide();
+        if (timerRef.current) window.clearTimeout(timerRef.current);
+        break;
+      case 'ArrowRight':
+        nextSlide();
+        if (timerRef.current) window.clearTimeout(timerRef.current);
+        break;
+      case 'Escape':
+        toggleSlideOpen(!slideOpen);
+        dispatch({type: OPEN_CASE_STUDY, payload: false});
+        break;
+      case 'Enter':
+        toggleSlideOpen(true);
+        if (timerRef.current) window.clearTimeout(timerRef.current);
+        dispatch({type: OPEN_CASE_STUDY, payload: true});
+        break;
+      default:
+        break;
+    }
+  },[keyName])
   
   return (
     <StyledSlides 

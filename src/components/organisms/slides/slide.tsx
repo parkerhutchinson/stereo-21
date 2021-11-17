@@ -23,8 +23,7 @@ export interface Slide {
 }
 
 const Slide = (props: Slide) => {
-  const { slide, navCallback } = props;
-  const [toggle, setToggle] = useState(false);
+  const { slide, navCallback, toggleSlide } = props;
   const richTextTransRef = useSpringRef();
   const slideTransRef = useSpringRef();
   const richTextRef = useRef<HTMLDivElement>();
@@ -39,7 +38,7 @@ const Slide = (props: Slide) => {
     key: slide.brand
   });
 
-  const toggleTransition = useTransition(toggle, {
+  const toggleTransition = useTransition(toggleSlide, {
     native: true,
     from: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
     enter: {opacity: 1, transform: 'translate3d(0, 0px, 0)'},
@@ -66,16 +65,13 @@ const Slide = (props: Slide) => {
     key: slide.logo
   });
 
-  useChain(toggle ? [richTextTransRef, slideTransRef] : [slideTransRef, richTextTransRef], [0, 1])
+  useChain(toggleSlide ? [richTextTransRef, slideTransRef] : [slideTransRef, richTextTransRef], [0, 1])
 
   const handleButtonCLick = (action:string) => {
     navCallback(action);
-    if (action === 'open') {
-      setToggle(!toggle);
-    }
   }
 
-  const richTextEvents = toggle ? 'auto' : 'none';
+  const richTextEvents = toggleSlide ? 'auto' : 'none';
 
 
   // useIsomorphicLayoutEffect(() => {
@@ -87,7 +83,7 @@ const Slide = (props: Slide) => {
 
   // change global colorways when slide updates
   return (
-    <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggle}>
+    <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggleSlide}>
       <EFXRoundedGradientBorder 
         colorStopTop={slide.colorSchemeHighlight} 
         colorStopBottom="rgba(255 255 255 / 35%)"
