@@ -70,7 +70,7 @@ const EFXMeshBackground = (props:Props) => {
   const [urlState, setUrlState] = useState('');
   const [fadeOut,setFadeOut] = useState(false);
   const timerRef = useRef<NodeJS.Timer>();
-  const {state: {mobilePanel}} = useContext(GlobalContext);
+  const {state: {mobilePanel, colorScheme}} = useContext(GlobalContext);
 
   const styles = useSpring({
     opacity: fadeOut ? 0 : 1,
@@ -100,7 +100,7 @@ const EFXMeshBackground = (props:Props) => {
 
   return (
     <animated.div style={styles}>
-      <StyledThreeBackground panelOpen={mobilePanel}>
+      <StyledThreeBackground panelOpen={mobilePanel} backgroundColor={colorScheme.bioBackgroundColor}>
         <Canvas 
           camera={{
             near: 0.1,

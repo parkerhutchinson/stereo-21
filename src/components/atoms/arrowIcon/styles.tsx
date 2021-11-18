@@ -25,13 +25,14 @@ export const StyledIconArrow = styled.span<IStyledIconArrow>`
       content: "";
       display: block;
       position: absolute;
-      background: ${(p) => p.color ? p.color : 'black'};
+      background: ${(p) => p.color};
       height: 1px;
       border-radius: 1px;
       transform-origin: center right;
       top: 50%;
       width: 100%;
       right: 0;
+      transition: background 1s;
     }
     &:after{display: none;}
     span{

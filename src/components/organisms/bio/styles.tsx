@@ -15,7 +15,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   width: 100%;
   transition: all 1s var(--animation-curve);
   color: white;
-  z-index: 0;
+  z-index: 1;
   position: relative;
   &:after{
     content: '';

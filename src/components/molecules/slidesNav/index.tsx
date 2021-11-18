@@ -34,14 +34,14 @@ const SlidesNavigation = (props:Props) => {
             color={buttonColor} 
             onClick={() => navCallback('prev')}
           >
-            <ArrowIcon direction="w" color={iconColor}/>
+            <ArrowIcon direction="w" color={buttonColor}/>
           </Button>
           <Button 
             borderStyle="end" 
             color={buttonColor}
             onClick={() => navCallback('next')}
           >
-            <ArrowIcon direction="e" color={iconColor} />
+            <ArrowIcon direction="e" color={buttonColor} />
           </Button>
         </div>
 
@@ -50,7 +50,7 @@ const SlidesNavigation = (props:Props) => {
           color={buttonColor} 
           onClick={() => navCallback('open')}
         >
-          <ArrowIcon direction="se" color={iconColor} />
+          <ArrowIcon direction="se" color={buttonColor} />
         </Button>
       </animated.div>)}
     </StyledNav>

@@ -48,7 +48,7 @@ const Bio = (props:TypeBioFields) => {
       <StereoLogo textColor={colorScheme.bioTextColor} backgroundColor={colorScheme.bioBackgroundColor} />
       <StyledCopyWrapper backgroundColor={colorScheme.highlight}>
         <RichTextBody body={body} />
-        <StyledCTAGroup>
+        {/* <StyledCTAGroup>
           {
             CTA_DATA.map((cta:any, index:number) => 
                 <ExternalCTA 
@@ -60,7 +60,7 @@ const Bio = (props:TypeBioFields) => {
                 />
               )
           }
-        </StyledCTAGroup>
+        </StyledCTAGroup> */}
       </StyledCopyWrapper>
     </StyledBioTab>
   )

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface IStyledThreeBackground {
   panelOpen: boolean
+  backgroundColor: string
 }
 
 export const StyledThreeBackground = styled.div<IStyledThreeBackground>`
@@ -12,6 +13,7 @@ export const StyledThreeBackground = styled.div<IStyledThreeBackground>`
   height: 100%;
   z-index: 0;
   overflow: hidden;
+  background: ${(p) => p.backgroundColor};
   transition: right 1s var(--animation-curve);
   @media screen and (min-width: 1024px) {
     right: 0;

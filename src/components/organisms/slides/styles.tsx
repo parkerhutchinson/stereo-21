@@ -18,10 +18,13 @@ export const StyledSlides = styled.section<IStyledSlides>`
   background-size: cover;
   justify-content: space-around;
   align-items: center;
+  z-index: 11;
   transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
   @media screen and (min-width: 1024px) {
     width: ${({toggle}) => toggle ? '75%' : '55%'};
+    background: none;
     right: 0;
+    z-index: 0;
   }
 `;
 
@@ -76,7 +79,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     opacity: .18;
   }
   canvas{
-    opacity: ${({toggle}) => toggle ? '.2' : '1'};
+    opacity: ${({toggle}) => toggle ? '.2' : '.5'};
     z-index: 3;
     transition: opacity 1s var(--animation-curve);
   }
@@ -194,7 +197,7 @@ export const StyledThreeBGCurtain = styled.div<IStyledThreeBg>`
   transition: clip-path 1s var(--animation-curve);  
   pointer-events: none;
   @media screen and (min-width: 1024px) {
-    width: 75%;
-    clip-path: ${(p) => !p.open ? 'polygon(100% 0%, 100% 100%, 26.5% 100%, 26.5% 0%)' : 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)'};
+    width: 100%;
+    /* clip-path: ${(p) => !p.open ? 'polygon(100% 0%, 100% 100%, 26.5% 100%, 26.5% 0%)' : 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)'}; */
   }
 `

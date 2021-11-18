@@ -40,7 +40,7 @@ export const StyledLogoGroup = styled.div<IStyledLogo>`
   overflow: hidden;
   opacity: 1;
   padding-right: 30px;
-  background: ${(p) => p.backgroundColor};
+  /* background: ${(p) => p.backgroundColor}; */
   transition: all 1s;
   @media screen and (min-width: 1024px) {
     width: 45%;

@@ -23,7 +23,7 @@ const getIconFromProps = (icon:Icon) => {
       return <IconArt />;
       break;
     case 'resume':
-      return <IconResume />;
+      return 'R';
       break;
     default:
       return null

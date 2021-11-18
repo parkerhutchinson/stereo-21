@@ -9,10 +9,12 @@ const buttonCorners = (type: "begin" | "end" | "symetrical") => {
       finalStyles = css`
         border-top-left-radius: ${RADIUS}px;
         border-bottom-left-radius: ${RADIUS}px;
+        border-right: none;
       `;
       break;
     case 'end':
       finalStyles = css`
+        border-left: none;
         border-top-right-radius: ${RADIUS}px;
         border-bottom-right-radius: ${RADIUS}px;
       `;
@@ -34,17 +36,20 @@ const buttonCorners = (type: "begin" | "end" | "symetrical") => {
 interface StyledProps {
   color: string
   cornerType: "begin" | "end" | "symetrical"
+  fill?: boolean
 }
 
+
+
 export const StyledButton = styled.button<StyledProps>`
-  ${(p) => buttonCorners(p.cornerType)};
   padding: 15px 13px;
   border: 1px solid ${(p) => p.color};
-  background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, 1)`};
-  transition: all .4s;
+  ${(p) => buttonCorners(p.cornerType)};
+  background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, 0)`};
+  transition: all 1s;
   cursor: pointer;
   position: relative;
   &:hover{
-    background: ${(p) => `rgba(255,${hexRgb(p.color).green},${hexRgb(p.color).blue}, .3)`};
+    background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, 1)`};
   }
 `;
