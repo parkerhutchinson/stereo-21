@@ -19,6 +19,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   position: relative;
   &:after{
     content: '';
+    display: none;
     position: fixed;
     pointer-events: none;
     top: 0;
@@ -26,7 +27,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
     width: 100%;
     height: 100%;
     display: block;
-    z-index: 99;
+    z-index: 2;
     background: ${(p) => p.caseStudyOpen ? `rgba(${getRGBABackground(p.backgroundColor)}, .7)` : `rgba(${getRGBABackground(p.backgroundColor)}, 0)`};
     backdrop-filter: ${(p) => p.caseStudyOpen ? 'blur(25px)' : 'blur(0px)'};
     transition: all 1s;

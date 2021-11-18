@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import {useTransition, animated, useChain, useSpringRef} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
-import RichTextBody from "@/src/components/molecules/richTextBody";
+import RichTextBody from "@/src/components/2_molecules/richTextBody";
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { 
   StyledSlide, 
@@ -10,8 +10,8 @@ import {
   StyledCardWrap,
   StyledBrandTransitionGroup,
 } from "./styles";
-import SlidesNavigation from "@/src/components/molecules/slidesNav";
-import EFXRoundedGradientBorder from "@/src/components/molecules/efxRoundedGradientBorder";
+import SlidesNavigation from "@/src/components/2_molecules/slidesNav";
+import EFXRoundedGradientBorder from "@/src/components/2_molecules/efxRoundedGradientBorder";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };

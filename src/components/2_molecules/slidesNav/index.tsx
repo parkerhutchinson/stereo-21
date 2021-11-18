@@ -1,5 +1,5 @@
-import Button from "@/src/components/atoms/button";
-import ArrowIcon from "@/src/components/atoms/arrowIcon";
+import Button from "@/src/components/1_atoms/button";
+import ArrowIcon from "@/src/components/1_atoms/arrowIcon";
 import {StyledNav} from "./styles";
 import {useTransition, animated} from 'react-spring';
 

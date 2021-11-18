@@ -1,6 +1,6 @@
 import {TypeSlidesFields} from "@/src/types/generated/TypeSlides";
 import {TypeSlideFields} from "@/src/types/generated/TypeSlide";
-import {Slides} from "@/src/components/organisms/slides";
+import {Slides} from "@/src/components/3_organisms/slides";
 import * as Contentful from "contentful";
 import transformImage from "@/src/transformers/helpers/image";
 

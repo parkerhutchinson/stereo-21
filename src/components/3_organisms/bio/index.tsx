@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
 import {GlobalActions} from "@/src/context/global";
 import {StyledBioTab, StyledCopyWrapper, StyledCTAGroup, StyledMobileWorkButton} from "./styles";
-import StereoLogo from "@/src/components/molecules/stereoLogo";
+import StereoLogo from "@/src/components/2_molecules/stereoLogo";
 import {GlobalContext} from "@/src/context/global"
 import {TypeBioFields} from "@/src/types/generated/TypeBio";
-import RichTextBody from "@/src/components/molecules/richTextBody";
-import ExternalCTA from "@/src/components/molecules/externalCta";
+import RichTextBody from "@/src/components/2_molecules/richTextBody";
+import ExternalCTA from "@/src/components/2_molecules/externalCta";
 import IconWork from "@/public/icn-work.svg";
 
 

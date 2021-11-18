@@ -4,11 +4,11 @@ import Head from 'next/head'
 import getContentfulData from "../lib/getContentfuldata";
 import { PageContext } from "../context/page";
 import dynamic from 'next/dynamic'
-import ErrorComponentMissing from "../components/molecules/errorComponentMissing";
+import ErrorComponentMissing from "../components/2_molecules/errorComponentMissing";
 
 const ComponentImportMap: { [index: string]: any } = {
-  bio: dynamic(() => import('../components/organisms/bio')),
-  slides: dynamic(() => import('../components/organisms/slides'))
+  bio: dynamic(() => import('../components/3_organisms/bio')),
+  slides: dynamic(() => import('../components/3_organisms/slides'))
 }
 
 const Page: NextPage = () => {

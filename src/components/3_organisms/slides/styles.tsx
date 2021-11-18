@@ -24,7 +24,7 @@ export const StyledSlides = styled.section<IStyledSlides>`
     width: ${({toggle}) => toggle ? '75%' : '55%'};
     background: none;
     right: 0;
-    z-index: 0;
+    z-index: 3;
   }
 `;
 
@@ -141,7 +141,7 @@ export const StyledCaseStudyCopy = styled.div`
     letter-spacing: 1px;
     text-align: center;
     @media screen and (min-width: 1024px) {
-      font-size: 200px;
+      font-size: 120px;
     }
   }
   p{
