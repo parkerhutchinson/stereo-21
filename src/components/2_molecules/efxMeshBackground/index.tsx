@@ -22,20 +22,28 @@ const Lighting = (props:{highlight:string}) => {
 const Model = (props:{url:string, cb: () => void}) => {
   const {url, cb} = props;
   const meshRef = useRef<three.Mesh>();
+  let gltf;
   // load the mesh using the GLTF Loader
-  const gltf = useLoader(GLTFLoader, url);
+  try {
+    gltf = useLoader(GLTFLoader, url);
+  } catch(err) {
+    console.error(err);
+  }
   
   // setup animation mixer
   let mixer:three.AnimationMixer;
+  
+  if (typeof gltf !== 'undefined') {
+    useFrame((state, delta) => {
+      // run animations every frame
+      meshRef.current!.rotation.x += .001;
+      meshRef.current!.rotation.z += .001;
+      mixer?.update(delta)
+    });
+  }
+  
 
-  useFrame((state, delta) => {
-    // run animations every frame
-    meshRef.current!.rotation.x += .001;
-    meshRef.current!.rotation.z += .001;
-    mixer?.update(delta)
-  });
-
-  if (gltf.animations.length) {
+  if (typeof gltf !== 'undefined' && gltf.animations.length) {
     mixer = new three.AnimationMixer(gltf.scene);
     // loop through all animations and play them.
     gltf.animations.forEach(clip => {
@@ -48,15 +56,15 @@ const Model = (props:{url:string, cb: () => void}) => {
   useEffect(() => {
     cb()
   }, [gltf])
-
-  return (
+  
+  return gltf ? (
     <primitive 
       position={[1, 0, 0]}
       object={gltf.scene} 
       scale={1}
       ref={meshRef}
     />
-  );
+  ) : null;
 };
 
 
@@ -100,7 +108,7 @@ const EFXMeshBackground = (props:Props) => {
 
   return (
     <animated.div style={styles}>
-      <StyledThreeBackground panelOpen={mobilePanel} backgroundColor={colorScheme.bioBackgroundColor}>
+      <StyledThreeBackground panelOpen={mobilePanel}>
         <Canvas 
           camera={{
             near: 0.1,

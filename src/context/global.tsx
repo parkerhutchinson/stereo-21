@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 const initialState = {
   caseStudyOpen: false,
   mobilePanel: false,
+  slideMeshes: [],
   colorScheme: {
     siteBackgroundColor: 'red',
     bioBackgroundColor: '#0E0718',
@@ -15,6 +16,7 @@ const initialState = {
 type TDefaultData = {
   caseStudyOpen: boolean
   mobilePanel: boolean
+  slideMeshes: any[]
   colorScheme: {
     siteBackgroundColor: string
     bioBackgroundColor: string
@@ -26,7 +28,8 @@ type TDefaultData = {
 export enum GlobalActions {
   UPDATE_COLOR = 'UPDATE_COLOR',
   OPEN_CASE_STUDY = 'OPEN_CASE_STUDY',
-  TOGGLE_MOBILE_PANEL = 'TOGGLE_MOBILE_PANEL'
+  TOGGLE_MOBILE_PANEL = 'TOGGLE_MOBILE_PANEL',
+  ADD_SLIDE_MESH = 'ADD_SLIDE_MESH'
 }
 
 type ColorDispatch = {

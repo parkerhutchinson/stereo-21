@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 interface IStyledThreeBackground {
   panelOpen: boolean
-  backgroundColor: string
 }
 
 export const StyledThreeBackground = styled.div<IStyledThreeBackground>`
