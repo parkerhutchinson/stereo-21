@@ -22,9 +22,8 @@ export const StyledSlides = styled.section<IStyledSlides>`
   transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
   @media screen and (min-width: 1024px) {
     width: ${({toggle}) => toggle ? '75%' : '55%'};
-    background: none;
+    background: ${(p) => p.backgroundColor};
     right: 0;
-    z-index: 3;
   }
 `;
 
