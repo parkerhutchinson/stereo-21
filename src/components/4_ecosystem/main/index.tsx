@@ -9,18 +9,20 @@ interface Props {
 }
 
 const Main = (props:Props) => {
-  const {state: {colorScheme: {bioBackgroundColor, highlight}, caseStudyOpen}} = useContext(GlobalContext);
+  const {state} = useContext(GlobalContext);
   return (
-    <StyledBackground color={bioBackgroundColor}>
+    <StyledBackground color={state.colorScheme.bioBackgroundColor}>
       {props.children}
-      <StyledThreeBGCurtain open={caseStudyOpen}>
-        <EFXMeshBackground 
-          slideMeshFile={''} 
-          highlight={highlight}
-        />
+      <StyledThreeBGCurtain open={state.caseStudyOpen}>
+        {state.slideMesh.url && <EFXMeshBackground
+          slideId={state.slideMesh.slideId}
+          mobilePanel={state.mobilePanel}
+          slideMeshFile={state.slideMesh.url}
+          highlight={state.colorScheme.highlight}
+        />}
       </StyledThreeBGCurtain>
     </StyledBackground>
   )
 }
 
-export default Main;
+export default React.memo(Main);

@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 const initialState = {
   caseStudyOpen: false,
   mobilePanel: false,
-  slideMeshes: [],
+  slideMesh: {slideId: -1, url: ''},
   colorScheme: {
     siteBackgroundColor: 'red',
     bioBackgroundColor: '#0E0718',
@@ -16,7 +16,10 @@ const initialState = {
 type TDefaultData = {
   caseStudyOpen: boolean
   mobilePanel: boolean
-  slideMeshes: any[]
+  slideMesh: {
+    slideId: number, 
+    url: string
+  },
   colorScheme: {
     siteBackgroundColor: string
     bioBackgroundColor: string
@@ -34,7 +37,7 @@ export enum GlobalActions {
 
 type ColorDispatch = {
   type: GlobalActions
-  payload: {}
+  payload: {[key:string]:any}
 }
 
 export const GlobalContext = createContext<{
@@ -47,12 +50,14 @@ export const GlobalContext = createContext<{
 
 const colorSchemeReducer = (state:TDefaultData, action: ColorDispatch) => {
   switch (action.type) {
-    case GlobalActions.UPDATE_COLOR: 
+    case GlobalActions.UPDATE_COLOR:
       return Object.assign({}, state, {colorScheme: {...action.payload}})
-    case GlobalActions.OPEN_CASE_STUDY: 
+    case GlobalActions.OPEN_CASE_STUDY:
       return Object.assign({}, state, {caseStudyOpen: action.payload})
     case GlobalActions.TOGGLE_MOBILE_PANEL:
       return Object.assign({}, state, {mobilePanel: action.payload})
+    case GlobalActions.ADD_SLIDE_MESH:
+      return Object.assign({}, state, {slideMesh: {...action.payload} })
     default:
       return state;
   }

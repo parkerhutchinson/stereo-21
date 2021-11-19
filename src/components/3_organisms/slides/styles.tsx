@@ -14,7 +14,7 @@ export const StyledSlides = styled.section<IStyledSlides>`
   top: 0;
   right: ${(p) => p.panelOpen ? '0%' : '-100%'};
   height: 100vh;
-  background: ${(p) => p.backgroundColor};
+  /* background: ${(p) => p.backgroundColor}; */
   background-size: cover;
   justify-content: space-around;
   align-items: center;
@@ -22,7 +22,7 @@ export const StyledSlides = styled.section<IStyledSlides>`
   transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
   @media screen and (min-width: 1024px) {
     width: ${({toggle}) => toggle ? '75%' : '55%'};
-    background: ${(p) => p.backgroundColor};
+    /* background: ${(p) => p.backgroundColor}; */
     right: 0;
   }
 `;
@@ -41,6 +41,8 @@ export const StyledSlide = styled.div<IStyledSlide>`
   padding: 30px;
   color: white;
   transition: all 1s var(--animation-curve);
+  backdrop-filter: blur(35px);
+  background: ${(p) => p.cardColor};
   @media (min-width: 1024px) {
     top: ${({toggle}) => toggle ? '100px' : '0px'};
   }
@@ -61,21 +63,9 @@ export const StyledSlide = styled.div<IStyledSlide>`
   }
   &:before{
     z-index: 1;
-    background: ${(p) => p.cardColor};
     filter: saturate(1.2);
-    backdrop-filter: blur(35px);
     transition: all 1s;
     border-radius: 10px;
-  }
-  &:after{
-    z-index: 2;
-    background: url('/noise-texture.png') center center;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    top: 1px;
-    left: 1px;
-    mix-blend-mode: multiply;
-    opacity: .18;
   }
   canvas{
     opacity: ${({toggle}) => toggle ? '.2' : '.5'};

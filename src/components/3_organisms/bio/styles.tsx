@@ -24,7 +24,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
     pointer-events: none;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 45%;
     height: 100%;
     display: block;
     z-index: 2;

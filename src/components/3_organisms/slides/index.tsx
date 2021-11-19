@@ -7,7 +7,7 @@ import Slide from "./slide";
 import useKeycode from "@/src/hooks/useKeycode";
 
 
-const { UPDATE_COLOR, OPEN_CASE_STUDY } = GlobalActions;
+const { UPDATE_COLOR, OPEN_CASE_STUDY, ADD_SLIDE_MESH } = GlobalActions;
 
 // recycle type slide fields. logo needs to be converted to string though.
 export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
@@ -74,6 +74,13 @@ const Slides = (props: Slides) => {
           bioTextColor: slides[activeSlide].colorSchemeBioText,
           bioBackgroundColor: slides[activeSlide].colorSchemeBioBG,
           highlight: slides[activeSlide].colorSchemeHighlight
+        }
+      })
+      dispatch({
+        type: ADD_SLIDE_MESH,
+        payload: {
+          slideId: activeSlide, 
+          url: slides[activeSlide].meshScene.fields.file.url
         }
       })
     }
