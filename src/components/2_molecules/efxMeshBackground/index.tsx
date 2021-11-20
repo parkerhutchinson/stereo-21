@@ -17,6 +17,7 @@ interface Props {
 const EFXMeshBackground = (props:Props) => {
   const {slideMeshFile, highlight, mobilePanel, slideId} = props;
   const [urlState, setUrlState] = useState('');
+  const [idState, setIdState] = useState(-1);
   const [fadeOut,setFadeOut] = useState(false);
   const timerRef = useRef<NodeJS.Timer>();
   const styles = useSpring({
@@ -36,6 +37,7 @@ const EFXMeshBackground = (props:Props) => {
     timerRef.current = setTimeout(() => {
       const url = `${slideMeshFile}?${uuid}`;
       setUrlState(url);
+      setIdState(slideId);
     }, 500);
 
     // unmount
@@ -60,7 +62,7 @@ const EFXMeshBackground = (props:Props) => {
             {(urlState.length > 1) && 
               <Model 
                 url={urlState}
-                // slideId={slideId}
+                slideId={idState}
                 cb={() => {setFadeOut(false)}}
               />
             }
