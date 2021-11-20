@@ -7,7 +7,8 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
   const {url, cb, slideId} = props;
   const [mesh,setMesh] = useState<any>({});
   const meshRef = useRef<three.Mesh>();
-  const gltf = useMemo(() => useLoader(GLTFLoader, url), [url]);
+
+  const gltf = useLoader(GLTFLoader, url);
   
   // this is to trigger the fade in for the parent element
   useEffect(() => {
