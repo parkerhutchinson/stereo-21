@@ -9,6 +9,7 @@ export const StyledBackground = styled.div<IStyledBackground>`
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   background: ${(p) => p.color};
   transition: background 1s;
 `;
