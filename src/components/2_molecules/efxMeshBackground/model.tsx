@@ -1,7 +1,8 @@
 import react, { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import * as THREE from "three";
+const THREE = require('three');
+
 
 const Model = (props:{url:string, cb: () => void, slideId: number}) => {
   const {url, cb, slideId} = props;
