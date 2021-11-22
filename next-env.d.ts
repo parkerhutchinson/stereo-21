@@ -1,5 +1,5 @@
 /// <reference types="next" />
-/// <reference path="../node_modules/@types/three/index.d.ts" />
+/// <reference path="./node_modules/@types/three/index.d.ts" />
 /// <reference types="next/types/global" />
 /// <reference types="next/image-types/global" />
 
