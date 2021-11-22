@@ -16,6 +16,7 @@
     "@react-spring/three": "^9.3.0",
     "@react-three/drei": "^7.20.5",
     "@react-three/fiber": "^7.0.17",
+    "@react-three/postprocessing": "^2.0.5",
     "@svgr/core": "^5.5.0",
     "@svgr/webpack": "^5.5.0",
     "@types/react-transition-group": "^4.4.4",

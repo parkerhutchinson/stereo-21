@@ -5,7 +5,8 @@ import {StyledThreeBackground} from "./styles";
 import { useSpring, animated } from 'react-spring';
 import Model from "./model";
 import Lighting from "./lighting";
-
+import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
+import { HalfFloatType } from "three";
 
 interface Props {
   slideMeshFile: string
@@ -67,6 +68,10 @@ const EFXMeshBackground = (props:Props) => {
               />
             }
           </Suspense>
+          <EffectComposer frameBufferType={HalfFloatType}>
+            <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
+            <Vignette eskil={false} offset={0.1} darkness={1.1} opacity={.8} />
+          </EffectComposer>
         </Canvas>
       </StyledThreeBackground>
     </animated.div>
