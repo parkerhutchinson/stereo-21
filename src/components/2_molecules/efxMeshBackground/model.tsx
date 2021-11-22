@@ -1,15 +1,15 @@
 import react, { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import * as three from "three";
+import * as THREE from "three";
 
 const Model = (props:{url:string, cb: () => void, slideId: number}) => {
   const {url, cb, slideId} = props;
   const [mesh,setMesh] = useState<any>({});
   const [gltf, setGltf] = useState<any>();
-  const meshRef = useRef<three.Mesh>();
+  const meshRef = useRef<THREE.Mesh>();
   // setup animation mixer
-  let mixer:three.AnimationMixer;
+  let mixer:THREE.AnimationMixer;
   
   // if the loader runs cache the gltf
   useEffect(() => {
@@ -30,7 +30,7 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
     
     if (typeof mesh[slideId] !== 'undefined') {
       // might need a ref pointer to store this 
-      mixer = new three.AnimationMixer(mesh.scene);
+      mixer = new THREE.AnimationMixer(mesh.scene);
 
       // loop through all animations and play them.
       mesh[slideId].animations.forEach((clip:any) => {
