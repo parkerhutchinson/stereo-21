@@ -1,4 +1,4 @@
-declare module 'react-three-fiber' 
+declare module 'react-three-fiber'
 declare module JSX {
   interface IntrinsicElements {
       "group": any,
