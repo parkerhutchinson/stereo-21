@@ -1,13 +1,13 @@
 import react, { Suspense, useEffect, useRef, useState } from "react";
+import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
+
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import {StyledThreeBackground} from "./styles";
-// import { useSpring } from 'react-spring'
+
 import { useSpring, animated } from 'react-spring';
 import Model from "./model";
 import Lighting from "./lighting";
-import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing'
-const THREE = require('three');
-
+import * as THREE from "three";
 
 interface Props {
   slideMeshFile: string
