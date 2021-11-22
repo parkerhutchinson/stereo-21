@@ -1,12 +1,13 @@
 import react, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import * as THREE from "three";
 import {StyledThreeBackground} from "./styles";
 // import { useSpring } from 'react-spring'
 import { useSpring, animated } from 'react-spring';
 import Model from "./model";
 import Lighting from "./lighting";
-import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing'
-import * as THREE from "three";
+// import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing'
+
 
 interface Props {
   slideMeshFile: string
@@ -68,10 +69,10 @@ const EFXMeshBackground = (props:Props) => {
               />
             }
           </Suspense>
-          <EffectComposer frameBufferType={THREE.HalfFloatType}>
+          {/* <EffectComposer frameBufferType={THREE.HalfFloatType}>
             <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
             <Vignette eskil={false} offset={0.1} darkness={1.1} opacity={.8} />
-          </EffectComposer>
+          </EffectComposer> */}
         </Canvas>
       </StyledThreeBackground>
     </animated.div>
