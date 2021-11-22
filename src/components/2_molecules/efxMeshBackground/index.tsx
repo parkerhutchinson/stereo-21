@@ -5,7 +5,7 @@ import {StyledThreeBackground} from "./styles";
 import { useSpring, animated } from 'react-spring';
 import Model from "./model";
 import Lighting from "./lighting";
-import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
+import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing'
 import { HalfFloatType } from "three";
 
 interface Props {
