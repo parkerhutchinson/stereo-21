@@ -6,13 +6,15 @@ import * as three from "three";
 const Model = (props:{url:string, cb: () => void, slideId: number}) => {
   const {url, cb, slideId} = props;
   const [mesh,setMesh] = useState<any>({});
+  const [gltf, setGltf] = useState<any>();
   const meshRef = useRef<three.Mesh>();
-
-  const gltf = useLoader(GLTFLoader, url);
+  // setup animation mixer
+  let mixer:three.AnimationMixer;
   
   // this is to trigger the fade in for the parent element
   useEffect(() => {
     if (typeof mesh[slideId] === 'undefined' && gltf) {
+      // gltf scenes get cached over time.
       const newMesh = {[slideId]: gltf};
       const newMeshObj = Object.assign({}, mesh, newMesh);
       setMesh(newMeshObj);
@@ -21,13 +23,13 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
   }, [gltf])
 
   useEffect(()=>{
+    if (typeof mesh[slideId] === 'undefined')
+      new GLTFLoader().load(url, setGltf)
+
     if (typeof mesh[slideId] !== 'undefined') {
       cb()
     }
   },[slideId])
-
-  // setup animation mixer
-  let mixer:three.AnimationMixer;
 
   useFrame((state, delta) => {
     // run animations every frame
@@ -36,8 +38,8 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
       typeof meshRef.current !== 'undefined' && 
       typeof meshRef.current.rotation !== 'undefined'
     ) {
-      meshRef.current.rotation.x += .001;
-      meshRef.current.rotation.z += .001;
+      meshRef.current.rotation.y += delta * 0.1;
+      meshRef.current.rotation.x += delta * 0.1;
       mixer?.update(delta)
     }
   });
@@ -56,6 +58,7 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
       {mesh[slideId] && 
         <primitive 
           position={[1, 0, 0]}
+          // pull object scenes from cache
           object={mesh[slideId].scene} 
           scale={1}
           ref={meshRef}
