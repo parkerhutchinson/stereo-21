@@ -4,3 +4,4 @@ export type { TypeMigration, TypeMigrationFields } from "./TypeMigration";
 export type { TypePage, TypePageFields } from "./TypePage";
 export type { TypeSlide, TypeSlideFields } from "./TypeSlide";
 export type { TypeSlides, TypeSlidesFields } from "./TypeSlides";
+export type { TypeSummary, TypeSummaryFields } from "./TypeSummary";
