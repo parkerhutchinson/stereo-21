@@ -10,7 +10,7 @@ const summaryTransformer = (data:TypeSummaryFields) => {
   const {supporting_image} = data;
   return {
     ...data,
-    supportingImage: transformImage(supporting_image);
+    supportingImage: transformImage(supporting_image)
   };
 }
 
