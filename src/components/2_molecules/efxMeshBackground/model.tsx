@@ -48,9 +48,9 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
   useFrame((state, delta) => {
     // rotation animation loop
     if (meshRef.current) {
-      meshRef.current.rotation.z += 0.1;
-      meshRef.current.rotation.y += 0.1;
-      meshRef.current.rotation.x += 0.1;
+      meshRef.current.rotation.z += 0.001;
+      meshRef.current.rotation.y += 0.001;
+      meshRef.current.rotation.x += 0.001;
       mixer?.update(delta)
     }
   });
