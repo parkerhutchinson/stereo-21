@@ -118,7 +118,7 @@ const Slide = (props: Slide) => {
                 {transitionSlide(
                   (styles, item) => item && 
                   <animated.div style={styles}>
-                    <img src={item} />
+                    <img src={item} alt={`logo ${slide.brand}`} />
                   </animated.div>
                 )}
               </StyledLogo>

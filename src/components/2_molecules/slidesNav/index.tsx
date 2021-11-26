@@ -33,6 +33,7 @@ const SlidesNavigation = (props:Props) => {
             borderStyle="begin" 
             color={buttonColor} 
             onClick={() => navCallback('prev')}
+            label="previous slide"
           >
             <ArrowIcon direction="w" color={buttonColor}/>
           </Button>
@@ -40,6 +41,7 @@ const SlidesNavigation = (props:Props) => {
             borderStyle="end" 
             color={buttonColor}
             onClick={() => navCallback('next')}
+            label="next slide"
           >
             <ArrowIcon direction="e" color={buttonColor} />
           </Button>
@@ -49,6 +51,7 @@ const SlidesNavigation = (props:Props) => {
           borderStyle="symetrical" 
           color={buttonColor} 
           onClick={() => navCallback('open')}
+          label="open case study"
         >
           <ArrowIcon direction="se" color={buttonColor} />
         </Button>

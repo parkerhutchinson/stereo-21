@@ -74,7 +74,7 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
       transition: all 1s;
     }
   }
-  h4{
+  h2{
     margin-bottom: 80px;
     font-size: 18px;
   }

@@ -5,6 +5,7 @@ interface Props {
   borderStyle: "begin"|"end"|"symetrical"
   color: string
   children?: ReactNode
+  label: string
   onClick?: () => void
 }
 
@@ -15,6 +16,7 @@ const Button = (props:Props) => {
       cornerType={props.borderStyle} 
       color={props.color} 
       onClick={() => typeof props.onClick !== 'undefined' && props.onClick()}
+      aria-label={props.label}
     >
       {props.children}
     </StyledButton>
