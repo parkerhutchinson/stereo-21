@@ -41,6 +41,7 @@ const Bio = (props:TypeBioFields) => {
               payload: !mobilePanel
             }
           )}
+        aria-label="button show case study slides"
       >
         <IconWork />
       </StyledMobileWorkButton>
