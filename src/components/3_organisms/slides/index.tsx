@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import { GlobalActions, GlobalContext } from "@/src/context/global";
 import { StyledSlides } from "./styles";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
 import useKeycode from "@/src/hooks/useKeycode";
+import { SlideFields } from "./slide";
 
 
 const { UPDATE_COLOR, OPEN_CASE_STUDY, ADD_SLIDE_MESH } = GlobalActions;
-
-// recycle type slide fields. logo needs to be converted to string though.
-export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
 
 export interface Slides {
   slides: SlideFields[]
@@ -18,6 +15,7 @@ export interface Slides {
 
 const Slides = (props: Slides) => {
   const { slides } = props;
+  const SLIDES_LEN = slides.length;
   const [slideOpen, toggleSlideOpen] = useState(false);
   const userInteracted = useRef(false);
   const timerRef = useRef<NodeJS.Timer>();
@@ -25,25 +23,20 @@ const Slides = (props: Slides) => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [keyName] = useKeycode();
 
+  const nextSlide = () => 
+    activeSlide < SLIDES_LEN - 1 
+      ? setActiveSlide(activeSlide + 1) 
+      : setActiveSlide(0);
 
-  const nextSlide = () => {
-    if(activeSlide < slides.length - 1) {
-      setActiveSlide(activeSlide + 1)
-    } else {
-      setActiveSlide(0)
-    };
-  }
+  const prevSlide = () => 
+    activeSlide > 0 
+      ? setActiveSlide(activeSlide - 1) 
+      : setActiveSlide(SLIDES_LEN - 1);
 
-  const prevSlide = () => {
-    if(activeSlide > 0) {
-      setActiveSlide(activeSlide - 1)
-    } else {
-      setActiveSlide(slides.length - 1)
-    };
-  }
+  const stopSlideshow = () => timerRef.current ? window.clearTimeout(timerRef.current) : null;
+
   // slideshow interval
   useIsomorphicLayoutEffect(() => {
-    let slideIndex = 0;
 
     if (timerRef.current)
         window.clearTimeout(timerRef.current)
@@ -51,8 +44,7 @@ const Slides = (props: Slides) => {
     // cancel timer if user has interacted
     if (!userInteracted.current) {
       timerRef.current = setInterval(() => {
-        slideIndex = slideIndex < slides.length - 1 ? slideIndex+=1 : 0;
-        setActiveSlide(slideIndex);
+        nextSlide();
       }, 6000);
     }
     
@@ -62,6 +54,8 @@ const Slides = (props: Slides) => {
         window.clearTimeout(timerRef.current)
     }
   }, [userInteracted]);
+
+  // const 
 
   // change global colorways when slide updates
   useEffect(() => {
@@ -88,13 +82,13 @@ const Slides = (props: Slides) => {
 
   // slides state controls
   const handleSlideNavigation = (action:string) => {
-    if (timerRef.current) window.clearTimeout(timerRef.current);
+    stopSlideshow();
     switch(action) {
       case 'next':
-        nextSlide();
+        prevSlide();
         break;
       case 'prev':
-        prevSlide();
+        nextSlide();
         break;
       case 'open':
         toggleSlideOpen(!slideOpen);
@@ -107,11 +101,11 @@ const Slides = (props: Slides) => {
     switch(keyName) {
       case 'ArrowLeft':
         prevSlide();
-        if (timerRef.current) window.clearTimeout(timerRef.current);
+        stopSlideshow();
         break;
       case 'ArrowRight':
         nextSlide();
-        if (timerRef.current) window.clearTimeout(timerRef.current);
+        stopSlideshow();
         break;
       case 'Escape':
         toggleSlideOpen(!slideOpen);
@@ -119,7 +113,7 @@ const Slides = (props: Slides) => {
         break;
       case 'Enter':
         toggleSlideOpen(true);
-        if (timerRef.current) window.clearTimeout(timerRef.current);
+        stopSlideshow();
         dispatch({type: OPEN_CASE_STUDY, payload: true});
         break;
       default:

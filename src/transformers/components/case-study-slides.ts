@@ -9,18 +9,28 @@ import transformImage from "@/src/transformers/helpers/image";
 const summaryTransformer = (data:TypeSummaryFields) => {
   const {supporting_image} = data;
   return {
-    ...data,
-    supportingImage: transformImage(supporting_image)
+    title: data.title,
+    year: data.year,
+    technology: data.technology,
+    image: transformImage(supporting_image)
   };
 }
 
 const caseStudiesTransformer = (data:TypeSlidesFields):Slides => {
   // removes fields scoping from the array to provide clean props for slides component
-  const slides = data.slideRef.map((slide:Contentful.Entry<TypeSlideFields>) => ({
-    ...slide.fields,
-    logo: transformImage(slide.fields.logo),
-    summary: summaryTransformer(slide.fields.summaryRef.fields)
-  }))
+  const slides = data.slideRef.map((slide:Contentful.Entry<TypeSlideFields>) => {
+    return {
+      brand: slide.fields.brand,
+      meshScene: slide.fields.meshScene,
+      colorSchemeBioBG: slide.fields.colorSchemeBioBG,
+      colorSchemeSeed: slide.fields.colorSchemeSeed,
+      colorSchemeHighlight: slide.fields.colorSchemeHighlight,
+      colorSchemeBioText: slide.fields.colorSchemeBioText,
+      logo: transformImage(slide.fields.logo),
+      summary: summaryTransformer(slide.fields.summaryRef.fields),
+      caseStudyCopy: slide.fields.caseStudyCopy
+    }
+  })
 
   return {
     slides: slides

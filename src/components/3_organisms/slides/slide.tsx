@@ -1,7 +1,9 @@
 import React, { useState, useRef } from "react";
 import {useTransition, animated, useChain, useSpringRef} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
+import { TypeSummaryFields } from "@/src/types/generated/TypeSummary";
 import RichTextBody from "@/src/components/2_molecules/richTextBody";
+import Summary from "@/src/components/2_molecules/summary";
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { 
   StyledSlide, 
@@ -12,9 +14,14 @@ import {
 } from "./styles";
 import SlidesNavigation from "@/src/components/2_molecules/slidesNav";
 import EFXRoundedGradientBorder from "@/src/components/2_molecules/efxRoundedGradientBorder";
-import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 
-export type SlideFields = Omit<TypeSlideFields, 'logo'> & { logo: string };
+type TSummary = {
+  title: string,
+  image: string,
+  year: string,
+  technology?: string[]
+}
+export type SlideFields = Omit<TypeSlideFields, 'logo' | 'summaryRef'> & { logo: string, summary:  TSummary};
 
 export interface Slide {
   slide: SlideFields
@@ -146,10 +153,11 @@ const Slide = (props: Slide) => {
                 <StyledCaseStudyCopy>
                 <Scrollbars
                   universal
-                  // This will activate auto-height
                   autoHeight
                   autoHeightMin={800}
                 >
+                  <h2>{slide.brand}</h2>
+                  <Summary {...slide.summary} color={slide.colorSchemeHighlight}/>
                   <RichTextBody body={slide.caseStudyCopy} propRef={richTextRef}/>
                 </Scrollbars>
                 </StyledCaseStudyCopy>
