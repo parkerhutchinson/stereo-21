@@ -95,7 +95,7 @@ const Slide = (props: Slide) => {
         colorStopTop={slide.colorSchemeHighlight} 
         colorStopBottom="rgba(255 255 255 / 35%)"
       />
-      <StyledCardWrap>
+      
         
         {/* toggle nav richtext transition */}
         {toggleTransition((stylesCopy, toggle) => toggle && 
@@ -108,11 +108,12 @@ const Slide = (props: Slide) => {
           />
         </animated.div>
         )}
-
-        {/* toggle brand card transition into richtext */}
-        {toggleTransition(
-          (stylesCopy,toggle) => 
-            !toggle ?
+      
+      {/* toggle brand card transition into richtext */}
+      {toggleTransition(
+        (stylesCopy,toggle) => 
+          !toggle ?
+          <StyledCardWrap>
             <animated.div style={stylesCopy}>
               <StyledBrandTransitionGroup>
                 {transitionBrand(
@@ -136,30 +137,31 @@ const Slide = (props: Slide) => {
                 navCallback={(e) => handleButtonCLick(e)}
                 toggleNavAnimation={true}
               />
-            </animated.div> : 
-
-            <animated.div style={{...stylesCopy, ...{
-              zIndex: 20, top: '120px', 
-              pointerEvents: richTextEvents}
-            }}>
-              {transitionRichText((styles, item) => item && 
-                <animated.div style={
-                  {...styles, ...{
-                    height:'100%',
-                    width:'100%',
-                    position:'absolute'
-                  }
-                }}>
-                <StyledCaseStudyCopy>
-                  <h2>{slide.brand}</h2>
-                  <Summary {...slide.summary} color={slide.colorSchemeHighlight}/>
-                  <RichTextBody body={slide.caseStudyCopy} propRef={richTextRef}/>
-                </StyledCaseStudyCopy>
-                </animated.div>
-              )}
             </animated.div>
-        )}  
-      </StyledCardWrap>
+          </StyledCardWrap> : 
+          
+          <animated.div style={{...stylesCopy, ...{
+            zIndex: 20, top: '120px', 
+            pointerEvents: richTextEvents}
+          }}>
+            {transitionRichText((styles, item) => item && 
+              <animated.div style={
+                {...styles, ...{
+                  height:'100%',
+                  width:'100%'
+                }
+              }}>
+              <StyledCaseStudyCopy>
+                <h2>{slide.brand}</h2>
+                <Summary {...slide.summary} color={slide.colorSchemeHighlight}/>
+                <RichTextBody body={slide.caseStudyCopy} propRef={richTextRef}/>
+              </StyledCaseStudyCopy>
+              </animated.div>
+            )}
+          </animated.div>
+          
+      )} 
+      
     </StyledSlide>
   )
 }

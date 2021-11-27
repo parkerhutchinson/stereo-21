@@ -10,10 +10,10 @@ interface IStyledSlides {
 export const StyledSlides = styled.section<IStyledSlides>`
   display: flex;
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: ${(p) => p.panelOpen ? '0%' : '-100%'};
-  height: 100vh;
+  height: ${(p) => p.panelOpen ? '100%' : '100vh'};
   /* background: ${(p) => p.backgroundColor}; */
   background-size: cover;
   justify-content: space-around;
@@ -21,7 +21,7 @@ export const StyledSlides = styled.section<IStyledSlides>`
   z-index: 11;
   transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
   @media screen and (min-width: 1024px) {
-    width: ${({toggle}) => toggle ? '75%' : '55%'};
+    width: ${({toggle}) => toggle ? '100%' : '55%'};
     /* background: ${(p) => p.backgroundColor}; */
     right: 0;
   }
@@ -36,8 +36,9 @@ export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
   display: block;
   width: ${({toggle}) => toggle ? '90%' : '80%'};
+  right: 0;
   top: ${({toggle}) => toggle ? '40px' : '0px'};
-  height: ${({toggle}) => toggle ? '100vh' : '75vh'};
+  height: ${({toggle}) => toggle ? '100%' : '75vh'};;
   padding: 30px;
   color: white;
   border-radius: 10px;
@@ -52,7 +53,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     top: ${({toggle}) => toggle ? '100px' : '0px'};
   }
   @media (min-width: 1360px) {
-    width: ${({toggle}) => toggle ? '800px' : '500px'};
+    width: ${({toggle}) => toggle ? '1000px' : '500px'};
   }
   @media (min-width: 1800px) {
     width: ${({toggle}) => toggle ? '1000px' : '750px'};
@@ -86,6 +87,7 @@ export const StyledCardWrap = styled.div`
   position: absolute;
   height: calc(100% - 60px);
   width: calc(100% - 60px);
+  top: 30px;
   z-index: 11;
   & > div{
     position: absolute;
@@ -102,7 +104,8 @@ export const StyledCardWrap = styled.div`
 export const StyledBrandTransitionGroup = styled.div`
   position: relative;
   width: 100%;
-  height: 50px;
+  height: auto;
+  top: 0;
   h2{
     position: absolute;
     top: 0;
@@ -115,14 +118,12 @@ export const StyledBrandTransitionGroup = styled.div`
 
 export const StyledCaseStudyCopy = styled.div`
   opacity: 1;
-  overflow: hidden;
   height: 100%;
   top: 0;
   position: relative;
   display: block;
   max-width: 100%;
   overflow-x: hidden;
-  overflow-y: hidden;
   @media screen and (min-width: 1024px) {
     max-width: 70%;
     left: 15%;
@@ -153,6 +154,7 @@ export const StyledLogo = styled.div`
   cursor: pointer;
   position: relative;
   padding-bottom: calc(367 / 463 * 100%);
+  margin-top: 40px;
   div{
     position: absolute;
     top: 0;
