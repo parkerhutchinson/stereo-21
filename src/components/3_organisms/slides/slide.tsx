@@ -1,19 +1,17 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import {useTransition, animated, useChain, useSpringRef} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
-import { TypeSummaryFields } from "@/src/types/generated/TypeSummary";
-import RichTextBody from "@/src/components/2_molecules/richTextBody";
-import Summary from "@/src/components/2_molecules/summary";
-import { Scrollbars } from 'react-custom-scrollbars-2';
 import { 
   StyledSlide, 
-  StyledCaseStudyCopy, 
   StyledLogo, 
   StyledCardWrap,
   StyledBrandTransitionGroup,
 } from "./styles";
+import SlideArticle from "@/src/components/3_organisms/slides/slide-article";
 import SlidesNavigation from "@/src/components/2_molecules/slidesNav";
 import EFXRoundedGradientBorder from "@/src/components/2_molecules/efxRoundedGradientBorder";
+import { useHeight } from "@/src/hooks/useHeight";
+import SlideCard from "./slide-card";
 
 type TSummary = {
   title: string,
@@ -34,7 +32,8 @@ const Slide = (props: Slide) => {
   const richTextTransRef = useSpringRef();
   const slideTransRef = useSpringRef();
   const richTextRef = useRef<HTMLDivElement>();
-  const [scrollHeight, setScrollHeight] = useState(200);
+  const [heightRef, height] = useHeight();
+
 
   const transitionBrand = useTransition(slide.brand, {
     native: true,
@@ -62,15 +61,6 @@ const Slide = (props: Slide) => {
     key: slide.logo
   });
 
-  const transitionRichText = useTransition(slide.logo, {
-    native: true,
-    from: { opacity: 0, transform: 'translate3d(0px,50px,0)'},
-    enter: { opacity: 1, transform: 'translate3d(0px,0p,0)' },
-    leave: { opacity: 0 },
-    duration: 800,
-    ref:richTextTransRef,
-    key: slide.logo
-  });
 
   useChain(toggleSlide ? [richTextTransRef, slideTransRef] : [slideTransRef, richTextTransRef], [0, 1])
 
@@ -80,86 +70,29 @@ const Slide = (props: Slide) => {
 
   const richTextEvents = toggleSlide ? 'auto' : 'none';
 
-
-  // useIsomorphicLayoutEffect(() => {
-  //   if (typeof richTextRef.current !== 'undefined' && richTextRef) {
-  //     const {height} = richTextRef.current.getBoundingClientRect();
-  //     setScrollHeight(height);
-  //   }
-  // }, [richTextRef.current])
-
   // change global colorways when slide updates
   return (
-    <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggleSlide}>
+    <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggleSlide} ref={heightRef}>
       <EFXRoundedGradientBorder 
         colorStopTop={slide.colorSchemeHighlight} 
         colorStopBottom="rgba(255 255 255 / 35%)"
       />
       
-        
-        {/* toggle nav richtext transition */}
-        {toggleTransition((stylesCopy, toggle) => toggle && 
-        <animated.div style={{...stylesCopy, ...{zIndex: 1, pointerEvents: richTextEvents}}}>
-          <SlidesNavigation 
-            buttonColor={slide.colorSchemeHighlight} 
-            iconColor={slide.colorSchemeBioBG}
-            navCallback={(e) => handleButtonCLick(e)}
-            toggleNavAnimation={toggle}
-          />
-        </animated.div>
-        )}
+      {/* toggle nav */}
+      {toggleTransition((stylesCopy, toggle) => toggle && 
+      <animated.div style={{...stylesCopy, ...{zIndex: 1, pointerEvents: richTextEvents}}}>
+        <SlidesNavigation 
+          buttonColor={slide.colorSchemeHighlight} 
+          iconColor={slide.colorSchemeBioBG}
+          navCallback={(e) => handleButtonCLick(e)}
+          toggleNavAnimation={toggle}
+        />
+      </animated.div>
+      )}
       
-      {/* toggle brand card transition into richtext */}
+      {/* toggle card transition into article */}
       {toggleTransition(
-        (stylesCopy,toggle) => 
-          !toggle ?
-          <StyledCardWrap>
-            <animated.div style={stylesCopy}>
-              <StyledBrandTransitionGroup>
-                {transitionBrand(
-                  (styles, item) => item && 
-                    <animated.h2 style={styles}>{item}</animated.h2>
-                )}
-              </StyledBrandTransitionGroup>
-
-              <StyledLogo onClick={() => handleButtonCLick('open')}>
-                {transitionSlide(
-                  (styles, item) => item && 
-                  <animated.div style={styles}>
-                    <img src={item} alt={`logo ${slide.brand}`} />
-                  </animated.div>
-                )}
-              </StyledLogo>
-
-              <SlidesNavigation 
-                buttonColor={slide.colorSchemeHighlight} 
-                iconColor={slide.colorSchemeBioBG}
-                navCallback={(e) => handleButtonCLick(e)}
-                toggleNavAnimation={true}
-              />
-            </animated.div>
-          </StyledCardWrap> : 
-          
-          <animated.div style={{...stylesCopy, ...{
-            zIndex: 20, top: '120px', 
-            pointerEvents: richTextEvents}
-          }}>
-            {transitionRichText((styles, item) => item && 
-              <animated.div style={
-                {...styles, ...{
-                  height:'100%',
-                  width:'100%'
-                }
-              }}>
-              <StyledCaseStudyCopy>
-                <h2>{slide.brand}</h2>
-                <Summary {...slide.summary} color={slide.colorSchemeHighlight}/>
-                <RichTextBody body={slide.caseStudyCopy} propRef={richTextRef}/>
-              </StyledCaseStudyCopy>
-              </animated.div>
-            )}
-          </animated.div>
-          
+        (stylesCopy,toggle) => !toggle ? <SlideCard {...slide} /> : <SlideArticle {...slide} />  
       )} 
       
     </StyledSlide>
