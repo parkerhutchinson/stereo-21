@@ -151,15 +151,9 @@ const Slide = (props: Slide) => {
                   }
                 }}>
                 <StyledCaseStudyCopy>
-                <Scrollbars
-                  universal
-                  autoHeight
-                  autoHeightMin={800}
-                >
                   <h2>{slide.brand}</h2>
                   <Summary {...slide.summary} color={slide.colorSchemeHighlight}/>
                   <RichTextBody body={slide.caseStudyCopy} propRef={richTextRef}/>
-                </Scrollbars>
                 </StyledCaseStudyCopy>
                 </animated.div>
               )}

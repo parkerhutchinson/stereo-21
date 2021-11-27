@@ -1,23 +1,17 @@
 import styled from 'styled-components';
 
 
-interface StyledProps {
-  image: string
-}
-export const StyledSummary = styled.article<StyledProps>`
+export const StyledSummary = styled.article`
   width: 100%;
   position: relative;
-  padding-bottom: 30%;
-  &:before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: baseline;
+  img{
+    position: relative;
     display: block;
     width: 100%;
-    height: 100%;
-    background: ${({image}) => `url('${image}') no-repeat center`};
-    background-size: cover;
+    height: auot;
     filter: grayscale(100%);
     z-index: 0;
   }
@@ -31,10 +25,12 @@ export const StyledSummaryStats = styled.div<StyledStatsProps>`
   background: ${(p) => p.backgroundColor};
   padding: 40px;
   color: white;
-  position: relative;
+  position: absolute;
   z-index: 1;
-  width: 80%;
+  width: 60%;
   display: flex;
+  bottom: 0;
+  right: 0;
   justify-content: space-between;
   h3{
     text-transform: uppercase;

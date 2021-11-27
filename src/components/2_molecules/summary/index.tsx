@@ -10,7 +10,8 @@ interface Props {
 const Summary = (props:any) => {
   const {image, color, technology, year} = props;
   return (
-    <StyledSummary image={image}>
+    <StyledSummary>
+      <img src={image} alt="summary image" /> 
       <StyledSummaryStats backgroundColor={color}>
         <div>
           <h3>Year</h3>

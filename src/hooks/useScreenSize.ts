@@ -6,6 +6,7 @@ const useScreenSize = () => {
 
   useIsomorphicLayoutEffect(()=>{
     if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth)
       window.addEventListener('resize', () => {
         setWindowWidth(window.innerWidth)
       })

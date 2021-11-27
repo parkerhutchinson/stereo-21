@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import hexRgb from 'hex-rgb';
 
-interface IStyledBioTab {
+interface IStyledCopyWrapper {
   backgroundColor: string
   caseStudyOpen: boolean
 }
@@ -11,38 +11,25 @@ const getRGBABackground = (color:string) => {
   return `${red}, ${green}, ${blue}`
 } 
 
-export const StyledBioTab = styled.article<IStyledBioTab>`
+export const StyledBioTab = styled.article`
   width: 100%;
   transition: all 1s var(--animation-curve);
   color: white;
   z-index: 1;
   position: relative;
-  &:after{
-    content: '';
-    display: none;
-    position: fixed;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-    width: 45%;
-    height: 100%;
-    display: block;
-    z-index: 2;
-    background: ${(p) => p.caseStudyOpen ? `rgba(${getRGBABackground(p.backgroundColor)}, .7)` : `rgba(${getRGBABackground(p.backgroundColor)}, 0)`};
-    backdrop-filter: ${(p) => p.caseStudyOpen ? 'blur(25px)' : 'blur(0px)'};
-    transition: all 1s;
-  }
   @media screen and (min-width: 1024px) {
     width: 45%;
   }
 `;
 
-export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>>`
+export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
   max-width: 90%;
   margin: 0 auto;
   padding: 80px 0;
   position: relative;
   z-index: 2;
+  opacity: ${(p) => p.caseStudyOpen ? '0' : '1'};
+  transition: all 1s;
   @media screen and (min-width: 800px) {
     max-width: 70%;
   }
@@ -63,6 +50,9 @@ export const StyledCopyWrapper = styled.div<Omit<IStyledBioTab, 'caseStudyOpen'>
     position: relative;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
+    @media screen and (min-width: 1800px) {
+      font-size: 62px;
+    }
     &:before{
       content: '';
       width: 50px;

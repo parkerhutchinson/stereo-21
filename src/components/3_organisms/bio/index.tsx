@@ -7,7 +7,7 @@ import {TypeBioFields} from "@/src/types/generated/TypeBio";
 import RichTextBody from "@/src/components/2_molecules/richTextBody";
 import ExternalCTA from "@/src/components/2_molecules/externalCta";
 import IconWork from "@/public/icn-work.svg";
-
+import useScreenSize from "@/src/hooks/useScreenSize";
 
 const CTA_DATA = [
   {
@@ -25,43 +25,44 @@ const CTA_DATA = [
 ]
 
 const Bio = (props:TypeBioFields) => {
+  const [winWidth] = useScreenSize();
   const {body} = props;
-  const {state: {colorScheme, caseStudyOpen, mobilePanel}, dispatch} = useContext(GlobalContext);
+  const {
+    state: {
+      colorScheme,
+      caseStudyOpen,
+      mobilePanel
+    }, 
+    dispatch
+  } = useContext(GlobalContext);
   
   return (
-    <StyledBioTab 
-      backgroundColor={colorScheme?.bioBackgroundColor}
-      caseStudyOpen={caseStudyOpen}
-    >
+    <StyledBioTab>
       <StyledMobileWorkButton 
         onClick={
-          () => dispatch(
-            {
-              type: GlobalActions.TOGGLE_MOBILE_PANEL, 
-              payload: !mobilePanel
-            }
-          )}
+          () => {
+            dispatch(
+              {
+                type: GlobalActions.TOGGLE_MOBILE_PANEL, 
+                payload: !mobilePanel
+              }
+            )
+          }
+        }
         aria-label="button show case study slides"
       >
         <IconWork />
       </StyledMobileWorkButton>
       
-      <StereoLogo textColor={colorScheme.bioTextColor} backgroundColor={colorScheme.bioBackgroundColor} />
-      <StyledCopyWrapper backgroundColor={colorScheme.highlight}>
+      <StereoLogo 
+        textColor={colorScheme.bioTextColor} 
+        backgroundColor={colorScheme.bioBackgroundColor} 
+      />
+      <StyledCopyWrapper 
+        backgroundColor={colorScheme.highlight} 
+        caseStudyOpen={winWidth < 1024 ? mobilePanel : caseStudyOpen}
+      >
         <RichTextBody body={body} />
-        {/* <StyledCTAGroup>
-          {
-            CTA_DATA.map((cta:any, index:number) => 
-                <ExternalCTA 
-                  icon={cta.icon} 
-                  link={cta.link} 
-                  highlight={colorScheme.highlight}
-                  bioBg={colorScheme.bioBackgroundColor}
-                  key={index}
-                />
-              )
-          }
-        </StyledCTAGroup> */}
       </StyledCopyWrapper>
     </StyledBioTab>
   )

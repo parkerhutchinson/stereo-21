@@ -40,7 +40,12 @@ export const StyledSlide = styled.div<IStyledSlide>`
   height: ${({toggle}) => toggle ? '100vh' : '75vh'};
   padding: 30px;
   color: white;
-  transition: all 1s var(--animation-curve);
+  border-radius: 10px;
+  transition: 
+    width 1s var(--animation-curve),
+    top 1s var(--animation-curve),
+    height 1s var(--animation-curve),
+    background 1s linear;
   backdrop-filter: blur(35px);
   background: ${(p) => p.cardColor};
   @media (min-width: 1024px) {
