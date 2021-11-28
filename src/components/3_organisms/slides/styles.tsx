@@ -35,18 +35,14 @@ interface IStyledSlide {
 export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
   display: block;
-  width: ${({toggle}) => toggle ? '90%' : '80%'};
+  width: 80%;
   right: 0;
-  top: ${({toggle}) => toggle ? '40px' : '0px'};
-  height: ${({toggle}) => toggle ? '100%' : '75vh'};;
+  top: 0px;
+  height: 75vh;
   padding: 30px;
   color: white;
   border-radius: 10px;
-  transition: 
-    width 1s var(--animation-curve),
-    top 1s var(--animation-curve),
-    height 1s var(--animation-curve),
-    background 1s linear;
+  transition: background 1s linear;
   backdrop-filter: blur(35px);
   background: ${(p) => p.cardColor};
   @media (min-width: 1024px) {
@@ -89,16 +85,9 @@ export const StyledCardWrap = styled.div`
   width: calc(100% - 60px);
   top: 30px;
   z-index: 11;
-  & > div{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const StyledBrandTransitionGroup = styled.div`

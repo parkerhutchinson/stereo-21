@@ -3,14 +3,10 @@ import {useTransition, animated, useChain, useSpringRef} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import { 
   StyledSlide, 
-  StyledLogo, 
-  StyledCardWrap,
-  StyledBrandTransitionGroup,
 } from "./styles";
 import SlideArticle from "@/src/components/3_organisms/slides/slide-article";
 import SlidesNavigation from "@/src/components/2_molecules/slidesNav";
 import EFXRoundedGradientBorder from "@/src/components/2_molecules/efxRoundedGradientBorder";
-import { useHeight } from "@/src/hooks/useHeight";
 import SlideCard from "./slide-card";
 
 type TSummary = {
@@ -31,18 +27,6 @@ const Slide = (props: Slide) => {
   const { slide, navCallback, toggleSlide } = props;
   const richTextTransRef = useSpringRef();
   const slideTransRef = useSpringRef();
-  const richTextRef = useRef<HTMLDivElement>();
-  const [heightRef, height] = useHeight();
-
-
-  const transitionBrand = useTransition(slide.brand, {
-    native: true,
-    from: { opacity: 0, transform: 'translate3d(0, -20px, 0)'},
-    enter: { opacity: 1, transform: 'translate3d(0, 0px, 0)'},
-    leave: { opacity: 0, transform: 'translate3d(0, 20px, 0)'},
-    duration: 800,
-    key: slide.brand
-  });
 
   const toggleTransition = useTransition(toggleSlide, {
     native: true,
@@ -51,16 +35,6 @@ const Slide = (props: Slide) => {
     leave: {opacity: 0, transform: 'translate3d(0, 20px, 0)'},
     ref: slideTransRef,
   });
-
-  const transitionSlide = useTransition(slide.logo, {
-    native: true,
-    from: { opacity: 0, transform: 'rotate(20deg)', filter: 'blur(20px)' },
-    enter: { opacity: 1, transform: 'rotate(0deg)', filter: 'blur(0px)' },
-    leave: { opacity: 0, filter: 'blur(20px)' },
-    duration: 1000,
-    key: slide.logo
-  });
-
 
   useChain(toggleSlide ? [richTextTransRef, slideTransRef] : [slideTransRef, richTextTransRef], [0, 1])
 
@@ -72,7 +46,7 @@ const Slide = (props: Slide) => {
 
   // change global colorways when slide updates
   return (
-    <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggleSlide} ref={heightRef}>
+    <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggleSlide}>
       <EFXRoundedGradientBorder 
         colorStopTop={slide.colorSchemeHighlight} 
         colorStopBottom="rgba(255 255 255 / 35%)"
@@ -80,19 +54,31 @@ const Slide = (props: Slide) => {
       
       {/* toggle nav */}
       {toggleTransition((stylesCopy, toggle) => toggle && 
-      <animated.div style={{...stylesCopy, ...{zIndex: 1, pointerEvents: richTextEvents}}}>
-        <SlidesNavigation 
-          buttonColor={slide.colorSchemeHighlight} 
-          iconColor={slide.colorSchemeBioBG}
-          navCallback={(e) => handleButtonCLick(e)}
-          toggleNavAnimation={toggle}
-        />
-      </animated.div>
+      <SlidesNavigation 
+        buttonColor={slide.colorSchemeHighlight} 
+        iconColor={slide.colorSchemeBioBG}
+        navCallback={(e) => handleButtonCLick(e)}
+        toggleNavAnimation={toggle}
+        style={{...stylesCopy, ...{zIndex: 1, pointerEvents: richTextEvents}}}
+      />
       )}
       
       {/* toggle card transition into article */}
       {toggleTransition(
-        (stylesCopy,toggle) => !toggle ? <SlideCard {...slide} /> : <SlideArticle {...slide} />  
+        (stylesCopy,toggle) => !toggle ? 
+        
+        <SlideCard 
+          brand={slide.brand}
+          iconColor={slide.colorSchemeHighlight}
+          buttonColor={slide.colorSchemeHighlight}
+          logo={slide.logo}
+          style={{...stylesCopy, ...{zIndex: 20}}}
+        />
+        
+        : 
+        
+        <SlideArticle {...slide} style={stylesCopy}/>
+
       )} 
       
     </StyledSlide>

@@ -9,6 +9,7 @@ interface Props {
   iconColor: string
   navCallback: (action:string) => void
   toggleNavAnimation: boolean
+  style?: any
 }
 
 
@@ -25,7 +26,7 @@ const SlidesNavigation = (props:Props) => {
   })
 
   return (
-    <StyledNav>
+    <StyledNav as={animated.nav} style={props.style}>
       {navigationAnimation((styles,item) => item && 
       <animated.div style={styles}>
         <div>

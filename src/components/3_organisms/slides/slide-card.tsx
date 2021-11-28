@@ -12,6 +12,7 @@ interface Props {
   logo: string
   iconColor: string
   buttonColor: string
+  style: any
 }
 
 const SlideCard = (props:Props) => {
@@ -36,12 +37,12 @@ const SlideCard = (props:Props) => {
   });
 
   const handleButtonCLick = (action:string) => {
-    navCallback(action);
+    // navCallback(action);
   }
 
   return (
-    <StyledCardWrap>
-      <animated.div style={stylesCopy}>
+    <StyledCardWrap as={animated.div} style={props.style}>
+      
         <StyledBrandTransitionGroup>
           {transitionBrand(
             (styles, item) => item && 
@@ -64,7 +65,6 @@ const SlideCard = (props:Props) => {
           navCallback={(e) => handleButtonCLick(e)}
           toggleNavAnimation={true}
         />
-      </animated.div>
     </StyledCardWrap>
   );
 }
