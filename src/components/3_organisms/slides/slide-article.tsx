@@ -20,15 +20,15 @@ interface Props {
   }
 }
 const SlideArticle = (props:any) => {
-  const {logo, brand, caseStudy, summaryColor, summary} = props;
+  const {logo, brand, caseStudy, summaryColor, summary, style} = props;
   const richTextRef = useRef<HTMLDivElement>();
   const [heightRef, height] = useHeight();
 
 
   const transitionRichText = useTransition(logo, {
-    from: { opacity: 0, height: 200},
-    enter: { opacity: 1, height: height},
-    leave: { opacity: 0, height: 200},
+    from: { opacity: 0},
+    enter: { opacity: 1},
+    leave: { opacity: 0},
     duration: 2000,
     key: logo
   });

@@ -25,18 +25,13 @@ export interface Slide {
 
 const Slide = (props: Slide) => {
   const { slide, navCallback, toggleSlide } = props;
-  const richTextTransRef = useSpringRef();
-  const slideTransRef = useSpringRef();
 
   const toggleTransition = useTransition(toggleSlide, {
-    native: true,
-    from: {opacity: 0, transform: 'translate3d(0, 100px, 0)'},
-    enter: {opacity: 1, transform: 'translate3d(0, 0px, 0)'},
-    leave: {opacity: 0, transform: 'translate3d(0, 20px, 0)'},
-    ref: slideTransRef,
+    from: {opacity: 0},
+    enter: {opacity: 1},
+    leave: {opacity: 0},
+    duration: 1000,
   });
-
-  useChain(toggleSlide ? [richTextTransRef, slideTransRef] : [slideTransRef, richTextTransRef], [0, 1])
 
   const handleButtonCLick = (action:string) => {
     navCallback(action);
@@ -65,21 +60,17 @@ const Slide = (props: Slide) => {
       
       {/* toggle card transition into article */}
       {toggleTransition(
-        (stylesCopy,toggle) => !toggle ? 
-        
+        (styles,toggle) => !toggle ?
         <SlideCard 
           brand={slide.brand}
           iconColor={slide.colorSchemeHighlight}
           buttonColor={slide.colorSchemeHighlight}
           logo={slide.logo}
-          style={{...stylesCopy, ...{zIndex: 20}}}
+          style={{...styles, ...{zIndex: 20}}}
           navCallback={(e) => handleButtonCLick(e)}
-        />
-        
-        : 
-        
-        <SlideArticle {...slide} style={stylesCopy}/>
-
+        /> : <animated.div style={styles}>
+              <SlideArticle {...slide} />
+            </animated.div>
       )} 
       
     </StyledSlide>

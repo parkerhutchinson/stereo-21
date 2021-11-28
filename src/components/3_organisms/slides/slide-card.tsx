@@ -17,7 +17,7 @@ interface Props {
 }
 
 const SlideCard = (props:Props) => {
-  const {brand, iconColor, buttonColor, logo, navCallback} = props;
+  const {brand, iconColor, buttonColor, logo, navCallback, style} = props;
   
   const transitionBrand = useTransition(brand, {
     native: true,
@@ -42,7 +42,7 @@ const SlideCard = (props:Props) => {
   }
 
   return (
-    <StyledCardWrap as={animated.div} style={props.style}>
+    <StyledCardWrap as={animated.div} style={style}>
     
       <StyledBrandTransitionGroup>
         {transitionBrand(
