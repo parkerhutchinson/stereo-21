@@ -13,10 +13,11 @@ interface Props {
   iconColor: string
   buttonColor: string
   style: any
+  navCallback: (action:string) => void
 }
 
 const SlideCard = (props:Props) => {
-  const {brand, iconColor, buttonColor, logo} = props;
+  const {brand, iconColor, buttonColor, logo, navCallback} = props;
   
   const transitionBrand = useTransition(brand, {
     native: true,
@@ -37,34 +38,34 @@ const SlideCard = (props:Props) => {
   });
 
   const handleButtonCLick = (action:string) => {
-    // navCallback(action);
+    navCallback(action);
   }
 
   return (
     <StyledCardWrap as={animated.div} style={props.style}>
-      
-        <StyledBrandTransitionGroup>
-          {transitionBrand(
-            (styles, item) => item && 
-              <animated.h2 style={styles}>{item}</animated.h2>
-          )}
-        </StyledBrandTransitionGroup>
+    
+      <StyledBrandTransitionGroup>
+        {transitionBrand(
+          (styles, item) => item && 
+            <animated.h2 style={styles}>{item}</animated.h2>
+        )}
+      </StyledBrandTransitionGroup>
 
-        <StyledLogo onClick={() => handleButtonCLick('open')}>
-          {transitionSlide(
-            (styles, item) => item && 
-            <animated.div style={styles}>
-              <img src={item} alt={`logo ${brand}`} />
-            </animated.div>
-          )}
-        </StyledLogo>
+      <StyledLogo onClick={() => handleButtonCLick('open')}>
+        {transitionSlide(
+          (styles, item) => item && 
+          <animated.div style={styles}>
+            <img src={item} alt={`logo ${brand}`} />
+          </animated.div>
+        )}
+      </StyledLogo>
 
-        <SlidesNavigation 
-          buttonColor={buttonColor} 
-          iconColor={iconColor}
-          navCallback={(e) => handleButtonCLick(e)}
-          toggleNavAnimation={true}
-        />
+      <SlidesNavigation 
+        buttonColor={buttonColor} 
+        iconColor={iconColor}
+        navCallback={(e) => handleButtonCLick(e)}
+        toggleNavAnimation={true}
+      />
     </StyledCardWrap>
   );
 }

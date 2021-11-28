@@ -73,6 +73,7 @@ const Slide = (props: Slide) => {
           buttonColor={slide.colorSchemeHighlight}
           logo={slide.logo}
           style={{...stylesCopy, ...{zIndex: 20}}}
+          navCallback={(e) => handleButtonCLick(e)}
         />
         
         : 

@@ -36,7 +36,6 @@ const SlideArticle = (props:any) => {
   return (
     <>
       {transitionRichText((styles, item) => item && 
-        //@ts-ignore
         <StyledCaseStudyCopy as={animated.div} style={styles}>
           <h2>{brand}</h2>
           <Summary {...summary} color={summaryColor}/>
