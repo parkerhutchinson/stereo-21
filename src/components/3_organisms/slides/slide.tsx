@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import {useTransition, animated, useChain, useSpringRef} from 'react-spring';
+import React, { useRef, useState } from "react";
+import {useTransition, animated, useChain, useSpringRef, useSpring} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import { 
   StyledSlide, 
@@ -25,6 +25,7 @@ export interface Slide {
 
 const Slide = (props: Slide) => {
   const { slide, navCallback, toggleSlide } = props;
+  const [heightState,setHeightState] = useState(0)
 
   const toggleTransition = useTransition(toggleSlide, {
     from: {opacity: 0},
@@ -33,15 +34,21 @@ const Slide = (props: Slide) => {
     duration: 1000,
   });
 
+  
   const handleButtonCLick = (action:string) => {
     navCallback(action);
   }
 
+  console.log(heightState)
   const richTextEvents = toggleSlide ? 'auto' : 'none';
 
   // change global colorways when slide updates
   return (
-    <StyledSlide cardColor={slide.colorSchemeSeed} toggle={toggleSlide}>
+    <StyledSlide 
+      cardcolor={slide.colorSchemeSeed} 
+      toggle={toggleSlide}
+      style={{height: toggleSlide ? `${heightState + 200}px` : '75vh'}}
+    >
       <EFXRoundedGradientBorder 
         colorStopTop={slide.colorSchemeHighlight} 
         colorStopBottom="rgba(255 255 255 / 35%)"
@@ -68,10 +75,16 @@ const Slide = (props: Slide) => {
           logo={slide.logo}
           style={{...styles, ...{zIndex: 20}}}
           navCallback={(e) => handleButtonCLick(e)}
-        /> : <animated.div style={styles}>
-              <SlideArticle {...slide} />
-            </animated.div>
-      )} 
+        /> : 
+        <animated.div style={styles}>
+          <SlideArticle 
+            {...slide} 
+            heightCallback={
+              (height:number) => setHeightState(height)
+            } 
+          />
+        </animated.div>
+      )}      
       
     </StyledSlide>
   )

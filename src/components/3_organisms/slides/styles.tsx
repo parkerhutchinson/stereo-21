@@ -8,13 +8,12 @@ interface IStyledSlides {
 }
 
 export const StyledSlides = styled.section<IStyledSlides>`
-  display: flex;
+  display: block;
   width: 100%;
   position: absolute;
   top: 0;
   right: ${(p) => p.panelOpen ? '0%' : '-100%'};
   height: ${(p) => p.panelOpen ? '100%' : '100vh'};
-  /* background: ${(p) => p.backgroundColor}; */
   background-size: cover;
   justify-content: space-around;
   align-items: center;
@@ -22,13 +21,12 @@ export const StyledSlides = styled.section<IStyledSlides>`
   transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
   @media screen and (min-width: 1024px) {
     width: ${({toggle}) => toggle ? '100%' : '55%'};
-    /* background: ${(p) => p.backgroundColor}; */
     right: 0;
   }
 `;
 
 interface IStyledSlide {
-  cardColor: string
+  cardcolor: string
   toggle: boolean
 }
 
@@ -38,13 +36,12 @@ export const StyledSlide = styled.div<IStyledSlide>`
   width: 80%;
   right: 0;
   top: 0px;
-  height: 75vh;
   padding: 30px;
   color: white;
   border-radius: 10px;
-  transition: background 1s linear;
+  transition: all .8s;
   backdrop-filter: blur(35px);
-  background: ${(p) => p.cardColor};
+  background: ${(p) => p.cardcolor};
   @media (min-width: 1024px) {
     top: ${({toggle}) => toggle ? '100px' : '0px'};
   }

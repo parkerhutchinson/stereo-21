@@ -43,7 +43,6 @@ const SlideCard = (props:Props) => {
 
   return (
     <StyledCardWrap as={animated.div} style={style}>
-    
       <StyledBrandTransitionGroup>
         {transitionBrand(
           (styles, item) => item && 

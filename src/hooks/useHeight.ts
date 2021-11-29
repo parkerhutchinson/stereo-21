@@ -3,7 +3,7 @@ import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
 
 // Resize observer hook from css-tricks
 export function useHeight({ on = true /* no value means on */ } = {} as any) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<any>(null);
   const [height, set] = useState(0);
   const heightRef = useRef(height);
   const [ro] = useState(
