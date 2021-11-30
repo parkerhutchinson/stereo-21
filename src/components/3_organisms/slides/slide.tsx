@@ -39,7 +39,6 @@ const Slide = (props: Slide) => {
     navCallback(action);
   }
 
-  console.log(heightState)
   const richTextEvents = toggleSlide ? 'auto' : 'none';
 
   // change global colorways when slide updates
@@ -78,7 +77,8 @@ const Slide = (props: Slide) => {
         /> : 
         <animated.div style={styles}>
           <SlideArticle 
-            {...slide} 
+            {...slide}
+            summaryColor={slide.colorSchemeHighlight}
             heightCallback={
               (height:number) => setHeightState(height)
             } 

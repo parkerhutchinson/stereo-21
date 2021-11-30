@@ -5,7 +5,7 @@ interface IStyledThreeBackground {
 }
 
 export const StyledThreeBackground = styled.div<IStyledThreeBackground>`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: ${(p) => p.panelOpen ? '0%' : '-100%'};
   width: 100%;

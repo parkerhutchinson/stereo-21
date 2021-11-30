@@ -13,12 +13,11 @@ export const StyledSlides = styled.section<IStyledSlides>`
   position: absolute;
   top: 0;
   right: ${(p) => p.panelOpen ? '0%' : '-100%'};
-  height: ${(p) => p.panelOpen ? '100%' : '100vh'};
   background-size: cover;
-  justify-content: space-around;
-  align-items: center;
   z-index: 11;
+  padding-bottom: 200px;
   transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
+  overflow: hidden;
   @media screen and (min-width: 1024px) {
     width: ${({toggle}) => toggle ? '100%' : '55%'};
     right: 0;
@@ -32,6 +31,7 @@ interface IStyledSlide {
 
 export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
+  margin: 100px auto 100px;
   display: block;
   width: 80%;
   right: 0;
@@ -39,7 +39,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   padding: 30px;
   color: white;
   border-radius: 10px;
-  transition: all .8s;
+  transition: height .8s, width 1s var(--animation-curve), top 1s var(--animation-curve), background 1s;
   backdrop-filter: blur(35px);
   background: ${(p) => p.cardcolor};
   @media (min-width: 1024px) {
@@ -103,7 +103,6 @@ export const StyledBrandTransitionGroup = styled.div`
 
 
 export const StyledCaseStudyCopy = styled.div`
-  opacity: 1;
   height: 100%;
   top: 0;
   position: relative;
