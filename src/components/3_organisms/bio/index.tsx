@@ -21,7 +21,7 @@ const Bio = (props:TypeBioFields) => {
   } = useContext(GlobalContext);
   
   return (
-    <StyledBioTab>
+    <StyledBioTab caseStudyOpen={caseStudyOpen}>
       <StyledMobileWorkButton 
         onClick={
           () => {

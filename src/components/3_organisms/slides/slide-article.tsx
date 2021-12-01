@@ -28,8 +28,8 @@ const SlideArticle = (props:any) => {
 
   const transitionRichText = useTransition(caseStudyCopy, {
     from: { opacity: 0, position: 'absolute'},
-    enter: { opacity: 1},
-    leave: { opacity: 0},
+    enter: { opacity: 1, position: 'relative'},
+    leave: { opacity: 0, position: 'absolute'},
     duration: 1000,
     key: caseStudyCopy
   });
@@ -53,7 +53,7 @@ const SlideArticle = (props:any) => {
     <>
       {transitionRichText((styles, item) => item &&
         // @ts-ignore
-        <animated.div style={styles}>
+        <animated.div style={{...styles,...{overflow:'hidden', top:0}}}>
           {/* @ts-ignore */}
           <StyledCaseStudyCopy ref={heightRef}>
             <animated.h2 style={mountedAnimation}>{brand}</animated.h2>

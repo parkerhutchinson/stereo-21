@@ -75,7 +75,7 @@ const Slide = (props: Slide) => {
           style={{...styles, ...{zIndex: 20}}}
           navCallback={(e) => handleButtonCLick(e)}
         /> : 
-        <animated.div style={styles}>
+        <animated.div style={{...styles,...{position: 'relative'}}}>
           <SlideArticle 
             {...slide}
             summaryColor={slide.colorSchemeHighlight}

@@ -10,7 +10,7 @@ interface IStyledSlides {
 export const StyledSlides = styled.section<IStyledSlides>`
   display: block;
   width: 100%;
-  position: absolute;
+  position: ${({toggle}) => toggle ? 'absolute' : 'fixed'};
   top: 0;
   right: ${(p) => p.panelOpen ? '0%' : '-100%'};
   background-size: cover;
@@ -34,7 +34,6 @@ export const StyledSlide = styled.div<IStyledSlide>`
   margin: 100px auto 100px;
   display: block;
   width: 80%;
-  right: 0;
   top: 0px;
   padding: 30px;
   color: white;
@@ -111,7 +110,7 @@ export const StyledCaseStudyCopy = styled.div`
   overflow-x: hidden;
   @media screen and (min-width: 1024px) {
     max-width: 70%;
-    left: 15%;
+    margin: 0 auto;
   }
   h2{
     font-weight: 100;
