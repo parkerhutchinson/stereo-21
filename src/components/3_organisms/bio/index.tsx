@@ -25,13 +25,19 @@ const Bio = (props:TypeBioFields) => {
 
   useIsomorphicLayoutEffect(() => {
     document.addEventListener('scroll', (e) => {
-     if(!caseStudyOpen && window.pageYOffset > 0) setScrollPos(window.pageYOffset)
+      if(!caseStudyOpen && window.pageYOffset > 0) {
+        setScrollPos(window.pageYOffset)
+      }
+     
     })
   }, [caseStudyOpen])
 
   return (
-    <StyledBioTab caseStudyOpen={caseStudyOpen} ref={bioRef} top={scrollPos}>
-      {console.log(scrollPos)}
+    <StyledBioTab 
+      caseStudyOpen={caseStudyOpen}
+      ref={bioRef}
+      style={caseStudyOpen ? {top: `-${scrollPos}px`} : {}}
+    >
       <StyledMobileWorkButton 
         onClick={
           () => {

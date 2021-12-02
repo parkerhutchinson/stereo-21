@@ -9,11 +9,10 @@ interface IStyledCopyWrapper {
 const getRGBABackground = (color:string) => {
   const {red,green,blue} = hexRgb(color);
   return `${red}, ${green}, ${blue}`
-} 
+}
 
 interface IStyledBioTab {
   caseStudyOpen: boolean
-  top: number
 }
 
 export const StyledBioTab = styled.article<IStyledBioTab>`
@@ -21,8 +20,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   color: white;
   z-index: 1;
   position: ${(p) => p.caseStudyOpen ? 'fixed' : 'relative'};
-  top: ${(p) => p.caseStudyOpen ? `-${p.top}px` : 'auto'};
-  height: ${(p) => p.caseStudyOpen ? '100vh' : 'auto'};
+  /* height: ${(p) => p.caseStudyOpen ? '100vh' : 'auto'}; */
   overflow: hidden;
   @media screen and (min-width: 1024px) {
     width: 45%;

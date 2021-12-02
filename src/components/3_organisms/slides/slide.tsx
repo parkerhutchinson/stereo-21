@@ -33,13 +33,7 @@ const Slide = (props: Slide) => {
     enter: {opacity: 1},
     leave: {opacity: 0},
     duration: 1000,
-    onRest: () => {
-      if (toggleSlide) {
-        finishedAnimation();
-      } else {
-        finishedAnimation();
-      }
-    },
+    onRest: () => finishedAnimation()
   });
 
   useEffect(() => {
