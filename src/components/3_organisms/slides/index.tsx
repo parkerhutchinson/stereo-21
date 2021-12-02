@@ -5,6 +5,7 @@ import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
 import useKeycode from "@/src/hooks/useKeycode";
 import { SlideFields } from "./slide";
+import { useSpring } from "react-spring";
 
 
 const { UPDATE_COLOR, OPEN_CASE_STUDY, ADD_SLIDE_MESH } = GlobalActions;
@@ -22,6 +23,12 @@ const Slides = (props: Slides) => {
   const {state: {mobilePanel}, dispatch } = useContext(GlobalContext);
   const [activeSlide, setActiveSlide] = useState(0);
   const [articleReady, setArticleReady] = useState(false);
+  const [, springAPI] = useSpring(() => ({ 
+      from: {y: window.scrollY},
+      to: {y: 0},
+      duration: 500
+    })
+  )
 
   const [keyName] = useKeycode();
 
@@ -93,8 +100,23 @@ const Slides = (props: Slides) => {
         nextSlide();
         break;
       case 'open':
-        toggleSlideOpen(!slideOpen);
-        dispatch({type: OPEN_CASE_STUDY, payload: !slideOpen})
+        if (slideOpen) {
+          springAPI.start({
+            from: { y: window.scrollY },
+            to: {y: 0},
+            onChange: (props:any) => {
+              console.log(props.value.y);
+              window.scroll(0, props.value.y)
+            },
+            onRest: () => {
+              toggleSlideOpen(!slideOpen);       
+              dispatch({type: OPEN_CASE_STUDY, payload: !slideOpen})
+            }
+          });
+        } else {
+          toggleSlideOpen(!slideOpen);       
+          dispatch({type: OPEN_CASE_STUDY, payload: !slideOpen})
+        }
         break;
     }
   }
@@ -110,8 +132,18 @@ const Slides = (props: Slides) => {
         stopSlideshow();
         break;
       case 'Escape':
-        toggleSlideOpen(!slideOpen);
-        dispatch({type: OPEN_CASE_STUDY, payload: false});
+        springAPI.start({
+          from: { y: window.scrollY },
+          to: {y: 0},
+          onChange: (props:any) => {
+            console.log(props.value.y);
+            window.scroll(0, props.value.y)
+          },
+          onRest: () => {
+            toggleSlideOpen(false);       
+            dispatch({type: OPEN_CASE_STUDY, payload: false})
+          }
+        });
         break;
       case 'Enter':
         toggleSlideOpen(true);

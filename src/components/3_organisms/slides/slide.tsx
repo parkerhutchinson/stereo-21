@@ -36,10 +36,6 @@ const Slide = (props: Slide) => {
     onRest: () => finishedAnimation()
   });
 
-  useEffect(() => {
-
-
-  },[toggleSlide]);
 
   const handleButtonCLick = (action:string) => {
     navCallback(action);

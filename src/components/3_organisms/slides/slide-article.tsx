@@ -11,8 +11,7 @@ interface Props {
   brand: string
   caseStudyCopy: any
   summaryColor: string
-  style: any
-  heightCallback: (height:number) => void
+  heightCallback: (height:any) => void
   summary: {
     title: string
     image: string
@@ -20,9 +19,15 @@ interface Props {
     technology?: string[]
   }
 }
-const SlideArticle = (props:any) => {
-  const {logo, brand, caseStudyCopy, summaryColor, summary, style, heightCallback} = props;
-  const [mounted, setMounted] = useState(false);
+const SlideArticle = (props:Props) => {
+  const {
+    logo, 
+    brand, 
+    caseStudyCopy, 
+    summaryColor, 
+    summary, 
+    heightCallback
+  } = props;
   const richTextRef = useRef<HTMLDivElement>();
   const [heightRef, height] = useHeight();
 
@@ -41,7 +46,6 @@ const SlideArticle = (props:any) => {
   }))
 
   useEffect(() => {
-    console.log('mounted');
     mountedAnimationAPI.start();
   },[])
 
