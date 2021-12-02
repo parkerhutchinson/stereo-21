@@ -14,7 +14,7 @@ interface IStyledThreeBg {
   color: string
 }
 
-export const StyledThreeBGCurtain = styled.div<IStyledThreeBg>`
+export const StyledThreeBG = styled.div<IStyledThreeBg>`
   position: fixed;
   top: 0;
   right: 0;

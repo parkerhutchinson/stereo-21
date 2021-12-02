@@ -41,9 +41,6 @@ export const StyledSlide = styled.div<IStyledSlide>`
   transition: height .8s, width 1s var(--animation-curve), top 1s var(--animation-curve), background 1s;
   backdrop-filter: blur(35px);
   background: ${(p) => p.cardcolor};
-  @media (min-width: 1024px) {
-    top: ${({toggle}) => toggle ? '100px' : '0px'};
-  }
   @media (min-width: 1360px) {
     width: ${({toggle}) => toggle ? '1000px' : '500px'};
   }

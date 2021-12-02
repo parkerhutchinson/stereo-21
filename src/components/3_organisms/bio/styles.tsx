@@ -13,14 +13,15 @@ const getRGBABackground = (color:string) => {
 
 interface IStyledBioTab {
   caseStudyOpen: boolean
+  top: number
 }
 
 export const StyledBioTab = styled.article<IStyledBioTab>`
   width: 100%;
-  transition: all 1s var(--animation-curve);
   color: white;
   z-index: 1;
-  position: relative;
+  position: ${(p) => p.caseStudyOpen ? 'fixed' : 'relative'};
+  top: ${(p) => p.caseStudyOpen ? `-${p.top}px` : 'auto'};
   height: ${(p) => p.caseStudyOpen ? '100vh' : 'auto'};
   overflow: hidden;
   @media screen and (min-width: 1024px) {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {useTransition, animated, useChain, useSpringRef, useSpring} from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import { 
@@ -34,12 +34,14 @@ const Slide = (props: Slide) => {
     duration: 1000,
   });
 
-  
+  useEffect(() => {
+
+
+  },[toggleSlide]);
+
   const handleButtonCLick = (action:string) => {
     navCallback(action);
   }
-
-  const richTextEvents = toggleSlide ? 'auto' : 'none';
 
   // change global colorways when slide updates
   return (
@@ -60,7 +62,14 @@ const Slide = (props: Slide) => {
         iconColor={slide.colorSchemeBioBG}
         navCallback={(e) => handleButtonCLick(e)}
         toggleNavAnimation={toggle}
-        style={{...stylesCopy, ...{zIndex: 1, pointerEvents: richTextEvents}}}
+        style={
+          {
+            ...stylesCopy, 
+            ...{
+              zIndex: 1, 
+              pointerEvents: toggleSlide ? 'auto' : 'none'}
+            }
+        }
       />
       )}
       
