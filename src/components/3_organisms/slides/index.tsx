@@ -132,18 +132,23 @@ const Slides = (props: Slides) => {
         stopSlideshow();
         break;
       case 'Escape':
-        springAPI.start({
-          from: { y: window.scrollY },
-          to: {y: 0},
-          onChange: (props:any) => {
-            console.log(props.value.y);
-            window.scroll(0, props.value.y)
-          },
-          onRest: () => {
-            toggleSlideOpen(false);       
-            dispatch({type: OPEN_CASE_STUDY, payload: false})
-          }
-        });
+        if (window.scrollY > 0) {
+          springAPI.start({
+            from: { y: window.scrollY },
+            to: {y: 0},
+            onChange: (props:any) => {
+              console.log(props.value.y);
+              window.scroll(0, props.value.y)
+            },
+            onRest: () => {
+              toggleSlideOpen(false);       
+              dispatch({type: OPEN_CASE_STUDY, payload: false})
+            }
+          });
+        } else {
+          toggleSlideOpen(false);       
+          dispatch({type: OPEN_CASE_STUDY, payload: false})
+        }
         break;
       case 'Enter':
         toggleSlideOpen(true);
