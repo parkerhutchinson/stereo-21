@@ -21,6 +21,8 @@ const Slides = (props: Slides) => {
   const timerRef = useRef<NodeJS.Timer>();
   const {state: {mobilePanel}, dispatch } = useContext(GlobalContext);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [articleReady, setArticleReady] = useState(false);
+
   const [keyName] = useKeycode();
 
   const nextSlide = () => 
@@ -125,12 +127,14 @@ const Slides = (props: Slides) => {
     <StyledSlides 
       backgroundColor={slides[activeSlide].colorSchemeBioBG}
       toggle={slideOpen}
+      slidePosition={articleReady}
       panelOpen={mobilePanel}
     >
       <Slide 
         slide={slides[activeSlide]} 
         navCallback={(e) => handleSlideNavigation(e)} 
         toggleSlide={slideOpen}
+        finishedAnimation={() => slideOpen ? setArticleReady(true) : setArticleReady(false)}
       />
       
     </StyledSlides>

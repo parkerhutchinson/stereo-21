@@ -21,17 +21,25 @@ export interface Slide {
   slide: SlideFields
   toggleSlide: boolean
   navCallback: (action:string) => void
+  finishedAnimation: () => void
 }
 
 const Slide = (props: Slide) => {
-  const { slide, navCallback, toggleSlide } = props;
-  const [heightState,setHeightState] = useState(0)
+  const { slide, navCallback, toggleSlide, finishedAnimation } = props;
+  const [heightState,setHeightState] = useState(0);
 
   const toggleTransition = useTransition(toggleSlide, {
     from: {opacity: 0},
     enter: {opacity: 1},
     leave: {opacity: 0},
     duration: 1000,
+    onRest: () => {
+      if (toggleSlide) {
+        finishedAnimation();
+      } else {
+        finishedAnimation();
+      }
+    },
   });
 
   useEffect(() => {

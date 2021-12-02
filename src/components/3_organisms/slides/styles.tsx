@@ -5,12 +5,13 @@ interface IStyledSlides {
   backgroundColor: string
   toggle: boolean
   panelOpen: boolean
+  slidePosition: boolean
 }
 
 export const StyledSlides = styled.section<IStyledSlides>`
   display: block;
   width: 100%;
-  position: ${({toggle}) => toggle ? 'absolute' : 'fixed'};
+  position: ${({slidePosition}) => slidePosition ? 'absolute' : 'fixed'};
   top: 0;
   right: ${(p) => p.panelOpen ? '0%' : '-100%'};
   background-size: cover;
