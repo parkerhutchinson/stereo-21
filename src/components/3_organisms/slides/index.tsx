@@ -100,6 +100,7 @@ const Slides = (props: Slides) => {
         nextSlide();
         break;
       case 'open':
+        // scroll top if the study was opened
         if (slideOpen) {
           springAPI.start({
             from: { y: window.scrollY },
@@ -132,6 +133,7 @@ const Slides = (props: Slides) => {
         stopSlideshow();
         break;
       case 'Escape':
+        // scroll top when esc key is hit
         if (window.scrollY > 0) {
           springAPI.start({
             from: { y: window.scrollY },

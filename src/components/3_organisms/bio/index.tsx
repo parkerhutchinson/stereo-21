@@ -24,11 +24,13 @@ const Bio = (props:TypeBioFields) => {
   } = useContext(GlobalContext);
 
   useIsomorphicLayoutEffect(() => {
+    if(!caseStudyOpen) {
+      setScrollPos(0)
+    }
     document.addEventListener('scroll', (e) => {
       if(!caseStudyOpen && window.pageYOffset > 0) {
         setScrollPos(window.pageYOffset)
       }
-     
     })
   }, [caseStudyOpen])
 
