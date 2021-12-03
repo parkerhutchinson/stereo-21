@@ -13,9 +13,8 @@ interface Props {
 }
 
 
-
 const SlidesNavigation = (props:Props) => {
-  const {buttonColor, iconColor, navCallback, toggleNavAnimation} = props;
+  const {buttonColor, navCallback, toggleNavAnimation} = props;
 
   const navigationAnimation = useTransition(toggleNavAnimation, {
     native: true,

@@ -61,7 +61,7 @@ const SlideArticle = (props:Props) => {
           {/* @ts-ignore */}
           <StyledCaseStudyCopy ref={heightRef}>
             <animated.h2 style={mountedAnimation}>{brand}</animated.h2>
-            <Summary {...summary} color={summaryColor}/>
+            <animated.div style={mountedAnimation}><Summary {...summary} color={summaryColor}/></animated.div>
             <RichTextBody body={caseStudyCopy} propRef={richTextRef}/>
           </StyledCaseStudyCopy>
         </animated.div>

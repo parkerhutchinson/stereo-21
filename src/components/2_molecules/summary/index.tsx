@@ -1,5 +1,6 @@
 import {StyledSummary, StyledSummaryStats} from "./styles";
 
+
 interface Props {
   color: string,
   image: string,
@@ -9,6 +10,7 @@ interface Props {
 
 const Summary = (props:any) => {
   const {image, color, technology, year} = props;
+
   return (
     <StyledSummary>
       <img src={image} alt="summary image" /> 

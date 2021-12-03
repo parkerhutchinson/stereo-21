@@ -64,7 +64,8 @@ const Slide = (props: Slide) => {
           {
             ...stylesCopy, 
             ...{
-              zIndex: 1, 
+              zIndex: 10, 
+              position: 'relative',
               pointerEvents: toggleSlide ? 'auto' : 'none'}
             }
         }

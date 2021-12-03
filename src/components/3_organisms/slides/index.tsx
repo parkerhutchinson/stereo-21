@@ -101,22 +101,24 @@ const Slides = (props: Slides) => {
         break;
       case 'open':
         // scroll top if the study was opened
-        if (slideOpen) {
+        if (slideOpen && window.scrollY > 0) {
           springAPI.start({
             from: { y: window.scrollY },
             to: {y: 0},
             onChange: (props:any) => {
-              console.log(props.value.y);
               window.scroll(0, props.value.y)
             },
             onRest: () => {
-              toggleSlideOpen(!slideOpen);       
-              dispatch({type: OPEN_CASE_STUDY, payload: !slideOpen})
+              toggleSlideOpen(false);       
+              dispatch({type: OPEN_CASE_STUDY, payload: false})
             }
           });
+        } else if (slideOpen && window.scrollY === 0){
+          toggleSlideOpen(false);       
+          dispatch({type: OPEN_CASE_STUDY, payload: false})
         } else {
-          toggleSlideOpen(!slideOpen);       
-          dispatch({type: OPEN_CASE_STUDY, payload: !slideOpen})
+          toggleSlideOpen(true);       
+          dispatch({type: OPEN_CASE_STUDY, payload: true})
         }
         break;
     }
@@ -139,7 +141,6 @@ const Slides = (props: Slides) => {
             from: { y: window.scrollY },
             to: {y: 0},
             onChange: (props:any) => {
-              console.log(props.value.y);
               window.scroll(0, props.value.y)
             },
             onRest: () => {
