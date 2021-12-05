@@ -16,13 +16,14 @@ export interface Slides {
 
 const Slides = (props: Slides) => {
   const { slides } = props;
-  const SLIDES_LEN = slides.length;
+  const SLIDES_LEN = slides.length - 1;
   const [slideOpen, toggleSlideOpen] = useState(false);
   const userInteracted = useRef(false);
   const timerRef = useRef<NodeJS.Timer>();
   const {state: {mobilePanel}, dispatch } = useContext(GlobalContext);
   const [activeSlide, setActiveSlide] = useState(0);
   const [articleReady, setArticleReady] = useState(false);
+  // scroll top animation
   const [, springAPI] = useSpring(() => ({ 
       from: {y: window.scrollY},
       to: {y: 0},
@@ -32,39 +33,32 @@ const Slides = (props: Slides) => {
 
   const [keyName] = useKeycode();
 
-  const nextSlide = () => 
-    activeSlide < SLIDES_LEN - 1 
+  const nextSlide = () => {
+    return activeSlide < SLIDES_LEN 
       ? setActiveSlide(activeSlide + 1) 
       : setActiveSlide(0);
-
+  }
+    
   const prevSlide = () => 
     activeSlide > 0 
       ? setActiveSlide(activeSlide - 1) 
-      : setActiveSlide(SLIDES_LEN - 1);
+      : setActiveSlide(SLIDES_LEN);
 
   const stopSlideshow = () => timerRef.current ? window.clearTimeout(timerRef.current) : null;
 
   // slideshow interval
   useIsomorphicLayoutEffect(() => {
-
     if (timerRef.current)
         window.clearTimeout(timerRef.current)
 
     // cancel timer if user has interacted
     if (!userInteracted.current) {
-      timerRef.current = setInterval(() => {
+      timerRef.current = setTimeout(() => {
         nextSlide();
       }, 6000);
     }
-    
-    // unmount
-    () => {
-      if (timerRef.current)
-        window.clearTimeout(timerRef.current)
-    }
-  }, [userInteracted]);
 
-  // const 
+  }, [userInteracted, activeSlide]);
 
   // change global colorways when slide updates
   useEffect(() => {
@@ -91,7 +85,6 @@ const Slides = (props: Slides) => {
 
   // slides state controls
   const handleSlideNavigation = (action:string) => {
-    stopSlideshow();
     switch(action) {
       case 'next':
         prevSlide();
@@ -100,6 +93,7 @@ const Slides = (props: Slides) => {
         nextSlide();
         break;
       case 'open':
+        stopSlideshow();
         // scroll top if the study was opened
         if (slideOpen && window.scrollY > 0) {
           springAPI.start({
@@ -125,12 +119,15 @@ const Slides = (props: Slides) => {
   }
 
   useEffect(() => {
+    
     switch(keyName) {
       case 'ArrowLeft':
+        userInteracted.current = true;
         prevSlide();
         stopSlideshow();
         break;
       case 'ArrowRight':
+        userInteracted.current = true;
         nextSlide();
         stopSlideshow();
         break;
@@ -154,6 +151,7 @@ const Slides = (props: Slides) => {
         }
         break;
       case 'Enter':
+        userInteracted.current = true;
         toggleSlideOpen(true);
         stopSlideshow();
         dispatch({type: OPEN_CASE_STUDY, payload: true});
@@ -172,7 +170,10 @@ const Slides = (props: Slides) => {
     >
       <Slide 
         slide={slides[activeSlide]} 
-        navCallback={(e) => handleSlideNavigation(e)} 
+        navCallback={(e) => {
+          userInteracted.current = true;
+          handleSlideNavigation(e);
+        }} 
         toggleSlide={slideOpen}
         finishedAnimation={() => slideOpen ? setArticleReady(true) : setArticleReady(false)}
       />
@@ -181,4 +182,4 @@ const Slides = (props: Slides) => {
   )
 }
 
-export default Slides;
+export default React.memo(Slides);
