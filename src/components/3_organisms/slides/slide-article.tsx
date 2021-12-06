@@ -49,7 +49,7 @@ const CaseStudy = (props: ICaseStudy) => {
   const [mountedAnimation, mountedAnimationAPI] = useSpring(() => ({
     from: {marginTop: 200, opacity: 0},
     to: {marginTop: 0, opacity: 1},
-    delay: 1000
+    delay: 800
   }))
   return (
     <>
@@ -57,7 +57,7 @@ const CaseStudy = (props: ICaseStudy) => {
     <StyledCaseStudyCopy ref={heightRef}>
       <animated.h2 style={mountedAnimation}>{brand}</animated.h2>
       <animated.div style={mountedAnimation}><Summary {...summary} color={summaryColor}/></animated.div>
-      <RichTextBody body={caseStudyCopy} />
+      <animated.div style={mountedAnimation}><RichTextBody body={caseStudyCopy} /></animated.div>
     </StyledCaseStudyCopy>
     </>
   )
@@ -70,8 +70,8 @@ const SlideArticle = (props:Props) => {
 
   const newProps = useTransition(props, {
     from: { position: 'absolute', opacity: 0},
-    enter: { opacity: 1, y: 0 },
-    leave: { opacity: 0 },
+    enter: { opacity: 1, filter: 'blur(0px)' },
+    leave: { opacity: 0, filter: 'blur(20px)'},
     duration: 500,
     order: ["leave", "enter", "update"],
     key: props.logo,

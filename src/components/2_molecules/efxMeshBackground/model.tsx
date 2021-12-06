@@ -12,7 +12,7 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
   // setup animation mixer
   let mixer:THREE.AnimationMixer;
   
-  // if the loader runs cache the gltf
+  // if the loader runs: cache the gltf
   useEffect(() => {
     if (typeof mesh[slideId] === 'undefined' && gltf) {
       // gltf scenes get cached over time.
@@ -30,7 +30,6 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
       new GLTFLoader().load(url, setGltf)      
     
     if (typeof mesh[slideId] !== 'undefined') {
-      // might need a ref pointer to store this 
       mixer = new THREE.AnimationMixer(mesh.scene);
 
       // loop through all animations and play them.

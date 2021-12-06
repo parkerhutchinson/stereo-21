@@ -32,7 +32,8 @@ const Slide = (props: Slide) => {
     from: {opacity: 0},
     enter: {opacity: 1},
     leave: {opacity: 0},
-    duration: 1000,
+    duration: 500,
+    order: ["leave", "enter", "update"],
     onRest: () => finishedAnimation()
   });
 
