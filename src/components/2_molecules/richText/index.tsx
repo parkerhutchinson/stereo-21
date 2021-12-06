@@ -1,17 +1,19 @@
 import {MutableRefObject} from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import {StyledRichText} from "./styles";
 
 interface Props {
   body: any
   propRef?: any
+  className?: string
 }
 
-const richTextBody = (props:Props) => {
+const RichText = (props:Props) => {
   return (
-    <div ref={props.propRef}>
+    <StyledRichText ref={props.propRef} className={props.className}>
       {documentToReactComponents(props.body)}
-    </div>
+    </StyledRichText>
   )
 }
 
-export default richTextBody;
+export default RichText;

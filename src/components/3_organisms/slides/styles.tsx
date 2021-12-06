@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import RichText from '@/src/components/2_molecules/richText';
 
 interface IStyledSlides {
   backgroundColor: string
@@ -98,7 +98,6 @@ export const StyledBrandTransitionGroup = styled.div`
   }
 `;
 
-
 export const StyledCaseStudyCopy = styled.div`
   height: 100%;
   top: 0;
@@ -121,14 +120,12 @@ export const StyledCaseStudyCopy = styled.div`
       font-size: 120px;
     }
   }
-  p{
-    line-height: 38px;
-    letter-spacing: -.16;
-    margin-bottom: 50px;
-    font-size: 19px;
-    color: #DADADA;
-  }
+  
 `;
+
+export const StyledCaseStudyText = styled(RichText)`
+  padding: 0 40px;
+`
 
 export const StyledLogo = styled.div`
   width: 100%;

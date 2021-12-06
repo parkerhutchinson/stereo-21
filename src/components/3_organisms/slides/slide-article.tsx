@@ -1,9 +1,9 @@
 import react, {useEffect, useRef, useState} from 'react';
-import RichTextBody from "@/src/components/2_molecules/richTextBody";
 import Summary from "@/src/components/2_molecules/summary";
-import { StyledCaseStudyCopy } from "./styles";
+import { StyledCaseStudyText, StyledCaseStudyCopy } from "./styles";
 import {useTransition, animated, useChain, useSpringRef, useSpring} from 'react-spring';
 import { useHeight } from '@/src/hooks/useHeight';
+import React from 'react';
 
 
 interface Props {
@@ -56,8 +56,12 @@ const CaseStudy = (props: ICaseStudy) => {
     {/* @ts-ignore */}
     <StyledCaseStudyCopy ref={heightRef}>
       <animated.h2 style={mountedAnimation}>{brand}</animated.h2>
-      <animated.div style={mountedAnimation}><Summary {...summary} color={summaryColor}/></animated.div>
-      <animated.div style={mountedAnimation}><RichTextBody body={caseStudyCopy} /></animated.div>
+      <animated.div style={mountedAnimation}>
+        <Summary {...summary} color={summaryColor}/>
+      </animated.div>
+      <animated.div style={mountedAnimation}>
+        <StyledCaseStudyText body={caseStudyCopy} />
+      </animated.div>
     </StyledCaseStudyCopy>
     </>
   )

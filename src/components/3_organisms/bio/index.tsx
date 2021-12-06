@@ -1,10 +1,9 @@
 import React, {useContext, useRef, useState} from "react";
 import {GlobalActions} from "@/src/context/global";
-import {StyledBioTab, StyledCopyWrapper, StyledMobileWorkButton} from "./styles";
+import {StyledBioTab, StyledCopyWrapper, StyledMobileWorkButton, StyledBioRichText} from "./styles";
 import StereoLogo from "@/src/components/2_molecules/stereoLogo";
 import {GlobalContext} from "@/src/context/global"
 import {TypeBioFields} from "@/src/types/generated/TypeBio";
-import RichTextBody from "@/src/components/2_molecules/richTextBody";
 import IconWork from "@/public/icn-work.svg";
 import useScreenSize from "@/src/hooks/useScreenSize";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
@@ -64,7 +63,7 @@ const Bio = (props:TypeBioFields) => {
         backgroundColor={colorScheme.highlight} 
         caseStudyOpen={winWidth < 1024 ? mobilePanel : caseStudyOpen}
       >
-        <RichTextBody body={body} />
+        <StyledBioRichText body={body} />
       </StyledCopyWrapper>
     </StyledBioTab>
   )

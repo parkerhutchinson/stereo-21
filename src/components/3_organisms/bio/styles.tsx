@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import hexRgb from 'hex-rgb';
+import RichText from "../../2_molecules/richText";
 
-interface IStyledCopyWrapper {
-  backgroundColor: string
-  caseStudyOpen: boolean
-}
+
 
 const getRGBABackground = (color:string) => {
   const {red,green,blue} = hexRgb(color);
@@ -25,6 +23,12 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
     width: 45%;
   }
 `;
+
+
+interface IStyledCopyWrapper {
+  caseStudyOpen: boolean
+  backgroundColor: string
+}
 
 export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
   max-width: 90%;
@@ -48,15 +52,6 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
     max-width: 50%;
   }
   h1{
-    font-weight: 200;
-    margin-bottom: 15px;
-    font-size: 48px;
-    position: relative;
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1px;
-    @media screen and (min-width: 1800px) {
-      font-size: 62px;
-    }
     &:before{
       content: '';
       width: 50px;
@@ -68,9 +63,26 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
       transition: all 1s;
     }
   }
+`;
+
+export const StyledBioRichText = styled(RichText)`
+  h1{
+    font-weight: 200;
+    margin-bottom: 15px;
+    font-size: 48px;
+    position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+    @media screen and (min-width: 1800px) {
+      font-size: 62px;
+    }
+  }
   h2{
     margin-bottom: 80px;
     font-size: 18px;
+    text-align: left;
+    text-transform: none;
+    font-family: 'Roboto', sans-serif;
   }
   p{
     line-height: 38px;
@@ -79,7 +91,7 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
     font-size: 19px;
     color: #bbbbbb;
   }
-`;
+`
 
 export const StyledCTAGroup = styled.div`
   padding-top: 70px;
