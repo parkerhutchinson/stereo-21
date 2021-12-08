@@ -1,4 +1,4 @@
-import react, { Suspense, useEffect, useRef, useState } from "react";
+import react, { ReactNode, Suspense, useEffect, useRef, useState } from "react";
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
@@ -14,6 +14,7 @@ interface Props {
   slideId:number
   highlight: string
   mobilePanel: boolean
+  children?: ReactNode
 }
 
 const EFXMeshBackground = (props:Props) => {
@@ -24,7 +25,7 @@ const EFXMeshBackground = (props:Props) => {
   const timerRef = useRef<NodeJS.Timer>();
   const styles = useSpring({
     opacity: fadeOut ? 0 : 1,
-    duration: 500
+    duration: 1000
   });
 
   // transition out
@@ -50,32 +51,31 @@ const EFXMeshBackground = (props:Props) => {
   }, [slideMeshFile]);
 
   return (
-    <animated.div style={styles}>
-      <StyledThreeBackground panelOpen={mobilePanel}>
-        <Canvas 
-          camera={{
-            near: 0.1,
-            far: 1000,
-            zoom: 1.9
-          }}
-        >
-          <Suspense fallback={false}>
-            <Lighting highlight={highlight}/>
-            {(urlState.length > 1) && 
-              <Model 
-                url={urlState}
-                slideId={idState}
-                cb={() => {setFadeOut(false)}}
-              />
-            }
-          </Suspense>
-          <EffectComposer frameBufferType={THREE.HalfFloatType}>
-            <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
-            <Vignette eskil={false} offset={0.1} darkness={1.1} opacity={.8} />
-          </EffectComposer>
-        </Canvas>
-      </StyledThreeBackground>
-    </animated.div>
+    <StyledThreeBackground panelOpen={mobilePanel} as={animated.div} style={styles}>
+      {props.children}
+      <Canvas 
+        camera={{
+          near: 0.1,
+          far: 1000,
+          zoom: 1.9
+        }}
+      >
+        <Suspense fallback={false}>
+          <Lighting highlight={highlight}/>
+          {(urlState.length > 1) && 
+            <Model 
+              url={urlState}
+              slideId={idState}
+              cb={() => {setFadeOut(false)}}
+            />
+          }
+        </Suspense>
+        <EffectComposer frameBufferType={THREE.HalfFloatType}>
+          <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
+          <Vignette eskil={false} offset={0.1} darkness={1.1} opacity={.8} />
+        </EffectComposer>
+      </Canvas>
+    </StyledThreeBackground>
   );
 };
 

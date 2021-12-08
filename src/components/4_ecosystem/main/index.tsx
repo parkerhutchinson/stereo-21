@@ -2,6 +2,7 @@ import React, {ReactNode, useContext} from 'react';
 import { GlobalContext } from '@/src/context/global';
 import {StyledWrap, StyledThreeBG} from "./styles";
 import EFXMeshBackground from "@/src/components/2_molecules/efxMeshBackground";
+import StereoLogo from '@/src/components/2_molecules/stereoLogo';
 
 
 interface Props {
@@ -17,6 +18,10 @@ const Main = (props:Props) => {
         open={state.caseStudyOpen} 
         color={state.colorScheme.bioBackgroundColor}
       >
+        <StereoLogo 
+        textColor={state.colorScheme.highlight} 
+        backgroundColor={state.colorScheme.bioBackgroundColor} 
+      />
         {state.slideMesh.url && <EFXMeshBackground
           slideId={state.slideMesh.slideId}
           mobilePanel={state.mobilePanel}

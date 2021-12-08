@@ -55,10 +55,7 @@ const Bio = (props:TypeBioFields) => {
         <IconWork />
       </StyledMobileWorkButton>
       
-      <StereoLogo 
-        textColor={colorScheme.bioTextColor} 
-        backgroundColor={colorScheme.bioBackgroundColor} 
-      />
+      
       <StyledCopyWrapper 
         backgroundColor={colorScheme.highlight} 
         caseStudyOpen={winWidth < 1024 ? mobilePanel : caseStudyOpen}

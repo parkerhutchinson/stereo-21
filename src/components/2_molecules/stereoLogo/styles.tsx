@@ -52,8 +52,12 @@ export const StyledLogoGroup = styled.div<IStyledLogo>`
     height: auto;
     position: absolute;
     z-index: 1;
-    opacity: .8;
-    * {stroke: ${(p) => p.textColor};}
+    opacity: .7;
+    path {
+      stroke: ${(p) => p.textColor};
+      transition: all 1s;
+      filter: contrast(1) saturate(1);
+    }
     &:first-child{
       top: 0;
       right: 0;
