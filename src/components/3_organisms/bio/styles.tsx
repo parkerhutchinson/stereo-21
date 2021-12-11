@@ -89,7 +89,7 @@ export const StyledBioRichText = styled(RichText)`
     letter-spacing: -.16;
     margin-bottom: 50px;
     font-size: 19px;
-    color: #bbbbbb;
+    color: #d7d7d7;
   }
 `
 

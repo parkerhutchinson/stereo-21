@@ -19,14 +19,14 @@ const Main = (props:Props) => {
         color={state.colorScheme.bioBackgroundColor}
       >
         <StereoLogo 
-        textColor={state.colorScheme.highlight} 
-        backgroundColor={state.colorScheme.bioBackgroundColor} 
-      />
+          textColor={state.colorScheme.bioTextColor} 
+          backgroundColor={state.colorScheme.bioBackgroundColor} 
+        />
         {state.slideMesh.url && <EFXMeshBackground
           slideId={state.slideMesh.slideId}
           mobilePanel={state.mobilePanel}
           slideMeshFile={state.slideMesh.url}
-          highlight={state.colorScheme.highlight}
+          highlight={state.colorScheme.bioTextColor}
         />}
       </StyledThreeBG>
     </StyledWrap>

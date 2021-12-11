@@ -42,7 +42,6 @@ export const StyledLogoGroup = styled.div<IStyledLogo>`
   padding-right: 30px;
   /* background: ${(p) => p.backgroundColor}; */
   transition: all 1s;
-  mix-blend-mode: difference;
   @media screen and (min-width: 1024px) {
     width: 45%;
   }
@@ -52,11 +51,11 @@ export const StyledLogoGroup = styled.div<IStyledLogo>`
     height: auto;
     position: absolute;
     z-index: 1;
-    opacity: .7;
+    opacity: 1;
     path {
       stroke: ${(p) => p.textColor};
       transition: all 1s;
-      filter: contrast(1) saturate(1);
+      /* filter: contrast(1) saturate(1); */
     }
     &:first-child{
       top: 0;
