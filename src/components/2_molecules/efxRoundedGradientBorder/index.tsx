@@ -1,4 +1,4 @@
-import {useRef, MutableRefObject} from 'react';
+import {useRef, MutableRefObject, useState} from 'react';
 import useIsomorphicLayoutEffect from '@/src/hooks/useIsomorphicLayoutEffect';
 import { drawRectBorder } from '@/src/lib/drawing';
 import useScreenSize from '@/src/hooks/useScreenSize';
@@ -13,6 +13,17 @@ const EFXRoundedGradientBorder = (props:Props) => {
   const {colorStopTop, colorStopBottom} = props;
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [winWidth] = useScreenSize();
+  const [height, set] = useState(0);
+  const heightRef = useRef(height);
+  const [ro] = useState(
+    () =>
+      new ResizeObserver(packet => {
+        if (canvasRef.current && heightRef.current !== canvasRef.current.offsetHeight) {
+          heightRef.current = canvasRef.current.offsetHeight;
+          set(canvasRef.current.offsetHeight);
+        }
+      })
+  );
 
   useIsomorphicLayoutEffect(() => {
     const canvasDom = canvasRef.current;
@@ -52,7 +63,15 @@ const EFXRoundedGradientBorder = (props:Props) => {
       draw(newCanvasObjectW, canvasObjectH);
 
     }
-  }, [canvasRef, winWidth, colorStopTop, colorStopBottom]);
+  }, [canvasRef, winWidth, colorStopTop, colorStopBottom, height]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (canvasRef.current) {
+      set(canvasRef.current.offsetHeight);
+      ro.observe(canvasRef.current, {});
+    }
+    return () => ro.disconnect();
+  }, [canvasRef.current]);
 
   return (
     <StyledCanvas ref={canvasRef}></StyledCanvas>
