@@ -12,6 +12,7 @@ const summaryTransformer = (data:TypeSummaryFields) => {
     title: data.title,
     year: data.year,
     technology: data.technology,
+    colorSchemeBG: data.summary_color,
     image: transformImage(supporting_image)
   };
 }

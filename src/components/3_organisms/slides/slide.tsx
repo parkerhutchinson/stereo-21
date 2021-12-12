@@ -13,6 +13,7 @@ type TSummary = {
   title: string,
   image: string,
   year: string,
+  colorSchemeBG: string,
   technology?: string[]
 }
 export type SlideFields = Omit<TypeSlideFields, 'logo' | 'summaryRef'> & { logo: string, summary:  TSummary};
@@ -87,7 +88,7 @@ const Slide = (props: Slide) => {
         <animated.div style={{...styles,...{position: 'relative'}}}>
           <SlideArticle 
             {...slide}
-            summaryColor={slide.colorSchemeHighlight}
+            colorSchemeBG={slide.summary.colorSchemeBG}
             heightCallback={
               (height:number) => setHeightState(height)
             } 

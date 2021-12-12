@@ -10,7 +10,7 @@ interface Props {
   logo: string
   brand: string
   caseStudyCopy: any
-  summaryColor: string
+  colorSchemeBG: string
   heightCallback: (height:any) => void
   summary: {
     title: string
@@ -24,7 +24,7 @@ interface ICaseStudy {
   logo: string
   brand: string
   caseStudyCopy: any
-  summaryColor: string
+  colorSchemeBG: string
   heightCallback: (height:any) => void
   summary: {
     title: string
@@ -35,7 +35,7 @@ interface ICaseStudy {
 }
 
 const CaseStudy = (props: ICaseStudy) => {
-  const {logo, brand,summary,caseStudyCopy, summaryColor, heightCallback} = props;
+  const {logo, brand,summary,caseStudyCopy, colorSchemeBG, heightCallback} = props;
   const [heightRef, height] = useHeight();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const CaseStudy = (props: ICaseStudy) => {
     <StyledCaseStudyCopy ref={heightRef}>
       <animated.h2 style={mountedAnimation}>{brand}</animated.h2>
       <animated.div style={mountedAnimation}>
-        <Summary {...summary} color={summaryColor}/>
+        <Summary {...summary} color={colorSchemeBG}/>
       </animated.div>
       <animated.div style={mountedAnimation}>
         <StyledCaseStudyText body={caseStudyCopy} />
