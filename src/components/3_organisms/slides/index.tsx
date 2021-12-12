@@ -83,6 +83,21 @@ const Slides = (props: Slides) => {
     }
   }, [activeSlide]);
 
+  const scrollTop = (cb:() => void) => {
+    if (slideOpen && window.scrollY > 0) {
+      springAPI.start({
+        from: { y: window.scrollY },
+        to: {y: 0},
+        onChange: (props:any) => {
+          window.scroll(0, props.value.y)
+        },
+        onRest: () => cb()
+      });
+    } else {
+      cb()
+    }
+  }
+
   // slides state controls
   const handleSlideNavigation = (action:string) => {
     switch(action) {
@@ -123,32 +138,24 @@ const Slides = (props: Slides) => {
     switch(keyName) {
       case 'ArrowLeft':
         userInteracted.current = true;
-        prevSlide();
-        stopSlideshow();
+        scrollTop(() => {
+          prevSlide();
+          stopSlideshow();
+        });
         break;
       case 'ArrowRight':
         userInteracted.current = true;
-        nextSlide();
-        stopSlideshow();
+        scrollTop(() => {
+          nextSlide();
+          stopSlideshow();
+        });
         break;
       case 'Escape':
         // scroll top when esc key is hit
-        if (window.scrollY > 0) {
-          springAPI.start({
-            from: { y: window.scrollY },
-            to: {y: 0},
-            onChange: (props:any) => {
-              window.scroll(0, props.value.y)
-            },
-            onRest: () => {
-              toggleSlideOpen(false);       
-              dispatch({type: OPEN_CASE_STUDY, payload: false})
-            }
-          });
-        } else {
+        scrollTop(() => {
           toggleSlideOpen(false);       
           dispatch({type: OPEN_CASE_STUDY, payload: false})
-        }
+        });
         break;
       case 'Enter':
         userInteracted.current = true;
