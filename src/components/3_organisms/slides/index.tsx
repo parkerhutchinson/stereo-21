@@ -102,10 +102,16 @@ const Slides = (props: Slides) => {
   const handleSlideNavigation = (action:string) => {
     switch(action) {
       case 'next':
-        prevSlide();
+        scrollTop(() => {
+          prevSlide();
+          stopSlideshow();
+        });
         break;
       case 'prev':
-        nextSlide();
+        scrollTop(() => {
+          nextSlide();
+          stopSlideshow();
+        });
         break;
       case 'open':
         stopSlideshow();
