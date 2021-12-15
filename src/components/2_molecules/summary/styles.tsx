@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const StyledSummary = styled.article`
   width: 100%;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   display: flex;
   align-items: baseline;
   img{

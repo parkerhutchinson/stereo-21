@@ -18,9 +18,33 @@ export const StyledRichText = styled.div<Props>`
   }
   p{
     line-height: 38px;
-    letter-spacing: -.16;
-    margin-bottom: 50px;
+    letter-spacing: -.16px;
+    margin-bottom: 60px;
     font-size: 19px;
     color: #DADADA;
+    a, a:visited, a:hover, a:active{
+      color: #DADADA;
+    }
   }
+`;
+
+export const StyledAsset = styled.img`
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+  
+`;
+
+export const StyledAssetDescription = styled.p`
+  font-size: 10px;
+  opacity: .8;
+  text-align: center;
+  margin-bottom: 60px;
+  letter-spacing: -.5px;
+  
+`
+
+export const StyledCopy = styled.p`
+  padding: 0 30px;
 `

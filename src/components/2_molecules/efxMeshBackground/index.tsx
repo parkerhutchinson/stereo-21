@@ -51,7 +51,7 @@ const EFXMeshBackground = (props:Props) => {
   }, [slideMeshFile]);
 
   return (
-    <StyledThreeBackground panelOpen={mobilePanel} as={animated.div} style={styles}>
+    <StyledThreeBackground panelopen={`${mobilePanel}`} as={animated.div} style={styles}>
       {props.children}
       <Canvas 
         camera={{

@@ -1,6 +1,7 @@
 import react, {useEffect, useRef, useState} from 'react';
 import Summary from "@/src/components/2_molecules/summary";
-import { StyledCaseStudyText, StyledCaseStudyCopy } from "./styles";
+import { StyledCaseStudyCopy } from "./styles";
+import RichText from "@/src/components/2_molecules/richText";
 import {useTransition, animated, useChain, useSpringRef, useSpring} from 'react-spring';
 import { useHeight } from '@/src/hooks/useHeight';
 import React from 'react';
@@ -60,7 +61,7 @@ const CaseStudy = (props: ICaseStudy) => {
         <Summary {...summary} color={colorSchemeBG}/>
       </animated.div>
       <animated.div style={mountedAnimation}>
-        <StyledCaseStudyText body={caseStudyCopy} />
+        <RichText body={caseStudyCopy} />
       </animated.div>
     </StyledCaseStudyCopy>
     </>

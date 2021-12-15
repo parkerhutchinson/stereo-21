@@ -123,10 +123,6 @@ export const StyledCaseStudyCopy = styled.div`
   
 `;
 
-export const StyledCaseStudyText = styled(RichText)`
-  padding: 0 40px;
-`
-
 export const StyledLogo = styled.div`
   width: 100%;
   text-align: center;

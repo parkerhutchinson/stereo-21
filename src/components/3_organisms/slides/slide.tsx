@@ -67,7 +67,7 @@ const Slide = (props: Slide) => {
             ...stylesCopy, 
             ...{
               zIndex: 10, 
-              position: 'relative',
+              position: '-webkit-sticky',
               pointerEvents: toggleSlide ? 'auto' : 'none'}
             }
         }
@@ -85,7 +85,7 @@ const Slide = (props: Slide) => {
           style={{...styles, ...{zIndex: 20}}}
           navCallback={(e) => handleButtonCLick(e)}
         /> : 
-        <animated.div style={{...styles,...{position: 'relative'}}}>
+        <animated.div style={{...styles,...{position: 'relative', zIndex: 3}}}>
           <SlideArticle 
             {...slide}
             colorSchemeBG={slide.summary.colorSchemeBG}

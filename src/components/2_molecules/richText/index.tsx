@@ -1,6 +1,7 @@
 import {MutableRefObject} from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import {StyledRichText} from "./styles";
+import { BLOCKS } from '@contentful/rich-text-types';
+import {StyledRichText, StyledAsset, StyledAssetDescription, StyledCopy} from "./styles";
 
 interface Props {
   body: any
@@ -9,9 +10,24 @@ interface Props {
 }
 
 const RichText = (props:Props) => {
+  const options = {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ASSET]: (node:any) => {
+        const { title, description, file } = node.data.target.fields;
+        return <>
+          <StyledAsset src={file.url} title={title} />
+          {description && <StyledAssetDescription>{description}</StyledAssetDescription>}
+        </>
+      },
+
+      [BLOCKS.PARAGRAPH]: (node:any, children:any) => {
+        return <StyledCopy>{children}</StyledCopy>
+      },
+    }
+  };
   return (
     <StyledRichText ref={props.propRef} className={props.className}>
-      {documentToReactComponents(props.body)}
+      {documentToReactComponents(props.body, options)}
     </StyledRichText>
   )
 }
