@@ -7,6 +7,7 @@ interface Props {
   body: any
   propRef?: any
   className?: string
+  isNotBio: boolean
 }
 
 const RichText = (props:Props) => {
@@ -21,7 +22,7 @@ const RichText = (props:Props) => {
       },
 
       [BLOCKS.PARAGRAPH]: (node:any, children:any) => {
-        return <StyledCopy>{children}</StyledCopy>
+        return <StyledCopy isNotBio={props.isNotBio}>{children}</StyledCopy>
       },
     }
   };

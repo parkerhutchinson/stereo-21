@@ -60,7 +60,7 @@ const Bio = (props:TypeBioFields) => {
         backgroundColor={colorScheme.highlight} 
         caseStudyOpen={winWidth < 1024 ? mobilePanel : caseStudyOpen}
       >
-        <StyledBioRichText body={body} />
+        <StyledBioRichText body={body} isNotBio={false} />
       </StyledCopyWrapper>
     </StyledBioTab>
   )

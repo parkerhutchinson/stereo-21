@@ -45,6 +45,10 @@ export const StyledAssetDescription = styled.p`
   
 `
 
-export const StyledCopy = styled.p`
-  padding: 0 30px;
+interface IStyledCopy {
+  isNotBio: boolean;
+}
+
+export const StyledCopy = styled.p<IStyledCopy>`
+  padding: ${(p) => p.isNotBio ? '0 30px' : '0px'};
 `

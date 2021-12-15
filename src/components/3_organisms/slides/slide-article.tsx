@@ -61,7 +61,7 @@ const CaseStudy = (props: ICaseStudy) => {
         <Summary {...summary} color={colorSchemeBG}/>
       </animated.div>
       <animated.div style={mountedAnimation}>
-        <RichText body={caseStudyCopy} />
+        <RichText body={caseStudyCopy} isNotBio={true}/>
       </animated.div>
     </StyledCaseStudyCopy>
     </>
