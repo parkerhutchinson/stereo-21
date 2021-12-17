@@ -6,10 +6,14 @@ const initialState = {
   mobilePanel: false,
   slideMesh: {slideId: -1, url: ''},
   colorScheme: {
-    siteBackgroundColor: 'red',
+    siteBackgroundColor: 'white',
     bioBackgroundColor: '#0E0718',
     bioTextColor: '#726985',
-    highlight: 'red'
+    highlight: 'white',
+    slideBorderStopOne: 'white',
+    slideBorderStopTwo: 'white',
+    eyeBrowStopOne: 'white',
+    eyeBrowStopTwo: 'white'
   }
 }
 
@@ -25,6 +29,10 @@ type TDefaultData = {
     bioBackgroundColor: string
     bioTextColor: string
     highlight: string
+    slideBorderStopOne: string
+    slideBorderStopTwo: string
+    eyeBrowStopOne: string
+    eyeBrowStopTwo: string
   }
 };
 

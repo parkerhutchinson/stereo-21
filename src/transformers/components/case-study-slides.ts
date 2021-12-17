@@ -27,6 +27,10 @@ const caseStudiesTransformer = (data:TypeSlidesFields):Slides => {
       colorSchemeSeed: slide.fields.colorSchemeSeed,
       colorSchemeHighlight: slide.fields.colorSchemeHighlight,
       colorSchemeBioText: slide.fields.colorSchemeBioText,
+      colorSchemeSlideStopOne: slide.fields.colorSchemeSlideStopOne,
+      colorSchemeSlideStopTwo: slide.fields.colorSchemeSlideStopTwo,
+      colorSchemeEyeBrowStopOne: slide.fields.colorSchemeEyeBrowStopOne,
+      colorSchemeEyeBrowStopTwo: slide.fields.colorSchemeEyeBrowStopTwo,
       logo: transformImage(slide.fields.logo),
       summary: summaryTransformer(slide.fields.summaryRef.fields),
       caseStudyCopy: slide.fields.caseStudyCopy
