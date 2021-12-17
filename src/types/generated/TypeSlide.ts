@@ -12,6 +12,10 @@ export interface TypeSlideFields {
     colorSchemeHighlight: Contentful.EntryFields.Symbol;
     colorSchemeBioBG: Contentful.EntryFields.Symbol;
     colorSchemeBioText: Contentful.EntryFields.Symbol;
+    colorSchemeSlideStopOne: Contentful.EntryFields.Symbol;
+    colorSchemeSlideStopTwo: Contentful.EntryFields.Symbol;
+    colorSchemeEyeBrowStopOne: Contentful.EntryFields.Symbol;
+    colorSchemeEyeBrowStopTwo: Contentful.EntryFields.Symbol;
 }
 
 export type TypeSlide = Contentful.Entry<TypeSlideFields>;
