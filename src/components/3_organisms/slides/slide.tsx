@@ -51,8 +51,8 @@ const Slide = (props: Slide) => {
       style={{height: toggleSlide ? `${heightState + 200}px` : '75vh'}}
     >
       <EFXRoundedGradientBorder 
-        colorStopTop={slide.colorSchemeHighlight} 
-        colorStopBottom="rgba(255 255 255 / 35%)"
+        colorStopTop={slide.colorSchemeSlideStopOne} 
+        colorStopBottom={slide.colorSchemeSlideStopTwo}
       />
       
       {/* toggle nav */}

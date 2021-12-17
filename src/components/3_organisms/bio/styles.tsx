@@ -28,6 +28,8 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
 interface IStyledCopyWrapper {
   caseStudyOpen: boolean
   backgroundColor: string
+  eyeBrowBorderStopOne: string
+  eyeBrowBorderStopTwo: string
 }
 
 export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
@@ -59,7 +61,8 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
       position: relative;
       display: block;
       margin-bottom: 60px;
-      background: ${(p) => p.backgroundColor};
+      /* background: ${(p) => p.backgroundColor}; */
+      background: ${(p) => `linear-gradient(90deg, ${p.eyeBrowBorderStopOne}, ${p.eyeBrowBorderStopTwo})`};
       transition: all 1s;
     }
   }

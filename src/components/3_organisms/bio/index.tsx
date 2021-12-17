@@ -57,6 +57,8 @@ const Bio = (props:TypeBioFields) => {
       
       
       <StyledCopyWrapper 
+        eyeBrowBorderStopOne={colorScheme.eyeBrowStopOne}
+        eyeBrowBorderStopTwo={colorScheme.eyeBrowStopTwo}
         backgroundColor={colorScheme.highlight} 
         caseStudyOpen={winWidth < 1024 ? mobilePanel : caseStudyOpen}
       >

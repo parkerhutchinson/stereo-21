@@ -70,7 +70,11 @@ const Slides = (props: Slides) => {
           siteBackgroundColor: slides[activeSlide].colorSchemeSeed ,
           bioTextColor: slides[activeSlide].colorSchemeBioText,
           bioBackgroundColor: slides[activeSlide].colorSchemeBioBG,
-          highlight: slides[activeSlide].colorSchemeHighlight
+          highlight: slides[activeSlide].colorSchemeHighlight,
+          slideBorderStopOne: slides[activeSlide].colorSchemeSlideStopOne,
+          slideBorderStopTwo: slides[activeSlide].colorSchemeSlideStopTwo,
+          eyeBrowStopOne: slides[activeSlide].colorSchemeEyeBrowStopOne,
+          eyeBrowStopTwo: slides[activeSlide].colorSchemeEyeBrowStopTwo
         }
       })
       dispatch({
