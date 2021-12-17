@@ -57,14 +57,19 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
     &:before{
       content: '';
       width: 50px;
-      height: 2px;
+      height: 4px;
       position: relative;
       display: block;
       margin-bottom: 60px;
       /* background: ${(p) => p.backgroundColor}; */
       background: ${(p) => `linear-gradient(90deg, ${p.eyeBrowBorderStopOne}, ${p.eyeBrowBorderStopTwo})`};
-      transition: all 1s;
+      transition: background 1s;
+      box-shadow: 0 5px 10px 0 rgba(0,0,0,0.50);
     }
+  }
+  h2{
+    transition: all 1s;
+    color: ${(p) => p.eyeBrowBorderStopTwo};
   }
 `;
 
@@ -82,14 +87,16 @@ export const StyledBioRichText = styled(RichText)`
   }
   h2{
     margin-bottom: 80px;
-    font-size: 18px;
+    font-size: 22px;
     text-align: left;
     text-transform: none;
+    letter-spacing: -.2px;
+    font-weight: 'light';
     font-family: 'Roboto', sans-serif;
   }
   p{
     line-height: 38px;
-    letter-spacing: -.16;
+    letter-spacing: -.16px;
     margin-bottom: 50px;
     font-size: 19px;
     color: #d7d7d7;

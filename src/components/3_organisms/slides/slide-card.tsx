@@ -9,6 +9,7 @@ import SlidesNavigation from "@/src/components/2_molecules/slidesNav";
 
 interface Props {
   brand: string
+  brandTitleColor: string
   logo: string
   iconColor: string
   buttonColor: string
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const SlideCard = (props:Props) => {
-  const {brand, iconColor, buttonColor, logo, navCallback, style} = props;
+  const {brand, iconColor, buttonColor, logo, navCallback, style, brandTitleColor} = props;
   
   const transitionBrand = useTransition(brand, {
     native: true,
@@ -43,7 +44,7 @@ const SlideCard = (props:Props) => {
 
   return (
     <StyledCardWrap as={animated.div} style={style}>
-      <StyledBrandTransitionGroup>
+      <StyledBrandTransitionGroup color={brandTitleColor}>
         {transitionBrand(
           (styles, item) => item && 
             <animated.h2 style={styles}>{item}</animated.h2>

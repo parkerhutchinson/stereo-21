@@ -84,7 +84,11 @@ export const StyledCardWrap = styled.div`
   justify-content: space-between;
 `;
 
-export const StyledBrandTransitionGroup = styled.div`
+interface IStyledBrand {
+  color: string
+}
+
+export const StyledBrandTransitionGroup = styled.div<IStyledBrand>`
   position: relative;
   width: 100%;
   height: auto;
@@ -95,6 +99,7 @@ export const StyledBrandTransitionGroup = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    color: ${(p) => p.color};
   }
 `;
 

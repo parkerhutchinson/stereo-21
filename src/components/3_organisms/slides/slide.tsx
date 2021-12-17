@@ -79,6 +79,7 @@ const Slide = (props: Slide) => {
         (styles,toggle) => !toggle ?
         <SlideCard 
           brand={slide.brand}
+          brandTitleColor={slide.colorSchemeSlideStopTwo}
           iconColor={slide.colorSchemeHighlight}
           buttonColor={slide.colorSchemeHighlight}
           logo={slide.logo}

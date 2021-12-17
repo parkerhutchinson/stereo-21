@@ -7,6 +7,8 @@ export const Globals = createGlobalStyle`
     border: none;
     outline: none;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   html{
     min-height: 100vh;
