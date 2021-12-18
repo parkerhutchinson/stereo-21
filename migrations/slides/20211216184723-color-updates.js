@@ -1,4 +1,4 @@
-module.exports.description = '<Put your description here>';
+module.exports.description = 'add more detail colors to slide';
 
 module.exports.up = (migration) => {
   const ctx = migration.editContentType('slide');

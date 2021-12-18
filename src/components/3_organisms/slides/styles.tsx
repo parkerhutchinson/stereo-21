@@ -84,26 +84,6 @@ export const StyledCardWrap = styled.div`
   justify-content: space-between;
 `;
 
-interface IStyledBrand {
-  color: string
-}
-
-export const StyledBrandTransitionGroup = styled.div<IStyledBrand>`
-  position: relative;
-  width: 100%;
-  height: auto;
-  top: 0;
-  h2{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-weight: 100;
-    color: ${(p) => p.color};
-  }
-`;
-
 export const StyledCaseStudyCopy = styled.div`
   height: 100%;
   top: 0;
@@ -135,7 +115,7 @@ export const StyledLogo = styled.div`
   cursor: pointer;
   position: relative;
   padding-bottom: calc(367 / 463 * 100%);
-  margin-top: 40px;
+  margin-top: 120px;
   div{
     position: absolute;
     top: 0;

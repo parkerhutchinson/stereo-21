@@ -1,4 +1,4 @@
-module.exports.description = '<Put your description here>';
+module.exports.description = 'separate summary color from slide';
 
 module.exports.up = (migration) => {
   const summaryCtx = migration.editContentType('summary');

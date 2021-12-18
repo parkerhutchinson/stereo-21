@@ -57,7 +57,7 @@ const Slide = (props: Slide) => {
       
       {/* toggle nav */}
       {toggleTransition((stylesCopy, toggle) => toggle && 
-      <SlidesNavigation 
+      <SlidesNavigation
         buttonColor={slide.colorSchemeSlideStopTwo} 
         iconColor={slide.colorSchemeBioBG}
         navCallback={(e) => handleButtonCLick(e)}
