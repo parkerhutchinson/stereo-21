@@ -5,6 +5,7 @@ import { TypeSummaryFields } from "./TypeSummary";
 export interface TypeSlideFields {
     brand: Contentful.EntryFields.Symbol;
     logo: Contentful.Asset;
+    logo_small: Contentful.Asset;
     summaryRef: Contentful.Entry<TypeSummaryFields>;
     meshScene: Contentful.Asset;
     caseStudyCopy: CFRichTextTypes.Block | CFRichTextTypes.Inline;
