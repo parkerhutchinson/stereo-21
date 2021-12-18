@@ -58,7 +58,7 @@ const Slide = (props: Slide) => {
       {/* toggle nav */}
       {toggleTransition((stylesCopy, toggle) => toggle && 
       <SlidesNavigation 
-        buttonColor={slide.colorSchemeHighlight} 
+        buttonColor={slide.colorSchemeSlideStopTwo} 
         iconColor={slide.colorSchemeBioBG}
         navCallback={(e) => handleButtonCLick(e)}
         toggleNavAnimation={toggle}
@@ -79,7 +79,7 @@ const Slide = (props: Slide) => {
         (styles,toggle) => !toggle ?
         <SlideCard 
           brand={slide.brand}
-          brandTitleColor={slide.colorSchemeSlideStopTwo}
+          brandTitleColor={slide.colorSchemeEyeBrowStopTwo}
           iconColor={slide.colorSchemeHighlight}
           buttonColor={slide.colorSchemeHighlight}
           logo={slide.logo}

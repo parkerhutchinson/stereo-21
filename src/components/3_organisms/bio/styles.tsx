@@ -24,7 +24,6 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   }
 `;
 
-
 interface IStyledCopyWrapper {
   caseStudyOpen: boolean
   backgroundColor: string
@@ -53,6 +52,19 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
   @media screen and (min-width: 2200px) {
     max-width: 50%;
   }
+  
+  @property --stepOne{
+    syntax: '<color>';
+    inherits: false;
+    initial-value: red;
+  }
+
+  @property --stepTwo{
+    syntax: '<color>';
+    inherits: false;
+    initial-value: red;
+  }
+
   h1{
     &:before{
       content: '';
@@ -61,9 +73,10 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
       position: relative;
       display: block;
       margin-bottom: 60px;
-      /* background: ${(p) => p.backgroundColor}; */
-      background: ${(p) => `linear-gradient(90deg, ${p.eyeBrowBorderStopOne}, ${p.eyeBrowBorderStopTwo})`};
-      transition: background 1s;
+      --stepOne: ${(p) => p.eyeBrowBorderStopOne};
+      --stepTwo: ${(p) => p.eyeBrowBorderStopTwo};
+      background: linear-gradient(90deg, var(--stepOne), var(--stepTwo));
+      transition: --stepOne 1s, --stepTwo 1s;
       box-shadow: 0 5px 10px 0 rgba(0,0,0,0.50);
     }
   }
