@@ -140,4 +140,20 @@ export const StyledLogo = styled.div`
   }
 `;
 
+export const StyledLogoSmall = styled(StyledLogo)`
+  padding-bottom: 0;
+  cursor: auto;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  div{
+    width: 80px;
+  }
+  &:hover{
+    img{
+      transform: scale(1);
+    }
+  }
+`
+
 

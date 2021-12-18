@@ -1,6 +1,6 @@
 import react, {useEffect} from 'react';
 import Summary from "@/src/components/2_molecules/summary";
-import { StyledCaseStudyCopy, StyledLogo } from "./styles";
+import { StyledCaseStudyCopy, StyledLogoSmall } from "./styles";
 import RichText from "@/src/components/2_molecules/richText";
 import {useTransition, animated, useSpring} from 'react-spring';
 import { useHeight } from '@/src/hooks/useHeight';
@@ -23,7 +23,6 @@ interface Props {
 }
 
 interface ICaseStudy {
-  logoSmall: string
   brand: string
   caseStudyCopy: any
   colorSchemeBG: string
@@ -37,7 +36,7 @@ interface ICaseStudy {
 }
 
 const CaseStudy = (props: ICaseStudy) => {
-  const {logoSmall, brand,summary,caseStudyCopy, colorSchemeBG, heightCallback} = props;
+  const {brand,summary,caseStudyCopy, colorSchemeBG, heightCallback} = props;
   const [heightRef, height] = useHeight();
 
   useEffect(() => {
@@ -48,14 +47,7 @@ const CaseStudy = (props: ICaseStudy) => {
     heightCallback(height);
   }, [height]);
 
-  const transitionSlide = useTransition(logoSmall, {
-    native: true,
-    from: { opacity: 0, transform: 'rotate(20deg)', filter: 'blur(20px)' },
-    enter: { opacity: 1, transform: 'rotate(0deg)', filter: 'blur(0px)' },
-    leave: { opacity: 0, filter: 'blur(20px)' },
-    duration: 1000,
-    key: logoSmall
-  });
+  
 
   const [mountedAnimation, mountedAnimationAPI] = useSpring(() => ({
     from: {marginTop: 200, opacity: 0},
@@ -65,16 +57,10 @@ const CaseStudy = (props: ICaseStudy) => {
 
   return (
     <>
+    
     {/* @ts-ignore */}
     <StyledCaseStudyCopy ref={heightRef}>
-      <StyledLogo>
-        {transitionSlide(
-          (styles, item) => item && 
-          <animated.div style={styles}>
-            <img src={item} alt={`logo ${brand}`} />
-          </animated.div>
-        )}
-      </StyledLogo>
+      
       <animated.h2 style={mountedAnimation}>{brand}</animated.h2>
       <animated.div style={mountedAnimation}>
         <Summary {...summary} color={colorSchemeBG}/>
@@ -89,7 +75,9 @@ const CaseStudy = (props: ICaseStudy) => {
 
 const SlideArticle = (props:Props) => {
   const {
-    heightCallback
+    heightCallback,
+    brand,
+    logoSmall
   } = props;
 
   const newProps = useTransition(props, {
@@ -100,12 +88,28 @@ const SlideArticle = (props:Props) => {
     order: ["leave", "enter", "update"],
     key: props.logo,
   });
+  const transitionSlide = useTransition(logoSmall, {
+    native: true,
+    from: { opacity: 0, transform: 'rotate(20deg)' },
+    enter: { opacity: 1, transform: 'rotate(0deg)' },
+    leave: { opacity: 0 },
+    duration: 1000,
+    key: logoSmall
+  });
 
   return (
     <>
       {newProps((styles, props) => props &&
         // @ts-ignore
         <animated.div style={styles} key={props.logo}>
+          <StyledLogoSmall>
+            {transitionSlide(
+              (styles, item) => item && 
+              <animated.div style={styles}>
+                <img src={item} alt={`logo ${brand}`} />
+              </animated.div>
+            )}
+          </StyledLogoSmall>
           <CaseStudy {...props} heightCallback={(height:number) => heightCallback(height)}/>
         </animated.div>
       )}
