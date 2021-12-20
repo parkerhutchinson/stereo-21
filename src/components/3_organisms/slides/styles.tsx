@@ -122,7 +122,7 @@ export const StyledPill = styled.div<IStyledPill>`
   top: 0;
   margin-left: -200px;
   border-radius: 500px;
-  background: ${(p) => p.color};
+  background: ${(p) => `linear-gradient(180deg, ${p.color}, rgba(255,255,255,0))`};
   opacity: ${(p) => p.show ? '.1' : '0'};
   transition: all 1s;
 `;
