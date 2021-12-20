@@ -90,7 +90,7 @@ const SlideArticle = (props:Props) => {
   });
   const transitionSlide = useTransition(logoSmall, {
     native: true,
-    from: { opacity: 0, transform: 'rotate(20deg)' },
+    from: { opacity: 0, transform: 'rotate(40deg)' },
     enter: { opacity: 1, transform: 'rotate(0deg)' },
     leave: { opacity: 0 },
     duration: 1000,

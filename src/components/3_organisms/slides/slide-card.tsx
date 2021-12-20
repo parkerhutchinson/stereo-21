@@ -2,6 +2,7 @@ import {useTransition, animated} from 'react-spring';
 import { 
   StyledLogo, 
   StyledCardWrap,
+  StyledPill,
 } from "./styles";
 import SlidesNavigation from "@/src/components/2_molecules/slidesNav";
 
@@ -34,7 +35,7 @@ const SlideCard = (props:Props) => {
 
   return (
     <StyledCardWrap as={animated.div} style={style}>
-      
+      <StyledPill color={iconColor} show={true}/>
       <StyledLogo onClick={() => handleButtonCLick('open')}>
         {transitionSlide(
           (styles, item) => item && 

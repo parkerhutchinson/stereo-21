@@ -105,8 +105,26 @@ export const StyledCaseStudyCopy = styled.div`
     @media screen and (min-width: 1024px) {
       font-size: 120px;
     }
-  }
-  
+  }  
+`;
+
+interface IStyledPill {
+  color: string
+  show: boolean
+}
+
+export const StyledPill = styled.div<IStyledPill>`
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  max-width: 400px;
+  position: absolute;
+  top: 0;
+  margin-left: -200px;
+  border-radius: 500px;
+  background: ${(p) => p.color};
+  opacity: ${(p) => p.show ? '.1' : '0'};
+  transition: all 1s;
 `;
 
 export const StyledLogo = styled.div`
@@ -131,6 +149,7 @@ export const StyledLogo = styled.div`
     height: auto;
     display: inline-block;
     transform: scale(1);
+    max-width: 400px;
     transition: transform .4s var(--animation-curve);
   }
   &:hover{
