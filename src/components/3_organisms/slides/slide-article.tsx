@@ -1,8 +1,8 @@
-import react, {useEffect} from 'react';
+import react, {useEffect, useState} from 'react';
 import Summary from "@/src/components/2_molecules/summary";
-import { StyledCaseStudyCopy, StyledLogoSmall } from "./styles";
+import { StyledCaseStudyCopy, StyledHeadingLetter, StyledLogoSmall } from "./styles";
 import RichText from "@/src/components/2_molecules/richText";
-import {useTransition, animated, useSpring} from 'react-spring';
+import {useTransition, animated, useSpring, useTrail} from 'react-spring';
 import { useHeight } from '@/src/hooks/useHeight';
 import React from 'react';
 
@@ -38,30 +38,37 @@ interface ICaseStudy {
 const CaseStudy = (props: ICaseStudy) => {
   const {brand,summary,caseStudyCopy, colorSchemeBG, heightCallback} = props;
   const [heightRef, height] = useHeight();
+  const letters = props.brand.split('');
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     mountedAnimationAPI.start();
-  },[])
+    setTimeout(() => {
+      setReady(true)
+    }, 500)
+    return () => setReady(false);
+  },[]);
 
   useEffect(() => {
     heightCallback(height);
   }, [height]);
 
-  
-
   const [mountedAnimation, mountedAnimationAPI] = useSpring(() => ({
     from: {marginTop: 200, opacity: 0},
     to: {marginTop: 0, opacity: 1},
-    delay: 800
+    delay: 1100,
+    config: {duration: 600}
   }));
-
+  
   return (
     <>
-    
     {/* @ts-ignore */}
     <StyledCaseStudyCopy ref={heightRef}>
-      
-      <animated.h2 style={mountedAnimation}>{brand}</animated.h2>
+      <h2>{
+        letters.map((letter:string, index:number) => 
+            <StyledHeadingLetter index={index} ready={ready}>{letter}</StyledHeadingLetter>)
+          }
+      </h2>
       <animated.div style={mountedAnimation}>
         <Summary {...summary} color={colorSchemeBG}/>
       </animated.div>
@@ -93,7 +100,7 @@ const SlideArticle = (props:Props) => {
     from: { opacity: 0, transform: 'rotate(40deg)' },
     enter: { opacity: 1, transform: 'rotate(0deg)' },
     leave: { opacity: 0 },
-    duration: 1000,
+    config: {duration: 300},
     key: logoSmall
   });
 

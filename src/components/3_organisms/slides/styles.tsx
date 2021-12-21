@@ -102,10 +102,31 @@ export const StyledCaseStudyCopy = styled.div`
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
     text-align: center;
+    overflow: hidden;
+    height: 130px;
     @media screen and (min-width: 1024px) {
       font-size: 120px;
     }
+    span{
+      display: inline-block;
+      position: relative;
+    }
   }  
+`;
+
+interface IStyledHeadingLetter {
+  ready: boolean;
+  index: number
+}
+
+export const StyledHeadingLetter = styled.span<IStyledHeadingLetter>`
+  position: relative;
+  display: inline-block;
+  transform: ${(p) => p.ready ? 'rotate(0deg)' : 'rotate(30deg)'};
+  filter: ${(p) => p.ready ? 'blur(0px)' : 'blur(20px)'};
+  opacity: ${(p) => p.ready ? '1' : 0};
+  transition: all .5s;
+  transition-delay: ${(p) => `${p.index}00ms`};
 `;
 
 interface IStyledPill {

@@ -25,7 +25,6 @@ const SlideCard = (props:Props) => {
     from: { opacity: 0, transform: 'rotate(20deg)', filter: 'blur(20px)' },
     enter: { opacity: 1, transform: 'rotate(0deg)', filter: 'blur(0px)' },
     leave: { opacity: 0, filter: 'blur(20px)' },
-    duration: 1000,
     key: logo
   });
 
