@@ -70,6 +70,7 @@ const CaseStudy = (props: ICaseStudy) => {
             <StyledHeadingLetter 
               index={index} 
               ready={ready}
+              key={index}
             >
               {letter}
             </StyledHeadingLetter>
@@ -100,7 +101,7 @@ const SlideArticle = (props:Props) => {
     order: ["leave", "enter", "update"],
     key: props.logo,
   });
-  
+
   const transitionSlide = useTransition(logoSmall, {
     native: true,
     from: { opacity: 0, transform: 'rotate(40deg)' },
