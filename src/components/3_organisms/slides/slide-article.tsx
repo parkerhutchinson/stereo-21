@@ -62,12 +62,19 @@ const CaseStudy = (props: ICaseStudy) => {
   
   return (
     <>
-    {/* @ts-ignore */}
+    {/* @ts-ignore: this hook returns a number*/}
     <StyledCaseStudyCopy ref={heightRef}>
       <h2>{
-        letters.map((letter:string, index:number) => 
-            <StyledHeadingLetter index={index} ready={ready}>{letter}</StyledHeadingLetter>)
-          }
+        letters.map(
+          (letter:string, index:number) => 
+            <StyledHeadingLetter 
+              index={index} 
+              ready={ready}
+            >
+              {letter}
+            </StyledHeadingLetter>
+          )
+        }
       </h2>
       <Summary {...summary} color={colorSchemeBG}/>
       <animated.div style={mountedAnimation}>
@@ -93,6 +100,7 @@ const SlideArticle = (props:Props) => {
     order: ["leave", "enter", "update"],
     key: props.logo,
   });
+  
   const transitionSlide = useTransition(logoSmall, {
     native: true,
     from: { opacity: 0, transform: 'rotate(40deg)' },

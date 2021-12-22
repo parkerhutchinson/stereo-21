@@ -138,11 +138,12 @@ export const StyledPill = styled.div<IStyledPill>`
   left: 50%;
   width: 90%;
   height: 90%;
-  max-width: 400px;
+  max-width: 600px;
   position: absolute;
   top: 0;
-  margin-left: -200px;
-  border-radius: 500px;
+  margin: 0 auto;
+  border-radius: 5000px;
+  transform: translateX(-50%);
   background: ${(p) => `linear-gradient(180deg, ${p.color}, rgba(255,255,255,0))`};
   opacity: ${(p) => p.show ? '.1' : '0'};
   transition: all 1s;
@@ -170,7 +171,7 @@ export const StyledLogo = styled.div`
     height: auto;
     display: inline-block;
     transform: scale(1);
-    max-width: 400px;
+    max-width: 700px;
     transition: transform .4s var(--animation-curve);
   }
   &:hover{

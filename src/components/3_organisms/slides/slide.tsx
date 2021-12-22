@@ -38,12 +38,10 @@ const Slide = (props: Slide) => {
     onRest: () => finishedAnimation()
   });
 
-
   const handleButtonCLick = (action:string) => {
     navCallback(action);
   }
 
-  // change global colorways when slide updates
   return (
     <StyledSlide 
       cardcolor={slide.colorSchemeSeed} 

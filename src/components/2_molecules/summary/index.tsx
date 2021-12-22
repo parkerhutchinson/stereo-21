@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {StyledSummary, StyledSummaryStats} from "./styles";
 
 
@@ -11,15 +11,16 @@ interface Props {
 
 const Summary = (props:any) => {
   const {image, color, technology, year} = props;
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-
+    setMounted(true);
   }, []);
-  
+
   return (
-    <StyledSummary>
+    <StyledSummary ready={mounted}>
       <img src={image} alt="summary image" /> 
-      <StyledSummaryStats backgroundColor={color}>
+      <StyledSummaryStats backgroundColor={color} >
         <div>
           <h3>Year</h3>
           <p>{year}</p>
