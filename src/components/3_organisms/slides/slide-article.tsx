@@ -54,8 +54,8 @@ const CaseStudy = (props: ICaseStudy) => {
   }, [height]);
 
   const [mountedAnimation, mountedAnimationAPI] = useSpring(() => ({
-    from: {marginTop: 200, opacity: 0},
-    to: {marginTop: 0, opacity: 1},
+    from: {opacity: 0},
+    to: {opacity: 1},
     delay: 1100,
     config: {duration: 600}
   }));
@@ -69,9 +69,7 @@ const CaseStudy = (props: ICaseStudy) => {
             <StyledHeadingLetter index={index} ready={ready}>{letter}</StyledHeadingLetter>)
           }
       </h2>
-      <animated.div style={mountedAnimation}>
-        <Summary {...summary} color={colorSchemeBG}/>
-      </animated.div>
+      <Summary {...summary} color={colorSchemeBG}/>
       <animated.div style={mountedAnimation}>
         <RichText body={caseStudyCopy} isNotBio={true}/>
       </animated.div>

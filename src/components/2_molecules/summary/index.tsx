@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {StyledSummary, StyledSummaryStats} from "./styles";
 
 
@@ -11,6 +12,10 @@ interface Props {
 const Summary = (props:any) => {
   const {image, color, technology, year} = props;
 
+  useEffect(() => {
+
+  }, []);
+  
   return (
     <StyledSummary>
       <img src={image} alt="summary image" /> 

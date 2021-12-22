@@ -7,6 +7,14 @@ export const StyledSummary = styled.article`
   margin-bottom: 60px;
   display: flex;
   align-items: baseline;
+  &:before{
+    content: '';
+    display: block;
+    top: 0;
+    left: 0;
+    position: absolute;
+    
+  }
   img{
     position: relative;
     display: block;
