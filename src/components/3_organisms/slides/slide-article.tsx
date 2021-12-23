@@ -5,7 +5,7 @@ import RichText from "@/src/components/2_molecules/richText";
 import {useTransition, animated, useSpring, useTrail} from 'react-spring';
 import { useHeight } from '@/src/hooks/useHeight';
 import React from 'react';
-
+import { useDebouncedCallback } from 'use-debounce';
 
 interface Props {
   logo: string
@@ -48,9 +48,17 @@ const CaseStudy = (props: ICaseStudy) => {
     }, 500)
     return () => setReady(false);
   },[]);
-
+  const debouncedHeight = useDebouncedCallback(
+    // function
+    (value) => {
+      heightCallback(value);
+    },
+    // delay in ms
+    800
+  );
+  // TODO: debounce this like crazy
   useEffect(() => {
-    heightCallback(height);
+    debouncedHeight(height);
   }, [height]);
 
   const [mountedAnimation, mountedAnimationAPI] = useSpring(() => ({
@@ -115,7 +123,7 @@ const SlideArticle = (props:Props) => {
     <>
       {newProps((styles, props) => props &&
         // @ts-ignore
-        <animated.div style={styles} key={props.logo}>
+        <animated.div style={{...styles, ...{transform: 'translate3d(0px, 0px, 0px)'}}} key={props.logo}>
           <StyledLogoSmall>
             {transitionSlide(
               (styles, item) => item && 

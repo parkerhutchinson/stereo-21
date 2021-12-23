@@ -26,9 +26,14 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
 
   useEffect(()=>{
     // use loader if cache is empty
-    if (typeof mesh[slideId] === 'undefined')
-      new GLTFLoader().load(url, setGltf)      
-    
+    if (typeof mesh[slideId] === 'undefined') {
+      try {
+        new GLTFLoader().load(url, setGltf)
+      } catch(err) {
+        console.error(err);
+      }
+    }
+            
     if (typeof mesh[slideId] !== 'undefined') {
       mixer = new THREE.AnimationMixer(mesh.scene);
 

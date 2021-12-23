@@ -42,11 +42,25 @@ const Slide = (props: Slide) => {
     navCallback(action);
   }
 
+  const setHeightStyles = () => {
+    let heightValue = '0';
+    if (toggleSlide) {
+      if (heightState === 0) {
+        heightValue = '1000px';
+      } else {
+        heightValue = `${heightState + 200}px`;
+      }
+    } else {
+      heightValue = '75vh'
+    }
+    return heightValue;
+  } 
+
   return (
     <StyledSlide 
       cardcolor={slide.colorSchemeSeed} 
       toggle={toggleSlide}
-      style={{height: toggleSlide ? `${heightState + 200}px` : '75vh'}}
+      style={{height: setHeightStyles()}}
     >
       <EFXRoundedGradientBorder 
         colorStopTop={slide.colorSchemeSlideStopOne} 

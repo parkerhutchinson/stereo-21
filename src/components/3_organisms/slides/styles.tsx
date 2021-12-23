@@ -42,6 +42,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   transition: height .8s, width 1s var(--animation-curve), top 1s var(--animation-curve), background 1s;
   backdrop-filter: blur(35px);
   background: ${(p) => p.cardcolor};
+  transform: translate3d(0px, 0px, 0px);
   @media (min-width: 1360px) {
     width: ${({toggle}) => toggle ? '1000px' : '500px'};
   }
@@ -104,12 +105,14 @@ export const StyledCaseStudyCopy = styled.div`
     text-align: center;
     overflow: hidden;
     height: 130px;
+    transform: translate3d(0px, 0px, 0px);
     @media screen and (min-width: 1024px) {
       font-size: 120px;
     }
     span{
       display: inline-block;
       position: relative;
+      transform: translate3d(0px, 0px, 0px);
     }
   }  
 `;
@@ -122,7 +125,7 @@ interface IStyledHeadingLetter {
 export const StyledHeadingLetter = styled.span<IStyledHeadingLetter>`
   position: relative;
   display: inline-block;
-  transform: ${(p) => p.ready ? 'rotate(0deg)' : 'rotate(30deg)'};
+  transform: ${(p) => p.ready ? 'rotate(0deg)' : 'rotate(30deg)'} transform3d(0px, 0px, 0px);
   filter: ${(p) => p.ready ? 'blur(0px)' : 'blur(20px)'};
   opacity: ${(p) => p.ready ? '1' : 0};
   transition: all .5s;
