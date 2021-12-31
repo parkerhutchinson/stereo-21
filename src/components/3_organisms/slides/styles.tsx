@@ -11,7 +11,7 @@ interface IStyledSlides {
 export const StyledSlides = styled.section<IStyledSlides>`
   display: block;
   width: 100%;
-  position: ${({slidePosition}) => slidePosition ? 'absolute' : 'fixed'};
+  position: ${({ slidePosition }) => slidePosition ? 'absolute' : 'fixed'};
   top: 0;
   right: ${(p) => p.panelOpen ? '0%' : '-100%'};
   background-size: cover;
@@ -20,7 +20,7 @@ export const StyledSlides = styled.section<IStyledSlides>`
   transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
   overflow: hidden;
   @media screen and (min-width: 1024px) {
-    width: ${({toggle}) => toggle ? '100%' : '55%'};
+    width: ${({ toggle }) => toggle ? '100%' : '55%'};
     right: 0;
   }
 `;
@@ -39,16 +39,17 @@ export const StyledSlide = styled.div<IStyledSlide>`
   padding: 30px;
   color: white;
   border-radius: 10px;
+  will-change: height;
   transition: height .8s, width 1s var(--animation-curve), top 1s var(--animation-curve), background 1s;
   backdrop-filter: blur(35px);
   background: ${(p) => p.cardcolor};
   transform: translate3d(0px, 0px, 0px);
-  will-change: height;
+  
   @media (min-width: 1360px) {
-    width: ${({toggle}) => toggle ? '1000px' : '500px'};
+    width: ${({ toggle }) => toggle ? '1000px' : '500px'};
   }
   @media (min-width: 1800px) {
-    width: ${({toggle}) => toggle ? '1000px' : '750px'};
+    width: ${({ toggle }) => toggle ? '1000px' : '750px'};
   }
   &:before{
     content: '';
@@ -64,7 +65,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     border-radius: 10px;
   }
   canvas{
-    opacity: ${({toggle}) => toggle ? '.2' : '.5'};
+    opacity: ${({ toggle }) => toggle ? '.2' : '.5'};
     z-index: 3;
     transition: opacity 1s var(--animation-curve);
   }
@@ -139,10 +140,10 @@ interface IStyledPill {
 export const StyledPill = styled.div<IStyledPill>`
   left: 50%;
   width: 90%;
-  height: 90%;
+  height: 70%;
   max-width: 600px;
   position: absolute;
-  top: 0;
+  top: 20px;
   margin: 0 auto;
   border-radius: 5000px 5000px 0px 0px;
   transform: translateX(-50%);

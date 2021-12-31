@@ -4,8 +4,8 @@ import RichText from "../../2_molecules/richText";
 
 
 
-const getRGBABackground = (color:string) => {
-  const {red,green,blue} = hexRgb(color);
+const getRGBABackground = (color: string) => {
+  const { red, green, blue } = hexRgb(color);
   return `${red}, ${green}, ${blue}`
 }
 

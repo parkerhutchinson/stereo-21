@@ -1,6 +1,6 @@
-import {useTransition, animated} from 'react-spring';
-import { 
-  StyledLogo, 
+import { useTransition, animated } from 'react-spring';
+import {
+  StyledLogo,
   StyledCardWrap,
   StyledPill,
 } from "./styles";
@@ -14,11 +14,11 @@ interface Props {
   iconColor: string
   buttonColor: string
   style: any
-  navCallback: (action:string) => void
+  navCallback: (action: string) => void
 }
 
-const SlideCard = (props:Props) => {
-  const {brand, iconColor, buttonColor, logo, navCallback, style, brandTitleColor} = props;
+const SlideCard = (props: Props) => {
+  const { brand, iconColor, buttonColor, logo, navCallback, style, brandTitleColor } = props;
 
   const transitionSlide = useTransition(logo, {
     native: true,
@@ -28,26 +28,26 @@ const SlideCard = (props:Props) => {
     key: logo
   });
 
-  const handleButtonCLick = (action:string) => {
+  const handleButtonCLick = (action: string) => {
     navCallback(action);
   }
 
   return (
     <StyledCardWrap as={animated.div} style={style}>
-      <StyledPill color={iconColor} show={true}/>
+      <StyledPill color={iconColor} show={true} />
       <StyledLogo onClick={() => handleButtonCLick('open')}>
         {transitionSlide(
-          (styles, item) => item && 
-          <animated.div style={styles}>
-            <img src={item} alt={`logo ${brand}`} />
-          </animated.div>
+          (styles, item) => item &&
+            <animated.div style={styles}>
+              <img src={item} alt={`logo ${brand}`} />
+            </animated.div>
         )}
       </StyledLogo>
 
-      <SlidesNavigation 
+      <SlidesNavigation
         brandName={brand}
         brandNameColor={brandTitleColor}
-        buttonColor={buttonColor} 
+        buttonColor={buttonColor}
         iconColor={iconColor}
         navCallback={(e) => handleButtonCLick(e)}
         toggleNavAnimation={true}

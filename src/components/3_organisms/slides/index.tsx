@@ -20,28 +20,28 @@ const Slides = (props: Slides) => {
   const [slideOpen, toggleSlideOpen] = useState(false);
   const userInteracted = useRef(false);
   const timerRef = useRef<NodeJS.Timer>();
-  const {state: {mobilePanel}, dispatch } = useContext(GlobalContext);
+  const { state: { mobilePanel }, dispatch } = useContext(GlobalContext);
   const [activeSlide, setActiveSlide] = useState(0);
   const [articleReady, setArticleReady] = useState(false);
   // scroll top animation
-  const [, springAPI] = useSpring(() => ({ 
-      from: {y: window.scrollY},
-      to: {y: 0},
-      duration: 500
-    })
+  const [, springAPI] = useSpring(() => ({
+    from: { y: window.scrollY },
+    to: { y: 0 },
+    duration: 500
+  })
   )
 
   const [keyName] = useKeycode();
 
   const nextSlide = () => {
-    return activeSlide < SLIDES_LEN 
-      ? setActiveSlide(activeSlide + 1) 
+    return activeSlide < SLIDES_LEN
+      ? setActiveSlide(activeSlide + 1)
       : setActiveSlide(0);
   }
-    
-  const prevSlide = () => 
-    activeSlide > 0 
-      ? setActiveSlide(activeSlide - 1) 
+
+  const prevSlide = () =>
+    activeSlide > 0
+      ? setActiveSlide(activeSlide - 1)
       : setActiveSlide(SLIDES_LEN);
 
   const stopSlideshow = () => timerRef.current ? window.clearTimeout(timerRef.current) : null;
@@ -49,7 +49,7 @@ const Slides = (props: Slides) => {
   // slideshow interval
   useIsomorphicLayoutEffect(() => {
     if (timerRef.current)
-        window.clearTimeout(timerRef.current)
+      window.clearTimeout(timerRef.current)
 
     // cancel timer if user has interacted
     if (!userInteracted.current) {
@@ -64,10 +64,10 @@ const Slides = (props: Slides) => {
   useEffect(() => {
     if (typeof dispatch !== 'undefined') {
       // TODO: this sucks
-      dispatch({ 
-        type: UPDATE_COLOR, 
+      dispatch({
+        type: UPDATE_COLOR,
         payload: {
-          siteBackgroundColor: slides[activeSlide].colorSchemeSeed ,
+          siteBackgroundColor: slides[activeSlide].colorSchemeSeed,
           bioTextColor: slides[activeSlide].colorSchemeBioText,
           bioBackgroundColor: slides[activeSlide].colorSchemeBioBG,
           highlight: slides[activeSlide].colorSchemeHighlight,
@@ -80,19 +80,19 @@ const Slides = (props: Slides) => {
       dispatch({
         type: ADD_SLIDE_MESH,
         payload: {
-          slideId: activeSlide, 
+          slideId: activeSlide,
           url: slides[activeSlide].meshScene.fields.file.url
         }
       })
     }
   }, [activeSlide]);
 
-  const scrollTop = (cb:() => void) => {
+  const scrollTop = (cb: () => void) => {
     if (slideOpen && window.scrollY > 0) {
       springAPI.start({
         from: { y: window.scrollY },
-        to: {y: 0},
-        onChange: (props:any) => {
+        to: { y: 0 },
+        onChange: (props: any) => {
           window.scroll(0, props.value.y)
         },
         onRest: () => cb()
@@ -103,8 +103,8 @@ const Slides = (props: Slides) => {
   }
 
   // slides state controls
-  const handleSlideNavigation = (action:string) => {
-    switch(action) {
+  const handleSlideNavigation = (action: string) => {
+    switch (action) {
       case 'next':
         scrollTop(() => {
           prevSlide();
@@ -123,29 +123,29 @@ const Slides = (props: Slides) => {
         if (slideOpen && window.scrollY > 0) {
           springAPI.start({
             from: { y: window.scrollY },
-            to: {y: 0},
-            onChange: (props:any) => {
+            to: { y: 0 },
+            onChange: (props: any) => {
               window.scroll(0, props.value.y)
             },
             onRest: () => {
-              toggleSlideOpen(false);       
-              dispatch({type: OPEN_CASE_STUDY, payload: false})
+              toggleSlideOpen(false);
+              dispatch({ type: OPEN_CASE_STUDY, payload: false })
             }
           });
-        } else if (slideOpen && window.scrollY === 0){
-          toggleSlideOpen(false);       
-          dispatch({type: OPEN_CASE_STUDY, payload: false})
+        } else if (slideOpen && window.scrollY === 0) {
+          toggleSlideOpen(false);
+          dispatch({ type: OPEN_CASE_STUDY, payload: false })
         } else {
-          toggleSlideOpen(true);       
-          dispatch({type: OPEN_CASE_STUDY, payload: true})
+          toggleSlideOpen(true);
+          dispatch({ type: OPEN_CASE_STUDY, payload: true })
         }
         break;
     }
   }
 
   useEffect(() => {
-    
-    switch(keyName) {
+
+    switch (keyName) {
       case 'ArrowLeft':
         userInteracted.current = true;
         scrollTop(() => {
@@ -163,38 +163,38 @@ const Slides = (props: Slides) => {
       case 'Escape':
         // scroll top when esc key is hit
         scrollTop(() => {
-          toggleSlideOpen(false);       
-          dispatch({type: OPEN_CASE_STUDY, payload: false})
+          toggleSlideOpen(false);
+          dispatch({ type: OPEN_CASE_STUDY, payload: false })
         });
         break;
       case 'Enter':
         userInteracted.current = true;
         toggleSlideOpen(true);
         stopSlideshow();
-        dispatch({type: OPEN_CASE_STUDY, payload: true});
+        dispatch({ type: OPEN_CASE_STUDY, payload: true });
         break;
       default:
         break;
     }
-  },[keyName])
-  
+  }, [keyName])
+
   return (
-    <StyledSlides 
+    <StyledSlides
       backgroundColor={slides[activeSlide].colorSchemeBioBG}
       toggle={slideOpen}
       slidePosition={articleReady}
       panelOpen={mobilePanel}
     >
-      <Slide 
-        slide={slides[activeSlide]} 
+      <Slide
+        slide={slides[activeSlide]}
         navCallback={(e) => {
           userInteracted.current = true;
           handleSlideNavigation(e);
-        }} 
+        }}
         toggleSlide={slideOpen}
         finishedAnimation={() => slideOpen ? setArticleReady(true) : setArticleReady(false)}
       />
-      
+
     </StyledSlides>
   )
 }
