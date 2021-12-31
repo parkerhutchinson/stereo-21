@@ -21,6 +21,6 @@ export const StyledThreeBG = styled.div<IStyledThreeBg>`
   width: 100%;
   height: 100%;
   transition: background 1s;  
-  background: ${(p) => p.color};
+  background: black;
   pointer-events: none;
 `

@@ -1,3 +1,4 @@
+import react from 'react';
 import Button from "@/src/components/1_atoms/button";
 import ArrowIcon from "@/src/components/1_atoms/arrowIcon";
 import {StyledNav, StyledBrandTransitionGroup, StyledButtonGroup} from "./styles";
@@ -35,6 +36,10 @@ const SlidesNavigation = (props:Props) => {
     key: brandName
   });
 
+  const handleCallback = (dir:string) => {
+    navCallback(dir)
+  }
+
   return (
     <StyledNav as={animated.nav} style={props.style}>
       {navigationAnimation((styles,item) => item && 
@@ -43,7 +48,7 @@ const SlidesNavigation = (props:Props) => {
           <Button 
             borderStyle="begin" 
             color={buttonColor} 
-            onClick={() => navCallback('prev')}
+            onClick={() => handleCallback('prev')}
             label="previous slide"
           >
             <ArrowIcon direction="w" color={buttonColor}/>
@@ -51,7 +56,7 @@ const SlidesNavigation = (props:Props) => {
           <Button 
             borderStyle="end" 
             color={buttonColor}
-            onClick={() => navCallback('next')}
+            onClick={() => handleCallback('next')}
             label="next slide"
           >
             <ArrowIcon direction="e" color={buttonColor} />
@@ -67,7 +72,7 @@ const SlidesNavigation = (props:Props) => {
           <Button 
             borderStyle="symetrical" 
             color={buttonColor} 
-            onClick={() => navCallback('open')}
+            onClick={() => handleCallback('open')}
             label="open case study"
           >
             <ArrowIcon direction="se" color={buttonColor} />
@@ -78,4 +83,4 @@ const SlidesNavigation = (props:Props) => {
   );
 }
 
-export default SlidesNavigation;
+export default react.memo(SlidesNavigation);

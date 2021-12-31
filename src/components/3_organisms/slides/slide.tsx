@@ -20,9 +20,23 @@ export type SlideFields = Omit<TypeSlideFields, 'logo' | 'summaryRef' | 'logo_sm
 
 export interface Slide {
   slide: SlideFields
-  toggleSlide: boolean
+  toggleSlide?: boolean
   navCallback: (action:string) => void
   finishedAnimation: () => void
+}
+
+const setHeightStyles = (isToggled?:boolean, height?:number) => {
+  let heightValue = '75vh';
+  if (isToggled) {
+    if (height === 0) {
+      heightValue = '1000px';
+    } else {
+      heightValue = typeof height !== 'undefined' ? `${height + 200}px` : '200px';
+    }
+  } else {
+    heightValue = '75vh'
+  }
+  return heightValue;
 }
 
 const Slide = (props: Slide) => {
@@ -35,32 +49,20 @@ const Slide = (props: Slide) => {
     leave: {opacity: 0},
     duration: 500,
     order: ["leave", "enter", "update"],
-    onRest: () => finishedAnimation()
+    onRest: () => {
+      finishedAnimation()
+    }
   });
 
   const handleButtonCLick = (action:string) => {
     navCallback(action);
   }
 
-  const setHeightStyles = () => {
-    let heightValue = '0';
-    if (toggleSlide) {
-      if (heightState === 0) {
-        heightValue = '1000px';
-      } else {
-        heightValue = `${heightState + 200}px`;
-      }
-    } else {
-      heightValue = '75vh'
-    }
-    return heightValue;
-  } 
-
   return (
     <StyledSlide 
       cardcolor={slide.colorSchemeSeed} 
       toggle={toggleSlide}
-      style={{height: setHeightStyles()}}
+      style={{height: setHeightStyles(toggleSlide, heightState)}}
     >
       <EFXRoundedGradientBorder 
         colorStopTop={slide.colorSchemeSlideStopOne} 

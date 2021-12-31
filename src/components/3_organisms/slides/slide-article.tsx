@@ -36,10 +36,21 @@ interface ICaseStudy {
 }
 
 const CaseStudy = (props: ICaseStudy) => {
-  const {brand,summary,caseStudyCopy, colorSchemeBG, heightCallback} = props;
+  const {summary,caseStudyCopy, colorSchemeBG, heightCallback} = props;
   const [heightRef, height] = useHeight();
   const letters = props.brand.split('');
   const [ready, setReady] = useState(false);
+
+  const debouncedHeight = useDebouncedCallback((value) => {
+    heightCallback(value);
+  }, 800);
+
+  const [mountedAnimation, mountedAnimationAPI] = useSpring(() => ({
+    from: {opacity: 0},
+    to: {opacity: 1},
+    delay: 1100,
+    config: {duration: 600}
+  }));
 
   useEffect(() => {
     mountedAnimationAPI.start();
@@ -48,26 +59,11 @@ const CaseStudy = (props: ICaseStudy) => {
     }, 500)
     return () => setReady(false);
   },[]);
-  const debouncedHeight = useDebouncedCallback(
-    // function
-    (value) => {
-      heightCallback(value);
-    },
-    // delay in ms
-    800
-  );
-  // TODO: debounce this like crazy
+  
   useEffect(() => {
     debouncedHeight(height);
   }, [height]);
 
-  const [mountedAnimation, mountedAnimationAPI] = useSpring(() => ({
-    from: {opacity: 0},
-    to: {opacity: 1},
-    delay: 1100,
-    config: {duration: 600}
-  }));
-  
   return (
     <>
     {/* @ts-ignore: this hook returns a number*/}
@@ -139,4 +135,4 @@ const SlideArticle = (props:Props) => {
   );
 }
 
-export default SlideArticle;
+export default react.memo(SlideArticle);

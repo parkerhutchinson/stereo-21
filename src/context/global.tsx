@@ -21,7 +21,7 @@ type TDefaultData = {
   caseStudyOpen: boolean
   mobilePanel: boolean
   slideMesh: {
-    slideId: number, 
+    slideId: number
     url: string
   },
   colorScheme: {

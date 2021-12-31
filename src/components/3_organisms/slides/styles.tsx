@@ -27,7 +27,7 @@ export const StyledSlides = styled.section<IStyledSlides>`
 
 interface IStyledSlide {
   cardcolor: string
-  toggle: boolean
+  toggle?: boolean
 }
 
 export const StyledSlide = styled.div<IStyledSlide>`
@@ -43,13 +43,14 @@ export const StyledSlide = styled.div<IStyledSlide>`
   backdrop-filter: blur(35px);
   background: ${(p) => p.cardcolor};
   transform: translate3d(0px, 0px, 0px);
+  will-change: height;
   @media (min-width: 1360px) {
     width: ${({toggle}) => toggle ? '1000px' : '500px'};
   }
   @media (min-width: 1800px) {
     width: ${({toggle}) => toggle ? '1000px' : '750px'};
   }
-  &:before, &:after{
+  &:before{
     content: '';
     display: block;
     position: absolute;
@@ -57,8 +58,6 @@ export const StyledSlide = styled.div<IStyledSlide>`
     height: 100%;
     top: 0;
     left: 0;
-  }
-  &:before{
     z-index: 1;
     filter: saturate(1.2);
     transition: all 1s;
@@ -145,7 +144,7 @@ export const StyledPill = styled.div<IStyledPill>`
   position: absolute;
   top: 0;
   margin: 0 auto;
-  border-radius: 5000px;
+  border-radius: 5000px 5000px 0px 0px;
   transform: translateX(-50%);
   background: ${(p) => `linear-gradient(180deg, ${p.color}, rgba(255,255,255,0))`};
   opacity: ${(p) => p.show ? '.1' : '0'};

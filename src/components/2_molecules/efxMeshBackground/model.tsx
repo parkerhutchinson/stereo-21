@@ -40,6 +40,7 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
       // loop through all animations and play them.
       mesh[slideId].animations.forEach((clip:any) => {
         const action = mixer.clipAction(clip)
+        action.stop();
         action.play();
       });
 
@@ -51,7 +52,7 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
 
   useFrame((state, delta) => {
     // rotation animation loop
-    if (meshRef.current) {
+    if (meshRef.current && mesh[slideId].scene) {
       meshRef.current.rotation.z += 0.001;
       meshRef.current.rotation.y += 0.001;
       meshRef.current.rotation.x += 0.001;
