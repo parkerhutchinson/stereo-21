@@ -32,7 +32,7 @@ interface IStyledSlide {
 
 export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
-  margin: 100px auto 100px;
+  margin: 12.5vh auto 100px;
   display: block;
   width: 80%;
   top: 0px;
