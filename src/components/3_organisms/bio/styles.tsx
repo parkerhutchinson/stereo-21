@@ -73,11 +73,11 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
       position: relative;
       display: block;
       margin-bottom: 60px;
-      /* --stepOne: ${(p) => p.eyeBrowBorderStopOne};
+      --stepOne: ${(p) => p.eyeBrowBorderStopOne};
       --stepTwo: ${(p) => p.eyeBrowBorderStopTwo};
-      background: linear-gradient(90deg, var(--stepOne), var(--stepTwo)); */
+      background: linear-gradient(90deg, var(--stepOne), var(--stepTwo));
       /* transition: --stepOne 1s, --stepTwo 1s; */
-      box-shadow: 0 5px 10px 0 rgba(0,0,0,0.50);
+      /* box-shadow: 0 5px 10px 0 rgba(0,0,0,0.50); */
     }
   }
   h2{

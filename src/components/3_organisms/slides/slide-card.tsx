@@ -34,7 +34,7 @@ const SlideCard = (props: Props) => {
 
   return (
     <StyledCardWrap as={animated.div} style={style}>
-      <StyledPill color={iconColor} show={true} />
+      <StyledPill show={true} />
       <StyledLogo onClick={() => handleButtonCLick('open')}>
         {transitionSlide(
           (styles, item) => item &&

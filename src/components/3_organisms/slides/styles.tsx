@@ -45,6 +45,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   background: ${(p) => p.cardcolor};
   transform: translate3d(0px, 0px, 0px);
   backface-visibility: hidden;
+  overflow: hidden;
   @media (min-width: 1360px) {
     width: ${({ toggle }) => toggle ? '1000px' : '500px'};
   }
@@ -65,7 +66,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     border-radius: 10px;
   }
   canvas{
-    opacity: ${({ toggle }) => toggle ? '.2' : '.5'};
+    opacity: .2;
     z-index: 3;
     transition: opacity 1s var(--animation-curve);
   }
@@ -133,21 +134,20 @@ export const StyledHeadingLetter = styled.span<IStyledHeadingLetter>`
 `;
 
 interface IStyledPill {
-  color: string
   show: boolean
 }
 
 export const StyledPill = styled.div<IStyledPill>`
   left: 50%;
   width: 90%;
-  height: 70%;
+  height: 80%;
   max-width: 600px;
   position: absolute;
   top: 20px;
   margin: 0 auto;
   border-radius: 5000px 5000px 0px 0px;
   transform: translateX(-50%);
-  background: ${(p) => `linear-gradient(180deg, ${p.color}, rgba(255,255,255,0))`};
+  background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0));
   opacity: ${(p) => p.show ? '.1' : '0'};
   transition: all 1s;
 `;
