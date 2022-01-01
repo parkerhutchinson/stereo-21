@@ -41,8 +41,9 @@ export const StyledSlide = styled.div<IStyledSlide>`
   border-radius: 10px;
   will-change: height;
   transition: height .8s, width 1s var(--animation-curve), top 1s var(--animation-curve), background 1s;
-  backdrop-filter: blur(35px);
-  background: ${(p) => p.cardcolor};
+  backdrop-filter: blur(50px);
+  /* background: ${(p) => p.cardcolor}; */
+  background: rgba(0,0,0,0);
   transform: translate3d(0px, 0px, 0px);
   backface-visibility: hidden;
   overflow: hidden;
@@ -65,6 +66,19 @@ export const StyledSlide = styled.div<IStyledSlide>`
     transition: all 1s;
     border-radius: 10px;
   }
+  /* &:after{
+    content: '';
+    z-index:0;
+    position: absolute;
+    background: url('/noise-texture.png') repeat center center;
+    background-size: 120% 120%;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    top: 1px;
+    left: 1px;
+    mix-blend-mode: hard-light;
+    opacity: .18;
+  } */
   canvas{
     opacity: .2;
     z-index: 3;
@@ -147,7 +161,7 @@ export const StyledPill = styled.div<IStyledPill>`
   margin: 0 auto;
   border-radius: 5000px 5000px 0px 0px;
   transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0));
+  background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(0,0,0,0));
   opacity: ${(p) => p.show ? '.1' : '0'};
   transition: all 1s;
 `;
