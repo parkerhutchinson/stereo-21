@@ -76,6 +76,9 @@ const Slide = (props: Slide) => {
           iconColor={slide.colorSchemeBioBG}
           navCallback={(e) => handleButtonCLick(e)}
           toggleNavAnimation={toggle}
+          brandName={slide.brand}
+          brandLogo={slide.logoSmall}
+          isHeaderNav={true}
           style={
             {
               ...stylesCopy,

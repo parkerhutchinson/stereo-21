@@ -106,28 +106,13 @@ const SlideArticle = (props: Props) => {
     key: props.logo,
   });
 
-  const transitionSlide = useTransition(logoSmall, {
-    native: true,
-    from: { opacity: 0, transform: 'rotate(40deg)' },
-    enter: { opacity: 1, transform: 'rotate(0deg)' },
-    leave: { opacity: 0 },
-    config: { duration: 300 },
-    key: logoSmall
-  });
+  
 
   return (
     <>
       {newProps((styles, props) => props &&
         // @ts-ignore
         <animated.div style={{ ...styles, ...{ transform: 'translate3d(0px, 0px, 0px)' } }} key={props.logo}>
-          <StyledLogoSmall>
-            {transitionSlide(
-              (styles, item) => item &&
-                <animated.div style={styles}>
-                  <img src={item} alt={`logo ${brand}`} />
-                </animated.div>
-            )}
-          </StyledLogoSmall>
           <CaseStudy {...props} heightCallback={(height: number) => heightCallback(height)} />
         </animated.div>
       )}

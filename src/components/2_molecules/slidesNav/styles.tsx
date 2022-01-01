@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyledLogo } from '@/src/components/3_organisms/slides/styles';
 
 export const StyledNav = styled.nav`
   width: 100%;
@@ -38,3 +39,21 @@ export const StyledBrandTransitionGroup = styled.div<IStyledBrand>`
     color: ${(p) => p.color};
   }
 `;
+
+export const StyledLogoSmall = styled(StyledLogo)`
+  padding-bottom: 0;
+  cursor: auto;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  position: relative;
+  left: -20px;
+  div{
+    width: 80px;
+  }
+  &:hover{
+    img{
+      transform: scale(1);
+    }
+  }
+`

@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { GlobalActions } from "@/src/context/global";
 import { StyledBioTab, StyledCopyWrapper, StyledMobileWorkButton, StyledBioRichText } from "./styles";
-import StereoLogo from "@/src/components/2_molecules/stereoLogo";
 import { GlobalContext } from "@/src/context/global"
 import { TypeBioFields } from "@/src/types/generated/TypeBio";
 import IconWork from "@/public/icn-work.svg";

@@ -51,6 +51,7 @@ const SlideCard = (props: Props) => {
         iconColor={iconColor}
         navCallback={(e) => handleButtonCLick(e)}
         toggleNavAnimation={true}
+        isHeaderNav={false}
       />
     </StyledCardWrap>
   );

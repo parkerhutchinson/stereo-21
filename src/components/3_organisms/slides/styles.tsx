@@ -44,7 +44,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   backdrop-filter: blur(35px);
   background: ${(p) => p.cardcolor};
   transform: translate3d(0px, 0px, 0px);
-  
+  backface-visibility: hidden;
   @media (min-width: 1360px) {
     width: ${({ toggle }) => toggle ? '1000px' : '500px'};
   }
