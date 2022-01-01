@@ -53,7 +53,7 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
     max-width: 50%;
   }
   
-  @property --stepOne{
+  /* @property --stepOne{
     syntax: '<color>';
     inherits: false;
     initial-value: red;
@@ -63,7 +63,7 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
     syntax: '<color>';
     inherits: false;
     initial-value: red;
-  }
+  } */
 
   h1{
     &:before{
@@ -73,10 +73,10 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
       position: relative;
       display: block;
       margin-bottom: 60px;
-      --stepOne: ${(p) => p.eyeBrowBorderStopOne};
+      /* --stepOne: ${(p) => p.eyeBrowBorderStopOne};
       --stepTwo: ${(p) => p.eyeBrowBorderStopTwo};
-      background: linear-gradient(90deg, var(--stepOne), var(--stepTwo));
-      transition: --stepOne 1s, --stepTwo 1s;
+      background: linear-gradient(90deg, var(--stepOne), var(--stepTwo)); */
+      /* transition: --stepOne 1s, --stepTwo 1s; */
       box-shadow: 0 5px 10px 0 rgba(0,0,0,0.50);
     }
   }
