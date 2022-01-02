@@ -27,8 +27,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
 interface IStyledCopyWrapper {
   caseStudyOpen: boolean
   backgroundColor: string
-  eyeBrowBorderStopOne: string
-  eyeBrowBorderStopTwo: string
+  subHeadingColor: string
 }
 
 export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
@@ -52,39 +51,20 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
   @media screen and (min-width: 2200px) {
     max-width: 50%;
   }
-  
-  /* @property --stepOne{
-    syntax: '<color>';
-    inherits: false;
-    initial-value: red;
-  }
 
-  @property --stepTwo{
-    syntax: '<color>';
-    inherits: false;
-    initial-value: red;
-  } */
-
-  h1{
-    &:before{
-      content: '';
-      width: 50px;
-      height: 4px;
-      position: relative;
-      display: block;
-      margin-bottom: 60px;
-      --stepOne: ${(p) => p.eyeBrowBorderStopOne};
-      --stepTwo: ${(p) => p.eyeBrowBorderStopTwo};
-      background: linear-gradient(90deg, var(--stepOne), var(--stepTwo));
-      /* transition: --stepOne 1s, --stepTwo 1s; */
-      /* box-shadow: 0 5px 10px 0 rgba(0,0,0,0.50); */
-    }
-  }
   h2{
     transition: all 1s;
-    color: ${(p) => p.eyeBrowBorderStopTwo};
+    color: ${(p) => p.subHeadingColor};
   }
 `;
+
+export const StyledEyeBrow = styled.span`
+  width: 50px;
+  height: 4px;
+  position: relative;
+  display: block;
+  margin-bottom: 60px;
+`
 
 export const StyledBioRichText = styled(RichText)`
   h1{

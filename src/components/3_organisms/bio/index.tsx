@@ -1,11 +1,13 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { GlobalActions } from "@/src/context/global";
-import { StyledBioTab, StyledCopyWrapper, StyledMobileWorkButton, StyledBioRichText } from "./styles";
+import { StyledBioTab, StyledCopyWrapper, StyledMobileWorkButton, StyledBioRichText, StyledEyeBrow } from "./styles";
 import { GlobalContext } from "@/src/context/global"
 import { TypeBioFields } from "@/src/types/generated/TypeBio";
 import IconWork from "@/public/icn-work.svg";
 import useScreenSize from "@/src/hooks/useScreenSize";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
+import { useSpring, animated } from 'react-spring';
+
 
 const Bio = (props: TypeBioFields) => {
   const [winWidth] = useScreenSize();
@@ -32,6 +34,15 @@ const Bio = (props: TypeBioFields) => {
     })
   }, [caseStudyOpen])
 
+  const [styles, eyebrowAPI] = useSpring(() => {
+    backgroundImage: 
+      `linear-gradient(90deg, ${colorScheme.eyeBrowStopOne} 0%, ${colorScheme.eyeBrowStopTwo} 100%)`
+  })
+
+  useEffect(() => {
+    eyebrowAPI.start({backgroundImage: `linear-gradient(90deg, ${colorScheme.eyeBrowStopOne} 0%, ${colorScheme.eyeBrowStopTwo} 100%)`});
+  }, [colorScheme.eyeBrowStopOne])
+
   return (
     <StyledBioTab
       caseStudyOpen={caseStudyOpen}
@@ -53,14 +64,12 @@ const Bio = (props: TypeBioFields) => {
       >
         <IconWork />
       </StyledMobileWorkButton>
-
-
       <StyledCopyWrapper
-        eyeBrowBorderStopOne={colorScheme.eyeBrowStopOne}
-        eyeBrowBorderStopTwo={colorScheme.eyeBrowStopTwo}
+        subHeadingColor={colorScheme.eyeBrowStopTwo}
         backgroundColor={colorScheme.highlight}
         caseStudyOpen={winWidth < 1024 ? mobilePanel : caseStudyOpen}
       >
+        <StyledEyeBrow as={animated.span} style={styles} />
         <StyledBioRichText body={body} isNotBio={false} />
       </StyledCopyWrapper>
     </StyledBioTab>
