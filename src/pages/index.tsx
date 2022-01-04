@@ -18,7 +18,7 @@ const Page: NextPage = () => {
   const componentsMap = components.map((d: any) => {
     return typeof ComponentImportMap[d.componentId] !== 'undefined' ? 
       { Component: ComponentImportMap[d.componentId], props: d.props } : 
-      { Component: () => <ErrorComponentMissing id={d.componentId} />, props: {} }
+      { Component: () => <>{process.env.NODE_ENV === 'development' && <ErrorComponentMissing id={d.componentId} />}</>, props: {} }
   });
 
   return (
