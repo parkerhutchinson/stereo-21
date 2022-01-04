@@ -133,8 +133,9 @@ export const StyledCaseStudyCopy = styled.div`
 `;
 
 interface IStyledHeadingLetter {
-  ready: boolean;
+  ready: boolean
   index: number
+  isSpace: boolean
 }
 
 export const StyledHeadingLetter = styled.span<IStyledHeadingLetter>`
@@ -145,6 +146,7 @@ export const StyledHeadingLetter = styled.span<IStyledHeadingLetter>`
   opacity: ${(p) => p.ready ? '1' : 0};
   transition: all .5s;
   transition-delay: ${(p) => `${p.index}00ms`};
+  width: ${(p) => p.isSpace ? '30px' : 'inherit'};
 `;
 
 interface IStyledPill {

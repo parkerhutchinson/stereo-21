@@ -75,6 +75,7 @@ const CaseStudy = (props: ICaseStudy) => {
                 index={index}
                 ready={ready}
                 key={index}
+                isSpace={letter.trim().length !== 1}
               >
                 {letter}
               </StyledHeadingLetter>
