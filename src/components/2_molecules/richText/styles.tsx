@@ -17,13 +17,18 @@ export const StyledRichText = styled.div<Props>`
     }
   }
   p{
-    line-height: 38px;
+    line-height: 32px;
     letter-spacing: -.16px;
-    margin-bottom: 60px;
-    font-size: 19px;
+    margin-bottom: 40px;
+    font-size: 16px;
     color: #DADADA;
     a, a:visited, a:hover, a:active{
       color: #DADADA;
+    }
+    @media screen and (min-width: 900px){
+      font-size: 19px;
+      line-height: 38px;
+      margin-bottom: 60px;
     }
   }
 `;

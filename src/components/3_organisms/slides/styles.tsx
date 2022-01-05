@@ -32,15 +32,20 @@ interface IStyledSlide {
 
 export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
-  margin: 12.5vh auto 100px;
+  margin: ${({ toggle }) => toggle ? '0vh auto 100px' : '12.5vh auto 100px'};
   display: block;
-  width: 90%;
+  width: ${({ toggle }) => toggle ? '100%' : '90%'};
   top: 0px;
   padding: 30px;
   color: white;
   border-radius: 10px;
   will-change: height;
-  transition: height .8s, width 1s var(--animation-curve), top 1s var(--animation-curve), background 1s;
+  transition: 
+    height .8s, 
+    width 1s var(--animation-curve), 
+    top 1s var(--animation-curve), 
+    background 1s,
+    margin 1s;
   backdrop-filter: blur(50px);
   /* background: ${(p) => p.cardcolor}; */
   background: rgba(0,0,0,0);
@@ -49,6 +54,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   overflow: hidden;
   @media screen and (min-width: 1024px) {
     width: 80%;
+    margin: 12.5vh auto 100px;
   }
   @media (min-width: 1360px) {
     width: ${({ toggle }) => toggle ? '1000px' : '500px'};
