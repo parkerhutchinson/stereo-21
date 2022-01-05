@@ -113,8 +113,8 @@ export const StyledCaseStudyCopy = styled.div`
   }
   h2{
     font-weight: 100;
-    margin: 30px auto 0px;
-    font-size: 50px;
+    margin: 30px auto 10px;
+    font-size: 60px;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
     text-align: center;
@@ -151,7 +151,10 @@ export const StyledHeadingLetter = styled.span<IStyledHeadingLetter>`
   opacity: ${(p) => p.ready ? '1' : 0};
   transition: all .5s;
   transition-delay: ${(p) => `${p.index}00ms`};
-  width: ${(p) => p.isSpace ? '30px' : 'inherit'};
+  width: ${(p) => p.isSpace ? '10px' : 'inherit'};
+  @media screen and (min-width: 768px) {
+    width: ${(p) => p.isSpace ? '30px' : 'inherit'};
+  }
 `;
 
 interface IStyledPill {

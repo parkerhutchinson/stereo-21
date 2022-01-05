@@ -44,12 +44,15 @@ interface StyledProps {
 export const StyledButton = styled.button<StyledProps>`
   padding: 15px 13px;
   /* border: 1px solid ${(p) => p.color}; */
-  ${(p) => buttonCorners(p.cornerType)};
+  ${(p) => buttonCorners(p.cornerType)}
   background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, 0)`};
   transition: all 1s;
   cursor: pointer;
   position: relative;
-  &:hover{
-    background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, .5)`};
+  @media screen and (min-width: 768px) {
+    &:hover{
+      background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, .5)`};
+    }
   }
+  
 `;

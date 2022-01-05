@@ -7,7 +7,7 @@ interface IStyledSummary {
 export const StyledSummary = styled.article<IStyledSummary>`
   width: 100%;
   position: relative;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
   align-items: baseline;
   opacity: ${(p) => p.ready ? '1' : '0'};
   clip-path: ${(p) => p.ready ? 'polygon(0% 0%, 101% 0%, 101% 100%, 0% 100%)' : 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)'};
@@ -24,7 +24,9 @@ export const StyledSummary = styled.article<IStyledSummary>`
     transition-delay: 1.2s;
     z-index: 0;
   }
-  
+  @media screen and (min-width: 900px){
+    margin-bottom: 80px;
+  }
 `;
 
 
@@ -45,7 +47,10 @@ export const StyledSummaryStats = styled.div<StyledStatsProps>`
     margin-bottom: 10px;
     font-weight: 500;
     font-family: 'Bebas Neue',sans-serif;
-    font-size: 23px;
+    font-size: 20px;
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+    }
   }
   ul, li{
     margin: 0;
@@ -57,8 +62,11 @@ export const StyledSummaryStats = styled.div<StyledStatsProps>`
   p, li{
     color: white;
     font-size: 15px;
-    line-height: 15px;
+    line-height: 13px;
     margin-bottom: 7px;
+    @media screen and (min-width: 768px) {
+      font-size: 15px;
+    }
   }
   @media screen and (min-width: 900px){
     position: absolute;
