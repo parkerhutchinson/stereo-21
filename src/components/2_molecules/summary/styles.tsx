@@ -8,7 +8,6 @@ export const StyledSummary = styled.article<IStyledSummary>`
   width: 100%;
   position: relative;
   margin-bottom: 80px;
-  display: flex;
   align-items: baseline;
   opacity: ${(p) => p.ready ? '1' : '0'};
   clip-path: ${(p) => p.ready ? 'polygon(0% 0%, 101% 0%, 101% 100%, 0% 100%)' : 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)'};
@@ -19,12 +18,13 @@ export const StyledSummary = styled.article<IStyledSummary>`
     position: relative;
     display: block;
     width: 100%;
-    height: auot;
+    height: auto;
     filter: grayscale(100%);
     transition: all .4s;
     transition-delay: 1.2s;
     z-index: 0;
   }
+  
 `;
 
 
@@ -34,16 +34,12 @@ interface StyledStatsProps {
 
 export const StyledSummaryStats = styled.div<StyledStatsProps>`
   background: ${(p) => p.backgroundColor};
-  padding: 40px;
   color: white;
-  position: absolute;
+  position: relative;
   z-index: 1;
-  width: 60%;
+  padding: 30px;
   display: flex;
-  bottom: 0;
-  right: -1px;
   justify-content: space-between;
-  border-right: 1px solid ${(p) => p.backgroundColor};
   h3{
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -51,7 +47,6 @@ export const StyledSummaryStats = styled.div<StyledStatsProps>`
     font-family: 'Bebas Neue',sans-serif;
     font-size: 23px;
   }
-  
   ul, li{
     margin: 0;
     padding: 0;
@@ -64,5 +59,13 @@ export const StyledSummaryStats = styled.div<StyledStatsProps>`
     font-size: 15px;
     line-height: 15px;
     margin-bottom: 7px;
+  }
+  @media screen and (min-width: 900px){
+    position: absolute;
+    right: -1px;
+    bottom: 0;
+    padding: 40px;
+    width: 60%;
+    border-right: 1px solid ${(p) => p.backgroundColor};
   }
 `

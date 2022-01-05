@@ -48,7 +48,7 @@ export const StyledLogoSmall = styled(StyledLogo)`
   margin: 0 auto;
   position: relative;
   left: -15px;
-  top: 5px;
+  top: -5px;
   div{
     width: 60px;
   }

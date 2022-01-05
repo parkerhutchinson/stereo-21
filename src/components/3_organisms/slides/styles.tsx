@@ -34,7 +34,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   position: relative;
   margin: 12.5vh auto 100px;
   display: block;
-  width: 80%;
+  width: 90%;
   top: 0px;
   padding: 30px;
   color: white;
@@ -47,6 +47,9 @@ export const StyledSlide = styled.div<IStyledSlide>`
   transform: translate3d(0px, 0px, 0px);
   backface-visibility: hidden;
   overflow: hidden;
+  @media screen and (min-width: 1024px) {
+    width: 80%;
+  }
   @media (min-width: 1360px) {
     width: ${({ toggle }) => toggle ? '1000px' : '500px'};
   }
@@ -66,7 +69,6 @@ export const StyledSlide = styled.div<IStyledSlide>`
     transition: all 1s;
     border-radius: 10px;
   }
-  
   canvas{
     opacity: .2;
     z-index: 3;
@@ -79,13 +81,17 @@ export const StyledSlide = styled.div<IStyledSlide>`
 
 export const StyledCardWrap = styled.div`
   position: absolute;
-  height: calc(100% - 60px);
+  height: calc(100% - 30px);
   width: calc(100% - 60px);
-  top: 30px;
+  top: 15px;
   z-index: 11;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (min-width: 1024px) {
+    height: calc(100% - 60px);
+    top: 30px;
+  }
 `;
 
 export const StyledCaseStudyCopy = styled.div`
@@ -101,16 +107,21 @@ export const StyledCaseStudyCopy = styled.div`
   }
   h2{
     font-weight: 100;
-    margin: 20px auto 80px;
-    font-size: 80px;
+    margin: 30px auto 0px;
+    font-size: 50px;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
     text-align: center;
     overflow: hidden;
-    height: 130px;
+    height: 80px;
     transform: translate3d(0px, 0px, 0px);
+    @media screen and (min-width: 800px) {
+      font-size: 80px;
+      height: 130px;
+    }
     @media screen and (min-width: 1024px) {
       font-size: 120px;
+      margin: 20px auto 80px;
     }
     span{
       display: inline-block;
@@ -143,17 +154,24 @@ interface IStyledPill {
 
 export const StyledPill = styled.div<IStyledPill>`
   left: 50%;
-  width: 90%;
+  width: 100%;
   height: 80%;
-  max-width: 600px;
+  max-width: 700px;
   position: absolute;
-  top: 20px;
+  top: 10px;
   margin: 0 auto;
   border-radius: 5000px 5000px 0px 0px;
   transform: translateX(-50%);
   background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(0,0,0,0));
   opacity: ${(p) => p.show ? '.1' : '0'};
   transition: all 1s;
+  @media screen and (min-width: 900px){
+    left: 50%;
+    width: 90%;
+    height: 80%;
+    max-width: 600px;
+    top: 20px;
+  }
 `;
 
 export const StyledLogo = styled.div`
@@ -174,16 +192,22 @@ export const StyledLogo = styled.div`
     position: relative;
     top: 0;
     left: 0;
-    width: 80%;
+    width: 100%;
     height: auto;
     display: inline-block;
     transform: scale(1);
     max-width: 700px;
     transition: transform .4s var(--animation-curve);
   }
-  &:hover{
+  
+  @media screen and (min-width: 900px){
     img{
-      transform: scale(1.2);
+      width: 80%;
+    }
+    &:hover{
+      img{
+        transform: scale(1.2);
+      }
     }
   }
 `;

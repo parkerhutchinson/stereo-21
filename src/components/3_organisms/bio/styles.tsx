@@ -63,36 +63,55 @@ export const StyledEyeBrow = styled.span`
   height: 4px;
   position: relative;
   display: block;
-  margin-bottom: 60px;
+  margin: 0 auto 30px;
+  @media screen and (min-width: 900px) {
+    margin: unset;
+    margin-bottom: 60px;
+  }
 `
 
 export const StyledBioRichText = styled(RichText)`
   h1{
     font-weight: 200;
     margin-bottom: 15px;
-    font-size: 48px;
+    font-size: 42px;
     position: relative;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
+    text-align: center;
+    @media screen and (min-width: 900px) {
+      text-align: left;
+      font-size: 48px;
+    }
     @media screen and (min-width: 1800px) {
       font-size: 62px;
     }
   }
   h2{
-    margin-bottom: 80px;
-    font-size: 22px;
-    text-align: left;
+    margin-bottom: 50px;
+    font-size: 18px;
+    text-align: center;
     text-transform: none;
     letter-spacing: -.2px;
     font-weight: 'light';
     font-family: 'Roboto', sans-serif;
+    @media screen and (min-width: 900px) {
+      text-align: left;
+      margin-bottom: 80px;
+      font-size: 22px;
+    }
   }
   p{
-    line-height: 38px;
+    line-height: 34px;
     letter-spacing: -.16px;
-    margin-bottom: 50px;
-    font-size: 19px;
+    margin-bottom: 30px;
+    font-size: 16px;
     color: #d7d7d7;
+    @media screen and (min-width: 900px) {
+      font-size: 19px;
+      line-height: 38pt;
+      margin-bottom: 50px;
+    }
   }
 `
 

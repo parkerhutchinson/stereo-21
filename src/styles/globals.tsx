@@ -19,7 +19,13 @@ export const Globals = createGlobalStyle`
   }
 
   p{
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    @media screen and (min-width: 900px) {
+      font-size: 19px;
+      margin-bottom: 30px;
+
+    }
   }
 
   ul,ol{

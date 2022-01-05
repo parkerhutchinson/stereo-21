@@ -50,5 +50,7 @@ interface IStyledCopy {
 }
 
 export const StyledCopy = styled.p<IStyledCopy>`
-  padding: ${(p) => p.isNotBio ? '0 30px' : '0px'};
+  @media screen and (min-width: 900px){
+    padding: ${(p) => p.isNotBio ? '0 30px' : '0px'}; 
+  }
 `
