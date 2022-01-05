@@ -43,13 +43,14 @@ export const StyledBrandTransitionGroup = styled.div<IStyledBrand>`
 export const StyledLogoSmall = styled(StyledLogo)`
   padding-bottom: 0;
   cursor: auto;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   margin: 0 auto;
   position: relative;
-  left: -20px;
+  left: -15px;
+  top: 5px;
   div{
-    width: 80px;
+    width: 60px;
   }
   &:hover{
     img{

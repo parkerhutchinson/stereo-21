@@ -66,19 +66,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     transition: all 1s;
     border-radius: 10px;
   }
-  /* &:after{
-    content: '';
-    z-index:0;
-    position: absolute;
-    background: url('/noise-texture.png') repeat center center;
-    background-size: 120% 120%;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    top: 1px;
-    left: 1px;
-    mix-blend-mode: hard-light;
-    opacity: .18;
-  } */
+  
   canvas{
     opacity: .2;
     z-index: 3;
@@ -113,7 +101,7 @@ export const StyledCaseStudyCopy = styled.div`
   }
   h2{
     font-weight: 100;
-    margin-bottom: 40px;
+    margin: 20px auto 80px;
     font-size: 80px;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;

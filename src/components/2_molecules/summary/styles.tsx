@@ -7,7 +7,7 @@ interface IStyledSummary {
 export const StyledSummary = styled.article<IStyledSummary>`
   width: 100%;
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
   display: flex;
   align-items: baseline;
   opacity: ${(p) => p.ready ? '1' : '0'};
