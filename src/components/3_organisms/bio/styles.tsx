@@ -109,7 +109,7 @@ export const StyledBioRichText = styled(RichText)`
     color: #d7d7d7;
     @media screen and (min-width: 900px) {
       font-size: 19px;
-      line-height: 38pt;
+      line-height: 42px;
       margin-bottom: 50px;
     }
   }

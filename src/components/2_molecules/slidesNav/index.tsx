@@ -73,7 +73,7 @@ const SlidesNavigation = (props: Props) => {
               <ArrowIcon direction="e" color={buttonColor} />
             </Button>
           </StyledButtonGroup>
-          {isHeaderNav && <StyledLogoSmall>
+          {isHeaderNav && <StyledLogoSmall className="logo">
             {transitionSlide(
               (styles, item) => item &&
                 <animated.div style={styles}>

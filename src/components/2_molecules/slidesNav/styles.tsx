@@ -10,6 +10,9 @@ export const StyledNav = styled.nav`
     display: flex;
     justify-content: space-between;
   }
+  & > div > div:not(.logo){
+    display: none;
+  }
 `;
 
 export const StyledButtonGroup = styled.div`
@@ -43,18 +46,20 @@ export const StyledBrandTransitionGroup = styled.div<IStyledBrand>`
 export const StyledLogoSmall = styled(StyledLogo)`
   padding-bottom: 0;
   cursor: auto;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   margin: 0 auto;
   position: relative;
-  left: -15px;
-  top: -5px;
   div{
-    width: 60px;
+    width: 40px;
   }
-  &:hover{
-    img{
-      transform: scale(1);
+  @media screen and (min-width: 768px) {
+    top: 2px;
+    left: -15px;
+    width: 60px;
+    height: 60px;
+    div{
+      width: 60px;
     }
   }
 `
