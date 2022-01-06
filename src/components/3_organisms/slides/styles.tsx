@@ -35,6 +35,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   margin: ${({ toggle }) => toggle ? '0vh auto 100px' : '12.5vh auto 100px'};
   display: block;
   width: ${({ toggle }) => toggle ? '100%' : '90%'};
+  max-width: ${({ toggle }) => toggle ? '2000px' : '500px'};
   top: 0px;
   padding: 30px;
   color: white;
@@ -42,7 +43,8 @@ export const StyledSlide = styled.div<IStyledSlide>`
   will-change: height;
   transition: 
     height .8s, 
-    width 1s var(--animation-curve), 
+    width 1s var(--animation-curve),
+    max-width 1s var(--animation-curve), 
     top 1s var(--animation-curve), 
     background 1s,
     margin 1s;
@@ -54,6 +56,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
   overflow: hidden;
   @media screen and (min-width: 1024px) {
     width: 80%;
+    max-width: 100%;
     margin: 12.5vh auto 100px;
   }
   @media (min-width: 1360px) {
