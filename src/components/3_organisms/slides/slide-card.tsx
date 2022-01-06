@@ -4,7 +4,7 @@ import {
   StyledCardWrap,
   StyledPill,
 } from "./styles";
-import SlidesNavigation from "@/src/components/2_molecules/slidesNav";
+import NavigationSlides from "@/src/components/2_molecules/navSlides";
 
 
 interface Props {
@@ -44,7 +44,7 @@ const SlideCard = (props: Props) => {
         )}
       </StyledLogo>
 
-      <SlidesNavigation
+      <NavigationSlides
         brandName={brand}
         brandNameColor={brandTitleColor}
         buttonColor={buttonColor}

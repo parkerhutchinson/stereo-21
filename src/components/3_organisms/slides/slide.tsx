@@ -5,7 +5,7 @@ import {
   StyledSlide,
 } from "./styles";
 import SlideArticle from "@/src/components/3_organisms/slides/slide-article";
-import SlidesNavigation from "@/src/components/2_molecules/slidesNav";
+import NavigationSlides from "@/src/components/2_molecules/navSlides";
 import EFXRoundedGradientBorder from "@/src/components/2_molecules/efxRoundedGradientBorder";
 import SlideCard from "./slide-card";
 
@@ -71,7 +71,7 @@ const Slide = (props: Slide) => {
 
       {/* toggle nav */}
       {toggleTransition((stylesCopy, toggle) => toggle &&
-        <SlidesNavigation
+        <NavigationSlides
           buttonColor={slide.colorSchemeSlideStopTwo}
           iconColor={slide.colorSchemeBioBG}
           navCallback={(e) => handleButtonCLick(e)}

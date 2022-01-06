@@ -18,7 +18,7 @@ interface Props {
 }
 
 
-const SlidesNavigation = (props: Props) => {
+const NavigationSlides = (props: Props) => {
   const { buttonColor, navCallback, toggleNavAnimation, brandName, brandNameColor, brandLogo, isHeaderNav } = props;
 
   const navigationAnimation = useTransition(toggleNavAnimation, {
@@ -102,4 +102,4 @@ const SlidesNavigation = (props: Props) => {
   );
 }
 
-export default react.memo(SlidesNavigation);
+export default react.memo(NavigationSlides);
