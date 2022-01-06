@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { GlobalActions } from "@/src/context/global";
-import { StyledBioTab, StyledCopyWrapper, StyledMobileWorkButton, StyledBioRichText, StyledEyeBrow } from "./styles";
+import { StyledBioTab, StyledCopyWrapper, StyledBioRichText, StyledEyeBrow } from "./styles";
 import { GlobalContext } from "@/src/context/global"
 import { TypeBioFields } from "@/src/types/generated/TypeBio";
-import IconWork from "@/public/icn-work.svg";
 import useScreenSize from "@/src/hooks/useScreenSize";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import { useSpring, animated } from 'react-spring';
@@ -20,7 +18,6 @@ const Bio = (props: TypeBioFields) => {
       caseStudyOpen,
       mobilePanel
     },
-    dispatch
   } = useContext(GlobalContext);
 
   useIsomorphicLayoutEffect(() => {
@@ -49,21 +46,6 @@ const Bio = (props: TypeBioFields) => {
       ref={bioRef}
       style={caseStudyOpen ? { top: `-${scrollPos}px` } : {}}
     >
-      <StyledMobileWorkButton
-        onClick={
-          () => {
-            dispatch(
-              {
-                type: GlobalActions.TOGGLE_MOBILE_PANEL,
-                payload: !mobilePanel
-              }
-            )
-          }
-        }
-        aria-label="button show case study slides"
-      >
-        <IconWork />
-      </StyledMobileWorkButton>
       <StyledCopyWrapper
         subHeadingColor={colorScheme.eyeBrowStopTwo}
         backgroundColor={colorScheme.highlight}

@@ -13,6 +13,11 @@ export const StyledNav = styled.nav`
   & > div > div:not(.logo){
     display: none;
   }
+  @media screen and (min-width: 768px) {
+    & > div > div:not(.logo){
+      display: block;
+    }
+  }
 `;
 
 export const StyledButtonGroup = styled.div`

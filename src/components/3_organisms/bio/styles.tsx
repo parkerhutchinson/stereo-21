@@ -121,22 +121,3 @@ export const StyledCTAGroup = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
-
-export const StyledMobileWorkButton = styled.button`
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  display: flex;
-  width: 50px;
-  height: 50px;
-  background: none;
-  cursor: pointer;
-  justify-content: space-around;
-  align-items: center;
-  transition: all .4s cubic-bezier(1,0,.25,1);
-  z-index: 10;
-  @media screen and (min-width: 1024px) {
-    display: none;
-  }
-`;

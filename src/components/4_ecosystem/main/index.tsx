@@ -1,8 +1,10 @@
 import React, {ReactNode, useContext} from 'react';
 import { GlobalContext } from '@/src/context/global';
-import {StyledWrap, StyledThreeBG} from "./styles";
+import {StyledWrap, StyledThreeBG, StyledMobileWorkButton} from "./styles";
 import EFXMeshBackground from "@/src/components/2_molecules/efxMeshBackground";
 import StereoLogo from '@/src/components/2_molecules/stereoLogo';
+import IconWork from "@/public/icn-work.svg";
+import { GlobalActions } from "@/src/context/global";
 
 
 interface Props {
@@ -10,10 +12,25 @@ interface Props {
 }
 
 const Main = (props:Props) => {
-  const {state} = useContext(GlobalContext);
+  const {state, dispatch} = useContext(GlobalContext);
   return (
     <StyledWrap>
       {props.children}
+      <StyledMobileWorkButton
+        onClick={
+          () => {
+            dispatch(
+              {
+                type: GlobalActions.TOGGLE_MOBILE_PANEL,
+                payload: !state.mobilePanel
+              }
+            )
+          }
+        }
+        aria-label="button show case study slides"
+      >
+        <IconWork />
+      </StyledMobileWorkButton>
       <StyledThreeBG 
         open={state.caseStudyOpen} 
         color={state.colorScheme.bioBackgroundColor}
