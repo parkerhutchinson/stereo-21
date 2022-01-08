@@ -10,11 +10,9 @@ export const StyledSummary = styled.article<IStyledSummary>`
   margin-bottom: 60px;
   align-items: baseline;
   opacity: ${(p) => p.ready ? '1' : '0'};
-  clip-path: ${(p) => p.ready ? 'polygon(0% 0%, 101% 0%, 101% 100%, 0% 100%)' : 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)'};
-  transition: clip-path .8s var(--animation-curve), opacity .4s linear;
-  transition-delay: .9s, 1s;
+  transition: all .4s;
+  transition-delay: .9s;
   img{
-    transform: ${(p) => p.ready ? 'translateX(0px)':'translateX(100px)'};
     position: relative;
     display: block;
     width: 100%;
@@ -26,6 +24,12 @@ export const StyledSummary = styled.article<IStyledSummary>`
   }
   @media screen and (min-width: 900px){
     margin-bottom: 80px;
+    transition: clip-path .8s var(--animation-curve), opacity .4s linear;
+    transition-delay: .9s, 1s;
+    clip-path: ${(p) => p.ready ? 'polygon(0% 0%, 101% 0%, 101% 100%, 0% 100%)' : 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)'};
+    img{
+      transform: ${(p) => p.ready ? 'translateX(0px)':'translateX(100px)'};
+    }
   }
 `;
 
@@ -42,6 +46,9 @@ export const StyledSummaryStats = styled.div<StyledStatsProps>`
   padding: 30px;
   display: flex;
   justify-content: space-between;
+  width: 80%;
+  margin-top: -20%;
+  left: 10%;
   h3{
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -74,6 +81,7 @@ export const StyledSummaryStats = styled.div<StyledStatsProps>`
     bottom: 0;
     padding: 40px;
     width: 60%;
+    left: auto;
     border-right: 1px solid ${(p) => p.backgroundColor};
   }
 `
