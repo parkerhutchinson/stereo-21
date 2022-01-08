@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
-interface IStyledMobileNav {
+interface IMobileMenu {
+  color: string
   opened: boolean
 }
 
-export const MobileMenu = styled.nav`
-  background: black;
+export const MobileMenu = styled.nav<IMobileMenu>`
+  background: transparent;
   width: 400px;
   height: 400px;
-  border-radius: 100000px;
+  
   position: fixed;
   bottom: -200px;
   left: 50%;
@@ -17,16 +18,36 @@ export const MobileMenu = styled.nav`
   &:before{
     content: '';
     display: block;
+    background: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 100000px;
+    transform: ${(p) => p.opened ? 'translateX(-50%) translateY(-50%) scale(1)' : 'translateX(-50%) translateY(-50%) scale(0)'};
+    transition: border 1s, transform .6s var(--animation-curve);
+    transition-delay: 0s, .3s;
+  }
+  &:after{
+    content: '';
+    display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     width: 70%;
     height: 70%;
-    border: 1px solid green;
+    border: ${(p) => `1px solid ${p.color}`};
     border-radius: 100000px;
-    transform: translateX(-50%) translateY(-50%);
+    transform: ${(p) => p.opened ? 'translateX(-50%) translateY(-50%) scale(1)' : 'translateX(-50%) translateY(-50%) scale(0)'};
+    transition: border 1s, transform .6s var(--animation-curve);
+    transition-delay: 0s, .3s;
   }
 `
+
+interface IStyledMobileNav {
+  opened: boolean
+}
 
 export const StyledMobileNavIconBg = styled.div<IStyledMobileNav>`
   background: ${(p) => p.opened ? 'radial-gradient(circle at center, rgb(0 0 0 / 100%) 10%, rgb(0 0 0 / 0%) 70%, rgb(0 0 0 / 0%))' : 'radial-gradient(circle at center, rgb(0 0 0 / 100%), rgb(0 0 0 / 100%) 70%, rgb(0 0 0 / 100%))'};
