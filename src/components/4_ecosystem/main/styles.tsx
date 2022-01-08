@@ -25,4 +25,3 @@ export const StyledThreeBG = styled.div<IStyledThreeBg>`
   background: black;
   pointer-events: none;
 `;
-
