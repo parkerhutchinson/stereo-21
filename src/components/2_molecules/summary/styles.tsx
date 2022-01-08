@@ -48,7 +48,7 @@ export const StyledSummaryStats = styled.div<StyledStatsProps>`
   justify-content: space-between;
   width: 80%;
   margin-top: -20%;
-  left: 10%;
+  left: 20%;
   h3{
     text-transform: uppercase;
     margin-bottom: 10px;

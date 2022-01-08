@@ -41,13 +41,6 @@ export const StyledSlide = styled.div<IStyledSlide>`
   color: white;
   border-radius: 10px;
   will-change: height;
-  transition: 
-    height .8s, 
-    width 1s var(--animation-curve),
-    max-width 1s var(--animation-curve), 
-    top 1s var(--animation-curve), 
-    background 1s,
-    margin 1s;
   backdrop-filter: blur(50px);
   /* background: ${(p) => p.cardcolor}; */
   background: rgba(0,0,0,0);
@@ -65,6 +58,13 @@ export const StyledSlide = styled.div<IStyledSlide>`
   @media (min-width: 1800px) {
     width: ${({ toggle }) => toggle ? '1000px' : '750px'};
   }
+  transition: 
+    height .8s, 
+    width .8s,
+    max-width .8s, 
+    top .8s, 
+    background 1s,
+    margin .8s;
   &:before{
     content: '';
     display: block;

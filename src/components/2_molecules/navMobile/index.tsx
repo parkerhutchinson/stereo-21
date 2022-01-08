@@ -13,7 +13,11 @@ const NavigationMobile = (props: Props) => {
   const {state, dispatch} = useContext(GlobalContext);
 
   return (
-    <MobileMenu color={state.colorScheme.highlight} opened={state.mobilePanel}>
+    <MobileMenu 
+      color={state.colorScheme.highlight} 
+      opened={state.mobilePanel}
+      caseStudyOpened={state.caseStudyOpen}
+    >
       <StyledMobileNavIconBg opened={state.mobilePanel}>
         <StyledMobileWorkButton
           onClick={
