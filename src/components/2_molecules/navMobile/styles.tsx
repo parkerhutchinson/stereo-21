@@ -113,8 +113,27 @@ interface IStyledMobileArrowButtons {
   buttonBorderColor: string
 }
 
+export const StyledMobileButtonsWrap = styled.div`
+  position: absolute;
+  width: 90%;
+  left: 50%;
+  top: 100px;
+  height: 100px;
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  transform: translateX(-50%);
+`
+
+export const StyledMobileArrowButtonsWrap = styled.div`
+  background: radial-gradient(circle at center, rgb(0 0 0 / 100%) 20%, rgb(0 0 0 / 0%) 70%, rgb(0 0 0 / 0%));
+  border-radius: 100000px;
+  padding: 25px;
+`
+
 export const StyledMobileArrowButtons = styled.button<IStyledMobileArrowButtons>`
   background: ${(p) => p.buttonColor};
   border: ${(p) => `1px solid ${p.buttonBorderColor}`};
   border-radius: 15px;
+  padding: 15px;
 `
