@@ -21,18 +21,24 @@ export interface Slides {
 const Slides = (props: Slides) => {
   const { slides } = props;
   const SLIDES_LEN = slides.length - 1;
-  const [slideOpen, toggleSlideOpen] = useState(false);
   const userInteracted = useRef(false);
   const timerRef = useRef<NodeJS.Timer>();
-  const { state: { mobilePanel }, dispatch } = useContext(GlobalContext);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const { 
+    state: { 
+      mobilePanel, 
+      caseStudyOpen, 
+      slideData 
+    }, 
+    dispatch 
+  } = useContext(GlobalContext);
+  const [activeSlide, setActiveSlide] = useState(slideData.slideId);
   const [articleReady, setArticleReady] = useState(false);
   // scroll top animation
   const [, springAPI] = useSpring(() => ({
-    from: { y: window.scrollY },
-    to: { y: 0 },
-    duration: 500
-  })
+      from: { y: window.scrollY },
+      to: { y: 0 },
+      duration: 500
+    })
   )
 
   const [keyName] = useKeycode();
@@ -67,7 +73,6 @@ const Slides = (props: Slides) => {
   // change global colorways when slide updates
   useEffect(() => {
     if (typeof dispatch !== 'undefined') {
-      // TODO: this sucks
       dispatch({
         type: UPDATE_COLOR,
         payload: {
@@ -93,7 +98,7 @@ const Slides = (props: Slides) => {
   }, [activeSlide]);
 
   const scrollTop = (cb: () => void) => {
-    if (slideOpen && window.scrollY > 0) {
+    if (caseStudyOpen && window.scrollY > 0) {
       springAPI.start({
         from: { y: window.scrollY },
         to: { y: 0 },
@@ -125,7 +130,7 @@ const Slides = (props: Slides) => {
       case 'open':
         stopSlideshow();
         // scroll top if the study was opened
-        if (slideOpen && window.scrollY > 0) {
+        if (caseStudyOpen && window.scrollY > 0) {
           springAPI.start({
             from: { y: window.scrollY },
             to: { y: 0 },
@@ -133,15 +138,12 @@ const Slides = (props: Slides) => {
               window.scroll(0, props.value.y)
             },
             onRest: () => {
-              toggleSlideOpen(false);
               dispatch({ type: OPEN_CASE_STUDY, payload: false })
             }
           });
-        } else if (slideOpen && window.scrollY === 0) {
-          toggleSlideOpen(false);
+        } else if (caseStudyOpen && window.scrollY === 0) {
           dispatch({ type: OPEN_CASE_STUDY, payload: false })
         } else {
-          toggleSlideOpen(true);
           dispatch({ type: OPEN_CASE_STUDY, payload: true })
         }
         break;
@@ -167,13 +169,11 @@ const Slides = (props: Slides) => {
       case 'Escape':
         // scroll top when esc key is hit
         scrollTop(() => {
-          toggleSlideOpen(false);
           dispatch({ type: OPEN_CASE_STUDY, payload: false })
         });
         break;
       case 'Enter':
         userInteracted.current = true;
-        toggleSlideOpen(true);
         stopSlideshow();
         dispatch({ type: OPEN_CASE_STUDY, payload: true });
         break;
@@ -185,7 +185,7 @@ const Slides = (props: Slides) => {
   return (
     <StyledSlides
       backgroundColor={slides[activeSlide].colorSchemeBioBG}
-      toggle={slideOpen}
+      toggle={caseStudyOpen}
       slidePosition={articleReady}
       panelOpen={mobilePanel}
     >
@@ -195,8 +195,8 @@ const Slides = (props: Slides) => {
           userInteracted.current = true;
           handleSlideNavigation(e);
         }}
-        toggleSlide={slideOpen}
-        finishedAnimation={() => slideOpen ? setArticleReady(true) : setArticleReady(false)}
+        toggleSlide={caseStudyOpen}
+        finishedAnimation={() => caseStudyOpen ? setArticleReady(true) : setArticleReady(false)}
       />
 
     </StyledSlides>

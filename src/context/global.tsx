@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 const initialState = {
   caseStudyOpen: false,
   mobilePanel: false,
+  stopSlides: false,
   slideData: { brand: '', slideId: -1, url: '' },
   colorScheme: {
     siteBackgroundColor: 'white',
@@ -20,6 +21,7 @@ const initialState = {
 type TDefaultData = {
   caseStudyOpen: boolean
   mobilePanel: boolean
+  stopSlides: boolean
   slideData: {
     slideId: number
     url: string

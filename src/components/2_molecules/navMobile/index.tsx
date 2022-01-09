@@ -55,12 +55,21 @@ const NavigationMobile = (props: Props) => {
         <StyledMobileWorkButton
           onClick={
             () => {
-              dispatch(
-                {
-                  type: GlobalActions.TOGGLE_MOBILE_PANEL,
-                  payload: !state.mobilePanel
-                }
-              )
+              if (!state.caseStudyOpen) {
+                dispatch(
+                  {
+                    type: GlobalActions.TOGGLE_MOBILE_PANEL,
+                    payload: !state.mobilePanel
+                  }
+                )
+              } else {
+                dispatch(
+                  {
+                    type: GlobalActions.OPEN_CASE_STUDY,
+                    payload: false
+                  }
+                )
+              } 
             }
           }
           aria-label="button show case study slides"
