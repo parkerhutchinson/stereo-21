@@ -24,10 +24,10 @@ const Main = (props:Props) => {
           textColor={state.colorScheme.bioTextColor} 
           backgroundColor={state.colorScheme.bioBackgroundColor} 
         />
-        {state.slideMesh.url && <EFXMeshBackground
-          slideId={state.slideMesh.slideId}
+        {state.slideData.url && <EFXMeshBackground
+          slideId={state.slideData.slideId}
           mobilePanel={state.mobilePanel}
-          slideMeshFile={state.slideMesh.url}
+          slideMeshFile={state.slideData.url}
           highlight={state.colorScheme.bioTextColor}
         />}
       </StyledThreeBG>

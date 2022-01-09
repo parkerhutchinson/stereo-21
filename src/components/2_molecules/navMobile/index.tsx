@@ -39,7 +39,7 @@ const NavigationMobile = (props: Props) => {
             <ArrowIcon direction="w" color="white" />
           </StyledMobileArrowButtons>
         </StyledMobileArrowButtonWrap>
-        <StyledActiveBrand>ASANA.COM</StyledActiveBrand>
+        <StyledActiveBrand>{state.slideData.brand}</StyledActiveBrand>
         <StyledMobileArrowButtonWrap>
           <StyledMobileArrowButtons
             buttonColor={state.colorScheme.bioBackgroundColor}

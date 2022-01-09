@@ -8,7 +8,11 @@ import { SlideFields } from "./slide";
 import { useSpring } from "react-spring";
 
 
-const { UPDATE_COLOR, OPEN_CASE_STUDY, ADD_SLIDE_MESH } = GlobalActions;
+const { 
+  UPDATE_COLOR, 
+  OPEN_CASE_STUDY, 
+  UPDATE_SLIDE_DATA 
+} = GlobalActions;
 
 export interface Slides {
   slides: SlideFields[]
@@ -78,8 +82,9 @@ const Slides = (props: Slides) => {
         }
       })
       dispatch({
-        type: ADD_SLIDE_MESH,
+        type: UPDATE_SLIDE_DATA,
         payload: {
+          brand: slides[activeSlide].brand,
           slideId: activeSlide,
           url: slides[activeSlide].meshScene.fields.file.url
         }
@@ -144,7 +149,6 @@ const Slides = (props: Slides) => {
   }
 
   useEffect(() => {
-
     switch (keyName) {
       case 'ArrowLeft':
         userInteracted.current = true;

@@ -4,8 +4,7 @@ import type { ReactNode } from "react";
 const initialState = {
   caseStudyOpen: false,
   mobilePanel: false,
-  slideData: { brand: '' },
-  slideMesh: { slideId: -1, url: '' },
+  slideData: { brand: '', slideId: -1, url: '' },
   colorScheme: {
     siteBackgroundColor: 'white',
     bioBackgroundColor: '#0E0718',
@@ -21,11 +20,9 @@ const initialState = {
 type TDefaultData = {
   caseStudyOpen: boolean
   mobilePanel: boolean
-  slideMesh: {
+  slideData: {
     slideId: number
     url: string
-  }
-  slideData: {
     brand: string
   }
   colorScheme: {
@@ -69,10 +66,8 @@ const globalReducer = (state: TDefaultData, action: ColorDispatch) => {
       return Object.assign({}, state, { caseStudyOpen: action.payload })
     case GlobalActions.TOGGLE_MOBILE_PANEL:
       return Object.assign({}, state, { mobilePanel: action.payload })
-    case GlobalActions.ADD_SLIDE_MESH:
-      return Object.assign({}, state, { slideMesh: { ...action.payload } })
     case GlobalActions.UPDATE_SLIDE_DATA:
-      return Object.assign({}, state, { brand: action.payload })
+      return Object.assign({}, state, { slideData: { ...action.payload } })
     default:
       return state;
   }
