@@ -6,7 +6,8 @@ import {
   StyledMobileWorkButton,
   StyledMobileArrowButtons,
   StyledMobileButtonsWrap,
-  StyledMobileArrowButtonsWrap
+  StyledMobileArrowButtonWrap,
+  StyledActiveBrand
 } from "./styles";
 import ArrowIcon from "@/src/components/1_atoms/arrowIcon";
 import IconWork from "@/public/icn-work.svg";
@@ -22,30 +23,35 @@ const NavigationMobile = (props: Props) => {
 
   return (
     <MobileMenu
-      color={state.colorScheme.highlight}
+      background={state.colorScheme.bioBackgroundColor}
+      color={state.colorScheme.bioBackgroundColor}
       opened={state.mobilePanel}
       caseStudyOpened={state.caseStudyOpen}
     >
+      
       <StyledMobileButtonsWrap>
-        <StyledMobileArrowButtonsWrap>
+        
+        <StyledMobileArrowButtonWrap>
           <StyledMobileArrowButtons
             buttonColor={state.colorScheme.bioBackgroundColor}
             buttonBorderColor={state.colorScheme.eyeBrowStopOne}
           >
             <ArrowIcon direction="w" color="white" />
           </StyledMobileArrowButtons>
-        </StyledMobileArrowButtonsWrap>
-        <StyledMobileArrowButtonsWrap>
+        </StyledMobileArrowButtonWrap>
+        <StyledActiveBrand>ASANA.COM</StyledActiveBrand>
+        <StyledMobileArrowButtonWrap>
           <StyledMobileArrowButtons
             buttonColor={state.colorScheme.bioBackgroundColor}
             buttonBorderColor={state.colorScheme.eyeBrowStopOne}
           >
             <ArrowIcon direction="e" color="white" />
           </StyledMobileArrowButtons>
-        </StyledMobileArrowButtonsWrap>
+        </StyledMobileArrowButtonWrap>
+
       </StyledMobileButtonsWrap>
 
-      <StyledMobileNavIconBg opened={state.mobilePanel}>
+      <StyledMobileNavIconBg opened={state.mobilePanel} color={state.colorScheme.bioBackgroundColor}>
         <StyledMobileWorkButton
           onClick={
             () => {

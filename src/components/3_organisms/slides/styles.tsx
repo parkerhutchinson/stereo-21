@@ -47,7 +47,9 @@ export const StyledSlide = styled.div<IStyledSlide>`
   transform: translate3d(0px, 0px, 0px);
   backface-visibility: hidden;
   overflow: hidden;
+  min-height: 100vh;
   @media screen and (min-width: 1024px) {
+    min-height: 0;
     width: 80%;
     max-width: 100%;
     margin: 12.5vh auto 100px;
