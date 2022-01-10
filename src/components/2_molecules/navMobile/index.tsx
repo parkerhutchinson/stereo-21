@@ -24,8 +24,6 @@ const NavigationMobile = () => {
       : dispatch({type: GlobalActions.UPDATE_SLIDE_DATA, payload: {slideId:0}});
   }
 
-  console.log(slideData.slideId);
-
   const prevSlide = () =>
     slideData.slideId > 0
       ? dispatch({type: GlobalActions.UPDATE_SLIDE_DATA, payload: {slideId: slideData.slideId - 1}})
