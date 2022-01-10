@@ -110,14 +110,14 @@ export const StyledMobileWorkButton = styled.button`
   }
 `;
 
-interface IStyledMobileArrowButtons {
-  buttonColor: string
-  buttonBorderColor: string
+interface IStyledMobileButtonsWrap {
+  opened: boolean
 }
 
-export const StyledMobileButtonsWrap = styled.div`
+export const StyledMobileButtonsWrap = styled.div<IStyledMobileButtonsWrap>`
   position: absolute;
-  width: 87%;
+  width: ${(p) => p.opened ? '87%' : '70%'};
+  opacity: ${(p) => p.opened ? '1' : '0'};
   left: 50%;
   top: 80px;
   height: 100px; 
@@ -125,6 +125,7 @@ export const StyledMobileButtonsWrap = styled.div`
   display: flex;
   justify-content: space-between;
   transform: translateX(-50%);
+  transition: all .6s;
 `;
 
 export const StyledMobileArrowButtonWrap = styled.div`
@@ -132,6 +133,11 @@ export const StyledMobileArrowButtonWrap = styled.div`
   border-radius: 100000px;
   padding: 25px;
 `;
+
+interface IStyledMobileArrowButtons {
+  buttonColor: string
+  buttonBorderColor: string
+}
 
 export const StyledMobileArrowButtons = styled.button<IStyledMobileArrowButtons>`
   background: ${(p) => p.buttonColor};

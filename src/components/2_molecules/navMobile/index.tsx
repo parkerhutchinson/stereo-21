@@ -37,37 +37,29 @@ const NavigationMobile = () => {
       caseStudyOpened={caseStudyOpen}
     >
       
-      <StyledMobileButtonsWrap>
+      <StyledMobileButtonsWrap opened={mobilePanel}>
         
         <StyledMobileArrowButtonWrap>
           <StyledMobileArrowButtons
             buttonColor={colorScheme.bioBackgroundColor}
             buttonBorderColor={colorScheme.eyeBrowStopOne}
             onClick={() => {
-              dispatch(
-                {
-                  type: GlobalActions.STOP_SLIDESHOW,
-                  payload: true
-                }
-              )
+              dispatch({type: GlobalActions.STOP_SLIDESHOW,payload: true})
               prevSlide()
             }}
           >
             <ArrowIcon direction="w" color="white" />
           </StyledMobileArrowButtons>
         </StyledMobileArrowButtonWrap>
+
         <StyledActiveBrand>{slideData.brand}</StyledActiveBrand>
+        
         <StyledMobileArrowButtonWrap>
           <StyledMobileArrowButtons
             buttonColor={colorScheme.bioBackgroundColor}
             buttonBorderColor={colorScheme.eyeBrowStopOne}
             onClick={() => {
-              dispatch(
-                {
-                  type: GlobalActions.STOP_SLIDESHOW,
-                  payload: true
-                }
-              )
+              dispatch({type: GlobalActions.STOP_SLIDESHOW,payload: true})
               nextSlide()
             }}
           >
@@ -82,26 +74,15 @@ const NavigationMobile = () => {
           onClick={
             () => {
               if (!caseStudyOpen) {
-                dispatch(
-                  {
-                    type: GlobalActions.TOGGLE_MOBILE_PANEL,
-                    payload: !mobilePanel
-                  }
-                )
+                dispatch({type: GlobalActions.TOGGLE_MOBILE_PANEL,payload: !mobilePanel})
               } else {
-                dispatch(
-                  {
-                    type: GlobalActions.OPEN_CASE_STUDY,
-                    payload: false
-                  }
-                )
+                dispatch({type: GlobalActions.OPEN_CASE_STUDY,payload: false})
               } 
             }
           }
           aria-label="button show case study slides"
         >
           {!mobilePanel ? <IconWork /> : <IconHome />}
-
         </StyledMobileWorkButton>
 
       </StyledMobileNavIconBg>
