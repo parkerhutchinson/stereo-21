@@ -1,3 +1,4 @@
+import react from "react";
 import { GlobalContext } from "@/src/context/global";
 import { useContext } from "react";
 import {
@@ -15,38 +16,49 @@ import IconHome from "@/public/icn-home.svg";
 import { GlobalActions } from "@/src/context/global";
 
 const NavigationMobile = () => {
-  const { state, dispatch } = useContext(GlobalContext);
+  const { state: {slideData, colorScheme, mobilePanel, caseStudyOpen}, dispatch } = useContext(GlobalContext);
+
+  const nextSlide = () => {
+    return slideData.slideId < slideData.slidesLength - 1
+      ? dispatch({type: GlobalActions.UPDATE_SLIDE_DATA, payload: {slideId: slideData.slideId + 1}})
+      : dispatch({type: GlobalActions.UPDATE_SLIDE_DATA, payload: {slideId:0}});
+  }
+
+  console.log(slideData.slideId);
+
+  const prevSlide = () =>
+    slideData.slideId > 0
+      ? dispatch({type: GlobalActions.UPDATE_SLIDE_DATA, payload: {slideId: slideData.slideId - 1}})
+      : dispatch({type: GlobalActions.UPDATE_SLIDE_DATA, payload: {slideId: slideData.slidesLength - 1}});
 
   return (
     <MobileMenu
-      background={state.colorScheme.bioBackgroundColor}
-      color={state.colorScheme.bioBackgroundColor}
-      opened={state.mobilePanel}
-      caseStudyOpened={state.caseStudyOpen}
+      background={colorScheme.bioBackgroundColor}
+      color={colorScheme.bioBackgroundColor}
+      opened={mobilePanel}
+      caseStudyOpened={caseStudyOpen}
     >
       
       <StyledMobileButtonsWrap>
         
         <StyledMobileArrowButtonWrap>
           <StyledMobileArrowButtons
-            buttonColor={state.colorScheme.bioBackgroundColor}
-            buttonBorderColor={state.colorScheme.eyeBrowStopOne}
+            buttonColor={colorScheme.bioBackgroundColor}
+            buttonBorderColor={colorScheme.eyeBrowStopOne}
+            onClick={() => {
+              prevSlide()
+            }}
           >
             <ArrowIcon direction="w" color="white" />
           </StyledMobileArrowButtons>
         </StyledMobileArrowButtonWrap>
-        <StyledActiveBrand>{state.slideData.brand}</StyledActiveBrand>
+        <StyledActiveBrand>{slideData.brand}</StyledActiveBrand>
         <StyledMobileArrowButtonWrap>
           <StyledMobileArrowButtons
-            buttonColor={state.colorScheme.bioBackgroundColor}
-            buttonBorderColor={state.colorScheme.eyeBrowStopOne}
+            buttonColor={colorScheme.bioBackgroundColor}
+            buttonBorderColor={colorScheme.eyeBrowStopOne}
             onClick={() => {
-              dispatch({
-                type: GlobalActions.UPDATE_SLIDE_DATA,
-                payload: {
-                  slideId: 1,
-                }
-              })
+              nextSlide()
             }}
           >
             <ArrowIcon direction="e" color="white" />
@@ -55,15 +67,15 @@ const NavigationMobile = () => {
 
       </StyledMobileButtonsWrap>
 
-      <StyledMobileNavIconBg opened={state.mobilePanel} color={state.colorScheme.bioBackgroundColor}>
+      <StyledMobileNavIconBg opened={mobilePanel} color={colorScheme.bioBackgroundColor}>
         <StyledMobileWorkButton
           onClick={
             () => {
-              if (!state.caseStudyOpen) {
+              if (!caseStudyOpen) {
                 dispatch(
                   {
                     type: GlobalActions.TOGGLE_MOBILE_PANEL,
-                    payload: !state.mobilePanel
+                    payload: !mobilePanel
                   }
                 )
               } else {
@@ -78,7 +90,7 @@ const NavigationMobile = () => {
           }
           aria-label="button show case study slides"
         >
-          {!state.mobilePanel ? <IconWork /> : <IconHome />}
+          {!mobilePanel ? <IconWork /> : <IconHome />}
 
         </StyledMobileWorkButton>
 
@@ -87,4 +99,4 @@ const NavigationMobile = () => {
   )
 }
 
-export default NavigationMobile;
+export default react.memo(NavigationMobile);

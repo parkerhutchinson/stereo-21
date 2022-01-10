@@ -192,7 +192,7 @@ const Slides = (props: Slides) => {
         break;
     }
   }, [keyName])
-  console.log(slideData.slideId);
+  
   return (
     <StyledSlides
       backgroundColor={slides[slideData.slideId || 0].colorSchemeBioBG}

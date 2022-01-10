@@ -9,7 +9,7 @@ const initialState = {
     brand: '', 
     slideId: 0, 
     url: '',
-    slideLength: 0 
+    slidesLength: 0 
   },
   colorScheme: {
     siteBackgroundColor: 'white',
@@ -28,7 +28,7 @@ type TDefaultData = {
   mobilePanel: boolean
   stopSlides: boolean
   slideData: {
-    slideLength: number
+    slidesLength: number
     slideId: number
     url: string
     brand: string
