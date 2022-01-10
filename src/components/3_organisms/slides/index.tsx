@@ -4,7 +4,7 @@ import { StyledSlides } from "./styles";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
 import useKeycode from "@/src/hooks/useKeycode";
-import { SlideFields } from "./slide";
+import slide, { SlideFields } from "./slide";
 import { useSpring } from "react-spring";
 
 
@@ -16,6 +16,7 @@ const {
 
 export interface Slides {
   slides: SlideFields[]
+  slidesCB?: () => void;
 }
 
 const Slides = (props: Slides) => {
@@ -27,11 +28,12 @@ const Slides = (props: Slides) => {
     state: { 
       mobilePanel, 
       caseStudyOpen, 
-      slideData 
+      slideData,
+      stopSlides
     }, 
     dispatch 
   } = useContext(GlobalContext);
-  const [activeSlide, setActiveSlide] = useState(slideData.slideId);
+  // const [activeSlide, setActiveSlide] = useState(slideData.slideId);
   const [articleReady, setArticleReady] = useState(false);
   // scroll top animation
   const [, springAPI] = useSpring(() => ({
@@ -44,15 +46,15 @@ const Slides = (props: Slides) => {
   const [keyName] = useKeycode();
 
   const nextSlide = () => {
-    return activeSlide < SLIDES_LEN
-      ? setActiveSlide(activeSlide + 1)
-      : setActiveSlide(0);
+    return slideData.slideId < SLIDES_LEN
+      ? dispatch({type: UPDATE_SLIDE_DATA, payload: {slideId: slideData.slideId + 1}})
+      : dispatch({type: UPDATE_SLIDE_DATA, payload: {slideId:0}});
   }
 
   const prevSlide = () =>
-    activeSlide > 0
-      ? setActiveSlide(activeSlide - 1)
-      : setActiveSlide(SLIDES_LEN);
+    slideData.slideId > 0
+      ? dispatch({type: UPDATE_SLIDE_DATA, payload: {slideId: slideData.slideId - 1}})
+      : dispatch({type: UPDATE_SLIDE_DATA, payload: {slideId:SLIDES_LEN}});
 
   const stopSlideshow = () => timerRef.current ? window.clearTimeout(timerRef.current) : null;
 
@@ -68,7 +70,15 @@ const Slides = (props: Slides) => {
       }, 6000);
     }
 
-  }, [userInteracted, activeSlide]);
+  }, [userInteracted, slideData.slideId]);
+
+  useEffect(() => {
+    console.log(slideData)
+  }, [slideData.slideId])
+
+  useEffect(() => {
+    if (stopSlides) timerRef.current && window.clearTimeout(timerRef.current)
+  }, [stopSlides])
 
   // change global colorways when slide updates
   useEffect(() => {
@@ -76,26 +86,27 @@ const Slides = (props: Slides) => {
       dispatch({
         type: UPDATE_COLOR,
         payload: {
-          siteBackgroundColor: slides[activeSlide].colorSchemeSeed,
-          bioTextColor: slides[activeSlide].colorSchemeBioText,
-          bioBackgroundColor: slides[activeSlide].colorSchemeBioBG,
-          highlight: slides[activeSlide].colorSchemeHighlight,
-          slideBorderStopOne: slides[activeSlide].colorSchemeSlideStopOne,
-          slideBorderStopTwo: slides[activeSlide].colorSchemeSlideStopTwo,
-          eyeBrowStopOne: slides[activeSlide].colorSchemeEyeBrowStopOne,
-          eyeBrowStopTwo: slides[activeSlide].colorSchemeEyeBrowStopTwo
+          siteBackgroundColor: slides[slideData.slideId].colorSchemeSeed,
+          bioTextColor: slides[slideData.slideId].colorSchemeBioText,
+          bioBackgroundColor: slides[slideData.slideId].colorSchemeBioBG,
+          highlight: slides[slideData.slideId].colorSchemeHighlight,
+          slideBorderStopOne: slides[slideData.slideId].colorSchemeSlideStopOne,
+          slideBorderStopTwo: slides[slideData.slideId].colorSchemeSlideStopTwo,
+          eyeBrowStopOne: slides[slideData.slideId].colorSchemeEyeBrowStopOne,
+          eyeBrowStopTwo: slides[slideData.slideId].colorSchemeEyeBrowStopTwo
         }
       })
       dispatch({
         type: UPDATE_SLIDE_DATA,
         payload: {
-          brand: slides[activeSlide].brand,
-          slideId: activeSlide,
-          url: slides[activeSlide].meshScene.fields.file.url
+          slideId: slideData.slideId,
+          brand: slides[slideData.slideId].brand,
+          slidesLength: slides.length,
+          url: slides[slideData.slideId].meshScene.fields.file.url
         }
       })
     }
-  }, [activeSlide]);
+  }, [slideData.slideId]);
 
   const scrollTop = (cb: () => void) => {
     if (caseStudyOpen && window.scrollY > 0) {
@@ -181,16 +192,16 @@ const Slides = (props: Slides) => {
         break;
     }
   }, [keyName])
-
+  console.log(slideData.slideId);
   return (
     <StyledSlides
-      backgroundColor={slides[activeSlide].colorSchemeBioBG}
+      backgroundColor={slides[slideData.slideId || 0].colorSchemeBioBG}
       toggle={caseStudyOpen}
       slidePosition={articleReady}
       panelOpen={mobilePanel}
     >
       <Slide
-        slide={slides[activeSlide]}
+        slide={slides[slideData.slideId || 0]}
         navCallback={(e) => {
           userInteracted.current = true;
           handleSlideNavigation(e);

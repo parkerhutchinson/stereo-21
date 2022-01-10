@@ -14,11 +14,7 @@ import IconWork from "@/public/icn-work.svg";
 import IconHome from "@/public/icn-home.svg";
 import { GlobalActions } from "@/src/context/global";
 
-interface Props {
-
-}
-
-const NavigationMobile = (props: Props) => {
+const NavigationMobile = () => {
   const { state, dispatch } = useContext(GlobalContext);
 
   return (
@@ -44,6 +40,14 @@ const NavigationMobile = (props: Props) => {
           <StyledMobileArrowButtons
             buttonColor={state.colorScheme.bioBackgroundColor}
             buttonBorderColor={state.colorScheme.eyeBrowStopOne}
+            onClick={() => {
+              dispatch({
+                type: GlobalActions.UPDATE_SLIDE_DATA,
+                payload: {
+                  slideId: 1,
+                }
+              })
+            }}
           >
             <ArrowIcon direction="e" color="white" />
           </StyledMobileArrowButtons>

@@ -5,7 +5,12 @@ const initialState = {
   caseStudyOpen: false,
   mobilePanel: false,
   stopSlides: false,
-  slideData: { brand: '', slideId: -1, url: '' },
+  slideData: { 
+    brand: '', 
+    slideId: 0, 
+    url: '',
+    slideLength: 0 
+  },
   colorScheme: {
     siteBackgroundColor: 'white',
     bioBackgroundColor: '#0E0718',
@@ -23,6 +28,7 @@ type TDefaultData = {
   mobilePanel: boolean
   stopSlides: boolean
   slideData: {
+    slideLength: number
     slideId: number
     url: string
     brand: string
@@ -69,7 +75,7 @@ const globalReducer = (state: TDefaultData, action: ColorDispatch) => {
     case GlobalActions.TOGGLE_MOBILE_PANEL:
       return Object.assign({}, state, { mobilePanel: action.payload })
     case GlobalActions.UPDATE_SLIDE_DATA:
-      return Object.assign({}, state, { slideData: { ...action.payload } })
+      return Object.assign({}, state, { slideData: {...state.slideData, ...action.payload}  })
     default:
       return state;
   }
