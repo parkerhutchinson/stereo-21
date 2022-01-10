@@ -46,6 +46,12 @@ const NavigationMobile = () => {
             buttonColor={colorScheme.bioBackgroundColor}
             buttonBorderColor={colorScheme.eyeBrowStopOne}
             onClick={() => {
+              dispatch(
+                {
+                  type: GlobalActions.STOP_SLIDESHOW,
+                  payload: true
+                }
+              )
               prevSlide()
             }}
           >
@@ -58,6 +64,12 @@ const NavigationMobile = () => {
             buttonColor={colorScheme.bioBackgroundColor}
             buttonBorderColor={colorScheme.eyeBrowStopOne}
             onClick={() => {
+              dispatch(
+                {
+                  type: GlobalActions.STOP_SLIDESHOW,
+                  payload: true
+                }
+              )
               nextSlide()
             }}
           >

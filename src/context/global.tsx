@@ -50,7 +50,8 @@ export enum GlobalActions {
   OPEN_CASE_STUDY = 'OPEN_CASE_STUDY',
   TOGGLE_MOBILE_PANEL = 'TOGGLE_MOBILE_PANEL',
   ADD_SLIDE_MESH = 'ADD_SLIDE_MESH',
-  UPDATE_SLIDE_DATA = 'UPDATE_SLIDE_DATA'
+  UPDATE_SLIDE_DATA = 'UPDATE_SLIDE_DATA',
+  STOP_SLIDESHOW = 'STOP_SLIDESHOW'
 }
 
 type ColorDispatch = {
@@ -76,6 +77,8 @@ const globalReducer = (state: TDefaultData, action: ColorDispatch) => {
       return Object.assign({}, state, { mobilePanel: action.payload })
     case GlobalActions.UPDATE_SLIDE_DATA:
       return Object.assign({}, state, { slideData: {...state.slideData, ...action.payload}  })
+    case GlobalActions.STOP_SLIDESHOW:
+      return Object.assign({}, state, { stopSlides: action.payload });
     default:
       return state;
   }
