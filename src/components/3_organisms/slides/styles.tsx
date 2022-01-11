@@ -12,16 +12,17 @@ export const StyledSlides = styled.section<IStyledSlides>`
   display: block;
   width: 100%;
   position: ${({ slidePosition }) => slidePosition ? 'absolute' : 'fixed'};
-  top: 0;
-  right: ${(p) => p.panelOpen ? '0%' : '-100%'};
+  top: ${(p) => p.panelOpen ? '0vh' : '100vh'};
+  right: 0%;
   background-size: cover;
   z-index: 11;
   padding-bottom: 200px;
-  transition: width 1s var(--animation-curve), background 1s, right 1s var(--animation-curve);
+  transition: width 1s var(--animation-curve), background 1s, top 1s var(--animation-curve);
   overflow: hidden;
   @media screen and (min-width: 1024px) {
     width: ${({ toggle }) => toggle ? '100%' : '55%'};
     right: 0;
+    top: 0;
   }
 `;
 

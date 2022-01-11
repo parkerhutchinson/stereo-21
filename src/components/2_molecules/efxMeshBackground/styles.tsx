@@ -7,13 +7,15 @@ interface IStyledThreeBackground {
 
 export const StyledThreeBackground = styled.div<IStyledThreeBackground>`
   position: fixed;
-  top: 0;
-  right: ${(p) => p.panelopen === 'true' ? '0%' : '-100%'};
+  top: ${(p) => p.panelopen === 'true' ? '0vh' : '100vh'};
+  right: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
   overflow: hidden;
-  transition: right 1s var(--animation-curve);
+  will-change: top;
+  transition: top 1s var(--animation-curve);
+  pointer-events: none;
   @media screen and (min-width: 1024px) {
     right: 0;
   }
