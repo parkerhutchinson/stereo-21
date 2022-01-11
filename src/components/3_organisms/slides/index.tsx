@@ -33,7 +33,6 @@ const Slides = (props: Slides) => {
     }, 
     dispatch 
   } = useContext(GlobalContext);
-  // const [activeSlide, setActiveSlide] = useState(slideData.slideId);
   const [articleReady, setArticleReady] = useState(false);
   // scroll top animation
   const [, springAPI] = useSpring(() => ({
@@ -72,10 +71,7 @@ const Slides = (props: Slides) => {
 
   }, [userInteracted, slideData.slideId]);
 
-  useEffect(() => {
-    console.log(slideData)
-  }, [slideData.slideId])
-
+  // when dispatch updates stop slideshow if stopSlides === true
   useEffect(() => {
     if (stopSlides) timerRef.current && window.clearTimeout(timerRef.current)
   }, [stopSlides])
@@ -99,7 +95,6 @@ const Slides = (props: Slides) => {
       dispatch({
         type: UPDATE_SLIDE_DATA,
         payload: {
-          slideId: slideData.slideId,
           brand: slides[slideData.slideId].brand,
           slidesLength: slides.length,
           url: slides[slideData.slideId].meshScene.fields.file.url

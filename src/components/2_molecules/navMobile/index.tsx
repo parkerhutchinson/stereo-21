@@ -14,9 +14,18 @@ import ArrowIcon from "@/src/components/1_atoms/arrowIcon";
 import IconWork from "@/public/icn-work.svg";
 import IconHome from "@/public/icn-home.svg";
 import { GlobalActions } from "@/src/context/global";
+import { useSpring } from "react-spring";
+
 
 const NavigationMobile = () => {
   const { state: {slideData, colorScheme, mobilePanel, caseStudyOpen}, dispatch } = useContext(GlobalContext);
+
+  const [, springAPI] = useSpring(() => ({
+      from: { y: typeof window !== 'undefined' && window.scrollY },
+      to: { y: 0 },
+      duration: 500
+    })
+  )
 
   const nextSlide = () => {
     return slideData.slideId < slideData.slidesLength - 1
@@ -29,6 +38,22 @@ const NavigationMobile = () => {
       ? dispatch({type: GlobalActions.UPDATE_SLIDE_DATA, payload: {slideId: slideData.slideId - 1}})
       : dispatch({type: GlobalActions.UPDATE_SLIDE_DATA, payload: {slideId: slideData.slidesLength - 1}});
 
+
+  const scrollTop = (cb: () => void) => {
+    if (caseStudyOpen && window.scrollY > 0) {
+      springAPI.start({
+        from: { y: window.scrollY },
+        to: { y: 0 },
+        onChange: (props: any) => {
+          window.scroll(0, props.value.y)
+        },
+        onRest: () => cb()
+      });
+    } else {
+      cb()
+    }
+  }
+    
   return (
     <MobileMenu
       background={colorScheme.bioBackgroundColor}
@@ -76,7 +101,9 @@ const NavigationMobile = () => {
               if (!caseStudyOpen) {
                 dispatch({type: GlobalActions.TOGGLE_MOBILE_PANEL,payload: !mobilePanel})
               } else {
-                dispatch({type: GlobalActions.OPEN_CASE_STUDY,payload: false})
+                scrollTop(() => {
+                  dispatch({type: GlobalActions.OPEN_CASE_STUDY,payload: false})
+                })
               } 
             }
           }

@@ -44,6 +44,10 @@ export const MobileMenu = styled.nav<IMobileMenu>`
     transition: border 1s, transform .6s var(--animation-curve);
     transition-delay: 0s, .3s;
   }
+  @media screen and (min-width: 1024px) {
+    display: none;
+    pointer-events: none;
+  }
 `;
 
 interface IStyledMobileNav {
@@ -79,6 +83,7 @@ export const StyledMobileNavIconBg = styled.div<IStyledMobileNav>`
   }
   @media screen and (min-width: 1024px) {
     display: none;
+    pointer-events: none;
   }
   svg{
     display: block;
