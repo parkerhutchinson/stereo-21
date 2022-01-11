@@ -18,5 +18,6 @@ export const StyledThreeBackground = styled.div<IStyledThreeBackground>`
   pointer-events: none;
   @media screen and (min-width: 1024px) {
     right: 0;
+    top: 0;
   }
 `;

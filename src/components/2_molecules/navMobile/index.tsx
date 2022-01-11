@@ -13,6 +13,7 @@ import {
 import ArrowIcon from "@/src/components/1_atoms/arrowIcon";
 import IconWork from "@/public/icn-work.svg";
 import IconHome from "@/public/icn-home.svg";
+import IconClose from "@/public/icn-close.svg";
 import { GlobalActions } from "@/src/context/global";
 import { useSpring } from "react-spring";
 
@@ -109,7 +110,7 @@ const NavigationMobile = () => {
           }
           aria-label="button show case study slides"
         >
-          {!mobilePanel ? <IconWork /> : <IconHome />}
+          {!mobilePanel ? <IconWork /> : !caseStudyOpen ? <IconHome /> : <IconClose />}
         </StyledMobileWorkButton>
 
       </StyledMobileNavIconBg>
