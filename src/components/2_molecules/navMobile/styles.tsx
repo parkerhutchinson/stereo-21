@@ -27,7 +27,6 @@ export const MobileMenu = styled.nav<IMobileMenu>`
   }
   &:before{
     background: rgba(0 0 0 / 100%);
-    backdrop-filter: blur(20px);
     width: 100%;
     height: 100%;
     border-radius: 100000px;
@@ -62,24 +61,25 @@ export const StyledMobileNavIconBg = styled.div<IStyledMobileNav>`
   border-radius: 100000px;
   position: absolute;
   z-index: 100;
-  top: 10px;
+  top: ${(p) => p.opened ? '10px' : '80px'};
   left: 50%;
   transform: translateX(-50%);
   box-shadow: ${(p) => p.opened ? '0 0 10px 0px rgb(0 0 0)' : '0 0 0px rgb(0 0 0)'};
   background: black;
-  transition: box-shadow .4s;
+  transition: box-shadow .4s, top .4s;
   &:before{
     content: '';
     display: block;
     top: 50%;
     left: 50%;
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     transform: ${(p) => p.opened ? 'translateX(-50%) translateY(-50%) scale(0)' : 'translateX(-50%) translateY(-50%) scale(1)'};
     position: absolute;
     border-radius: 10000px;
+    background: ${(p) => p.color};
     border: ${(p) => `1px solid ${p.color}`};
-    transition: all 1s;
+    transition: all .8s;
   }
   @media screen and (min-width: 1024px) {
     display: none;
@@ -87,7 +87,6 @@ export const StyledMobileNavIconBg = styled.div<IStyledMobileNav>`
   }
   svg{
     display: block;
-    transform: scale(1);
     width: ${(p) => p.opened ? '20px' : '25px'};
     height: auto;
     position: relative;
@@ -121,7 +120,7 @@ interface IStyledMobileButtonsWrap {
 
 export const StyledMobileButtonsWrap = styled.div<IStyledMobileButtonsWrap>`
   position: absolute;
-  width: ${(p) => p.opened ? '87%' : '70%'};
+  width: ${(p) => p.opened ? '85%' : '70%'};
   opacity: ${(p) => p.opened ? '1' : '0'};
   left: 50%;
   top: 80px;
@@ -173,11 +172,12 @@ export const StyledMobileArrowButtons = styled.button<IStyledMobileArrowButtons>
 
 export const StyledActiveBrand = styled.h2`
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 50px;
+  font-size: 40px;
   color: white;
   position: absolute;
-  top: 20px;
+  top: 24px;
   left: 50%;
   font-weight: 300;
+
   transform: translateX(-50%);
 `
