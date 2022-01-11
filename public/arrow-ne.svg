@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Combined Shape</title>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="spotify-slide" transform="translate(-1020.000000, -824.000000)" stroke="#FFFFFF">
-            <g id="Group" transform="translate(1015.773029, 818.378091)">
-                <path d="M8.29426188,17.75649 L2.77854314,11.6891994 L8.29426188,5.62190874 M3.04945523,11.6891994 L16.0072128,11.6891994" id="Combined-Shape" transform="translate(9.271351, 11.689199) rotate(-225.000000) translate(-9.271351, -11.689199) "></path>
-            </g>
+<svg viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-318.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M320.867479,293.086392 L320.953399,293.082783 L328.546198,293.086096 C328.764281,293.096449 328.943562,293.252694 328.988889,293.45965 L328.999421,293.539449 L328.999421,301.078314 C329.011898,301.341253 328.808916,301.564592 328.54605,301.577155 C328.312391,301.588322 328.110065,301.429192 328.059226,301.209021 L328.047497,301.123809 L327.967906,294.805701 L327.952884,294.824772 L318.828842,303.855508 C318.6391,304.048037 318.331611,304.048183 318.142046,303.855834 C317.973544,303.684857 317.954936,303.419337 318.086143,303.227225 L318.142368,303.158951 L327.306589,294.034984 L320.907922,294.034984 C320.674266,294.023892 320.487979,293.846245 320.458287,293.622232 L320.454706,293.536288 C320.465868,293.302561 320.643522,293.116164 320.867479,293.086392 Z" id="Path"></path>
         </g>
     </g>
 </svg>

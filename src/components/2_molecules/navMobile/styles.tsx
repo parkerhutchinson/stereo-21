@@ -148,12 +148,27 @@ export const StyledMobileArrowButtons = styled.button<IStyledMobileArrowButtons>
   background: ${(p) => p.buttonColor};
   border: ${(p) => `1px solid ${p.buttonBorderColor}`};
   border-radius: 11px;
-  height: 47px;
-  width: 47px;
+  height: 46px;
+  width: 46px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   transition: background .4s;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  span{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  svg{
+    display: block;
+    width: 30%;
+    height: auto;
+    overflow: visible;
+  }
 `;
 
 export const StyledActiveBrand = styled.h2`

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="12px" height="11px" viewBox="0 0 12 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Combined Shape</title>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="spotify-slide" transform="translate(-1019.000000, -825.000000)" stroke="#FFFFFF">
-            <g id="Group" transform="translate(1015.773029, 818.378091)">
-                <path d="M8.29426188,17.75649 L2.77854314,11.6891994 L8.29426188,5.62190874 M3.04945523,11.6891994 L16.0072128,11.6891994" id="Combined-Shape" transform="translate(9.271351, 11.689199) rotate(-135.000000) translate(-9.271351, -11.689199) "></path>
-            </g>
+<svg width="11px" height="11px" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-349.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M351.867479,293.086392 L351.953399,293.082783 L359.546198,293.086096 C359.764281,293.096449 359.943562,293.252694 359.988889,293.45965 L359.999421,293.539449 L359.999421,301.078314 C360.011898,301.341253 359.808916,301.564592 359.54605,301.577155 C359.312391,301.588322 359.110065,301.429192 359.059226,301.209021 L359.047497,301.123809 L358.967906,294.805701 L358.952884,294.824772 L349.828842,303.855508 C349.6391,304.048037 349.331611,304.048183 349.142046,303.855834 C348.973544,303.684857 348.954936,303.419337 349.086143,303.227225 L349.142368,303.158951 L358.306589,294.034984 L351.907922,294.034984 C351.674266,294.023892 351.487979,293.846245 351.458287,293.622232 L351.454706,293.536288 C351.465868,293.302561 351.643522,293.116164 351.867479,293.086392 Z" id="Path" transform="translate(354.499967, 298.541391) scale(1, -1) translate(-354.499967, -298.541391) "></path>
         </g>
     </g>
 </svg>

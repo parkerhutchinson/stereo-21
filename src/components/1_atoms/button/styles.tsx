@@ -43,6 +43,7 @@ interface StyledProps {
 
 export const StyledButton = styled.button<StyledProps>`
   padding: 15px 13px;
+  position: relative;
   /* border: 1px solid ${(p) => p.color}; */
   ${(p) => buttonCorners(p.cornerType)}
   background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, 0)`};
@@ -53,6 +54,12 @@ export const StyledButton = styled.button<StyledProps>`
     &:hover{
       background: ${(p) => `rgba(${hexRgb(p.color).red},${hexRgb(p.color).green},${hexRgb(p.color).blue}, .5)`};
     }
+  }
+  svg{
+    display: block;
+    width: 14px;
+    height: auto;
+    overflow: visible;
   }
   
 `;

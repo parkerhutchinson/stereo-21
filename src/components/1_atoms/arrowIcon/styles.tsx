@@ -10,11 +10,8 @@ interface IStyledIconArrow {
 export const StyledIconArrow = styled.span<IStyledIconArrow>`
   transform-origin: center;
   display: block;
-  svg{
-    margin-top: 3px;
-  }
   svg *{
     stroke: ${(p) => p.color};
     transition: stroke .4s;
   }
-`
+`;
