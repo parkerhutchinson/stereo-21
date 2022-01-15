@@ -28,7 +28,7 @@ const Main = (props:Props) => {
           slideId={state.slideData.slideId}
           mobilePanel={state.mobilePanel}
           slideMeshFile={state.slideData.url}
-          highlight={state.colorScheme.bioTextColor}
+          highlight={state.colorScheme.highlight}
         />}
       </StyledThreeBG>
     </StyledWrap>

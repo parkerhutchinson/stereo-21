@@ -9,6 +9,7 @@ import Model from "./model";
 import Lighting from "./lighting";
 import * as THREE from "three";
 
+
 interface Props {
   slideMeshFile: string
   slideId:number

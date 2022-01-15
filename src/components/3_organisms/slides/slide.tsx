@@ -16,7 +16,16 @@ type TSummary = {
   colorSchemeBG: string,
   technology?: string[]
 }
-export type SlideFields = Omit<TypeSlideFields, 'logo' | 'summaryRef' | 'logo_small'> & { logo: string, summary: TSummary, logoSmall: string };
+export type SlideFields = Omit<
+  TypeSlideFields,
+  'logo' | 'summaryRef' | 'logo_small' | 'mesh_fallback_asset'
+> &
+{
+  logo: string,
+  summary: TSummary,
+  logoSmall: string,
+  meshFallback: string
+};
 
 export interface Slide {
   slide: SlideFields

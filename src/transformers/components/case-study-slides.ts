@@ -23,6 +23,7 @@ const caseStudiesTransformer = (data:TypeSlidesFields):Slides => {
     return {
       brand: slide.fields.brand,
       meshScene: slide.fields.meshScene,
+      meshFallback: transformImage(slide.fields.mesh_fallback_asset),
       colorSchemeBioBG: slide.fields.colorSchemeBioBG,
       colorSchemeSeed: slide.fields.colorSchemeSeed,
       colorSchemeHighlight: slide.fields.colorSchemeHighlight,

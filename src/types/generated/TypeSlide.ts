@@ -8,6 +8,7 @@ export interface TypeSlideFields {
     logo_small: Contentful.Asset;
     summaryRef: Contentful.Entry<TypeSummaryFields>;
     meshScene: Contentful.Asset;
+    mesh_fallback_asset: Contentful.Asset;
     caseStudyCopy: CFRichTextTypes.Block | CFRichTextTypes.Inline;
     colorSchemeSeed: Contentful.EntryFields.Symbol;
     colorSchemeHighlight: Contentful.EntryFields.Symbol;
