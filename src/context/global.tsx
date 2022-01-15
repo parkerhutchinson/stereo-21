@@ -8,7 +8,8 @@ const initialState = {
   slideData: { 
     brand: '', 
     slideId: 0, 
-    url: '',
+    mesh: '',
+    meshFallback: '',
     slidesLength: 0 
   },
   colorScheme: {
@@ -30,7 +31,8 @@ type TDefaultData = {
   slideData: {
     slidesLength: number
     slideId: number
-    url: string
+    mesh: string
+    meshFallback: string
     brand: string
   }
   colorScheme: {

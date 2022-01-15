@@ -97,7 +97,8 @@ const Slides = (props: Slides) => {
         payload: {
           brand: slides[slideData.slideId].brand,
           slidesLength: slides.length,
-          url: slides[slideData.slideId].meshScene.fields.file.url
+          mesh: slides[slideData.slideId].meshScene.fields.file.url,
+          meshFallback: slides[slideData.slideId].meshFallback
         }
       })
     }
