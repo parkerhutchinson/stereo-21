@@ -195,7 +195,7 @@ export const StyledLogo = styled.div`
   cursor: pointer;
   position: relative;
   padding-bottom: calc(367 / 463 * 100%);
-  margin-top: 120px;
+  margin-top: 60px;
   div{
     position: absolute;
     top: 0;
@@ -216,6 +216,7 @@ export const StyledLogo = styled.div`
   }
   
   @media screen and (min-width: 900px){
+    margin-top: 120px;
     img{
       width: 80%;
     }
