@@ -17,7 +17,7 @@ export const StyledSlides = styled.section<IStyledSlides>`
   background-size: cover;
   z-index: 11;
   padding-bottom: 200px;
-  transition: width 1s var(--animation-curve), background 1s, top 1s var(--animation-curve);
+  transition: width .8s, background 1s, top 1s var(--animation-curve);
   overflow: hidden;
   @media screen and (min-width: 1024px) {
     width: ${({ toggle }) => toggle ? '100%' : '55%'};
