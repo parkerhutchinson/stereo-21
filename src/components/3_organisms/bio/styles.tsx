@@ -48,10 +48,6 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
   @media screen and (min-width: 1800px) {
     max-width: 60%;
   }
-  @media screen and (min-width: 2200px) {
-    max-width: 50%;
-  }
-
   h2{
     transition: all 1s;
     color: ${(p) => p.subHeadingColor};
@@ -102,12 +98,12 @@ export const StyledBioRichText = styled(RichText)`
     }
   }
   p{
-    line-height: 34px;
-    letter-spacing: -.16px;
+    line-height: 24px;
+    letter-spacing: -.2px;
     margin-bottom: 30px;
-    font-size: 16px;
     color: #d7d7d7;
-    @media screen and (min-width: 900px) {
+    font-size: 16px;
+    @media screen and (min-width: 1200px) {
       font-size: 19px;
       line-height: 42px;
       margin-bottom: 50px;

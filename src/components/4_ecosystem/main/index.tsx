@@ -5,6 +5,7 @@ import EFXMeshBackground from "@/src/components/2_molecules/efxMeshBackground";
 import StereoLogo from '@/src/components/2_molecules/stereoLogo';
 import NavigationMobile from "@/src/components/2_molecules/navMobile";
 import useScreenSize from '@/src/hooks/useScreenSize';
+import UIDebugger from '@/src/lib/debugger';
 
 interface Props {
   children?: ReactNode
@@ -14,33 +15,37 @@ const Main = (props: Props) => {
   const { state, dispatch } = useContext(GlobalContext);
   const [winWidth] = useScreenSize();
   return (
-    <StyledWrap>
-      {props.children}
-      <NavigationMobile />
+    <>
+      <UIDebugger />
+      <StyledWrap>
+        {props.children}
 
-      <StyledThreeBG
-        open={state.caseStudyOpen}
-        color={state.colorScheme.bioBackgroundColor}
-      >
-        <StereoLogo
-          textColor={state.colorScheme.bioTextColor}
-          backgroundColor={state.colorScheme.bioBackgroundColor}
-        />
-        {winWidth > 960 ?
-          state.slideData.mesh && <EFXMeshBackground
-            slideId={state.slideData.slideId}
-            mobilePanel={state.mobilePanel}
-            slideMeshFile={state.slideData.mesh}
-            highlight={state.colorScheme.highlight}
-          /> :
-          <StyledThreeBackgroundFallback 
-            image={state.slideData.meshFallback} 
-            panelopen={state.mobilePanel} 
+        <NavigationMobile />
+
+        <StyledThreeBG
+          open={state.caseStudyOpen}
+          color={state.colorScheme.bioBackgroundColor}
+        >
+          <StereoLogo
+            textColor={state.colorScheme.bioTextColor}
+            backgroundColor={state.colorScheme.bioBackgroundColor}
           />
-        }
+          {winWidth > 960 ?
+            state.slideData.mesh && <EFXMeshBackground
+              slideId={state.slideData.slideId}
+              mobilePanel={state.mobilePanel}
+              slideMeshFile={state.slideData.mesh}
+              highlight={state.colorScheme.highlight}
+            /> :
+            <StyledThreeBackgroundFallback
+              image={state.slideData.meshFallback}
+              panelopen={state.mobilePanel}
+            />
+          }
 
-      </StyledThreeBG>
-    </StyledWrap>
+        </StyledThreeBG>
+      </StyledWrap>
+    </>
   )
 }
 

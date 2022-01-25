@@ -16,9 +16,17 @@ export const StyledRichText = styled.div<Props>`
       font-size: 120px;
     }
   }
+  h4{
+    font-weight: 300;
+    margin-bottom: 40px;
+    padding-top: 30px;
+    font-size: 24px;
+    font-family: 'roboto';
+    letter-spacing: -.5px;
+  }
   p{
-    line-height: 32px;
-    letter-spacing: -.16px;
+    line-height: 24px;
+    letter-spacing: -.20px;
     margin-bottom: 40px;
     font-size: 16px;
     color: #DADADA;
