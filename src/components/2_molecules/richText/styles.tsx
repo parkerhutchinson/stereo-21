@@ -25,7 +25,7 @@ export const StyledRichText = styled.div<Props>`
     letter-spacing: -.5px;
   }
   p{
-    line-height: 24px;
+    line-height: 30px;
     letter-spacing: -.20px;
     margin-bottom: 40px;
     font-size: 16px;
