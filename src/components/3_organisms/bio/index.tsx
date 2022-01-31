@@ -52,7 +52,7 @@ const Bio = (props: TypeBioFields) => {
         caseStudyOpen={winWidth < 1024 ? mobilePanel : caseStudyOpen}
       >
         <StyledEyeBrow as={animated.span} style={styles} />
-        <StyledBioRichText body={body} isNotBio={false} />
+        <StyledBioRichText body={body} isNotBio={false} linkColor={colorScheme.eyeBrowStopTwo}/>
       </StyledCopyWrapper>
     </StyledBioTab>
   )

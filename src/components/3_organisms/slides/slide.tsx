@@ -116,6 +116,7 @@ const Slide = (props: Slide) => {
           <animated.div style={{ ...styles, ...{ position: 'relative', zIndex: 3 } }}>
             <SlideArticle
               {...slide}
+              linkColor={slide.colorSchemeEyeBrowStopTwo}
               colorSchemeBG={slide.summary.colorSchemeBG}
               heightCallback={
                 (height: number) => setHeightState(height)

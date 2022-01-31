@@ -7,6 +7,7 @@ interface Props {
   body: any
   propRef?: any
   className?: string
+  linkColor: string
   isNotBio: boolean
 }
 
@@ -27,7 +28,7 @@ const RichText = (props:Props) => {
     }
   };
   return (
-    <StyledRichText ref={props.propRef} className={props.className}>
+    <StyledRichText ref={props.propRef} className={props.className} linkColor={props.linkColor}>
       {documentToReactComponents(props.body, options)}
     </StyledRichText>
   )

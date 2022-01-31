@@ -7,25 +7,11 @@ import { useHeight } from '@/src/hooks/useHeight';
 import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
-interface Props {
-  logo: string
-  logoSmall: string
-  brand: string
-  caseStudyCopy: any
-  colorSchemeBG: string
-  heightCallback: (height: any) => void
-  summary: {
-    title: string
-    image: string
-    year: string
-    technology?: string[]
-  }
-}
-
 interface ICaseStudy {
   brand: string
   caseStudyCopy: any
   colorSchemeBG: string
+  linkColor: string
   heightCallback: (height: any) => void
   summary: {
     title: string
@@ -36,7 +22,13 @@ interface ICaseStudy {
 }
 
 const CaseStudy = (props: ICaseStudy) => {
-  const { summary, caseStudyCopy, colorSchemeBG, heightCallback } = props;
+  const { 
+    summary, 
+    caseStudyCopy, 
+    colorSchemeBG, 
+    heightCallback,
+    linkColor
+  } = props;
   const [heightRef, height] = useHeight();
   const letters = props.brand.split('');
   const [ready, setReady] = useState(false);
@@ -84,18 +76,32 @@ const CaseStudy = (props: ICaseStudy) => {
         </h2>
         <Summary {...summary} color={colorSchemeBG} />
         <animated.div style={mountedAnimation}>
-          <RichText body={caseStudyCopy} isNotBio={true} />
+          <RichText body={caseStudyCopy} isNotBio={true} linkColor={linkColor}/>
         </animated.div>
       </StyledCaseStudyCopy>
     </>
   )
 }
 
-const SlideArticle = (props: Props) => {
+interface ISlideArticle {
+  logo: string
+  logoSmall: string
+  brand: string
+  caseStudyCopy: any
+  linkColor: string
+  colorSchemeBG: string
+  heightCallback: (height: any) => void
+  summary: {
+    title: string
+    image: string
+    year: string
+    technology?: string[]
+  }
+}
+
+const SlideArticle = (props: ISlideArticle) => {
   const {
-    heightCallback,
-    brand,
-    logoSmall
+    heightCallback
   } = props;
 
   const newProps = useTransition(props, {
@@ -106,9 +112,7 @@ const SlideArticle = (props: Props) => {
     order: ["leave", "enter", "update"],
     key: props.logo,
   });
-
   
-
   return (
     <>
       {newProps((styles, props) => props &&

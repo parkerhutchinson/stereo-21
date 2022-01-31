@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface Props {
   className?: string
+  linkColor: string
 }
 
 export const StyledRichText = styled.div<Props>`
@@ -31,7 +32,8 @@ export const StyledRichText = styled.div<Props>`
     font-size: 16px;
     color: #DADADA;
     a, a:visited, a:hover, a:active{
-      color: #DADADA;
+      color: ${(p) => p.linkColor};
+      transition: color .5s;
     }
     @media screen and (min-width: 900px){
       font-size: 19px;
