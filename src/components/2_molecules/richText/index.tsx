@@ -28,7 +28,11 @@ const RichText = (props:Props) => {
     }
   };
   return (
-    <StyledRichText ref={props.propRef} className={props.className} linkColor={props.linkColor}>
+    <StyledRichText 
+      ref={props.propRef} 
+      className={props.className} 
+      linkColor={props.linkColor}
+    >
       {documentToReactComponents(props.body, options)}
     </StyledRichText>
   )

@@ -6,7 +6,6 @@ import IconArrowSE from "@/public/arrow-se.svg";
 import IconArrowW from "@/public/arrow-w.svg";
 
 
-
 interface Props {
   color?: string
   direction: "n" | "ne" | "e" | "se" | "w"

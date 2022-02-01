@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useTransition, animated, useChain, useSpringRef, useSpring } from 'react-spring';
+import React, { useState } from "react";
+import { useTransition, animated } from 'react-spring';
 import { TypeSlideFields } from "@/src/types/generated/TypeSlide";
 import {
   StyledSlide,

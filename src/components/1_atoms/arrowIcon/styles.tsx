@@ -6,7 +6,6 @@ interface IStyledIconArrow {
 }
 
 
-
 export const StyledIconArrow = styled.span<IStyledIconArrow>`
   transform-origin: center;
   display: block;

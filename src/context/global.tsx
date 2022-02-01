@@ -69,18 +69,22 @@ export const GlobalContext = createContext<{
   dispatch: () => null
 });
 
+const updateState = (state: TDefaultData, payload:{ [key: string]: any }) => {
+  return Object.assign({}, state, payload)
+}
+
 const globalReducer = (state: TDefaultData, action: ColorDispatch) => {
   switch (action.type) {
     case GlobalActions.UPDATE_COLOR:
-      return Object.assign({}, state, { colorScheme: { ...action.payload } })
+      return updateState(state, { colorScheme: { ...action.payload } })
     case GlobalActions.OPEN_CASE_STUDY:
-      return Object.assign({}, state, { caseStudyOpen: action.payload })
+      return updateState(state, { caseStudyOpen: action.payload })
     case GlobalActions.TOGGLE_MOBILE_PANEL:
-      return Object.assign({}, state, { mobilePanel: action.payload })
+      return updateState(state, { mobilePanel: action.payload })
     case GlobalActions.UPDATE_SLIDE_DATA:
-      return Object.assign({}, state, { slideData: {...state.slideData, ...action.payload}  })
+      return updateState(state, { slideData: {...state.slideData, ...action.payload}  })
     case GlobalActions.STOP_SLIDESHOW:
-      return Object.assign({}, state, { stopSlides: action.payload });
+      return updateState(state, { stopSlides: action.payload });
     default:
       return state;
   }

@@ -25,7 +25,6 @@ const verticalTickerInverse = keyframes`
   }
 `;
 
-
 interface IStyledLogo {
   textColor: string
   backgroundColor:string

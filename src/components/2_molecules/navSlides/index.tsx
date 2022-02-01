@@ -17,7 +17,6 @@ interface Props {
   style?: any
 }
 
-
 const NavigationSlides = (props: Props) => {
   const { buttonColor, navCallback, toggleNavAnimation, brandName, brandNameColor, brandLogo, isHeaderNav } = props;
 

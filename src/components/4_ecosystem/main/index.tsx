@@ -19,9 +19,7 @@ const Main = (props: Props) => {
       <UIDebugger />
       <StyledWrap>
         {props.children}
-
         <NavigationMobile />
-
         <StyledThreeBG
           open={state.caseStudyOpen}
           color={state.colorScheme.bioBackgroundColor}
@@ -42,7 +40,6 @@ const Main = (props: Props) => {
               panelopen={state.mobilePanel}
             />
           }
-
         </StyledThreeBG>
       </StyledWrap>
     </>

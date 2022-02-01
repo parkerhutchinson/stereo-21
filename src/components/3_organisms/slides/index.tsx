@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { GlobalActions, GlobalContext } from "@/src/context/global";
 import { StyledSlides } from "./styles";
 import useIsomorphicLayoutEffect from "@/src/hooks/useIsomorphicLayoutEffect";
 import Slide from "./slide";
 import useKeycode from "@/src/hooks/useKeycode";
-import slide, { SlideFields } from "./slide";
+import { SlideFields } from "./slide";
 import { useSpring } from "react-spring";
 
 
@@ -205,7 +205,6 @@ const Slides = (props: Slides) => {
         toggleSlide={caseStudyOpen}
         finishedAnimation={() => caseStudyOpen ? setArticleReady(true) : setArticleReady(false)}
       />
-
     </StyledSlides>
   )
 }

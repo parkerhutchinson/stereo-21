@@ -57,8 +57,7 @@ export const StyledAssetDescription = styled.p`
   text-align: center;
   margin-bottom: 60px;
   letter-spacing: -.5px;
-  
-`
+`;
 
 interface IStyledCopy {
   isNotBio: boolean;
