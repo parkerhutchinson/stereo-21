@@ -17,7 +17,6 @@ export const StyledSummary = styled.article<IStyledSummary>`
     display: block;
     width: 100%;
     height: auto;
-    filter: grayscale(100%);
     transition: all .4s;
     transition-delay: 1.2s;
     z-index: 0;
