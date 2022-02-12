@@ -26,6 +26,9 @@ const Page: NextPage = () => {
       <Head>
         <title>Parker Hutchinson | {meta.title}</title>
         <meta name="description" content={meta.description} />
+        <meta property="og:title" content={`Parker Hutchinson | ${meta.title}`} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:image" content="/og-image.png" />
         <link rel="icon" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
