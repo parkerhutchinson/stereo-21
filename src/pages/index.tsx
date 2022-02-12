@@ -28,7 +28,7 @@ const Page: NextPage = () => {
         <meta name="description" content={meta.description} />
         <meta property="og:title" content={`Parker Hutchinson | ${meta.title}`} />
         <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:image" content="https://stereo.codes/og-image.png" />
         <link rel="icon" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
