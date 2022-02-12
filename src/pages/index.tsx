@@ -25,7 +25,6 @@ const Page: NextPage = () => {
     <>
       <Head>
         <title>Parker Hutchinson | {meta.title}</title>
-        <meta name="description" content={meta.description} />
         <meta property="og:title" content={`Parker Hutchinson | ${meta.title}`} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content="https://stereo.codes/og-image.png" />
