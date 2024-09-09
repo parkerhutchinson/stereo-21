@@ -16,33 +16,33 @@ const Page: NextPage = () => {
 
   // dynamic component cache
   const componentsMap = components.map((d: any) => {
-    return typeof ComponentImportMap[d.componentId] !== 'undefined' ? 
-      { Component: ComponentImportMap[d.componentId], props: d.props } : 
+    return typeof ComponentImportMap[d.componentId] !== 'undefined' ?
+      { Component: ComponentImportMap[d.componentId], props: d.props } :
       { Component: () => <>{process.env.NODE_ENV === 'development' && <ErrorComponentMissing id={d.componentId} />}</>, props: {} }
   });
 
   return (
     <>
       <Head>
-        <title>Parker Hutchinson | {meta.title}</title>
+        <title>{`Parker Hutchinson | ${meta.title}`}</title>
         <meta property="og:title" content={`Parker Hutchinson | ${meta.title}`} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content="https://stereo.codes/og-image.png" />
         <link rel="icon" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
       </Head>
 
       {/* dynamic component render with props scoping */}
       {componentsMap.map(
-        (DynamicComponent, index: number) => 
+        (DynamicComponent, index: number) =>
           <DynamicComponent.Component key={index} {...DynamicComponent.props} />
-        )
+      )
       }
     </>
   )
