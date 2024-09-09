@@ -2,7 +2,7 @@ import react, { ReactNode, Suspense, useEffect, useRef, useState } from "react";
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import {StyledThreeBackground} from "./styles";
+import { StyledThreeBackground } from "./styles";
 
 import { useSpring, animated } from 'react-spring';
 import Model from "./model";
@@ -12,18 +12,18 @@ import * as THREE from "three";
 
 interface Props {
   slideMeshFile: string
-  slideId:number
+  slideId: number
   highlight: string
   mobilePanel: boolean
   children?: ReactNode
 }
 
-const EFXMeshBackground = (props:Props) => {
-  const {slideMeshFile, highlight, mobilePanel, slideId} = props;
+const EFXMeshBackground = (props: Props) => {
+  const { slideMeshFile, highlight, mobilePanel, slideId } = props;
   const [urlState, setUrlState] = useState('');
   const [idState, setIdState] = useState(-1);
-  const [fadeOut,setFadeOut] = useState(false);
-  const timerRef = useRef<NodeJS.Timer>();
+  const [fadeOut, setFadeOut] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout>();
   const styles = useSpring({
     opacity: fadeOut ? 0 : 1,
     duration: 1000
@@ -36,7 +36,7 @@ const EFXMeshBackground = (props:Props) => {
     setFadeOut(true);
 
     if (timerRef.current)
-        window.clearTimeout(timerRef.current)
+      window.clearTimeout(timerRef.current)
 
     timerRef.current = setTimeout(() => {
       const url = `${slideMeshFile}?${uuid}`;
@@ -54,7 +54,7 @@ const EFXMeshBackground = (props:Props) => {
   return (
     <StyledThreeBackground panelopen={`${mobilePanel}`} as={animated.div} style={styles}>
       {props.children}
-      <Canvas 
+      <Canvas
         camera={{
           near: 0.1,
           far: 1000,
@@ -62,12 +62,12 @@ const EFXMeshBackground = (props:Props) => {
         }}
       >
         <Suspense fallback={false}>
-          <Lighting highlight={highlight}/>
-          {(urlState.length > 1) && 
-            <Model 
+          <Lighting highlight={highlight} />
+          {(urlState.length > 1) &&
+            <Model
               url={urlState}
               slideId={idState}
-              cb={() => {setFadeOut(false)}}
+              cb={() => { setFadeOut(false) }}
             />
           }
         </Suspense>

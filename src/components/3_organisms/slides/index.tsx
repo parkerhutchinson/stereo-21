@@ -8,10 +8,10 @@ import { SlideFields } from "./slide";
 import { useSpring } from "react-spring";
 
 
-const { 
-  UPDATE_COLOR, 
-  OPEN_CASE_STUDY, 
-  UPDATE_SLIDE_DATA 
+const {
+  UPDATE_COLOR,
+  OPEN_CASE_STUDY,
+  UPDATE_SLIDE_DATA
 } = GlobalActions;
 
 export interface Slides {
@@ -23,37 +23,37 @@ const Slides = (props: Slides) => {
   const { slides } = props;
   const SLIDES_LEN = slides.length - 1;
   const userInteracted = useRef(false);
-  const timerRef = useRef<NodeJS.Timer>();
-  const { 
-    state: { 
-      mobilePanel, 
-      caseStudyOpen, 
+  const timerRef = useRef<NodeJS.Timeout>();
+  const {
+    state: {
+      mobilePanel,
+      caseStudyOpen,
       slideData,
       stopSlides
-    }, 
-    dispatch 
+    },
+    dispatch
   } = useContext(GlobalContext);
   const [articleReady, setArticleReady] = useState(false);
   // scroll top animation
   const [, springAPI] = useSpring(() => ({
-      from: { y: window.scrollY },
-      to: { y: 0 },
-      duration: 500
-    })
+    from: { y: window.scrollY },
+    to: { y: 0 },
+    duration: 500
+  })
   )
 
   const [keyName] = useKeycode();
 
   const nextSlide = () => {
     return slideData.slideId < SLIDES_LEN
-      ? dispatch({type: UPDATE_SLIDE_DATA, payload: {slideId: slideData.slideId + 1}})
-      : dispatch({type: UPDATE_SLIDE_DATA, payload: {slideId:0}});
+      ? dispatch({ type: UPDATE_SLIDE_DATA, payload: { slideId: slideData.slideId + 1 } })
+      : dispatch({ type: UPDATE_SLIDE_DATA, payload: { slideId: 0 } });
   }
 
   const prevSlide = () =>
     slideData.slideId > 0
-      ? dispatch({type: UPDATE_SLIDE_DATA, payload: {slideId: slideData.slideId - 1}})
-      : dispatch({type: UPDATE_SLIDE_DATA, payload: {slideId:SLIDES_LEN}});
+      ? dispatch({ type: UPDATE_SLIDE_DATA, payload: { slideId: slideData.slideId - 1 } })
+      : dispatch({ type: UPDATE_SLIDE_DATA, payload: { slideId: SLIDES_LEN } });
 
   const stopSlideshow = () => timerRef.current ? window.clearTimeout(timerRef.current) : null;
 
@@ -188,7 +188,7 @@ const Slides = (props: Slides) => {
         break;
     }
   }, [keyName])
-  
+
   return (
     <StyledSlides
       backgroundColor={slides[slideData.slideId || 0].colorSchemeBioBG}
