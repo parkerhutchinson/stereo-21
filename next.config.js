@@ -11,5 +11,11 @@ module.exports = {
       use: ['@svgr/webpack'],
     })
     return config;
+  },
+  compiler: {
+    styledComponents: {
+      ssr: true,
+      
+    }
   }
 }
