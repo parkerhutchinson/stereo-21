@@ -16,8 +16,8 @@ module.exports = {
     styledComponents: {
       ssr: true,
     },
-    removeConsole: {
-      exclude: ["error"],
-    },
+    // removeConsole: {
+    //   exclude: ["error"],
+    // },
   },
 };

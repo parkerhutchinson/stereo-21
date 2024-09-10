@@ -4,19 +4,29 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from "three";
 
 
-const Model = (props:{url:string, cb: () => void, slideId: number}) => {
-  const {url, cb, slideId} = props;
-  const [mesh,setMesh] = useState<any>({});
+const Model = (props: { url: string, cb: () => void, slideId: number }) => {
+  const { url, cb, slideId } = props;
+  const [mesh, setMesh] = useState<any>({});
+  const [primitivePropsState, setPrimitiveProps] = useState<{ string: any } | undefined>();
   const [gltf, setGltf] = useState<any>();
   const meshRef = useRef<THREE.Mesh>();
   // setup animation mixer
-  let mixer:THREE.AnimationMixer;
-  
+  let mixer: THREE.AnimationMixer;
+
   // if the loader runs: cache the gltf
   useEffect(() => {
+    // console.log(gltf.scene)
     if (typeof mesh[slideId] === 'undefined' && gltf) {
       // gltf scenes get cached over time.
-      const newMesh = {[slideId]: gltf};
+      const primitiveProps: any = {};
+      gltf.scene.children.forEach((child: any, index: number) => {
+        if (child.material) {
+          primitiveProps[`children-${index}-material-color`] = { isColor: true, r: 0, g: 0, b: 0 }
+          setPrimitiveProps(primitiveProps)
+        }
+      })
+
+      const newMesh = { [slideId]: gltf };
       const newMeshObj = Object.assign({}, mesh, newMesh);
       setMesh(newMeshObj);
       // animation callback trigger
@@ -24,31 +34,32 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
     }
   }, [gltf])
 
-  useEffect(()=>{
+  useEffect(() => {
     // use loader if cache is empty
     if (typeof mesh[slideId] === 'undefined') {
       try {
         new GLTFLoader().load(url, setGltf)
-      } catch(err) {
+      } catch (err) {
         console.error(err);
       }
     }
-            
+
     if (typeof mesh[slideId] !== 'undefined') {
       mixer = new THREE.AnimationMixer(mesh.scene);
 
       // loop through all animations and play them.
-      mesh[slideId].animations.forEach((clip:any) => {
+      mesh[slideId].animations.forEach((clip: any) => {
         const action = mixer.clipAction(clip)
         action.stop();
         action.play();
       });
 
+
       // animation callback trigger
       cb()
     }
 
-  },[slideId])
+  }, [slideId])
 
   useFrame((state, delta) => {
     // rotation animation loop
@@ -59,19 +70,20 @@ const Model = (props:{url:string, cb: () => void, slideId: number}) => {
       mixer?.update(delta)
     }
   });
-  
+
   return (
     <>
-      {mesh[slideId] && 
-        <primitive 
+      {mesh[slideId] &&
+        <primitive
           position={[1, 0, 0]}
           // pull object scenes from cache
-          object={mesh[slideId].scene} 
+          object={mesh[slideId].scene}
           scale={1}
           ref={meshRef}
+          {...primitivePropsState}
         />
       }
-    </>  
+    </>
   );
 };
 

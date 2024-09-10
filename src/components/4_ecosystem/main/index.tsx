@@ -24,10 +24,10 @@ const Main = (props: Props) => {
           open={state.caseStudyOpen}
           color={state.colorScheme.bioBackgroundColor}
         >
-          <StereoLogo
+          {/* <StereoLogo
             textColor={state.colorScheme.bioTextColor}
             backgroundColor={state.colorScheme.bioBackgroundColor}
-          />
+          /> */}
           {winWidth > 960 ?
             state.slideData.mesh && <EFXMeshBackground
               slideId={state.slideData.slideId}

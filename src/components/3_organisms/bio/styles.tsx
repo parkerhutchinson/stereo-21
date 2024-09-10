@@ -36,6 +36,7 @@ export const StyledCopyWrapper = styled.div<IStyledCopyWrapper>`
   padding: 80px 0;
   position: relative;
   z-index: 2;
+  will-change: opacity;
   opacity: ${(p) => p.caseStudyOpen ? '0' : '1'};
   transition: all 1s;
   @media screen and (min-width: 800px) {
@@ -69,7 +70,7 @@ export const StyledEyeBrow = styled.span`
 export const StyledBioRichText = styled(RichText)`
   h1{
     font-weight: 200;
-    margin-bottom: 15px;
+    margin-bottom: -10px;
     font-size: 42px;
     position: relative;
     font-family: 'Bebas Neue', sans-serif;
@@ -80,22 +81,29 @@ export const StyledBioRichText = styled(RichText)`
       font-size: 48px;
     }
     @media screen and (min-width: 1800px) {
-      font-size: 62px;
+      font-size: 80px;
     }
   }
   h2{
-    margin-bottom: 50px;
-    font-size: 18px;
+    margin-bottom: 40px;
+    font-size: 20px;
     text-align: center;
     text-transform: none;
     letter-spacing: -.2px;
     font-weight: 'light';
     font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
     @media screen and (min-width: 900px) {
       text-align: left;
-      margin-bottom: 80px;
-      font-size: 22px;
+      margin-bottom: 50px;
     }
+  }
+  h4{
+    font-size: 23px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    text-transform: uppercase;
   }
   p{
     line-height: 30px;
@@ -104,8 +112,8 @@ export const StyledBioRichText = styled(RichText)`
     color: #d7d7d7;
     font-size: 16px;
     @media screen and (min-width: 1200px) {
-      font-size: 19px;
-      line-height: 42px;
+      font-size: 22px;
+      line-height: 36px;
       margin-bottom: 50px;
     }
   }

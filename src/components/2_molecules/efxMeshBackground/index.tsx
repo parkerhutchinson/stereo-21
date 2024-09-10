@@ -71,10 +71,10 @@ const EFXMeshBackground = (props: Props) => {
             />
           }
         </Suspense>
-        <EffectComposer frameBufferType={THREE.HalfFloatType}>
-          {/* <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} /> */}
-          {/* <Vignette eskil={false} offset={0.1} darkness={1.1} opacity={.8} /> */}
-        </EffectComposer>
+        {/* <EffectComposer frameBufferType={THREE.HalfFloatType}>
+          <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
+          <Vignette eskil={false} offset={0.1} darkness={1.1} opacity={.8} />
+        </EffectComposer> */}
       </Canvas>
     </StyledThreeBackground>
   );

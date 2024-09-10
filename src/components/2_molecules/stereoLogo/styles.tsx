@@ -27,7 +27,7 @@ const verticalTickerInverse = keyframes`
 
 interface IStyledLogo {
   textColor: string
-  backgroundColor:string
+  backgroundColor: string
 }
 
 export const StyledLogoGroup = styled.div<IStyledLogo>`
@@ -59,12 +59,14 @@ export const StyledLogoGroup = styled.div<IStyledLogo>`
     &:first-child{
       top: 0;
       right: 0;
+      will-change: top;
       transform: rotate(0deg);
       animation: ${verticalTicker} 60s linear infinite;
     }
     &:last-child{
       bottom: 0%;
       left: 0;
+      will-change: bottom;
       transform: rotate(-180deg);
       animation: ${verticalTickerInverse} 60s linear infinite;
     }

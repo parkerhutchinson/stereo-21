@@ -13,14 +13,11 @@ export const StyledRichText = styled.div<Props>`
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
     text-align: center;
-    @media screen and (min-width: 1024px) {
-      font-size: 120px;
-    }
   }
   h4{
     font-weight: 300;
     margin-bottom: 40px;
-    padding-top: 30px;
+    padding-top: 24px;
     font-size: 24px;
     font-family: 'roboto';
     letter-spacing: -.5px;
@@ -28,17 +25,16 @@ export const StyledRichText = styled.div<Props>`
   p{
     line-height: 30px;
     letter-spacing: -.20px;
-    margin-bottom: 40px;
+    color: #d7d7d7;
     font-size: 16px;
-    color: #DADADA;
     a, a:visited, a:hover, a:active{
       color: ${(p) => p.linkColor};
       transition: color .5s;
     }
     @media screen and (min-width: 900px){
-      font-size: 19px;
-      line-height: 38px;
-      margin-bottom: 60px;
+      font-size: 22px;
+      line-height: 36px;
+      margin-bottom: 50px;
     }
   }
 `;

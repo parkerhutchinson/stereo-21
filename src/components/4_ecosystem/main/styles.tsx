@@ -21,7 +21,7 @@ export const StyledThreeBG = styled.div<IStyledThreeBg>`
   width: 100%;
   height: 100%;
   transition: background 1s;  
-  background: black;
+  background: #080808;
   pointer-events: none;
 `;
 
@@ -32,7 +32,7 @@ interface IStyledThreeBackgroundFallback {
 
 export const StyledThreeBackgroundFallback = styled.div<IStyledThreeBackgroundFallback>`
   position: fixed;
-  top: ${(p) => p.panelopen? '0vh' : '100vh'};
+  top: ${(p) => p.panelopen ? '0vh' : '100vh'};
   right: 0;
   width: 100%;
   height: 100%;
