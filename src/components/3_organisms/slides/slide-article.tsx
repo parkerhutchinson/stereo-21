@@ -20,12 +20,12 @@ interface ICaseStudy {
     technology?: string[]
   }
 }
-
+const LinkColor = "#F1BD6C"
 const CaseStudy = (props: ICaseStudy) => {
-  const { 
-    summary, 
-    caseStudyCopy, 
-    colorSchemeBG, 
+  const {
+    summary,
+    caseStudyCopy,
+    colorSchemeBG,
     heightCallback,
     linkColor
   } = props;
@@ -76,7 +76,7 @@ const CaseStudy = (props: ICaseStudy) => {
         </h2>
         <Summary {...summary} color={colorSchemeBG} />
         <animated.div style={mountedAnimation}>
-          <RichText body={caseStudyCopy} isNotBio={true} linkColor={linkColor}/>
+          <RichText body={caseStudyCopy} isNotBio={true} linkColor={LinkColor} />
         </animated.div>
       </StyledCaseStudyCopy>
     </>
@@ -112,7 +112,7 @@ const SlideArticle = (props: ISlideArticle) => {
     order: ["leave", "enter", "update"],
     key: props.logo,
   });
-  
+
   return (
     <>
       {newProps((styles, props) => props &&

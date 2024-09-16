@@ -28,7 +28,7 @@ export const StyledRichText = styled.div<Props>`
     color: #d7d7d7;
     font-size: 16px;
     a, a:visited, a:hover, a:active{
-      color: ${(p) => p.linkColor};
+      color: #F1BD6C;
       transition: color .5s;
     }
     @media screen and (min-width: 900px){

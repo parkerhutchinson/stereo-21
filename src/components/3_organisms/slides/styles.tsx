@@ -43,8 +43,8 @@ export const StyledSlide = styled.div<IStyledSlide>`
   border-radius: 10px;
   will-change: height;
   backdrop-filter: blur(50px);
-  background: ${(p) => p.cardcolor};
-  /* background: rgba(115, 28, 43, 0.32); */
+  /* background: ${(p) => p.cardcolor}; */
+  background: rgba(0, 0, 0, 0.32);
   transform: translate3d(0px, 0px, 0px);
   backface-visibility: hidden;
   overflow: hidden;
