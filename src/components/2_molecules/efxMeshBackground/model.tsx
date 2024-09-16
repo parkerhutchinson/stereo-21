@@ -21,7 +21,8 @@ const Model = (props: { url: string, cb: () => void, slideId: number }) => {
       const primitiveProps: any = {};
       gltf.scene.children.forEach((child: any, index: number) => {
         if (child.material) {
-          primitiveProps[`children-${index}-material-color`] = { isColor: true, r: 0, g: 0, b: 0 }
+          console.log
+          primitiveProps[`children-${index}-material-color`] = { isColor: true, r: .0509, g: .045, b: .09 }
           setPrimitiveProps(primitiveProps)
         }
       })

@@ -16,9 +16,17 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   color: white;
   z-index: 1;
   position: ${(p) => p.caseStudyOpen ? 'fixed' : 'relative'};
-  overflow: hidden;
+  overflow: scroll;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 10%,rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 100%);
+  height: 100vh;
+  padding-bottom: 10%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;  
+  &::-webkit-scrollbar {
+    display: none;
+  }
   @media screen and (min-width: 1024px) {
-    width: 55%;
+    width: 50%;
   }
 `;
 
@@ -116,7 +124,7 @@ export const StyledBioRichText = styled(RichText)`
     line-height: 3.8rem;
     letter-spacing: -.2px;
     margin-bottom: 30px;
-    color: #d7d7d7;
+    color: #ECECEC;
     font-size: 2.2rem;
     @media screen and (min-width: 1200px) {
       font-size: 22px;

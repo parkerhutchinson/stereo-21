@@ -3,8 +3,8 @@ const Lighting = (props: { highlight: string }) => {
 
   return (
     <>
-      <ambientLight intensity={2} />
-      <pointLight intensity={200} position={[5, 0, 10]} color={"#ffffff"} />
+      <ambientLight intensity={.7} />
+      <pointLight intensity={200} position={[5, 0, 10]} color={"#58507c"} />
     </>
   )
 }
