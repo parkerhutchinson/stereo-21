@@ -35,7 +35,7 @@ export interface Slide {
 }
 
 const setHeightStyles = (isToggled?: boolean, height?: number) => {
-  let heightValue = '75vh';
+  let heightValue = '10vh';
   if (isToggled) {
     if (height === 0) {
       heightValue = '1000px';
@@ -43,7 +43,7 @@ const setHeightStyles = (isToggled?: boolean, height?: number) => {
       heightValue = typeof height !== 'undefined' ? `${height + 200}px` : '200px';
     }
   } else {
-    heightValue = '75vh'
+    heightValue = '10vh'
   }
   return heightValue;
 }
@@ -74,8 +74,8 @@ const Slide = (props: Slide) => {
       style={{ height: setHeightStyles(toggleSlide, heightState) }}
     >
       <EFXRoundedGradientBorder
-        colorStopTop={slide.colorSchemeSlideStopOne}
-        colorStopBottom={slide.colorSchemeSlideStopTwo}
+        colorStopTop="#F1BD6C"
+        colorStopBottom="#6534A6"
       />
 
       {/* toggle nav */}
@@ -86,7 +86,7 @@ const Slide = (props: Slide) => {
           navCallback={(e) => handleButtonCLick(e)}
           toggleNavAnimation={toggle}
           brandName={slide.brand}
-          brandLogo={slide.logoSmall}
+          brandLogo={slide.logo}
           isHeaderNav={true}
           style={
             {

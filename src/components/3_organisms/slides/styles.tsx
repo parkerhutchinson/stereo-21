@@ -53,7 +53,7 @@ export const StyledSlide = styled.div<IStyledSlide>`
     min-height: 0;
     width: 80%;
     max-width: 100%;
-    margin: 12.5vh auto 100px;
+    margin: 40vh auto 100px;
   }
   @media (min-width: 1360px) {
     width: ${({ toggle }) => toggle ? '1000px' : '500px'};
@@ -163,39 +163,12 @@ export const StyledHeadingLetter = styled.span<IStyledHeadingLetter>`
   }
 `;
 
-interface IStyledPill {
-  show: boolean
-}
-
-export const StyledPill = styled.div<IStyledPill>`
-  left: 50%;
-  width: 100%;
-  height: 80%;
-  max-width: 700px;
-  position: absolute;
-  top: 10px;
-  margin: 0 auto;
-  border-radius: 5000px 5000px 0px 0px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(0,0,0,0));
-  opacity: ${(p) => p.show ? '.1' : '0'};
-  transition: all 1s;
-  @media screen and (min-width: 900px){
-    left: 50%;
-    width: 90%;
-    height: 80%;
-    max-width: 600px;
-    top: 20px;
-  }
-`;
-
 export const StyledLogo = styled.div`
   width: 100%;
   text-align: center;
   cursor: pointer;
   position: relative;
-  padding-bottom: calc(367 / 463 * 100%);
-  margin-top: 60px;
+
   div{
     position: absolute;
     top: 0;
@@ -216,7 +189,7 @@ export const StyledLogo = styled.div`
   }
   
   @media screen and (min-width: 900px){
-    margin-top: 120px;
+
     img{
       width: 80%;
     }
@@ -227,7 +200,6 @@ export const StyledLogo = styled.div`
     }
   }
 `;
-
 export const StyledLogoSmall = styled(StyledLogo)`
   padding-bottom: 0;
   cursor: auto;

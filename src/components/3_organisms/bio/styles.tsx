@@ -4,7 +4,6 @@ import RichText from "@/src/components/2_molecules/richText";
 
 const getRGBABackground = (color: string) => {
   const { red, green, blue } = hexRgb(color);
-  const test = "";
   return `${red}, ${green}, ${blue}`
 }
 
