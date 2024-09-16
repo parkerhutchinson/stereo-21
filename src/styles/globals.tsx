@@ -12,9 +12,10 @@ export const Globals = createGlobalStyle`
   }
   html{
     min-height: 100vh;
+    font-size: 62.5%;
   }
   body{
-    background: black;
+    background: #19162F;
     font-family: 'Roboto', sans-serif;
   }
 

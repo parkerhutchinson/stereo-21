@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import hexRgb from 'hex-rgb';
-import RichText from "../../2_molecules/richText";
-
-
+import RichText from "@/src/components/2_molecules/richText";
 
 const getRGBABackground = (color: string) => {
   const { red, green, blue } = hexRgb(color);
@@ -20,7 +18,7 @@ export const StyledBioTab = styled.article<IStyledBioTab>`
   position: ${(p) => p.caseStudyOpen ? 'fixed' : 'relative'};
   overflow: hidden;
   @media screen and (min-width: 1024px) {
-    width: 45%;
+    width: 55%;
   }
 `;
 
@@ -71,46 +69,55 @@ export const StyledBioRichText = styled(RichText)`
   h1{
     font-weight: 200;
     margin-bottom: -10px;
-    font-size: 42px;
+    font-size: 6.0rem;
     position: relative;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1px;
     text-align: center;
+    color: #ffffff;
     @media screen and (min-width: 900px) {
       text-align: left;
-      font-size: 48px;
+      font-size: 6.0rem;
     }
     @media screen and (min-width: 1800px) {
-      font-size: 80px;
+      font-size: 8.0rem;
     }
   }
   h2{
     margin-bottom: 40px;
-    font-size: 20px;
-    text-align: center;
+    font-size: 2.3rem;
     text-transform: none;
     letter-spacing: -.2px;
     font-weight: 'light';
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
+    color: rgb(0 0 0 / 0);
+    position: relative;
+    background-image: linear-gradient(45deg, #F1BD6C, #6534A6);
+    background-clip: text;
+    display: block;
+    width: max-content;
+    margin: 0 auto;
     @media screen and (min-width: 900px) {
       text-align: left;
-      margin-bottom: 50px;
+      margin: 0;
+      margin-bottom: 30px;
     }
   }
   h4{
-    font-size: 23px;
+    font-size: 4.0rem;
     margin-bottom: 20px;
     letter-spacing: 1px;
     font-weight: 300;
     text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
   }
   p{
-    line-height: 30px;
+    line-height: 3.8rem;
     letter-spacing: -.2px;
     margin-bottom: 30px;
     color: #d7d7d7;
-    font-size: 16px;
+    font-size: 2.2rem;
     @media screen and (min-width: 1200px) {
       font-size: 22px;
       line-height: 36px;

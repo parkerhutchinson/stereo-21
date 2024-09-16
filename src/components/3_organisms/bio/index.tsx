@@ -32,12 +32,12 @@ const Bio = (props: TypeBioFields) => {
   }, [caseStudyOpen])
 
   const [styles, eyebrowAPI] = useSpring(() => {
-    backgroundImage: 
-      `linear-gradient(90deg, ${colorScheme.eyeBrowStopOne} 0%, ${colorScheme.eyeBrowStopTwo} 100%)`
+    backgroundImage:
+    `linear-gradient(90deg, ${colorScheme.eyeBrowStopOne} 0%, ${colorScheme.eyeBrowStopTwo} 100%)`
   })
 
   useEffect(() => {
-    eyebrowAPI.start({backgroundImage: `linear-gradient(90deg, ${colorScheme.eyeBrowStopOne} 0%, ${colorScheme.eyeBrowStopTwo} 100%)`});
+    eyebrowAPI.start({ backgroundImage: `linear-gradient(90deg, ${colorScheme.eyeBrowStopOne} 0%, ${colorScheme.eyeBrowStopTwo} 100%)` });
   }, [colorScheme.eyeBrowStopOne])
 
   return (
@@ -51,8 +51,8 @@ const Bio = (props: TypeBioFields) => {
         backgroundColor={colorScheme.highlight}
         caseStudyOpen={winWidth < 1024 ? mobilePanel : caseStudyOpen}
       >
-        <StyledEyeBrow as={animated.span} style={styles} />
-        <StyledBioRichText body={body} isNotBio={false} linkColor={colorScheme.eyeBrowStopTwo}/>
+        {/* <StyledEyeBrow as={animated.span} style={styles} /> */}
+        <StyledBioRichText body={body} isNotBio={false} linkColor={colorScheme.eyeBrowStopTwo} />
       </StyledCopyWrapper>
     </StyledBioTab>
   )
